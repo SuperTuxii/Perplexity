@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://l31sow1x1sko"]
+
+[ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/Desk.blend" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/Chair.blend" id="2_ia1lp"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Desk" parent="." instance=ExtResource("1_uhqqe")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17808604, 1.7432975, -0.06313062)
+
+[node name="Chair2" parent="." instance=ExtResource("2_ia1lp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49117625, 0, 0.03793949)
