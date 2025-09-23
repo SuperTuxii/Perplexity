@@ -8,7 +8,7 @@
 [node name="Desk" parent="." instance=ExtResource("1_uhqqe")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17808604, 1.7432975, -0.06313062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14772987, 1.5513449, -0.44826686)
 
 [node name="Chair2" parent="." instance=ExtResource("2_ia1lp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49117625, 0, 0.03793949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.977514, 0, 0.03793949)
