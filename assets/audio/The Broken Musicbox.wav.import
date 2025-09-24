@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1j6jnh47ccj4"
+path="res://.godot/imported/The Broken Musicbox.wav-c67f6efeba7c04577de152e39e51db78.sample"
+
+[deps]
+
+source_file="res://assets/audio/The Broken Musicbox.wav"
+dest_files=["res://.godot/imported/The Broken Musicbox.wav-c67f6efeba7c04577de152e39e51db78.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
