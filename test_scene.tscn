@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l31sow1x1sko"]
+[gd_scene load_steps=11 format=3 uid="uid://l31sow1x1sko"]
 
 [ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/Desk.blend" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/Chair.blend" id="2_ia1lp"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/Paper.blend" id="5_8pr8v"]
 [ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/Pencil.blend" id="6_buypi"]
 [ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/Keyboard.blend" id="7_8pr8v"]
+[ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/Monitor.blend" id="8_buypi"]
+[ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/Shelf.blend" id="9_njel3"]
+[ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/Container.blend" id="10_vr1i5"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -32,3 +35,12 @@ transform = Transform3D(0.7248215, 0, -0.68893665, 0, 1, 0, 0.68893665, 0, 0.724
 
 [node name="Keyboard" parent="." instance=ExtResource("7_8pr8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099727236, 0.79999995, 0.24295084)
+
+[node name="Monitor2" parent="." instance=ExtResource("8_buypi")]
+transform = Transform3D(0.9939495, 0, 0.1098384, 0, 1, 0, -0.1098384, 0, 0.9939495, -0.1680167, 0.79999995, 0.2749335)
+
+[node name="Shelf" parent="." instance=ExtResource("9_njel3")]
+transform = Transform3D(-0.93969256, 0, -0.34202018, 0, 1, 0, 0.34202018, 0, -0.93969256, -1.947793, 0, 1.6023266)
+
+[node name="Container" parent="." instance=ExtResource("10_vr1i5")]
+transform = Transform3D(0.393573, 0, 0.9192934, 0, 1, 0, -0.9192934, 0, 0.393573, -0.9954097, 0, 2.8183646)
