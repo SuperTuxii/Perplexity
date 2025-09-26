@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wsgyiws1tkgd"]
+
+[resource]
+resource_name = "ChairStarMaterial"
+albedo_color = Color(0.50390625, 0.50390625, 0.50390625, 1)
+metallic = 0.7
+roughness = 0.6

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c551ucvewkecj"]
+
+[resource]
+resource_name = "TelephoneButtonsMaterial"
+albedo_color = Color(0.75390625, 0.75390625, 0.75390625, 1)
+roughness = 0.45

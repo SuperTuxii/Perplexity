@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cjownj56k8htm"]
+
+[resource]
+resource_name = "DoorHandleCoverMaterial"
+metallic = 0.25
+roughness = 0.5

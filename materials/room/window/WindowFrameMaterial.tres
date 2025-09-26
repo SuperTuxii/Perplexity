@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cw4pqcmxklb0n"]
+
+[resource]
+resource_name = "WindowFrameMaterial"
+albedo_color = Color(0.80078125, 0.80078125, 0.80078125, 1)

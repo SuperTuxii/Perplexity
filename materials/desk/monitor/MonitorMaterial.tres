@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ewfns2b8uhxr"]
+
+[resource]
+resource_name = "MonitorMaterial"
+albedo_color = Color(0.1953125, 0.1953125, 0.1953125, 1)
+roughness = 0.4

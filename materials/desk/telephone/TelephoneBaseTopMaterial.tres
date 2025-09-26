@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bawn35nh3rpkt"]
+
+[resource]
+resource_name = "TelephoneBaseTopMaterial"
+albedo_color = Color(0.95, 0.95, 0.95, 1)
+roughness = 0.75

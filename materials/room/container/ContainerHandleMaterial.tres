@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d0w1yrmw3ox1s"]
+
+[resource]
+resource_name = "ContainerHandleMaterial"
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+metallic = 0.8
+roughness = 0.45

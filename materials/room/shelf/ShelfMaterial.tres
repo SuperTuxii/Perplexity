@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://2ocygkttt275"]
+
+[resource]
+resource_name = "ShelfMaterial"
+roughness = 0.85

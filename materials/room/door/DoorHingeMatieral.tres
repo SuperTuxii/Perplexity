@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://be1vn27eqq7im"]
+
+[resource]
+resource_name = "DoorHingeMatieral"
+albedo_color = Color(1.353256, 1.353256, 1.353256, 1)
+metallic = 0.5
+roughness = 0.5

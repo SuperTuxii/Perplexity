@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2n0ffb7ntfnw"]
+
+[resource]
+resource_name = "KeyboardCapsTopMaterial"
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+roughness = 0.6

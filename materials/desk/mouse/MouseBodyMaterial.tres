@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dg2hfaxurrsk0"]
+
+[resource]
+resource_name = "MouseBodyMaterial"
+albedo_color = Color(0.6484375, 0.6484375, 0.6484375, 1)
+roughness = 0.45

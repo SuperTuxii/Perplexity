@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://y6nwb58q8fyc"]
+
+[resource]
+resource_name = "KeyboardBaseMaterial"
+albedo_color = Color(0.203125, 0.203125, 0.203125, 1)
+roughness = 0.6

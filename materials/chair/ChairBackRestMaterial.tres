@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqmfo7ywh65kw"]
+
+[resource]
+resource_name = "ChairBackRestMaterial"
+albedo_color = Color(0.74609375, 0.74609375, 0.74609375, 1)
+roughness = 0.6

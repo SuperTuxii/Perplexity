@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cc4m4trfubm62"]
+
+[resource]
+resource_name = "ShelfFrameMaterial"
+albedo_color = Color(0.8515625, 0.8515625, 0.8515625, 1)
+roughness = 0.85

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://digy2rjtasa7r"]
+
+[resource]
+resource_name = "DoorFrameMaterial"
+albedo_color = Color(0.95, 0.95, 0.95, 1)
+roughness = 0.85

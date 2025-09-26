@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5hpbc5st5f5n"]
+
+[resource]
+resource_name = "ChairArmRestMaterial"
+albedo_color = Color(0.49609375, 0.49609375, 0.49609375, 1)
+roughness = 0.65
