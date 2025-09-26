@@ -13,7 +13,11 @@ config_version=5
 config/name="Perplexity"
 run/main_scene="uid://b4ws4gaic8rjp"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+
+[editor]
+
+movie_writer/movie_file="/home/tobias/Downloads/video.avi"
 
 [editor_plugins]
 
