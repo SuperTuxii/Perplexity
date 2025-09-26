@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4ws4gaic8rjp"]
+
+[ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/Desk.blend" id="1_nrwyk"]
+[ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/Shelf.blend" id="2_2wc1w"]
+[ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/Container.blend" id="3_8jj3j"]
+[ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/Chair.blend" id="4_xofcu"]
+[ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/Monitor.blend" id="5_wi601"]
+[ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/Keyboard.blend" id="6_xjxh8"]
+[ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/Mouse.blend" id="7_238tj"]
+[ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/Telephone.blend" id="8_h6orv"]
+[ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/Paper.blend" id="9_vomke"]
+[ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/Pencil.blend" id="10_0xv2w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vipva"]
+size = Vector2(3.5, 10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_vipva")
+
+[node name="Desk2" parent="." instance=ExtResource("1_nrwyk")]
+transform = Transform3D(-0.02949183, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.02949183, 1.157391, 0, 0.04792154)
+
+[node name="Desk3" parent="." instance=ExtResource("1_nrwyk")]
+transform = Transform3D(-0.037289083, 0, -0.99930453, 0, 1, 0, 0.99930453, 0, -0.037289083, -1.1266552, 0, 0.9663234)
+
+[node name="Desk4" parent="." instance=ExtResource("1_nrwyk")]
+transform = Transform3D(-0.036800727, 0, -0.99932265, 0, 1, 0, 0.99932265, 0, -0.036800727, -1.1266552, 0, 1.6240368)
+
+[node name="Shelf" parent="." instance=ExtResource("2_2wc1w")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.1633304, 0, 4.7648563)
+
+[node name="Desk5" parent="." instance=ExtResource("1_nrwyk")]
+transform = Transform3D(0.07059212, 0, -0.99750525, 0, 1, 0, 0.99750525, 0, 0.07059212, -1.109972, 0, -1.7878487)
+
+[node name="Desk6" parent="." instance=ExtResource("1_nrwyk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.1343858, 0, -2.3886957)
+
+[node name="Shelf2" parent="." instance=ExtResource("2_2wc1w")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.1515977, 0, -4.756388)
+
+[node name="Container" parent="." instance=ExtResource("3_8jj3j")]
+transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.4485683, 1.1920929e-07, 2.4587238)
+
+[node name="Container2" parent="." instance=ExtResource("3_8jj3j")]
+transform = Transform3D(0.15077768, 0, -0.9885677, 0, 1, 0, 0.9885677, 0, 0.15077768, -1.4118675, 0, -4.6119647)
+
+[node name="Chair2" parent="." instance=ExtResource("4_xofcu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0931776, 0, 1.0663885)
+
+[node name="Chair6" parent="." instance=ExtResource("4_xofcu")]
+transform = Transform3D(0.96525866, 0, -0.26129645, 0, 1, 0, 0.26129645, 0, 0.96525866, 1.2227111, 0, -1.427202)
+
+[node name="Chair3" parent="." instance=ExtResource("4_xofcu")]
+transform = Transform3D(-0.5414735, 0, -0.84071785, 0, 1, 0, 0.84071785, 0, -0.5414735, -1.183666, 0, 2.2171516)
+
+[node name="Chair4" parent="." instance=ExtResource("4_xofcu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.1174126, 0, 0.5211154)
+
+[node name="Chair5" parent="." instance=ExtResource("4_xofcu")]
+transform = Transform3D(-0.21609885, 0, 0.97637165, 0, 1, 0, -0.97637165, 0, -0.21609885, -1.1494002, 0, -2.8619614)
+
+[node name="Monitor2" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.13549083, 0.84665704, 0.79999983, -0.11270814)
+
+[node name="Keyboard" parent="." instance=ExtResource("6_xjxh8")]
+transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08964175, 0.89874196, 0.8, 0.14296462)
+
+[node name="Mouse" parent="." instance=ExtResource("7_238tj")]
+transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
+
+[node name="Telephone" parent="." instance=ExtResource("8_h6orv")]
+transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
+
+[node name="Paper" parent="." instance=ExtResource("9_vomke")]
+transform = Transform3D(0.12836285, 0, 0.9917273, 0, 1, 0, -0.9917273, 0, 0.12836285, 1.5654562, 0.8009999, -0.09600202)
+
+[node name="Pencil" parent="." instance=ExtResource("10_0xv2w")]
+transform = Transform3D(0.91735214, 0, 0.39807668, 0, 1, 0, -0.39807668, 0, 0.91735214, 1.5084169, 0.7999999, -0.23985696)
+
+[node name="Monitor3" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(-0.34940624, 0, 0.9369713, 0, 1, 0, -0.9369713, 0, -0.34940624, -0.7942643, 0.79999995, -1.6265509)
+
+[node name="Monitor4" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(0.020401381, 0, 0.999792, 0, 1, 0, -0.999792, 0, 0.020401381, -1.3797665, 0.80000013, -1.5285914)
+
+[node name="Telephone2" parent="." instance=ExtResource("8_h6orv")]
+transform = Transform3D(0.9898408, 0, 0.14217977, 0, 1, 0, -0.14217977, 0, 0.9898408, -1.083781, 0.8, -1.5806655)
+
+[node name="Keyboard2" parent="." instance=ExtResource("6_xjxh8")]
+transform = Transform3D(-0.21285987, 0, 0.9770828, 0, 1, 0, -0.9770828, 0, -0.21285987, -0.99037915, 0.8, -1.8774756)
+
+[node name="Mouse2" parent="." instance=ExtResource("7_238tj")]
+transform = Transform3D(-0.12403444, 0, -0.99227804, 0, 1, 0, 0.99227804, 0, -0.12403444, -1.4277867, 0.8, -1.8239783)
+
+[node name="Monitor5" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(0.07858096, 0, -0.99690765, 0, 1, 0, 0.99690765, 0, 0.07858096, 1.1296928, 0.8, -2.5622752)
+
+[node name="Keyboard3" parent="." instance=ExtResource("6_xjxh8")]
+transform = Transform3D(0.013438687, 0, -0.9999098, 0, 1, 0, 0.9999098, 0, 0.013438687, 0.9603573, 0.8000001, -2.2485528)
+
+[node name="Mouse3" parent="." instance=ExtResource("7_238tj")]
+transform = Transform3D(0.16425568, 0, 0.9864178, 0, 1, 0, -0.9864178, 0, 0.16425568, 1.4387496, 0.8, -2.240602)
+
+[node name="Paper2" parent="." instance=ExtResource("9_vomke")]
+transform = Transform3D(0.16222386, 0, 0.986754, 0, 1, 0, -0.986754, 0, 0.16222386, 1.5595767, 0.80100006, -2.5282907)
+
+[node name="Pencil2" parent="." instance=ExtResource("10_0xv2w")]
+transform = Transform3D(0.41405782, 0, 0.9102506, 0, 1, 0, -0.9102506, 0, 0.41405782, 1.489348, 0.8000001, -2.626216)
+
+[node name="Pencil3" parent="." instance=ExtResource("10_0xv2w")]
+transform = Transform3D(0.41350177, 0, 0.91050345, 0, 1, 0, -0.91050345, 0, 0.41350177, 1.4929107, 0.8000001, -2.6150649)
+
+[node name="Monitor6" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(-0.07811114, 0, 0.9969445, 0, 1, 0, -0.9969445, 0, -0.07811114, -0.99010026, 0.8, 1.1676235)
+
+[node name="Keyboard4" parent="." instance=ExtResource("6_xjxh8")]
+transform = Transform3D(-0.1089363, 0, 0.99404866, 0, 1, 0, -0.99404866, 0, -0.1089363, -0.97557676, 0.8, 0.88894075)
+
+[node name="Mouse4" parent="." instance=ExtResource("7_238tj")]
+transform = Transform3D(-0.30190405, 0, -0.9533383, 0, 1, 0, 0.9533383, 0, -0.30190405, -1.4321975, 0.8, 0.8907733)
+
+[node name="Telephone3" parent="." instance=ExtResource("8_h6orv")]
+transform = Transform3D(-0.949639, 0, -0.3133461, 0, 1, 0, 0.3133461, 0, -0.949639, -1.5244768, 0.8, 1.4482685)
+
+[node name="Monitor7" parent="." instance=ExtResource("5_wi601")]
+transform = Transform3D(-0.1978113, 0, -0.9802401, 0, 1, 0, 0.9802401, 0, -0.1978113, -0.9766621, 0.8, 1.4753807)
