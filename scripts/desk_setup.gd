@@ -8,8 +8,8 @@ var mouse_pressed: bool = false
 
 func _process(_delta: float) -> void:
 	mouse_motion.y = clamp(mouse_motion.y, -1560, 1560)
-	$Chair/Camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y * -0.006, 0, 0))
-	$Chair.transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x * -0.006, 0))
+	$Chair/Camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y * -0.005, 0, 0))
+	$Chair.transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x * -0.005, 0))
 	#if Input.is_action_just_pressed("pause"):
 		#if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
