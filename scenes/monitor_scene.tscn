@@ -8,10 +8,10 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.93359375, 0.098464966, 0.098464966, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 corner_detail = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwc3u"]
@@ -28,7 +28,6 @@ color = Color(0.19215687, 0.19215687, 0.19215687, 1)
 script = ExtResource("1_uwc3u")
 
 [node name="SecurityBreachedPanel" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,9 +45,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_enxf5")
 [node name="MarginContainer" type="MarginContainer" parent="SecurityBreachedPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 100
 
 [node name="SecurityBreachedLabel" type="Label" parent="SecurityBreachedPanel/MarginContainer"]
 layout_mode = 2

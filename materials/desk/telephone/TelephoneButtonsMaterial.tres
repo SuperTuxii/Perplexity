@@ -1,6 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c551ucvewkecj"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c551ucvewkecj"]
+
+[ext_resource type="Texture2D" uid="uid://bqxmpdnalhpp8" path="res://assets/textures/telephone_buttons.png" id="1_2xvhg"]
 
 [resource]
 resource_name = "TelephoneButtonsMaterial"
 albedo_color = Color(0.75390625, 0.75390625, 0.75390625, 1)
+albedo_texture = ExtResource("1_2xvhg")
 roughness = 0.45
