@@ -1,7 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=27 format=3 uid="uid://b4ws4gaic8rjp"]
 
+[ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_viewport.tscn" id="1_pkh84"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_338xd"]
+[ext_resource type="PackedScene" uid="uid://deu5aup1ru16f" path="res://scenes/pause_menu.tscn" id="2_jl2p6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="3_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/blender/WindowWall.blend" id="4_ewgxa"]
 [ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/blender/Shelf.blend" id="5_ml77k"]
@@ -9,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b7831qwr1cxxm" path="res://assets/3d/blender/Door.blend" id="7_u5jvq"]
 [ext_resource type="PackedScene" uid="uid://blw6j5qkort24" path="res://assets/3d/blender/Window.blend" id="8_5n0tc"]
 [ext_resource type="PackedScene" uid="uid://gi5ltvp4dm4a" path="res://assets/3d/blender/Light.blend" id="9_708qp"]
-[ext_resource type="Script" uid="uid://otkbkudtqmrl" path="res://scripts/desk_setup.gd" id="10_108tb"]
 [ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/blender/Monitor.blend" id="11_n2cvh"]
 [ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/blender/Keyboard.blend" id="12_nhbng"]
 [ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/blender/Mouse.blend" id="13_o5vb4"]
@@ -44,16 +45,18 @@ albedo_color = Color(0.90234375, 0.90234375, 0.90234375, 1)
 albedo_texture = SubResource("ViewportTexture_csyg1")
 roughness = 0.4
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.5
 emission_texture = SubResource("ViewportTexture_pkh84")
 
 [node name="Main3D" type="Node3D"]
+script = ExtResource("1_jl2p6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_igkv5")
 
 [node name="MonitorViewport" parent="." instance=ExtResource("1_pkh84")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_jl2p6")]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -173,7 +176,6 @@ omni_attenuation = 2.0
 
 [node name="Desk Setup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
-script = ExtResource("10_108tb")
 
 [node name="Monitor" parent="Desk Setup" instance=ExtResource("11_n2cvh")]
 transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.13549083, 0.84665704, 0.79999983, -0.11270814)

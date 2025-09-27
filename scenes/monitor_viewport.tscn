@@ -4,7 +4,10 @@
 disable_3d = true
 size = Vector2i(1280, 720)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 0, 0.05000019, 1)
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.19215687, 1)

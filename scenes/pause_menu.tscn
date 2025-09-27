@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://deu5aup1ru16f"]
+
+[ext_resource type="Script" uid="uid://17xhj7gqgv3w" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uahpa"]
+font_size = 80
+font_color = Color(0.5, 0.5, 0.5, 1)
+outline_size = 5
+outline_color = Color(0.1, 0.1, 0.1, 1)
+shadow_size = 15
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myx47"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.2, 0.2, 0.2, 0.5882353)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_n87rw"]
+font_size = 18
+font_color = Color(0.7490196, 0.7490196, 0.7490196, 1)
+outline_size = 5
+outline_color = Color(0.1, 0.1, 0.1, 1)
+shadow_size = 3
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.05, 0.05, 0.05, 0.78431374)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n87rw")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -85.0
+offset_right = 154.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PauseLabel" type="Label" parent="Layout"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_uahpa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Layout"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_myx47")
+
+[node name="MarginContainer" type="MarginContainer" parent="Layout/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="SensitivityLabel" type="Label" parent="Layout/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Drag Sensitivity:"
+label_settings = SubResource("LabelSettings_n87rw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="Layout/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+allow_greater = true
+allow_lesser = true
+
+[node name="ContinueButton" type="Button" parent="Layout"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
+text = "Continue"
+
+[connection signal="value_changed" from="Layout/PanelContainer/MarginContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="Layout/ContinueButton" to="." method="_on_continue_button_pressed"]
