@@ -7,7 +7,7 @@ var mouse_pressed: bool = false
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(_delta: float) -> void:
-	mouse_motion.y = clamp(mouse_motion.y, -1560, 1560)
+	mouse_motion.y = clamp(mouse_motion.y, -312, 312)
 	$Chair/Camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y * -0.005, 0, 0))
 	$Chair.transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x * -0.005, 0))
 	#if Input.is_action_just_pressed("pause"):
@@ -23,6 +23,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_pressed:
 		mouse_motion += event.relative
 	if event is InputEventScreenDrag:
-		mouse_motion += event.screen_relative
+		mouse_motion += event.screen_relative * 0.1
 	#if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		#mouse_motion += event.relative

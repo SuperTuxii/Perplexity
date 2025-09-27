@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=3 uid="uid://l31sow1x1sko"]
+
+[ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/blender/Desk.blend" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/blender/Chair.blend" id="2_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/blender/Telephone.blend" id="3_sasra"]
+[ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/blender/Mouse.blend" id="4_7cbxl"]
+[ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/blender/Paper.blend" id="5_8pr8v"]
+[ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/blender/Pencil.blend" id="6_buypi"]
+[ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/blender/Keyboard.blend" id="7_8pr8v"]
+[ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/blender/Monitor.blend" id="8_buypi"]
+[ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/blender/Shelf.blend" id="9_njel3"]
+[ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/blender/Container.blend" id="10_vr1i5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Desk" parent="." instance=ExtResource("1_uhqqe")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0145292, 2.1709425, 0.29821128)
+
+[node name="Chair2" parent="." instance=ExtResource("2_ia1lp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.977514, 0, 0.03793949)
+
+[node name="Telephone" parent="." instance=ExtResource("3_sasra")]
+transform = Transform3D(0.013089597, 0, -0.99991435, 0, 1, 0, 0.99991435, 0, 0.013089597, -0.194, 0.8, -0.149)
+
+[node name="Mouse" parent="." instance=ExtResource("4_7cbxl")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09561895, 0.8000001, -0.10812241)
+
+[node name="Paper" parent="." instance=ExtResource("5_8pr8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08819002, 0.801, -0.33662963)
+
+[node name="Pencil" parent="." instance=ExtResource("6_buypi")]
+transform = Transform3D(0.7248215, 0, -0.68893665, 0, 1, 0, 0.68893665, 0, 0.7248215, -0.029164083, 0.8, -0.25537905)
+
+[node name="Keyboard" parent="." instance=ExtResource("7_8pr8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099727236, 0.79999995, 0.24295084)
+
+[node name="Monitor2" parent="." instance=ExtResource("8_buypi")]
+transform = Transform3D(0.9939495, 0, 0.1098384, 0, 1, 0, -0.1098384, 0, 0.9939495, -0.1680167, 0.79999995, 0.2749335)
+
+[node name="Shelf" parent="." instance=ExtResource("9_njel3")]
+transform = Transform3D(-0.93969256, 0, -0.34202018, 0, 1, 0, 0.34202018, 0, -0.93969256, -1.539017, 2.3841858e-07, 1.0765057)
+
+[node name="Container" parent="." instance=ExtResource("10_vr1i5")]
+transform = Transform3D(0.393573, 0, 0.9192934, 0, 1, 0, -0.9192934, 0, 0.393573, -0.6375551, 0, 2.155771)
