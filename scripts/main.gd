@@ -1,5 +1,8 @@
 class_name Main extends Node3D
 
+@export
+var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
+
 var paused: bool:
 	get:
 		return $PauseMenu.visible
@@ -32,12 +35,15 @@ func _input(event: InputEvent) -> void:
 		if (event is InputEventMouseMotion and mouse_pressed) or event is InputEventScreenDrag:
 			mouse_motion += event.relative * -drag_sensitivity
 			mouse_movement += (event.relative * drag_sensitivity).length()
-			print(mouse_movement)
-
 
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
 		if !event.pressed and mouse_movement < 0.05:
-			print("Interacted with Monitor!")
-	if event is InputEventMouseMotion:
-		print("Screen Hover!")
+			pass
+			#print("Interacted with Monitor!")
+
+func _on_monitor_area_mouse_entered() -> void:
+	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
+
+func _on_monitor_area_mouse_exited() -> void:
+	$"Desk Setup/Monitor/Monitor".material_overlay = null

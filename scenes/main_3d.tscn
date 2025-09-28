@@ -311,5 +311,7 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]
 
 [editable path="Desk Setup/Monitor"]

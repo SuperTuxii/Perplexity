@@ -59,20 +59,65 @@ layout_mode = 2
 text = "! SECURITY BREACHED !"
 label_settings = SubResource("LabelSettings_uwc3u")
 
-[node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("ServerSpritesCollection")]
+[node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("server_sprites_collection")]
 texture_filter = 1
 texture_repeat = 2
-points = PackedVector2Array(666, 302, 491, 323)
 default_color = Color(0.8359375, 0.8359375, 0.8359375, 1)
 texture = ExtResource("2_5fevq")
 texture_mode = 1
 script = ExtResource("3_jtwhh")
-ServerSpritesCollection = NodePath("../ServerSprites")
+server_sprites_collection = NodePath("../ServerSprites")
 
 [node name="ServerSprites" type="Node2D" parent="."]
 
 [node name="HackedServer" parent="ServerSprites" instance=ExtResource("2_6v2g8")]
-position = Vector2(666, 302)
+position = Vector2(1085, 130)
 
-[node name="NormalServer" parent="ServerSprites" instance=ExtResource("3_5fevq")]
-position = Vector2(491, 323)
+[node name="NormalServer" parent="ServerSprites/HackedServer" instance=ExtResource("3_5fevq")]
+position = Vector2(-93, 5.666664)
+scale = Vector2(1, 1)
+
+[node name="NormalServer6" parent="ServerSprites/HackedServer" instance=ExtResource("3_5fevq")]
+position = Vector2(11.6666565, 70)
+scale = Vector2(1, 1)
+
+[node name="NormalServer2" parent="ServerSprites/HackedServer" instance=ExtResource("3_5fevq")]
+position = Vector2(83.33331, -55.333336)
+scale = Vector2(1, 1)
+
+[node name="HackedServer2" parent="ServerSprites" instance=ExtResource("2_6v2g8")]
+position = Vector2(898.00006, 414)
+
+[node name="NormalServer5" parent="ServerSprites/HackedServer2" instance=ExtResource("3_5fevq")]
+position = Vector2(19.333313, 60.333344)
+scale = Vector2(1, 1)
+
+[node name="HackedServer3" parent="ServerSprites" instance=ExtResource("2_6v2g8")]
+position = Vector2(529, 319)
+
+[node name="NormalServer" parent="ServerSprites/HackedServer3" instance=ExtResource("3_5fevq")]
+position = Vector2(-83.33334, -68)
+scale = Vector2(1, 1)
+
+[node name="NormalServer3" parent="ServerSprites/HackedServer3" instance=ExtResource("3_5fevq")]
+position = Vector2(39.33333, 72.00001)
+scale = Vector2(1, 1)
+
+[node name="NormalServer4" parent="ServerSprites/HackedServer3" instance=ExtResource("3_5fevq")]
+position = Vector2(4.6666565, -63)
+scale = Vector2(1, 1)
+
+[node name="HackedServer4" parent="ServerSprites" instance=ExtResource("2_6v2g8")]
+position = Vector2(238, 447)
+
+[node name="NormalServer7" parent="ServerSprites/HackedServer4" instance=ExtResource("3_5fevq")]
+position = Vector2(-51, 49.66667)
+scale = Vector2(1, 1)
+
+[node name="NormalServer8" parent="ServerSprites/HackedServer4" instance=ExtResource("3_5fevq")]
+position = Vector2(54.666664, 32.66667)
+scale = Vector2(1, 1)
+
+[node name="NormalServer2" parent="ServerSprites/HackedServer4" instance=ExtResource("3_5fevq")]
+position = Vector2(-42.333336, -61.33333)
+scale = Vector2(1, 1)
