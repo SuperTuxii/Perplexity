@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de8irw2y7ivmp"
-path="res://.godot/imported/hacked_server5.png-a16a2a7ed2b68694916a8dd520f44d0d.ctex"
+uid="uid://1157law6k285"
+path="res://.godot/imported/normal_server5.png-d70296f9ddf3882817e877784d907b4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/hacked_server5.png"
-dest_files=["res://.godot/imported/hacked_server5.png-a16a2a7ed2b68694916a8dd520f44d0d.ctex"]
+source_file="res://assets/textures/server/normal_server5.png"
+dest_files=["res://.godot/imported/normal_server5.png-d70296f9ddf3882817e877784d907b4b.ctex"]
 
 [params]
 

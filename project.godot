@@ -17,6 +17,7 @@ boot_splash/show_image=false
 
 [editor]
 
+movie_writer/video_quality=1.0
 movie_writer/movie_file="/home/tobias/Downloads/video.avi"
 
 [editor_plugins]

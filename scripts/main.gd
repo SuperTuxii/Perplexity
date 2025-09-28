@@ -70,16 +70,16 @@ func set_focus(index: int) -> void:
 func _input(event: InputEvent) -> void:
 	if !paused and focus == 0 and focus_weight == -1:
 		# Screen dragging/panning
-		if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
+		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 			mouse_pressed = event.pressed
 			if event.pressed:
 				mouse_movement = 0
-		if (event is InputEventMouseMotion and mouse_pressed) or event is InputEventScreenDrag:
+		if event is InputEventMouseMotion and mouse_pressed:
 			mouse_motion += event.relative * -drag_sensitivity
 			mouse_movement += (event.relative * drag_sensitivity).length()
 
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		if !event.pressed and mouse_movement < 0.05:
 			focus = 1
 
