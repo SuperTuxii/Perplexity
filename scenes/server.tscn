@@ -1,0 +1,104 @@
+[gd_scene load_steps=21 format=3 uid="uid://dmglpm2hsr6jv"]
+
+[ext_resource type="Texture2D" uid="uid://5xwcgh0h7bfd" path="res://assets/textures/changing_server1.png" id="1_wkks8"]
+[ext_resource type="Texture2D" uid="uid://bcjnneag2uk38" path="res://assets/textures/changing_server2.png" id="2_dfww2"]
+[ext_resource type="Texture2D" uid="uid://xck1213bj0d" path="res://assets/textures/changing_server3.png" id="3_r68q7"]
+[ext_resource type="Texture2D" uid="uid://b2eqrpmvflclg" path="res://assets/textures/changing_server4.png" id="4_p7yi4"]
+[ext_resource type="Texture2D" uid="uid://crkm3kd7ysib4" path="res://assets/textures/hacked_server1.png" id="6_v4u4c"]
+[ext_resource type="Texture2D" uid="uid://dd7r0dac22m0d" path="res://assets/textures/hacked_server2.png" id="7_bycdx"]
+[ext_resource type="Texture2D" uid="uid://dit46kmh20cm6" path="res://assets/textures/hacked_server3.png" id="8_cy0aq"]
+[ext_resource type="Texture2D" uid="uid://c4tj5mx05lqji" path="res://assets/textures/normal_server.png" id="8_l28i3"]
+[ext_resource type="Texture2D" uid="uid://qljy6awruleb" path="res://assets/textures/normal_server1.png" id="9_5k37l"]
+[ext_resource type="Texture2D" uid="uid://cnttfooof8wcm" path="res://assets/textures/hacked_server4.png" id="9_mj5l3"]
+[ext_resource type="Texture2D" uid="uid://de8irw2y7ivmp" path="res://assets/textures/hacked_server5.png" id="10_aucyr"]
+[ext_resource type="Texture2D" uid="uid://cc72ic1n5v8ny" path="res://assets/textures/normal_server2.png" id="10_uiyeg"]
+[ext_resource type="Texture2D" uid="uid://o830scaexn8p" path="res://assets/textures/hacked_server6.png" id="11_7n53l"]
+[ext_resource type="Texture2D" uid="uid://bv8h1uq3qq1fw" path="res://assets/textures/normal_server3.png" id="11_m81w4"]
+[ext_resource type="Texture2D" uid="uid://bei6ilikqtc62" path="res://assets/textures/normal_server4.png" id="12_80yyy"]
+[ext_resource type="Texture2D" uid="uid://dy7yktw4itncy" path="res://assets/textures/hacked_server.png" id="12_ckshc"]
+[ext_resource type="Texture2D" uid="uid://1157law6k285" path="res://assets/textures/normal_server5.png" id="13_pkeai"]
+[ext_resource type="Texture2D" uid="uid://plqhxf2542c" path="res://assets/textures/normal_server6.png" id="14_758av"]
+[ext_resource type="Script" uid="uid://bqhx8plhro4wr" path="res://scripts/server.gd" id="15_mp518"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mp518"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": ExtResource("1_wkks8")
+}, {
+"duration": 2.5,
+"texture": ExtResource("2_dfww2")
+}, {
+"duration": 2.5,
+"texture": ExtResource("3_r68q7")
+}, {
+"duration": 2.5,
+"texture": ExtResource("4_p7yi4")
+}],
+"loop": true,
+"name": &"changing_server",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 7.5,
+"texture": ExtResource("6_v4u4c")
+}, {
+"duration": 7.5,
+"texture": ExtResource("7_bycdx")
+}, {
+"duration": 7.5,
+"texture": ExtResource("8_cy0aq")
+}, {
+"duration": 7.5,
+"texture": ExtResource("9_mj5l3")
+}, {
+"duration": 7.5,
+"texture": ExtResource("10_aucyr")
+}, {
+"duration": 7.5,
+"texture": ExtResource("11_7n53l")
+}, {
+"duration": 7.5,
+"texture": ExtResource("12_ckshc")
+}],
+"loop": true,
+"name": &"hacked_server",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 7.5,
+"texture": ExtResource("8_l28i3")
+}, {
+"duration": 7.5,
+"texture": ExtResource("9_5k37l")
+}, {
+"duration": 7.5,
+"texture": ExtResource("10_uiyeg")
+}, {
+"duration": 7.5,
+"texture": ExtResource("11_m81w4")
+}, {
+"duration": 7.5,
+"texture": ExtResource("12_80yyy")
+}, {
+"duration": 7.5,
+"texture": ExtResource("13_pkeai")
+}, {
+"duration": 7.5,
+"texture": ExtResource("14_758av")
+}],
+"loop": true,
+"name": &"normal_server",
+"speed": 5.0
+}]
+
+[node name="Server" type="AnimatedSprite2D"]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mp518")
+animation = &"changing_server"
+script = ExtResource("15_mp518")
+
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
