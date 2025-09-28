@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=29 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scene.tscn" id="1_pkh84"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/blender/Pencil.blend" id="16_80pr4"]
 [ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/blender/Desk.blend" id="17_nlluf"]
 [ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/blender/Chair.blend" id="18_kufr5"]
+[ext_resource type="PackedScene" uid="uid://w3kt8jygllid" path="res://assets/3d/blender/Plant.blend" id="20_jl2p6"]
 
 [sub_resource type="Environment" id="Environment_igkv5"]
 background_mode = 1
@@ -309,6 +310,15 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("13_o5vb4")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
+
+[node name="Plant" parent="." instance=ExtResource("20_jl2p6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8019747, 0.8, 1.010514)
+
+[node name="Plant2" parent="." instance=ExtResource("20_jl2p6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.356745, 1.025, 4.695069)
+
+[node name="Plant3" parent="." instance=ExtResource("20_jl2p6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.583468, 1.55, -4.643609)
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://8twudmp76qt5"]
+
+[resource]
+resource_name = "PlantMaterial"
+albedo_color = Color(0.544375, 0.67, 0.5025, 1)
+roughness = 0.65
