@@ -16,6 +16,13 @@ var drag_sensitivity: float:
 	set(value):
 		$PauseMenu.drag_sensitivity = value
 
+@export
+var focus_speed: float = 2.5
+var focus_weight: float = -1
+var focus_from_position: Vector3 = Vector3()
+var focus_from_rotation: Vector3 = Vector3()
+var focus_to_position: Vector3 = Vector3()
+var focus_to_rotation: Vector3 = Vector3()
 var focus: int = 0:
 	set = set_focus
 
@@ -23,8 +30,8 @@ var mouse_motion: Vector2 = Vector2()
 var mouse_pressed: bool = false
 var mouse_movement: float = 0
 
-func _process(_delta: float) -> void:
-	if focus == 0:
+func _process(delta: float) -> void:
+	if focus == 0 and focus_weight == -1:
 		mouse_motion.y = clamp(mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x, 0))
@@ -33,23 +40,35 @@ func _process(_delta: float) -> void:
 			paused = !paused
 		else:
 			focus = 0
+	if focus_weight != -1:
+		focus_weight += delta * focus_speed
+		focus_weight = minf(focus_weight, 1)
+		camera.position = focus_from_position.slerp(focus_to_position, focus_weight)
+		camera.rotation = focus_from_rotation.slerp(focus_to_rotation * (PI / 180), focus_weight)
+		if focus_weight == 1:
+			camera.position = focus_to_position
+			camera.rotation = focus_to_rotation * (PI / 180)
+			focus_weight = -1
 
 func set_focus(index: int) -> void:
 	focus = index
 	match index:
 		0:
-			mouse_motion = Vector2()
+			mouse_motion.y = 0
 			camera.reparent($"Desk Setup/Chair")
-			camera.position = Vector3(0, 1.2, 0)
-			camera.rotation = Vector3()
+			focus_to_position = Vector3(0, 1.2, 0)
+			focus_to_rotation = Vector3()
 		1:
 			$"Desk Setup/Monitor/Monitor".material_overlay = null
-			camera.reparent($"Desk Setup/Monitor", false)
-			camera.position = Vector3(0.3, 0.34, 0)
-			camera.rotation_degrees = Vector3(0, 90, 0)
+			camera.reparent($"Desk Setup/Monitor")
+			focus_to_position = Vector3(0.3, 0.34, 0)
+			focus_to_rotation = Vector3(0, 90, 0)
+	focus_from_position = camera.position
+	focus_from_rotation = camera.rotation
+	focus_weight = 0
 
 func _input(event: InputEvent) -> void:
-	if (!paused):
+	if !paused and focus == 0 and focus_weight == -1:
 		# Screen dragging/panning
 		if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
 			mouse_pressed = event.pressed
@@ -65,7 +84,7 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 			focus = 1
 
 func _on_monitor_area_mouse_entered() -> void:
-	if focus != 1:
+	if focus != 1 and focus_weight == -1:
 		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 
 func _on_monitor_area_mouse_exited() -> void:
