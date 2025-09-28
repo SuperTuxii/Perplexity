@@ -13,7 +13,7 @@ var drag_sensitivity: float:
 
 var mouse_motion: Vector2 = Vector2()
 var mouse_pressed: bool = false
-var mouse_press_position: Vector2 = Vector2()
+var mouse_movement: float = 0
 
 func _process(_delta: float) -> void:
 	mouse_motion.y = clamp(mouse_motion.y, -1.56, 1.56)
@@ -28,9 +28,16 @@ func _input(event: InputEvent) -> void:
 		if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
 			mouse_pressed = event.pressed
 			if event.pressed:
-				mouse_press_position = mouse_motion
-			else:
-				if abs(mouse_press_position - mouse_motion).length() < 0.05:
-					pass #check for interact with object
+				mouse_movement = 0
 		if (event is InputEventMouseMotion and mouse_pressed) or event is InputEventScreenDrag:
 			mouse_motion += event.relative * -drag_sensitivity
+			mouse_movement += (event.relative * drag_sensitivity).length()
+			print(mouse_movement)
+
+
+func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch:
+		if !event.pressed and mouse_movement < 0.05:
+			print("Interacted with Monitor!")
+	if event is InputEventMouseMotion:
+		print("Screen Hover!")

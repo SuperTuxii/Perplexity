@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=28 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scene.tscn" id="1_pkh84"]
@@ -31,6 +31,9 @@ size = Vector2(3.5, 2.5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_238tj"]
 size = Vector2(2.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
+size = Vector3(0.17623138, 0.5098648, 0.58078)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_csyg1"]
 viewport_path = NodePath("MonitorViewport")
@@ -181,6 +184,13 @@ omni_attenuation = 2.0
 [node name="Desk Setup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
 
+[node name="MonitorArea" type="Area3D" parent="Desk Setup"]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 0.79999983, -0.11270809)
+
+[node name="MonitorShape" type="CollisionShape3D" parent="Desk Setup/MonitorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256, 0)
+shape = SubResource("BoxShape3D_338xd")
+
 [node name="Monitor" parent="Desk Setup" instance=ExtResource("11_n2cvh")]
 transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.13549083, 0.84665704, 0.79999983, -0.11270814)
 
@@ -299,5 +309,7 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("13_o5vb4")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
+
+[connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 
 [editable path="Desk Setup/Monitor"]

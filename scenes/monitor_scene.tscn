@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=8 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
-[ext_resource type="Texture2D" uid="uid://dy7yktw4itncy" path="res://assets/textures/hacked_server.png" id="2_6v2g8"]
-[ext_resource type="Texture2D" uid="uid://c4tj5mx05lqji" path="res://assets/textures/normal_server.png" id="3_5fevq"]
+[ext_resource type="Texture2D" uid="uid://uw3o3he2skgt" path="res://assets/textures/line_profile.png" id="2_5fevq"]
+[ext_resource type="PackedScene" uid="uid://bndlwcs1flkv2" path="res://scenes/hacked_server.tscn" id="2_6v2g8"]
+[ext_resource type="PackedScene" uid="uid://dmglpm2hsr6jv" path="res://scenes/normal_server.tscn" id="3_5fevq"]
+[ext_resource type="Script" uid="uid://27f0trnoqbl2" path="res://scripts/server_line.gd" id="3_jtwhh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -57,16 +59,20 @@ layout_mode = 2
 text = "! SECURITY BREACHED !"
 label_settings = SubResource("LabelSettings_uwc3u")
 
-[node name="HackedServer" type="Sprite2D" parent="."]
+[node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("ServerSpritesCollection")]
 texture_filter = 1
-texture_repeat = 1
-position = Vector2(460, 416)
-scale = Vector2(3, 3)
-texture = ExtResource("2_6v2g8")
+texture_repeat = 2
+points = PackedVector2Array(666, 302, 491, 323)
+default_color = Color(0.8359375, 0.8359375, 0.8359375, 1)
+texture = ExtResource("2_5fevq")
+texture_mode = 1
+script = ExtResource("3_jtwhh")
+ServerSpritesCollection = NodePath("../ServerSprites")
 
-[node name="NormalServer" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(962, 258)
-scale = Vector2(3, 3)
-texture = ExtResource("3_5fevq")
+[node name="ServerSprites" type="Node2D" parent="."]
+
+[node name="HackedServer" parent="ServerSprites" instance=ExtResource("2_6v2g8")]
+position = Vector2(666, 302)
+
+[node name="NormalServer" parent="ServerSprites" instance=ExtResource("3_5fevq")]
+position = Vector2(491, 323)
