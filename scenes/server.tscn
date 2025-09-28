@@ -23,16 +23,16 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_mp518"]
 animations = [{
 "frames": [{
-"duration": 2.5,
+"duration": 1.0,
 "texture": ExtResource("1_wkks8")
 }, {
-"duration": 2.5,
+"duration": 1.0,
 "texture": ExtResource("2_dfww2")
 }, {
-"duration": 2.5,
+"duration": 1.0,
 "texture": ExtResource("3_r68q7")
 }, {
-"duration": 2.5,
+"duration": 1.0,
 "texture": ExtResource("4_p7yi4")
 }],
 "loop": true,

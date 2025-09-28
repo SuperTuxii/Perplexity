@@ -113,5 +113,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
 text = "Continue"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="value_changed" from="Layout/PanelContainer/MarginContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="Layout/ContinueButton" to="." method="_on_continue_button_pressed"]
