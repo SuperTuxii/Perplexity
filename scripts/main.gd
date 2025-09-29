@@ -62,6 +62,7 @@ func set_focus(index: int) -> void:
 	focus = index
 	if index == -1:
 		return # Other focus like a cutscene
+	$ScreenOverlays.set_skip_button(false)
 	# Focus animation configuration
 	match index:
 		0: # No focus/on chair
