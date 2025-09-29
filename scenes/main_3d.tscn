@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=37 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scene.tscn" id="1_pkh84"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/blender/Keyboard.blend" id="12_nhbng"]
 [ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/blender/Mouse.blend" id="13_o5vb4"]
 [ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/blender/Telephone.blend" id="14_ixjt1"]
+[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="14_ml77k"]
+[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="15_c2q4g"]
 [ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/blender/Paper.blend" id="15_jf700"]
 [ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/blender/Pencil.blend" id="16_80pr4"]
 [ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/blender/Desk.blend" id="17_nlluf"]
@@ -49,6 +51,51 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-60, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_ewgxa"]
@@ -108,24 +155,98 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/4/type = "method"
+tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".")
+tracks/4/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(10),
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.5, 0, -60, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(6, 9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-60, 0, 0, 0.5, 0, -0.031403676, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(6, 7)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 1, 0, 0, -1, 0, 0, 0),
+"times": PackedFloat32Array(5, 9)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [-1],
+"method": &"set_focus"
+}, {
 "args": [0],
 "method": &"set_focus"
 }]
 }
 
+[sub_resource type="Animation" id="Animation_c2q4g"]
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.25, 0, -80, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2q4g"]
 _data = {
 &"RESET": SubResource("Animation_ml77k"),
+&"alarm_ease_out": SubResource("Animation_c2q4g"),
 &"start_sleep": SubResource("Animation_ewgxa")
 }
 
@@ -140,6 +261,13 @@ size = Vector2(2.5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_c2q4g"]
+stream_count = 2
+stream_0/stream = ExtResource("14_ml77k")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("15_c2q4g")
+stream_1/volume = -60.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_csyg1"]
 viewport_path = NodePath("MonitorViewport")
@@ -168,13 +296,13 @@ size = Vector2i(1280, 720)
 
 [node name="MonitorScene" parent="MonitorViewport" instance=ExtResource("1_pkh84")]
 
+[node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
+
 [node name="PauseMenu" parent="." instance=ExtResource("2_jl2p6")]
 process_mode = 2
 visible = false
 
-[node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
-
-[node name="CameraAnimator" type="AnimationPlayer" parent="."]
+[node name="CutsceneAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c2q4g")
 }
@@ -310,6 +438,10 @@ transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.1354
 [node name="MonitorShape" type="CollisionShape3D" parent="Desk Setup/MonitorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256, 0)
 shape = SubResource("BoxShape3D_338xd")
+
+[node name="AlarmAudioStream" type="AudioStreamPlayer3D" parent="Desk Setup/MonitorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32514942, 0)
+stream = SubResource("AudioStreamSynchronized_c2q4g")
 
 [node name="Monitor" parent="Desk Setup" instance=ExtResource("11_n2cvh")]
 transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.13549083, 0.84665704, 0.79999983, -0.11270814)

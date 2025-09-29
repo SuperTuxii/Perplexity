@@ -33,7 +33,7 @@ var mouse_pressed: bool = false
 var mouse_movement: float = 0
 
 func _ready() -> void:
-	$CameraAnimator.play("start_sleep")
+	$CutsceneAnimator.play("start_sleep")
 
 func _process(delta: float) -> void:
 	if focus == 0 and focus_weight == -1: # Applying screen drag when focus is 0
@@ -82,6 +82,7 @@ func finished_focus() -> void:
 		1:
 			if $MonitorViewport/MonitorScene.security_breached_visible:
 				$MonitorViewport/MonitorScene.security_breached_visible = false
+				$CutsceneAnimator.play("alarm_ease_out")
 
 func _input(event: InputEvent) -> void:
 	if !paused and focus == 0 and focus_weight == -1: # Saving screen drag when focus is 0
