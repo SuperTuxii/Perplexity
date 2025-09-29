@@ -34,6 +34,8 @@ var mouse_movement: float = 0
 
 func _ready() -> void:
 	$CutsceneAnimator.play("start_sleep")
+	$ScreenOverlays.set_skip_button(true)
+	$ScreenOverlays.skipped.connect(skip_cutscene)
 
 func _process(delta: float) -> void:
 	if focus == 0 and focus_weight == -1: # Applying screen drag when focus is 0
@@ -86,6 +88,12 @@ func finished_focus() -> void:
 	$"Desk Setup/MonitorArea".visible = focus == 0
 	$"Desk Setup/ScreenArea".visible = focus == 1
 
+func skip_cutscene() -> void:
+	$ScreenOverlays.set_skip_button(false)
+	$ScreenOverlays.skipped.disconnect(skip_cutscene)
+	$CutsceneAnimator.play("skip_" + $CutsceneAnimator.current_animation)
+	camera.rotation.x = 0
+
 func _input(event: InputEvent) -> void:
 	if !paused and focus == 0 and focus_weight == -1: # Saving screen drag when focus is 0
 		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
@@ -114,10 +122,8 @@ var last_event_time: float = -1.0
 
 func _on_screen_area_mouse_entered() -> void:
 	is_mouse_inside = true
-
 func _on_screen_area_mouse_exited() -> void:
 	is_mouse_inside = false
-
 func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	var collision_shape_size = $"Desk Setup/ScreenArea/CollisionShape3D".shape.size
 	var quad_mesh_size = Vector2(collision_shape_size.z, collision_shape_size.y)
