@@ -9,6 +9,8 @@ func _ready() -> void:
 			if child is Server:
 				add_point(child.global_position)
 				create_line_recursive(child)
+	else:
+		push_warning("Server Sprites Collection for ServerLines is not set!")
 
 func create_line_recursive(object: Node2D) -> void:
 	for child in object.get_children():

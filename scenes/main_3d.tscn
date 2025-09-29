@@ -449,7 +449,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32514942, 0)
 stream = SubResource("AudioStreamSynchronized_c2q4g")
 
 [node name="ScreenArea" type="Area3D" parent="Desk Setup"]
-transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.847, 1.14, -0.113)
+transform = Transform3D(-0.13571554, -7.47493e-08, 0.99074787, 8.742278e-08, 1, 8.742278e-08, -0.99074787, 9.847856e-08, -0.13571554, 0.847, 1.14, -0.113)
 input_capture_on_drag = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/ScreenArea"]

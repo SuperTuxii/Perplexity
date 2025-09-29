@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmglpm2hsr6jv"]
+[gd_scene load_steps=26 format=3 uid="uid://dmglpm2hsr6jv"]
 
 [ext_resource type="Texture2D" uid="uid://5xwcgh0h7bfd" path="res://assets/textures/server/changing_server1.png" id="1_wkks8"]
 [ext_resource type="Texture2D" uid="uid://bcjnneag2uk38" path="res://assets/textures/server/changing_server2.png" id="2_dfww2"]
@@ -92,16 +92,56 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Server" type="Node2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fckfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4u4c"]
+bg_color = Color(0, 0, 0, 0.49803922)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bycdx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.75, 0.75, 0.75, 0.49803922)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cy0aq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mj5l3"]
+
+[node name="Server" type="AnimatedSprite2D"]
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(3, 3)
-script = ExtResource("15_mp518")
-
-[node name="ServerSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_mp518")
 animation = &"normal_server"
+script = ExtResource("15_mp518")
 
-[connection signal="animation_looped" from="ServerSprite" to="." method="_on_server_sprite_animation_looped"]
-[connection signal="frame_changed" from="ServerSprite" to="." method="_on_server_sprite_frame_changed"]
+[node name="Button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fckfc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4u4c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bycdx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cy0aq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mj5l3")
+
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

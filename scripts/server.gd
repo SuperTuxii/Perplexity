@@ -1,7 +1,8 @@
-class_name Server extends Button
+class_name Server extends AnimatedSprite2D
 
-@onready
-var sprite: AnimatedSprite2D = $ServerSprite
+signal pressed
+signal button_down
+signal button_up
 
 @export
 var hacked: bool = false:
@@ -11,23 +12,30 @@ var hacked: bool = false:
 			switch_type()
 
 func _ready() -> void:
-	sprite.play()
-	sprite.animation = "hacked_server" if hacked else "normal_server"
-	#disabled = !hacked
+	play()
+	animation = "hacked_server" if hacked else "normal_server"
+	$Button.disabled = !hacked
 
 func switch_type() -> void:
-	sprite.animation = "changing_server"
-	sprite.frame = 0 if hacked else sprite.sprite_frames.get_frame_count(sprite.animation)
-	sprite.speed_scale = 1 if hacked else -1
+	animation = "changing_server"
+	frame = 0 if hacked else sprite_frames.get_frame_count(animation)
+	speed_scale = 1 if hacked else -1
 
-func _on_server_sprite_animation_looped() -> void:
-	if sprite.animation == "changing_server":
-		sprite.animation = "hacked_server" if hacked else "normal_server"
-		#disabled = !hacked
-		sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count(sprite.animation) - 1)
-		sprite.speed_scale = randf_range(0.5, 1.5)
+func _on_animation_looped() -> void:
+	if animation == "changing_server":
+		animation = "hacked_server" if hacked else "normal_server"
+		$Button.disabled = !hacked
+		frame = randi_range(0, sprite_frames.get_frame_count(animation) - 1)
+		speed_scale = randf_range(0.5, 1.5)
 
-func _on_server_sprite_frame_changed() -> void:
-	if sprite.animation != "changing_server":
-		sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count(sprite.animation) - 1)
-		sprite.speed_scale = randf_range(0.5, 1.5)
+func _on_frame_changed() -> void:
+	if animation != "changing_server":
+		frame = randi_range(0, sprite_frames.get_frame_count(animation) - 1)
+		speed_scale = randf_range(0.5, 1.5)
+
+func _on_button_button_down() -> void:
+	button_down.emit()
+func _on_button_button_up() -> void:
+	button_up.emit()
+func _on_button_pressed() -> void:
+	pressed.emit()
