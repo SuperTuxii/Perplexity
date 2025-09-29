@@ -7,14 +7,22 @@ var camera: Camera3D = $"Desk Setup/Chair/Camera"
 
 var paused: bool:
 	get:
-		return $PauseMenu.visible
+		return $PauseMenu.pause_open
 	set(value):
-		$PauseMenu.visible = value
+		if value:
+			$PauseMenu.show_pause_menu()
+		else:
+			$PauseMenu.back()
 var drag_sensitivity: float:
 	get:
-		return $PauseMenu.drag_sensitivity
+		return $PauseMenu/OptionsMenu.drag_sensitivity
 	set(value):
-		$PauseMenu.drag_sensitivity = value
+		$PauseMenu/OptionsMenu.drag_sensitivity = value
+var drag_mirrored: bool:
+	get:
+		return $PauseMenu/OptionsMenu.drag_mirrored
+	set(value):
+		$PauseMenu/OptionsMenu.drag_mirrored = value
 
 @export
 var focus_speed: float = 2.5
@@ -104,7 +112,7 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				mouse_movement = 0
 		if event is InputEventMouseMotion and mouse_pressed:
-			mouse_motion += event.relative * -drag_sensitivity
+			mouse_motion += event.relative * -drag_sensitivity * (-1 if drag_mirrored else 1)
 			mouse_movement += (event.relative * drag_sensitivity).length()
 
 # Monitor hover and focus

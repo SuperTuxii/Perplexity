@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwbcbnlibfqfq"]
+
+[ext_resource type="Script" uid="uid://uyr7yr7be1i6" path="res://scripts/options_menu.gd" id="1_liyum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veqh5"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.1, 0.1, 0.1, 0.49019608)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ijpji"]
+font_size = 40
+font_color = Color(0.5, 0.5, 0.5, 1)
+outline_size = 5
+outline_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_veqh5"]
+font_size = 18
+font_color = Color(0.7490196, 0.7490196, 0.7490196, 1)
+outline_size = 5
+outline_color = Color(0.1, 0.1, 0.1, 1)
+shadow_size = 3
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_liyum"]
+font_size = 18
+font_color = Color(0.7490196, 0.7490196, 0.7490196, 1)
+outline_size = 5
+outline_color = Color(0.1, 0.1, 0.1, 1)
+shadow_size = 3
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_liyum"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.05, 0.05, 0.05, 0.78431374)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="OptionsMenu" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_veqh5")
+script = ExtResource("1_liyum")
+metadata/_edit_use_anchors_ = true
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="OptionsLabel" type="Label" parent="Layout"]
+layout_mode = 2
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_ijpji")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="TableLayout" type="GridContainer" parent="Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="SensitivityLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Drag Sensitivity:"
+label_settings = SubResource("LabelSettings_veqh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+allow_greater = true
+allow_lesser = true
+
+[node name="DragMirrorLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Drag Mirrored:"
+label_settings = SubResource("LabelSettings_veqh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DragMirrorCheckButton" type="CheckButton" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VolumeLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Audio Volume:"
+label_settings = SubResource("LabelSettings_liyum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.5
+step = 0.01
+
+[node name="BackButton" type="Button" parent="Layout"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_liyum")
+text = "Back"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="toggled" from="Layout/ScrollContainer/TableLayout/DragMirrorCheckButton" to="." method="_on_drag_mirror_check_button_toggled"]
+[connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Layout/BackButton" to="." method="_on_back_button_pressed"]

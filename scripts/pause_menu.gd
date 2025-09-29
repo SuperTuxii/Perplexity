@@ -1,19 +1,36 @@
 class_name PauseMenu extends Control
 
-@export
-var drag_sensitivity: float = 0.005
+var pause_open: bool = false
 
-func _on_visibility_changed() -> void:
+func show_pause_menu() -> void:
 	if is_inside_tree():
-		get_tree().paused = visible
-	$Layout/PanelContainer/MarginContainer/SensitivitySlider.set_value_no_signal((drag_sensitivity - 0.00005) * 10000)
-	$Layout/PanelContainer2/MarginContainer/VolumeSlider.set_value_no_signal(AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master")))
+		get_tree().paused = true
+	visible = true
+	$Layout.visible = true
+	pause_open = true
+
+func show_options_menu() -> void:
+	visible = true
+	$OptionsMenu.visible = true
+	$Layout.visible = false
+
+func back() -> void:
+	if $OptionsMenu.visible:
+		$OptionsMenu.visible = false
+		if pause_open:
+			$Layout.visible = true
+	elif $Layout.visible:
+		visible = false
+		$Layout.visible = false
+		pause_open = false
+		if is_inside_tree():
+			get_tree().paused = false
+
+func _on_options_button_pressed() -> void:
+	show_options_menu()
 
 func _on_continue_button_pressed() -> void:
-	visible = false
+	back()
 
-func _on_sensitivity_slider_value_changed(value: float) -> void:
-	drag_sensitivity = value / 10000 + 0.00005
-
-func _on_volume_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+func _on_options_menu_back() -> void:
+	back()
