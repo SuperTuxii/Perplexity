@@ -45,8 +45,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
 		if focus == 0:
 			paused = !paused
-		else:
+		elif focus != -1:
 			focus = 0
+		else:
+			paused = !paused
 	if focus_weight != -1: # Focus animation
 		focus_weight += delta * focus_speed
 		focus_weight = minf(focus_weight, 1)
