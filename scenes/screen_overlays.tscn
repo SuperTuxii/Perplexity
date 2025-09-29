@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkaofyvw6ltoh"]
+[gd_scene load_steps=11 format=3 uid="uid://dkaofyvw6ltoh"]
 
 [ext_resource type="Script" uid="uid://dt68l5ukkptm" path="res://scripts/screen_overlays.gd" id="1_ggt3k"]
 
@@ -12,12 +12,85 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(-1, 0)
 
+[sub_resource type="Animation" id="Animation_sbgpc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyelids:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ggt3k"]
+resource_name = "close"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyelids:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedFloat32Array(1, 1), PackedFloat32Array(0, 1), PackedFloat32Array(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbgpc"]
+_data = {
+&"RESET": SubResource("Animation_sbgpc"),
+&"close": SubResource("Animation_ggt3k")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_ggt3k"]
 font_size = 20
 font_color = Color(0.9, 0.9, 0.9, 1)
 shadow_size = 5
 shadow_color = Color(0.25, 0.25, 0.25, 0.5882353)
 shadow_offset = Vector2(2.5, 2.5)
+
+[sub_resource type="Animation" id="Animation_botdh"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubtitleContainer/Subtitles:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_khb8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubtitleContainer/Subtitles:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_khb8a"]
+_data = {
+&"RESET": SubResource("Animation_khb8a"),
+&"show": SubResource("Animation_botdh")
+}
 
 [node name="ScreenOverlays" type="Control"]
 layout_mode = 3
@@ -38,6 +111,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_sbgpc")
+
+[node name="EyelidAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sbgpc")
+}
 
 [node name="SubtitleContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -63,5 +141,11 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="StayTimer" type="Timer" parent="SubtitleContainer"]
+
+[node name="SubtitleAnimator" type="AnimationPlayer" parent="SubtitleContainer"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_khb8a")
+}
 
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]

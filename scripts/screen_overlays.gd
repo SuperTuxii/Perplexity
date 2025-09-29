@@ -1,47 +1,24 @@
 class_name ScreenOverlays extends Control
 
-@export
-var eyes_move_speed: float = 0.5
-var eyes_move_weight: float = -1
-var eyes_move_from: float = 2
-var eyes_move_to: float = 0
-var eyes_position: float:
-	get:
-		return $Eyelids.texture.gradient.get_offset(1)
+@onready
+var eyelid_animator: AnimationPlayer = $EyelidAnimator
+@onready
+var subtitle_animator: AnimationPlayer = $SubtitleContainer/SubtitleAnimator
 
-@export
-var subtitles_speed: float = 1
-var subtitles_show: bool = false
-var subtitles_weight: float:
+var eyes_closed: bool:
 	get:
-		return $SubtitleContainer/Subtitles.visible_ratio
-	set(value):
-		$SubtitleContainer/Subtitles.visible_ratio = value
+		return eyelid_animator.current_animation == "close"
 
-func _process(delta: float) -> void:
-	if eyes_move_weight != -1:
-		eyes_move_weight += delta * eyes_move_speed
-		eyes_move_weight = minf(eyes_move_weight, 1)
-		$Eyelids.texture.gradient.set_offset(0, lerpf(eyes_move_from, eyes_move_to, eyes_move_weight ** 3)-1)
-		$Eyelids.texture.gradient.set_offset(1, lerpf(eyes_move_from, eyes_move_to, eyes_move_weight ** 3))
-		if eyes_move_weight == 1:
-			eyes_move_weight = -1
-	if subtitles_weight != float(subtitles_show):
-		subtitles_weight += delta * subtitles_speed * (1 if subtitles_show else -1)
-		subtitles_weight = clampf(subtitles_weight, 0, 1)
-		if subtitles_weight == 1 and $SubtitleContainer/StayTimer.wait_time != 0:
-			$SubtitleContainer/StayTimer.start()
-		if subtitles_weight == 0:
-			$SubtitleContainer/Subtitles.text = ""
+func set_eyelids(close: bool, eyelid_speed: float = 1):
+	eyelid_animator.play("close", -1, eyelid_speed * (1 if close else -1), !close)
 
 func set_subtitles(subtitle: String, stay_seconds: float = 0, subtitle_speed: float = 1):
-	subtitles_show = true
-	subtitles_speed = subtitle_speed
+	subtitle_animator.play("show", -1, subtitle_speed)
 	$SubtitleContainer/Subtitles.text = subtitle
-	$SubtitleContainer/StayTimer.wait_time = stay_seconds
+	$SubtitleContainer/StayTimer.start(stay_seconds)
 
 func remove_subtitles():
-	subtitles_show = false
+	subtitle_animator.play("show", -1, -subtitle_animator.speed_scale, true)
 	if !$SubtitleContainer/StayTimer.is_stopped():
 		$SubtitleContainer/StayTimer.stop()
 

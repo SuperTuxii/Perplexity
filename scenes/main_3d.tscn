@@ -25,40 +25,108 @@
 [sub_resource type="Environment" id="Environment_igkv5"]
 background_mode = 1
 
-[sub_resource type="Animation" id="Animation_ewgxa"]
-resource_name = "new_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Desk Setup/Chair/Camera:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ml77k"]
 length = 0.001
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Desk Setup/Chair/Camera:rotation")
+tracks/0/path = NodePath("Desk Setup/Chair/Camera:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonitorViewport/MonitorScene:security_breached_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ewgxa"]
+resource_name = "start_sleep"
+length = 10.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Desk Setup/Chair/Camera:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 1, 0, -1.047, -0.25, 0.5, 0, 0, -1.047, 0, 0, 2.25, 0, 0, -0.25, 0, 0, 0),
+"times": PackedFloat32Array(0, 4, 7, 10)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenOverlays")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true, 1.0],
+"method": &"set_eyelids"
+}, {
+"args": [false, 0.25],
+"method": &"set_eyelids"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScreenOverlays")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.96666664),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["I'm feeling a bit tire…", 3.5, 0.5],
+"method": &"set_subtitles"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MonitorViewport/MonitorScene:security_breached_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"set_focus"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2q4g"]
 _data = {
 &"RESET": SubResource("Animation_ml77k"),
-&"new_animation": SubResource("Animation_ewgxa")
+&"start_sleep": SubResource("Animation_ewgxa")
 }
 
 [sub_resource type="QuadMesh" id="QuadMesh_vipva"]
@@ -106,12 +174,10 @@ visible = false
 
 [node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CameraAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c2q4g")
 }
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -367,7 +433,6 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("13_o5vb4")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

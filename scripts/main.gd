@@ -23,7 +23,7 @@ var focus_from_position: Vector3 = Vector3()
 var focus_from_rotation: Vector3 = Vector3()
 var focus_to_position: Vector3 = Vector3()
 var focus_to_rotation: Vector3 = Vector3()
-var focus: int = 0:
+var focus: int = -1:
 	set = set_focus
 
 var head_fall_weight: float = -1
@@ -33,10 +33,7 @@ var mouse_pressed: bool = false
 var mouse_movement: float = 0
 
 func _ready() -> void:
-	$ScreenOverlays.set_subtitles("I'm feeling a bit tire…", 2.5)
-	$ScreenOverlays.eyes_move_weight = 0
-	head_fall_weight = 0
-	focus = -1
+	$CameraAnimator.play("start_sleep")
 
 func _process(delta: float) -> void:
 	if focus == 0 and focus_weight == -1: # Applying screen drag when focus is 0
@@ -58,14 +55,6 @@ func _process(delta: float) -> void:
 			camera.rotation = focus_to_rotation * (PI / 180)
 			focus_weight = -1
 			finished_focus()
-	if head_fall_weight != -1: # Head fall animation
-		head_fall_weight += delta * 0.25
-		head_fall_weight = minf(head_fall_weight, 1)
-		camera.rotation = camera.rotation.lerp(Vector3(deg_to_rad(-60), 0, 0), head_fall_weight ** 4)
-		if head_fall_weight == 1:
-			camera.rotation = Vector3(deg_to_rad(-60), 0, 0)
-			head_fall_weight = -1
-			$Timer.start(1)
 
 func set_focus(index: int) -> void:
 	focus = index
@@ -107,16 +96,10 @@ func _input(event: InputEvent) -> void:
 # Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		if !event.pressed and mouse_movement < 0.05:
+		if !event.pressed and focus == 0 and mouse_movement < 0.05:
 			focus = 1
 func _on_monitor_area_mouse_entered() -> void:
 	if focus == 0 and focus_weight == -1:
 		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 func _on_monitor_area_mouse_exited() -> void:
 	$"Desk Setup/Monitor/Monitor".material_overlay = null
-
-func _on_timer_timeout() -> void:
-	if focus == -1 and $ScreenOverlays.eyes_position == 0:
-		$ScreenOverlays.eyes_move_from = 0
-		$ScreenOverlays.eyes_move_to = 2
-		$ScreenOverlays.eyes_move_weight = 0

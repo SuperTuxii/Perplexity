@@ -1,5 +1,6 @@
 class_name MonitorScene extends Control
 
+@export
 var security_breached_visible: bool = false:
 	set(value):
 		$SecurityBreachedPanel.visible = value
@@ -14,7 +15,6 @@ var mask_walk_speed: float = 2
 var mask_server_speed: float = 1
 var mask_walk_time: float = -1
 var mask_server_time: float = -1
-
 
 func _process(delta: float) -> void:
 	if mask_walk_time != -1: # Mask animation
