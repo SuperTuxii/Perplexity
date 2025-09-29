@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmglpm2hsr6jv"]
+[gd_scene load_steps=23 format=3 uid="uid://dmglpm2hsr6jv"]
 
 [ext_resource type="Texture2D" uid="uid://5xwcgh0h7bfd" path="res://assets/textures/server/changing_server1.png" id="1_wkks8"]
 [ext_resource type="Texture2D" uid="uid://bcjnneag2uk38" path="res://assets/textures/server/changing_server2.png" id="2_dfww2"]
@@ -19,6 +19,21 @@
 [ext_resource type="Texture2D" uid="uid://1157law6k285" path="res://assets/textures/server/normal_server5.png" id="13_pkeai"]
 [ext_resource type="Texture2D" uid="uid://plqhxf2542c" path="res://assets/textures/server/normal_server6.png" id="14_758av"]
 [ext_resource type="Script" uid="uid://bqhx8plhro4wr" path="res://scripts/server.gd" id="15_mp518"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fckfc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.9, 0.9, 0.9, 0.6)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fckfc"]
+size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mp518"]
 animations = [{
@@ -92,13 +107,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Server" type="AnimatedSprite2D"]
-texture_filter = 1
-texture_repeat = 1
+[node name="Server" type="Area2D"]
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_mp518")
-animation = &"normal_server"
 script = ExtResource("15_mp518")
 
-[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]
-[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fckfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fckfc")
+
+[node name="ServerSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_mp518")
+animation = &"normal_server"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="animation_looped" from="ServerSprite" to="." method="_on_server_sprite_animation_looped"]
+[connection signal="frame_changed" from="ServerSprite" to="." method="_on_server_sprite_frame_changed"]
