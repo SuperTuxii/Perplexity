@@ -83,6 +83,8 @@ func finished_focus() -> void:
 			if $MonitorViewport/MonitorScene.security_breached_visible:
 				$MonitorViewport/MonitorScene.security_breached_visible = false
 				$CutsceneAnimator.play("alarm_ease_out")
+	$"Desk Setup/MonitorArea".visible = focus == 0
+	$"Desk Setup/ScreenArea".visible = focus == 1
 
 func _input(event: InputEvent) -> void:
 	if !paused and focus == 0 and focus_weight == -1: # Saving screen drag when focus is 0
@@ -104,3 +106,44 @@ func _on_monitor_area_mouse_entered() -> void:
 		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 func _on_monitor_area_mouse_exited() -> void:
 	$"Desk Setup/Monitor/Monitor".material_overlay = null
+
+# Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
+var is_mouse_inside = false
+var last_event_pos2D = null
+var last_event_time: float = -1.0
+
+func _on_screen_area_mouse_entered() -> void:
+	is_mouse_inside = true
+
+func _on_screen_area_mouse_exited() -> void:
+	is_mouse_inside = false
+
+func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	var collision_shape_size = $"Desk Setup/ScreenArea/CollisionShape3D".shape.size
+	var quad_mesh_size = Vector2(collision_shape_size.z, collision_shape_size.y)
+	var event_pos3D = event_position
+	event_pos3D = $"Desk Setup/ScreenArea".global_transform.affine_inverse() * event_pos3D
+	var now: float = Time.get_ticks_msec() / 1000.0
+	var event_pos2D: Vector2 = Vector2()
+	if is_mouse_inside:
+		event_pos2D = Vector2(event_pos3D.z, -event_pos3D.y)
+		event_pos2D.x = event_pos2D.x / quad_mesh_size.x
+		event_pos2D.y = event_pos2D.y / quad_mesh_size.y
+		event_pos2D.x += 0.5
+		event_pos2D.y += 0.5
+		event_pos2D.x *= $MonitorViewport.size.x
+		event_pos2D.y *= $MonitorViewport.size.y
+	elif last_event_pos2D != null:
+		event_pos2D = last_event_pos2D
+	event.position = event_pos2D
+	if event is InputEventMouse:
+		event.global_position = event_pos2D
+	if event is InputEventMouseMotion or event is InputEventScreenDrag:
+		if last_event_pos2D == null:
+			event.relative = Vector2(0, 0)
+		else:
+			event.relative = event_pos2D - last_event_pos2D
+			event.velocity = event.relative / (now - last_event_time)
+	last_event_pos2D = event_pos2D
+	last_event_time = now
+	$MonitorViewport.push_input(event)
