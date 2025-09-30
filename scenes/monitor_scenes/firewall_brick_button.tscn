@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtrd2dy5yts8j"]
+[gd_scene load_steps=8 format=3 uid="uid://dtrd2dy5yts8j"]
+
+[ext_resource type="Script" uid="uid://chdn4vued7t7j" path="res://scripts/firewall_brick_button.gd" id="1_4fb8v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s842b"]
 bg_color = Color(0.75, 0.38437504, 0.26250002, 1)
@@ -34,6 +36,10 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifqim"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_s842b"]
+font_size = 20
+font_color = Color(0.8, 0.8, 0.8, 1)
+
 [node name="FirewallBrickButton" type="Button"]
 offset_right = 25.0
 offset_bottom = 50.0
@@ -43,3 +49,16 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3ppy1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_2kanv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ifqim")
 toggle_mode = true
+script = ExtResource("1_4fb8v")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -175.0
+offset_bottom = 50.0
+text = "Port x: closed"
+label_settings = SubResource("LabelSettings_s842b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
