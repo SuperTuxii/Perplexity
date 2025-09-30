@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxff4ce1n02gg"]
+
+[ext_resource type="Script" uid="uid://bq3tkekp5gk0l" path="res://scripts/levels_scene.gd" id="1_p1nwe"]
+[ext_resource type="Texture2D" uid="uid://uw3o3he2skgt" path="res://assets/textures/line_profile.png" id="1_ym5wk"]
+[ext_resource type="Script" uid="uid://27f0trnoqbl2" path="res://scripts/server_line.gd" id="2_p1nwe"]
+[ext_resource type="PackedScene" uid="uid://dmglpm2hsr6jv" path="res://scenes/server.tscn" id="3_mxg54"]
+[ext_resource type="Texture2D" uid="uid://drv6g5w2bdus0" path="res://assets/textures/mask.png" id="4_7qn53"]
+[ext_resource type="Texture2D" uid="uid://cvka2cbg6ncrs" path="res://assets/textures/shield.png" id="6_mxg54"]
+
+[node name="LevelsScene" type="Node2D"]
+script = ExtResource("1_p1nwe")
+
+[node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("server_sprites_collection")]
+texture_filter = 1
+texture_repeat = 2
+default_color = Color(0.8359375, 0.8359375, 0.8359375, 1)
+texture = ExtResource("1_ym5wk")
+texture_mode = 1
+script = ExtResource("2_p1nwe")
+server_sprites_collection = NodePath("../ServerSprites")
+
+[node name="ServerSprites" type="Node2D" parent="."]
+
+[node name="Server" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(1335, -36)
+
+[node name="Server2" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(1085, 130)
+
+[node name="Server" parent="ServerSprites/Server2" instance=ExtResource("3_mxg54")]
+position = Vector2(-93, 5.666664)
+scale = Vector2(1, 1)
+
+[node name="Server2" parent="ServerSprites/Server2" instance=ExtResource("3_mxg54")]
+position = Vector2(11.6666565, 70)
+scale = Vector2(1, 1)
+
+[node name="Server3" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(898.00006, 414)
+
+[node name="Server" parent="ServerSprites/Server3" instance=ExtResource("3_mxg54")]
+position = Vector2(19.333313, 60.333344)
+scale = Vector2(1, 1)
+
+[node name="Server4" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(529, 319)
+
+[node name="Server" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
+position = Vector2(-83.33335, -68)
+scale = Vector2(1, 1)
+
+[node name="Server2" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
+position = Vector2(39.33333, 72.00001)
+scale = Vector2(1, 1)
+
+[node name="Server3" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
+position = Vector2(4.6666565, -63)
+scale = Vector2(1, 1)
+
+[node name="Server5" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(238, 447)
+
+[node name="Server2" parent="ServerSprites/Server5" instance=ExtResource("3_mxg54")]
+position = Vector2(54.666664, 32.66667)
+scale = Vector2(1, 1)
+
+[node name="Server3" parent="ServerSprites/Server5" instance=ExtResource("3_mxg54")]
+position = Vector2(-42.333336, -61.33333)
+scale = Vector2(1, 1)
+
+[node name="Server6" parent="ServerSprites" instance=ExtResource("3_mxg54")]
+position = Vector2(85, 596)
+
+[node name="Mask" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(1335, -36)
+scale = Vector2(3, 3)
+texture = ExtResource("4_7qn53")
+
+[node name="Shield" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(85, 596.001)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_mxg54")
