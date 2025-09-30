@@ -7,6 +7,7 @@ var firewall_control: Control = $Firewall
 var brick_scene: PackedScene = preload("res://scenes/monitor_scenes/firewall_brick_button.tscn")
 
 var firewall_ports: int = 3
+var firewall_port_buttons: Array[FirewallBrickButton] = []
 
 func _ready() -> void:
 	create_firewall()
@@ -22,9 +23,9 @@ func create_firewall() -> void:
 func set_firewall_ports() -> void:
 	match firewall_ports:
 		3:
-			firewall_control.get_child(5).disabled = false
-			firewall_control.get_child(5).port_number = 1
-			firewall_control.get_child(7).disabled = false
-			firewall_control.get_child(7).port_number = 2
-			firewall_control.get_child(9).disabled = false
-			firewall_control.get_child(9).port_number = 3
+			firewall_port_buttons.append(firewall_control.get_child(5))
+			firewall_port_buttons.append(firewall_control.get_child(7))
+			firewall_port_buttons.append(firewall_control.get_child(9))
+	for i in range(firewall_port_buttons.size()):
+		firewall_port_buttons[i].disabled = false
+		firewall_port_buttons[i].port_number = i + 1

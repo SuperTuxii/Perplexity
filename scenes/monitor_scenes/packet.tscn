@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bcmc26vpl1m5l"]
+
+[node name="Packet" type="Sprite2D"]
