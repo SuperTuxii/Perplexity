@@ -1,0 +1,146 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc4jmqurgws4d"]
+
+[ext_resource type="PackedScene" uid="uid://dmglpm2hsr6jv" path="res://scenes/server.tscn" id="1_2kanv"]
+[ext_resource type="PackedScene" uid="uid://dtrd2dy5yts8j" path="res://scenes/monitor_scenes/firewall_brick_button.tscn" id="2_fy2dr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kanv"]
+bg_color = Color(0.8, 0.5, 0.4, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[node name="ServerProtectGame" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Server" parent="." instance=ExtResource("1_2kanv")]
+position = Vector2(150, 360)
+scale = Vector2(10, 10)
+
+[node name="Wall" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Brick" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = -30.0
+offset_right = 375.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick2" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 22.0
+offset_right = 375.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick3" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 74.0
+offset_right = 375.0
+offset_bottom = 124.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick4" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 126.0
+offset_right = 375.0
+offset_bottom = 176.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick5" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 178.0
+offset_right = 375.0
+offset_bottom = 228.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick6" parent="Wall" instance=ExtResource("2_fy2dr")]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 334.0
+offset_right = 375.0
+offset_bottom = 384.0
+
+[node name="Brick7" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 282.0
+offset_right = 375.0
+offset_bottom = 332.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick8" parent="Wall" instance=ExtResource("2_fy2dr")]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 230.0
+offset_right = 375.0
+offset_bottom = 280.0
+
+[node name="Brick9" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 386.0
+offset_right = 375.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick10" parent="Wall" instance=ExtResource("2_fy2dr")]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 438.0
+offset_right = 375.0
+offset_bottom = 488.0
+
+[node name="Brick11" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 490.0
+offset_right = 375.0
+offset_bottom = 540.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick12" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 542.0
+offset_right = 375.0
+offset_bottom = 592.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick13" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 594.0
+offset_right = 375.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick14" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 646.0
+offset_right = 375.0
+offset_bottom = 696.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")
+
+[node name="Brick15" type="Panel" parent="Wall"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 698.0
+offset_right = 375.0
+offset_bottom = 748.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kanv")

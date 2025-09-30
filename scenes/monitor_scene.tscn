@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=6 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="PackedScene" uid="uid://bxff4ce1n02gg" path="res://scenes/monitor_scenes/levels_scene.tscn" id="2_lmcqu"]
+[ext_resource type="PackedScene" uid="uid://dc4jmqurgws4d" path="res://scenes/monitor_scenes/server_protect_game.tscn" id="3_6v2g8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -58,3 +59,6 @@ text = "! SECURITY BREACHED !"
 label_settings = SubResource("LabelSettings_uwc3u")
 
 [node name="LevelsScene" parent="." instance=ExtResource("2_lmcqu")]
+visible = false
+
+[node name="ServerProtectGame" parent="." instance=ExtResource("3_6v2g8")]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtrd2dy5yts8j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s842b"]
+bg_color = Color(0.75, 0.38437504, 0.26250002, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy2dr"]
+bg_color = Color(0.5, 0.3125, 0.25, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ppy1"]
+bg_color = Color(0.8, 0.62, 0.56, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kanv"]
+bg_color = Color(0.8, 0.5, 0.4, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifqim"]
+
+[node name="FirewallBrickButton" type="Button"]
+offset_right = 25.0
+offset_bottom = 50.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_s842b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy2dr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3ppy1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2kanv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ifqim")
+toggle_mode = true
