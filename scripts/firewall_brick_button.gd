@@ -10,6 +10,7 @@ var port_number: int = -1:
 		port_number = value
 		$Label.visible = !disabled
 		$Path.visible = !disabled
+		$Packet.visible = !disabled
 		_on_toggled(button_pressed)
 
 func _on_toggled(toggled_on: bool) -> void:

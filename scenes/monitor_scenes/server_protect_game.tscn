@@ -1,7 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc4jmqurgws4d"]
+[gd_scene load_steps=10 format=3 uid="uid://dc4jmqurgws4d"]
 
 [ext_resource type="PackedScene" uid="uid://dmglpm2hsr6jv" path="res://scenes/server.tscn" id="1_2kanv"]
 [ext_resource type="Script" uid="uid://jk2vdl25v4x4" path="res://scripts/server_protect_game.gd" id="1_3ppy1"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fy2dr"]
+color = Color(0.31500003, 0.89025015, 0.9, 0.5019608)
+thickness = 5
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy2dr"]
+bg_color = Color(0.05, 0.05, 0.05, 0.78431374)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ppy1"]
+font_size = 30
+font_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ppy1"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.5, 0.19999999, 0.19999999, 0.5882353)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.15, 0.15, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifqim"]
+bg_color = Color(0.6, 0.18, 0.18, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rtb8"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.050980393, 0.050980393, 0.050980393, 0.78431374)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_el5kl"]
+font_size = 20
+font_color = Color(0.9, 0.9, 0.9, 1)
 
 [node name="ServerProtectGame" type="Node2D"]
 script = ExtResource("1_3ppy1")
@@ -21,3 +75,66 @@ anchors_preset = 0
 offset_left = 450.0
 offset_right = 475.0
 offset_bottom = 720.0
+
+[node name="Scanner" type="Panel" parent="."]
+offset_left = 865.0
+offset_right = 875.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxLine_fy2dr")
+
+[node name="TopBar" type="Panel" parent="."]
+offset_right = 1280.0
+offset_bottom = 75.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fy2dr")
+
+[node name="Label" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 15.0
+offset_right = 735.0
+offset_bottom = 75.0
+text = "Goal: Prevent the hacker from gaining access"
+label_settings = SubResource("LabelSettings_3ppy1")
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 790.0
+offset_right = 1004.0
+offset_bottom = 75.0
+text = "Hack Progress:"
+label_settings = SubResource("LabelSettings_3ppy1")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="TopBar"]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 12.5
+offset_right = 1265.0
+offset_bottom = 62.5
+theme_override_styles/background = SubResource("StyleBoxFlat_3ppy1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ifqim")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 290.0
+offset_top = 262.0
+offset_right = 990.0
+offset_bottom = 458.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1rtb8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Goal: Prevent the hacker from gaining access"
+label_settings = SubResource("LabelSettings_3ppy1")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stop any suspicious looking packets by closing ports
+without preventing the normal packets from getting to the server"
+label_settings = SubResource("LabelSettings_el5kl")
+horizontal_alignment = 1

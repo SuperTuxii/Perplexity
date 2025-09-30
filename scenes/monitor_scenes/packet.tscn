@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bcmc26vpl1m5l"]
+[gd_scene load_steps=2 format=3 uid="uid://bcmc26vpl1m5l"]
+
+[ext_resource type="Texture2D" uid="uid://48h42ip2o7rx" path="res://assets/textures/packets/normal_packet.png" id="1_dvw0u"]
 
 [node name="Packet" type="Sprite2D"]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_dvw0u")

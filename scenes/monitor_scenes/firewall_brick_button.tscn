@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtrd2dy5yts8j"]
+[gd_scene load_steps=11 format=3 uid="uid://dtrd2dy5yts8j"]
 
 [ext_resource type="Script" uid="uid://chdn4vued7t7j" path="res://scripts/firewall_brick_button.gd" id="1_4fb8v"]
+[ext_resource type="PackedScene" uid="uid://bcmc26vpl1m5l" path="res://scenes/monitor_scenes/packet.tscn" id="2_gxff6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s842b"]
 bg_color = Color(0.75, 0.38437504, 0.26250002, 1)
@@ -52,8 +53,8 @@ border_color = Color(0.3, 0.3, 0.3, 1)
 corner_detail = 1
 
 [node name="FirewallBrickButton" type="Button"]
-offset_right = 25.0
-offset_bottom = 50.0
+offset_right = 40.0
+offset_bottom = 80.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s842b")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy2dr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3ppy1")
@@ -68,7 +69,7 @@ closed_label_settings = SubResource("LabelSettings_s842b")
 visible = false
 layout_mode = 0
 offset_left = -175.0
-offset_bottom = 50.0
+offset_bottom = 80.0
 text = "Port x: closed"
 label_settings = SubResource("LabelSettings_s842b")
 horizontal_alignment = 1
@@ -77,9 +78,13 @@ vertical_alignment = 1
 [node name="Path" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 25.0
-offset_right = 1025.0
-offset_bottom = 50.0
+offset_left = 40.0
+offset_right = 1040.0
+offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4fb8v")
+
+[node name="Packet" parent="." instance=ExtResource("2_gxff6")]
+visible = false
+position = Vector2(200, 40)
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]

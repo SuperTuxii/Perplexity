@@ -13,19 +13,19 @@ func _ready() -> void:
 	create_firewall()
 
 func create_firewall() -> void:
-	for i in range(15):
+	for i in range(9):
 		var brick: FirewallBrickButton = brick_scene.instantiate()
 		firewall_control.add_child(brick)
-		brick.position = Vector2(0, (52 * i) - 30)
+		brick.position = Vector2(0, 83 * i - 12)
 		brick.disabled = true
 	set_firewall_ports()
 
 func set_firewall_ports() -> void:
 	match firewall_ports:
 		3:
-			firewall_port_buttons.append(firewall_control.get_child(5))
-			firewall_port_buttons.append(firewall_control.get_child(7))
-			firewall_port_buttons.append(firewall_control.get_child(9))
+			firewall_port_buttons.append(firewall_control.get_child(2))
+			firewall_port_buttons.append(firewall_control.get_child(4))
+			firewall_port_buttons.append(firewall_control.get_child(6))
 	for i in range(firewall_port_buttons.size()):
 		firewall_port_buttons[i].disabled = false
 		firewall_port_buttons[i].port_number = i + 1
