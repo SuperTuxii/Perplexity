@@ -69,6 +69,9 @@ func _process(delta: float) -> void:
 			finished_focus()
 
 func set_focus(index: int) -> void:
+	if get_tree().has_group("focus_" + str(focus) + "_hide"):
+		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
+				object.visible = true
 	focus = index
 	if index == -1:
 		return # Other focus like a cutscene
@@ -96,8 +99,9 @@ func finished_focus() -> void:
 			if $MonitorViewport/MonitorScene.security_breached_visible:
 				$MonitorViewport/MonitorScene.security_breached_visible = false
 				$CutsceneAnimator.play("alarm_ease_out")
-	$"Desk Setup/MonitorArea".visible = focus == 0
-	$"Desk Setup/ScreenArea".visible = focus == 1
+	if get_tree().has_group("focus_" + str(focus) + "_hide"):
+		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
+				object.visible = false
 
 func skip_cutscene() -> void:
 	$ScreenOverlays.set_skip_button(false)
