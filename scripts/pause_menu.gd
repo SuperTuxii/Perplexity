@@ -30,6 +30,7 @@ func _on_options_button_pressed() -> void:
 	show_options_menu()
 
 func _on_continue_button_pressed() -> void:
+	$Layout/ContinueButton.text = "Continue"
 	back()
 
 func _on_options_menu_back() -> void:

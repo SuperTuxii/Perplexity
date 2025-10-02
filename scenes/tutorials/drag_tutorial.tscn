@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://consmqbymlt6p"]
+
+[ext_resource type="Texture2D" uid="uid://ehytpbb6t5lv" path="res://assets/textures/tutorial/drag.svg" id="1_u0342"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ho6b"]
+font_size = 30
+
+[node name="DragTutorial" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 0.19607843)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.15
+anchor_right = 0.5
+anchor_bottom = 0.15
+offset_left = -477.5
+offset_right = 477.5
+offset_bottom = 42.000008
+grow_horizontal = 2
+text = "Press the left mouse button and move your mouse to look around"
+label_settings = SubResource("LabelSettings_8ho6b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+texture = ExtResource("1_u0342")

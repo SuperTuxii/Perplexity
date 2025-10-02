@@ -4,6 +4,8 @@ class_name Main extends Node3D
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
+@onready
+var options: OptionsMenu = $PauseMenu/OptionsMenu
 
 var paused: bool:
 	get:
@@ -13,16 +15,6 @@ var paused: bool:
 			$PauseMenu.show_pause_menu()
 		else:
 			$PauseMenu.back()
-var drag_sensitivity: float:
-	get:
-		return $PauseMenu/OptionsMenu.drag_sensitivity
-	set(value):
-		$PauseMenu/OptionsMenu.drag_sensitivity = value
-var drag_mirrored: bool:
-	get:
-		return $PauseMenu/OptionsMenu.drag_mirrored
-	set(value):
-		$PauseMenu/OptionsMenu.drag_mirrored = value
 
 @export
 var focus_speed: float = 2.5
@@ -31,7 +23,7 @@ var focus_from_position: Vector3 = Vector3()
 var focus_from_rotation: Vector3 = Vector3()
 var focus_to_position: Vector3 = Vector3()
 var focus_to_rotation: Vector3 = Vector3()
-var focus: int = -1:
+var focus: int = 0:
 	set = set_focus
 
 var head_fall_weight: float = -1
@@ -40,10 +32,12 @@ var mouse_motion: Vector2 = Vector2()
 var mouse_pressed: bool = false
 var mouse_movement: float = 0
 
+var tutorial_stage: int = 0
+
 func _ready() -> void:
-	$CutsceneAnimator.play("start_sleep")
+	$ScreenOverlays.show_drag_tutorial()
 	$ScreenOverlays.set_skip_button(true)
-	$ScreenOverlays.skipped.connect(skip_cutscene)
+	$ScreenOverlays.skipped.connect(skip_tutorial)
 
 func _process(delta: float) -> void:
 	if focus == 0 and focus_weight == -1: # Applying screen drag when focus is 0
@@ -53,6 +47,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
 		if focus == 0:
 			paused = !paused
+			if tutorial_stage == 4:
+				$ScreenOverlays.hide_pause_tutorial()
+				tutorial_stage = -1
+				focus = -1
+				$CutsceneAnimator.play("start_sleep")
+				$ScreenOverlays.set_skip_button(true)
+				$ScreenOverlays.skipped.connect(skip_cutscene)
 		elif focus != -1:
 			focus = 0
 		else:
@@ -95,13 +96,31 @@ func set_focus(index: int) -> void:
 func finished_focus() -> void:
 	# Actions when focus animation finishes
 	match focus:
+		0:
+			if tutorial_stage == 3:
+				$ScreenOverlays.hide_unfocus_tutorial()
+				$ScreenOverlays.show_pause_tutorial()
+				tutorial_stage = 4
 		1:
-			if $MonitorViewport/MonitorScene.security_breached_visible:
+			if $MonitorViewport/MonitorScene.security_breached_visible and tutorial_stage == -1:
 				$MonitorViewport/MonitorScene.security_breached_visible = false
 				$CutsceneAnimator.play("alarm_ease_out")
 	if get_tree().has_group("focus_" + str(focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
 				object.visible = false
+
+func skip_tutorial() -> void:
+	$ScreenOverlays.hide_drag_tutorial()
+	$ScreenOverlays.hide_focus_tutorial()
+	$ScreenOverlays.hide_unfocus_tutorial()
+	$ScreenOverlays.hide_pause_tutorial()
+	tutorial_stage = -1
+	focus = -1
+	$CutsceneAnimator.play("start_sleep")
+	$ScreenOverlays.set_skip_button(true)
+	$ScreenOverlays.skipped.disconnect(skip_tutorial)
+	$ScreenOverlays.skipped.connect(skip_cutscene)
+	paused = true
 
 func skip_cutscene() -> void:
 	$ScreenOverlays.set_skip_button(false)
@@ -116,14 +135,22 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				mouse_movement = 0
 		if event is InputEventMouseMotion and mouse_pressed:
-			mouse_motion += event.relative * -drag_sensitivity * (-1 if drag_mirrored else 1)
-			mouse_movement += (event.relative * drag_sensitivity).length()
+			mouse_motion += event.relative * options.turn_sensitivity * (-1 if !options.drag_mirrored else 1)
+			mouse_movement += (event.relative * options.turn_sensitivity).length()
+			if tutorial_stage == 0 and mouse_movement > 0.5:
+				$ScreenOverlays.hide_drag_tutorial()
+				$ScreenOverlays.show_focus_tutorial()
+				tutorial_stage = 1
 
 # Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		if !event.pressed and focus == 0 and mouse_movement < 0.05:
+		if !event.pressed and focus == 0 and mouse_movement < 0.05 and tutorial_stage != 0:
 			focus = 1
+			if tutorial_stage == 1:
+				$ScreenOverlays.hide_focus_tutorial()
+				$ScreenOverlays.show_unfocus_tutorial()
+				tutorial_stage = 3
 func _on_monitor_area_mouse_entered() -> void:
 	if focus == 0 and focus_weight == -1:
 		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material

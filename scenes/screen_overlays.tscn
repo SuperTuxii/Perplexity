@@ -1,6 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkaofyvw6ltoh"]
+[gd_scene load_steps=15 format=3 uid="uid://dkaofyvw6ltoh"]
 
 [ext_resource type="Script" uid="uid://dt68l5ukkptm" path="res://scripts/screen_overlays.gd" id="1_ggt3k"]
+[ext_resource type="PackedScene" uid="uid://consmqbymlt6p" path="res://scenes/tutorials/drag_tutorial.tscn" id="2_sbgpc"]
+[ext_resource type="PackedScene" uid="uid://ca872q63wktoi" path="res://scenes/tutorials/focus_tutorial.tscn" id="3_ny6a1"]
+[ext_resource type="PackedScene" uid="uid://b0kaqdml1gwlk" path="res://scenes/tutorials/unfocus_tutorial.tscn" id="4_botdh"]
+[ext_resource type="PackedScene" uid="uid://t2v8obj3blv2" path="res://scenes/tutorials/pause_tutorial.tscn" id="5_khb8a"]
 
 [sub_resource type="Gradient" id="Gradient_ggt3k"]
 offsets = PackedFloat32Array(1, 1)
@@ -146,6 +150,22 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_khb8a")
 }
+
+[node name="DragTutorial" parent="." instance=ExtResource("2_sbgpc")]
+visible = false
+layout_mode = 1
+
+[node name="FocusTutorial" parent="." instance=ExtResource("3_ny6a1")]
+visible = false
+layout_mode = 1
+
+[node name="UnfocusTutorial" parent="." instance=ExtResource("4_botdh")]
+visible = false
+layout_mode = 1
+
+[node name="PauseTutorial" parent="." instance=ExtResource("5_khb8a")]
+visible = false
+layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
