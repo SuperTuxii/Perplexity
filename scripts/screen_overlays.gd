@@ -11,6 +11,14 @@ var eyes_closed: bool:
 	get:
 		return eyelid_animator.current_animation == "close"
 
+func _ready() -> void:
+	EventBus.set_eyelids.connect(set_eyelids)
+	EventBus.set_eyelids_instantly.connect(set_eyelids_instantly)
+	EventBus.set_subtitles.connect(set_subtitles)
+	EventBus.remove_subtitles.connect(remove_subtitles)
+	EventBus.remove_subtitles_instantly.connect(remove_subtitles_instantly)
+	EventBus.set_skip_button.connect(set_skip_button)
+
 func set_eyelids(close: bool, eyelid_speed: float = 1) -> void:
 	eyelid_animator.play("close", -1, eyelid_speed * (1 if close else -1), !close)
 
@@ -60,3 +68,4 @@ func _on_stay_timer_timeout() -> void:
 
 func _on_skip_button_pressed() -> void:
 	skipped.emit()
+	EventBus.skipped.emit()

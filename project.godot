@@ -23,6 +23,10 @@ boot_splash/show_image=false
 
 buses/default_bus_layout=""
 
+[autoload]
+
+EventBus="*res://scripts/event_bus.gd"
+
 [editor]
 
 movie_writer/video_quality=1.0

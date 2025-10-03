@@ -11,10 +11,15 @@ var hacked: bool = false:
 			hacked = value
 			switch_type()
 
+var pressable: bool = false:
+	set(value):
+		pressable = value
+		$Button.disabled = !value
+
 func _ready() -> void:
 	play()
 	animation = "hacked_server" if hacked else "normal_server"
-	$Button.disabled = !hacked
+	$Button.disabled = !pressable
 
 func switch_type() -> void:
 	animation = "changing_server"
@@ -24,7 +29,6 @@ func switch_type() -> void:
 func _on_animation_looped() -> void:
 	if animation == "changing_server":
 		animation = "hacked_server" if hacked else "normal_server"
-		$Button.disabled = !hacked
 		frame = randi_range(0, sprite_frames.get_frame_count(animation) - 1)
 		speed_scale = randf_range(0.5, 1.5)
 

@@ -35,6 +35,7 @@ var mouse_movement: float = 0
 var tutorial_stage: int = 0
 
 func _ready() -> void:
+	EventBus.play_monitor_sound.connect(play_monitor_sound)
 	$ScreenOverlays.show_drag_tutorial()
 	$ScreenOverlays.set_skip_button(true)
 	$ScreenOverlays.skipped.connect(skip_tutorial)
@@ -45,7 +46,7 @@ func _process(delta: float) -> void:
 		camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x, 0))
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
-		if focus == 0:
+		if focus <= 0 and (tutorial_stage == 4 or tutorial_stage == -1):
 			paused = !paused
 			if tutorial_stage == 4:
 				$ScreenOverlays.hide_pause_tutorial()
@@ -55,10 +56,8 @@ func _process(delta: float) -> void:
 				$ScreenOverlays.set_skip_button(true)
 				$ScreenOverlays.skipped.disconnect(skip_tutorial)
 				$ScreenOverlays.skipped.connect(skip_cutscene)
-		elif focus != -1:
-			focus = 0
 		else:
-			paused = !paused
+			focus = 0
 	if focus_weight != -1: # Focus animation
 		focus_weight += delta * focus_speed
 		focus_weight = minf(focus_weight, 1)
@@ -75,9 +74,11 @@ func set_focus(index: int) -> void:
 		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
 				object.visible = true
 	focus = index
+	EventBus.focus_changed.emit(focus)
 	if index == -1:
 		return # Other focus like a cutscene
-	$ScreenOverlays.set_skip_button(false)
+	if tutorial_stage == -1 and focus != -1:
+		$ScreenOverlays.set_skip_button(false)
 	# Focus animation configuration
 	match index:
 		0: # No focus/on chair
@@ -95,6 +96,7 @@ func set_focus(index: int) -> void:
 	focus_weight = 0
 
 func finished_focus() -> void:
+	EventBus.finished_focus_change.emit(focus)
 	# Actions when focus animation finishes
 	match focus:
 		0:
@@ -196,3 +198,8 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	last_event_pos2D = event_pos2D
 	last_event_time = now
 	$MonitorViewport.push_input(event)
+
+# Monitor Audio
+func play_monitor_sound(sound: AudioStream) -> void:
+	$"Desk Setup/MonitorArea/MonitorAudioStream".stream = sound
+	$"Desk Setup/MonitorArea/MonitorAudioStream".play()

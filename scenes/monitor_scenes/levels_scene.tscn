@@ -11,12 +11,13 @@
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7qn53"]
 playback_mode = 1
 random_pitch = 1.5
-random_volume_offset_db = 4.0
+random_volume_offset_db = 5.0
 streams_count = 1
 stream_0/stream = ExtResource("7_7qn53")
 
 [node name="LevelsScene" type="Node2D"]
 script = ExtResource("1_p1nwe")
+mask_server_hack_sound = SubResource("AudioStreamRandomizer_7qn53")
 
 [node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("server_sprites_collection")]
 texture_filter = 1
@@ -92,6 +93,3 @@ texture_repeat = 1
 position = Vector2(85, 596.001)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("6_mxg54")
-
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_7qn53")
