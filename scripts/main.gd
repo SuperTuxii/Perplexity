@@ -53,6 +53,7 @@ func _process(delta: float) -> void:
 				focus = -1
 				$CutsceneAnimator.play("start_sleep")
 				$ScreenOverlays.set_skip_button(true)
+				$ScreenOverlays.skipped.disconnect(skip_tutorial)
 				$ScreenOverlays.skipped.connect(skip_cutscene)
 		elif focus != -1:
 			focus = 0
