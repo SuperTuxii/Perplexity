@@ -23,16 +23,16 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_mp518"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.5,
 "texture": ExtResource("1_wkks8")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": ExtResource("2_dfww2")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": ExtResource("3_r68q7")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": ExtResource("4_p7yi4")
 }],
 "loop": true,
@@ -115,7 +115,7 @@ texture_filter = 1
 texture_repeat = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mp518")
-animation = &"normal_server"
+animation = &"changing_server"
 script = ExtResource("15_mp518")
 
 [node name="Button" type="Button" parent="."]

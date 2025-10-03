@@ -72,6 +72,7 @@ horizontal_alignment = 1
 [node name="LevelsScene" parent="." instance=ExtResource("2_lmcqu")]
 
 [node name="FileBrowser" parent="." instance=ExtResource("3_6v2g8")]
+visible = false
 layout_mode = 1
 offset_left = -480.0
 offset_top = -270.0

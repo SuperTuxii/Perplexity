@@ -200,6 +200,10 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	$MonitorViewport.push_input(event)
 
 # Monitor Audio
-func play_monitor_sound(sound: AudioStream) -> void:
-	$"Desk Setup/MonitorArea/MonitorAudioStream".stream = sound
-	$"Desk Setup/MonitorArea/MonitorAudioStream".play()
+func play_monitor_sound(sound: AudioStream, volume_db: float) -> void:
+	var audio_stream = $"Desk Setup/MonitorArea/MonitorAudioStream"
+	if audio_stream.playing:
+		audio_stream = $"Desk Setup/MonitorArea/MonitorAudioStream2"
+	audio_stream.stream = sound
+	audio_stream.volume_db = volume_db
+	audio_stream.play()

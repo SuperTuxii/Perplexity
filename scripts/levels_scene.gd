@@ -3,8 +3,14 @@ class_name LevelsScene extends Node2D
 @export
 var mask_server_hack_sound: AudioStream
 @export
+var mask_final_server_hack_sound: AudioStream
+@export
+var mask_server_start_hack_sound: AudioStream
+@export
+var mask_final_server_start_hack_sound: AudioStream
+@export
 var mask_walk_speed: float = 2
-var mask_server_speed: float = 1
+var mask_server_speed: float = 0.4
 var mask_walk_time: float = -1:
 	set(value):
 		mask_walk_time = value
@@ -29,10 +35,12 @@ func _process(delta: float) -> void:
 				if child is Server:
 					child.visible = false
 			$ServerLine.compute_line()
-			EventBus.play_monitor_sound.emit(mask_server_hack_sound)
 			if mask_walk_time == -1:
 				$Mask.visible = false
 				$ServerSprites.get_child(floori(mask_walk_time)).pressable = true
+				EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
+			else:
+				EventBus.play_monitor_sound.emit(mask_server_hack_sound, -30)
 	elif mask_walk_time != -1:
 		var prev_index: int = floori(mask_walk_time)
 		mask_walk_time += delta * mask_walk_speed
@@ -41,6 +49,10 @@ func _process(delta: float) -> void:
 		var to_position: Vector2 = $ServerSprites.get_child(ceili(mask_walk_time)).position
 		if prev_index != floori(mask_walk_time):
 			mask_server_time = 0
+			if mask_walk_time == $ServerSprites.get_child_count()-1:
+				EventBus.play_monitor_sound.emit(mask_final_server_start_hack_sound, -35)
+			else:
+				EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -35)
 			$ServerSprites.get_child(floori(mask_walk_time)).hacked = true
 			$Mask.position = from_position
 		else:
@@ -57,7 +69,7 @@ func skip_mask_walk() -> void:
 			child.visible = false
 			child.hacked = true
 	$ServerLine.compute_line()
-	EventBus.play_monitor_sound.emit(mask_server_hack_sound)
+	EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
 	$Mask.visible = false
 	var last_child = $ServerSprites.get_child($ServerSprites.get_child_count() - 1)
 	last_child.pressable = true
