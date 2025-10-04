@@ -177,6 +177,8 @@ func _on_screen_area_mouse_entered() -> void:
 func _on_screen_area_mouse_exited() -> void:
 	is_mouse_inside = false
 func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		return
 	var collision_shape_size = $"Desk Setup/ScreenArea/CollisionShape3D".shape.size
 	var quad_mesh_size = Vector2(collision_shape_size.z, collision_shape_size.y)
 	var event_pos3D = event_position
