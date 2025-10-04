@@ -463,7 +463,7 @@ albedo_color = Color(0.90234375, 0.90234375, 0.90234375, 1)
 albedo_texture = SubResource("ViewportTexture_csyg1")
 roughness = 0.4
 emission_enabled = true
-emission_energy_multiplier = 0.5
+emission_energy_multiplier = 0.75
 emission_texture = SubResource("ViewportTexture_pkh84")
 
 [node name="Main3D" type="Node3D"]

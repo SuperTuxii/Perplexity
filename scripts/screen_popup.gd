@@ -9,6 +9,7 @@ var title: String:
 
 var show_tween: Tween
 var mouse_pressed: bool = false
+var mouse_position: Vector2 = Vector2()
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
@@ -28,10 +29,11 @@ func _on_visibility_changed() -> void:
 func _on_title_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		mouse_pressed = event.pressed
+		mouse_position = position
 	elif event is InputEventMouseMotion and mouse_pressed:
-		position += event.relative
-		position.x = clamp(position.x, 0, get_viewport_rect().size.x - size.x)
-		position.y = clamp(position.y, 0, get_viewport_rect().size.y - size.y)
+		mouse_position += event.relative
+		position.x = clamp(mouse_position.x, 0, get_viewport_rect().size.x - size.x)
+		position.y = clamp(mouse_position.y, 0, get_viewport_rect().size.y - size.y)
 
 func _on_close_button_pressed() -> void:
 	visible = false

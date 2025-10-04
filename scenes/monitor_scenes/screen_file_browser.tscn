@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d00ixyg22g8s5"]
+[gd_scene load_steps=15 format=3 uid="uid://d00ixyg22g8s5"]
 
 [ext_resource type="Script" uid="uid://qdmgh2h1wrm8" path="res://scripts/screen_file_browser.gd" id="1_fecks"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_0kh3a"]
+[ext_resource type="Texture2D" uid="uid://b6foa3i6rp1hq" path="res://assets/textures/back.svg" id="3_0kh3a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -17,8 +18,53 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_detail = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0kh3a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5xwi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.78431374)
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7815"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bfe3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3d5s"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.78431374)
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2b5xx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_acor3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vid8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
+border_width_left = 1
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.78431374)
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7t5cm"]
+
 [node name="ScreenFileBrowser" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(500, 300)
 offset_right = 183.0
 offset_bottom = 167.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
@@ -37,7 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
-text = "Popup Title"
+text = "File Browser"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -57,13 +103,77 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Content"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Content/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+icon = ExtResource("3_0kh3a")
+icon_alignment = 1
+
+[node name="FolderPathLabel" type="Label" parent="VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Server"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Content/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="NameHeader" type="LineEdit" parent="VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0kh3a")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_y5xwi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m7815")
+text = "Name"
+editable = false
+expand_to_text_length = true
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="SizeHeader" type="LineEdit" parent="VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3bfe3")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_m3d5s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2b5xx")
+text = "Size"
+editable = false
+expand_to_text_length = true
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="ModifiedHeader" type="LineEdit" parent="VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_constants/caret_width = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_acor3")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_7vid8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7t5cm")
+text = "Modified"
+editable = false
+expand_to_text_length = true
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
 
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
