@@ -46,8 +46,7 @@ func _process(delta: float) -> void:
 		camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x, 0))
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
-		if focus <= 0 and (tutorial_stage == 4 or tutorial_stage == -1):
-			paused = !paused
+		if focus <= 0:
 			if tutorial_stage == 4:
 				$ScreenOverlays.hide_pause_tutorial()
 				tutorial_stage = -1
@@ -56,6 +55,8 @@ func _process(delta: float) -> void:
 				$ScreenOverlays.set_skip_button(true)
 				$ScreenOverlays.skipped.disconnect(skip_tutorial)
 				$ScreenOverlays.skipped.connect(skip_cutscene)
+				$PauseMenu.continue_to_start_game()
+			paused = !paused
 		else:
 			focus = 0
 	if focus_weight != -1: # Focus animation
@@ -123,6 +124,7 @@ func skip_tutorial() -> void:
 	$ScreenOverlays.set_skip_button(true)
 	$ScreenOverlays.skipped.disconnect(skip_tutorial)
 	$ScreenOverlays.skipped.connect(skip_cutscene)
+	$PauseMenu.continue_to_start_game()
 	paused = true
 
 func skip_cutscene() -> void:

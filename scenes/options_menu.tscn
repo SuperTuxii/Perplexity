@@ -118,12 +118,44 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Audio Volume:"
+text = "Master Volume:"
 label_settings = SubResource("LabelSettings_liyum")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.5
+step = 0.01
+
+[node name="MusicVolumeLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Music Volume:"
+label_settings = SubResource("LabelSettings_liyum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.5
+step = 0.01
+
+[node name="SFXVolumeLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SFX Volume:"
+label_settings = SubResource("LabelSettings_liyum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="Layout/ScrollContainer/TableLayout"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -143,4 +175,6 @@ text = "Back"
 [connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="Layout/ScrollContainer/TableLayout/DragMirrorCheckButton" to="." method="_on_drag_mirror_check_button_toggled"]
 [connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="Layout/BackButton" to="." method="_on_back_button_pressed"]

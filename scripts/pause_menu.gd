@@ -26,6 +26,9 @@ func back() -> void:
 		if is_inside_tree():
 			get_tree().paused = false
 
+func continue_to_start_game() -> void:
+	$Layout/ContinueButton.text = "Start Game"
+
 func _on_options_button_pressed() -> void:
 	show_options_menu()
 

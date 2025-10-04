@@ -75,7 +75,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
-text = "Start Game"
+text = "Continue"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_myx47")]
 visible = false

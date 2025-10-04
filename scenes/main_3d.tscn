@@ -1,19 +1,28 @@
-[gd_scene load_steps=39 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=53 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scene.tscn" id="1_pkh84"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_338xd"]
 [ext_resource type="PackedScene" uid="uid://deu5aup1ru16f" path="res://scenes/pause_menu.tscn" id="2_jl2p6"]
+[ext_resource type="AudioStream" uid="uid://cumsimcwpnd8r" path="res://assets/audio/music/start_bgm1.mp3" id="2_n2cvh"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="3_jl2p6"]
+[ext_resource type="AudioStream" uid="uid://c0cc7u0u8bpoo" path="res://assets/audio/music/start_bgm2.mp3" id="3_nhbng"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/blender/WindowWall.blend" id="4_ewgxa"]
 [ext_resource type="PackedScene" uid="uid://dkaofyvw6ltoh" path="res://scenes/screen_overlays.tscn" id="4_ml77k"]
+[ext_resource type="AudioStream" uid="uid://coiuuce22bxmb" path="res://assets/audio/music/start_bgm3.mp3" id="4_o5vb4"]
+[ext_resource type="AudioStream" uid="uid://bf8ucm1kmio5d" path="res://assets/audio/music/start_bgm4.mp3" id="5_ixjt1"]
 [ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/blender/Shelf.blend" id="5_ml77k"]
 [ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/blender/Container.blend" id="6_c2q4g"]
+[ext_resource type="AudioStream" uid="uid://b5483h71hgxur" path="res://assets/audio/music/start_bgm5.mp3" id="6_jf700"]
 [ext_resource type="PackedScene" uid="uid://b7831qwr1cxxm" path="res://assets/3d/blender/Door.blend" id="7_u5jvq"]
 [ext_resource type="PackedScene" uid="uid://blw6j5qkort24" path="res://assets/3d/blender/Window.blend" id="8_5n0tc"]
 [ext_resource type="PackedScene" uid="uid://gi5ltvp4dm4a" path="res://assets/3d/blender/Light.blend" id="9_708qp"]
+[ext_resource type="Script" uid="uid://wnb1w6pahw7s" path="res://scripts/music_player.gd" id="10_nhbng"]
+[ext_resource type="AudioStream" uid="uid://dpnxshfb25vju" path="res://assets/audio/music/after_start_bgm1.mp3" id="11_jf700"]
 [ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/blender/Monitor.blend" id="11_n2cvh"]
+[ext_resource type="AudioStream" uid="uid://0ljttkicg5v3" path="res://assets/audio/music/after_start_bgm2.mp3" id="12_80pr4"]
 [ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/blender/Keyboard.blend" id="12_nhbng"]
+[ext_resource type="AudioStream" uid="uid://cpmtn18e7iiw6" path="res://assets/audio/music/after_start_bgm3.mp3" id="13_nlluf"]
 [ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/blender/Mouse.blend" id="13_o5vb4"]
 [ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/blender/Telephone.blend" id="14_ixjt1"]
 [ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="14_ml77k"]
@@ -348,6 +357,20 @@ tracks/8/keys = {
 "method": &"set_focus"
 }]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MusicPlayer")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [10.0],
+"method": &"fade_out"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2q4g"]
 _data = {
@@ -355,6 +378,54 @@ _data = {
 &"alarm_ease_out": SubResource("Animation_c2q4g"),
 &"skip_start_sleep": SubResource("Animation_u5jvq"),
 &"start_sleep": SubResource("Animation_ewgxa")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhbng"]
+streams_count = 5
+stream_0/stream = ExtResource("2_n2cvh")
+stream_1/stream = ExtResource("3_nhbng")
+stream_2/stream = ExtResource("4_o5vb4")
+stream_3/stream = ExtResource("5_ixjt1")
+stream_4/stream = ExtResource("6_jf700")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kufr5"]
+streams_count = 3
+stream_0/stream = ExtResource("11_jf700")
+stream_1/stream = ExtResource("12_80pr4")
+stream_2/stream = ExtResource("13_nlluf")
+
+[sub_resource type="Animation" id="Animation_80pr4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_jf700"]
+resource_name = "fade"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.33333334, 0, -80, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nlluf"]
+_data = {
+&"RESET": SubResource("Animation_80pr4"),
+&"fade": SubResource("Animation_jf700")
 }
 
 [sub_resource type="QuadMesh" id="QuadMesh_vipva"]
@@ -418,6 +489,18 @@ mouse_filter = 1
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c2q4g")
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"Music"
+script = ExtResource("10_nhbng")
+start_music = SubResource("AudioStreamRandomizer_nhbng")
+after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MusicPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_nlluf")
 }
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -555,12 +638,15 @@ shape = SubResource("BoxShape3D_338xd")
 [node name="AlarmAudioStream" type="AudioStreamPlayer3D" parent="Desk Setup/MonitorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32514942, 0)
 stream = SubResource("AudioStreamSynchronized_c2q4g")
+bus = &"SFX"
 
 [node name="MonitorAudioStream" type="AudioStreamPlayer3D" parent="Desk Setup/MonitorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32514942, 0)
+bus = &"SFX"
 
 [node name="MonitorAudioStream2" type="AudioStreamPlayer3D" parent="Desk Setup/MonitorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32514942, 0)
+bus = &"SFX"
 
 [node name="ScreenArea" type="Area3D" parent="Desk Setup" groups=["focus_0_hide"]]
 transform = Transform3D(-0.13571554, -7.47493e-08, 0.99074787, 8.742278e-08, 1, 8.742278e-08, -0.99074787, 9.847856e-08, -0.13571554, 0.847, 1.14, -0.113)
@@ -691,6 +777,7 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("13_o5vb4")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

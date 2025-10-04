@@ -11,5 +11,6 @@ signal set_skip_button(visible: bool)
 signal skipped
 
 signal play_monitor_sound(sound: AudioStream, volume_db: float)
+signal play_music(music: AudioStream, volume_db: float)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
