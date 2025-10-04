@@ -74,12 +74,11 @@ func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_" + str(focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
 				object.visible = true
-	focus = index
 	EventBus.focus_changed.emit(focus)
+	if tutorial_stage == -1:
+		$ScreenOverlays.set_skip_button(false)
 	if index == -1:
 		return # Other focus like a cutscene
-	if tutorial_stage == -1 and focus != -1:
-		$ScreenOverlays.set_skip_button(false)
 	# Focus animation configuration
 	match index:
 		0: # No focus/on chair
@@ -132,6 +131,11 @@ func skip_cutscene() -> void:
 	$ScreenOverlays.skipped.disconnect(skip_cutscene)
 	$CutsceneAnimator.play("skip_" + $CutsceneAnimator.current_animation)
 	camera.rotation.x = 0
+
+func finish_cutscene() -> void:
+	$ScreenOverlays.set_skip_button(false)
+	$ScreenOverlays.skipped.disconnect(skip_cutscene)
+	focus = 0
 
 func _input(event: InputEvent) -> void:
 	if !paused and focus == 0 and focus_weight == -1: # Saving screen drag when focus is 0

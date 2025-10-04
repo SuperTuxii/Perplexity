@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=50 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scene.tscn" id="1_pkh84"]
@@ -237,6 +237,20 @@ tracks/7/keys = {
 "method": &"set_eyelids_instantly"
 }]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MusicPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"fade_into_after_cutscene_music"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ewgxa"]
 resource_name = "start_sleep"
@@ -353,8 +367,8 @@ tracks/8/keys = {
 "args": [-1],
 "method": &"set_focus"
 }, {
-"args": [0],
-"method": &"set_focus"
+"args": [],
+"method": &"finish_cutscene"
 }]
 }
 tracks/9/type = "method"
@@ -364,11 +378,14 @@ tracks/9/path = NodePath("MusicPlayer")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [10.0],
+"args": [4.0],
 "method": &"fade_out"
+}, {
+"args": [4.0],
+"method": &"fade_into_after_cutscene_music"
 }]
 }
 
@@ -393,40 +410,6 @@ streams_count = 3
 stream_0/stream = ExtResource("11_jf700")
 stream_1/stream = ExtResource("12_80pr4")
 stream_2/stream = ExtResource("13_nlluf")
-
-[sub_resource type="Animation" id="Animation_80pr4"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_jf700"]
-resource_name = "fade"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(0, 0, 0, 0.33333334, 0, -80, -0.33333334, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nlluf"]
-_data = {
-&"RESET": SubResource("Animation_80pr4"),
-&"fade": SubResource("Animation_jf700")
-}
 
 [sub_resource type="QuadMesh" id="QuadMesh_vipva"]
 size = Vector2(3.5, 10)
@@ -497,11 +480,6 @@ bus = &"Music"
 script = ExtResource("10_nhbng")
 start_music = SubResource("AudioStreamRandomizer_nhbng")
 after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MusicPlayer"]
-libraries = {
-&"": SubResource("AnimationLibrary_nlluf")
-}
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
