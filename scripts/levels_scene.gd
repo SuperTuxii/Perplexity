@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 				$ServerSprites.get_child(floori(mask_walk_time)).pressable = true
 				EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
 			else:
-				EventBus.play_monitor_sound.emit(mask_server_hack_sound, -30)
+				EventBus.play_monitor_sound.emit(mask_server_hack_sound, -32.5)
 	elif mask_walk_time != -1:
 		var prev_index: int = floori(mask_walk_time)
 		mask_walk_time += delta * mask_walk_speed
@@ -50,9 +50,9 @@ func _process(delta: float) -> void:
 		if prev_index != floori(mask_walk_time):
 			mask_server_time = 0
 			if mask_walk_time == $ServerSprites.get_child_count()-1:
-				EventBus.play_monitor_sound.emit(mask_final_server_start_hack_sound, -35)
+				EventBus.play_monitor_sound.emit(mask_final_server_start_hack_sound, -32.5)
 			else:
-				EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -35)
+				EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -36)
 			$ServerSprites.get_child(floori(mask_walk_time)).hacked = true
 			$Mask.position = from_position
 		else:
