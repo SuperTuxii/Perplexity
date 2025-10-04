@@ -57,5 +57,13 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Content"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Content/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
