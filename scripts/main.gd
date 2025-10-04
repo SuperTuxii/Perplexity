@@ -214,3 +214,9 @@ func play_monitor_sound(sound: AudioStream, volume_db: float) -> void:
 	audio_stream.stream = sound
 	audio_stream.volume_db = volume_db
 	audio_stream.play()
+
+# Door Lock Material
+func set_door_lock(locked: bool) -> void:
+	var lock_material: StandardMaterial3D = $Door/LockStatus.mesh.surface_get_material(0)
+	lock_material.albedo_color = Color(0.9, 0.225, 0.225, 1.0) if locked else Color("#39e639ff")
+	lock_material.emission = lock_material.albedo_color

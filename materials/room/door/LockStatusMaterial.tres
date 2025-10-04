@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wsdeyn4gpwrj"]
+
+[resource]
+resource_name = "LockStatusMaterial"
+albedo_color = Color(0.225, 0.9, 0.225, 1)
+emission_enabled = true
+emission = Color(0.225, 0.9, 0.225, 1)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://rd2krhk6l0x"]
+
+[ext_resource type="Script" uid="uid://cpbnoqpmk35ns" path="res://scripts/screen_popup.gd" id="1_7uyd3"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="1_rs3sa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_detail = 5
+
+[node name="ScreenPopup" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 150)
+offset_right = 183.0
+offset_bottom = 167.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
+script = ExtResource("1_7uyd3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+text = "Popup Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("1_rs3sa")
+flat = true
+icon_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
