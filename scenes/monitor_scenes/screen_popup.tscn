@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="1_rs3sa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -58,5 +58,6 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]

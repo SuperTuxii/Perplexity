@@ -17,13 +17,10 @@ color = Color(0.5, 0.5, 0.5, 0.19607843)
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
 anchor_top = 0.15
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.15
-offset_left = -477.5
-offset_right = 477.5
-offset_bottom = 42.000008
+offset_bottom = 42.0
 grow_horizontal = 2
 text = "Press the left mouse button and move your mouse to look around"
 label_settings = SubResource("LabelSettings_8ho6b")

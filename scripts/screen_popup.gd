@@ -1,5 +1,7 @@
 class_name ScreenPopup extends PanelContainer
 
+signal focus(popup: ScreenPopup)
+
 @export
 var title: String:
 	set(value):
@@ -27,9 +29,11 @@ func _on_visibility_changed() -> void:
 		show_tween.play()
 
 func _on_title_label_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		mouse_pressed = event.pressed
-		mouse_position = position
+	if event is InputEventMouseButton:
+		focus.emit(self)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			mouse_pressed = event.pressed
+			mouse_position = position
 	elif event is InputEventMouseMotion and mouse_pressed:
 		mouse_position += event.relative
 		position.x = clamp(mouse_position.x, 0, get_viewport_rect().size.x - size.x)
@@ -37,3 +41,7 @@ func _on_title_label_gui_input(event: InputEvent) -> void:
 
 func _on_close_button_pressed() -> void:
 	visible = false
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		focus.emit(self)

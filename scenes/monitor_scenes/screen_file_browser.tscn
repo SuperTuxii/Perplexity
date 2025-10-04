@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b6foa3i6rp1hq" path="res://assets/textures/back.svg" id="3_0kh3a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -176,6 +176,7 @@ expand_to_text_length = true
 selecting_enabled = false
 drag_and_drop_selection_enabled = false
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Content/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
