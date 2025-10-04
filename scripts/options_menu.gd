@@ -16,7 +16,6 @@ var music_volume: float = 1.0
 var sfx_volume: float = 1.0
 
 func _ready() -> void:
-	AudioServer.set_bus_layout(bus_layout)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_volume))
