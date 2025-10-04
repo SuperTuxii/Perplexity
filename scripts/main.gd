@@ -74,8 +74,9 @@ func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_" + str(focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
 				object.visible = true
+	focus = index
 	EventBus.focus_changed.emit(focus)
-	if tutorial_stage == -1:
+	if focus != -1 and tutorial_stage == -1:
 		$ScreenOverlays.set_skip_button(false)
 	if index == -1:
 		return # Other focus like a cutscene
