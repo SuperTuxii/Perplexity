@@ -78,5 +78,6 @@ offset_top = 67.0
 offset_right = 1228.0
 offset_bottom = 367.0
 
+[connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]
 [connection signal="focus" from="ScreenFileBrowser" to="." method="focus_popup"]
 [connection signal="pressed_file" from="ScreenFileBrowser" to="." method="_on_file_browser_pressed_file"]

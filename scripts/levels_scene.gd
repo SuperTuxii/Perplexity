@@ -1,5 +1,7 @@
 class_name LevelsScene extends Node2D
 
+signal open_server_files(root_folder_name: String)
+
 @export
 var mask_server_hack_sound: AudioStream
 @export
@@ -23,6 +25,15 @@ var mask_walk_time: float = -1:
 			EventBus.skipped.disconnect(skip_mask_walk)
 			EventBus.finished_focus_change.disconnect(finished_focus_change)
 var mask_server_time: float = -1
+
+func _ready() -> void:
+	init_servers_recursive($ServerSprites)
+
+func init_servers_recursive(object: Node2D) -> void:
+	for child in object.get_children():
+		if child is Server:
+			child.pressed.connect(func run(): open_server_files.emit(child.root_folder_name))
+			init_servers_recursive(child)
 
 func _process(delta: float) -> void:
 	# Mask animation

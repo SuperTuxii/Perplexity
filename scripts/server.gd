@@ -5,6 +5,9 @@ signal button_down
 signal button_up
 
 @export
+var root_folder_name: String = "Server"
+
+@export
 var hacked: bool = false:
 	set(value):
 		if hacked != value:

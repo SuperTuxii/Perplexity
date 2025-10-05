@@ -52,3 +52,6 @@ func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -
 		add_child(popup)
 		open_files[path] = popup
 	focus_popup(open_files[path])
+
+func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
+	$ScreenFileBrowser.root_folder_name = root_folder_name

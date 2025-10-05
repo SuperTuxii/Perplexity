@@ -9,45 +9,55 @@ var back_button: Button = $VBoxContainer/Content/VBoxContainer/HBoxContainer/Bac
 @onready
 var layout: GridContainer = $VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer
 
-var structure: Dictionary = {
-	"test_file": {
-		"type": "text",
-		"size": "7B",
-		"modified": "Today",
-		"value": "HEHEHE"
-	},
-	"test_executable": {
-		"type": "executable",
-		"size": "1,3KB",
-		"modified": "Today",
-		"value": func run(_path: String, _popup: ScreenPopup): print("I was just run!")
-	},
-	"test_image": {
-		"type": "image",
-		"size": "449B",
-		"modified": "Today",
-		"value": "res://assets/textures/packets/normal_packet.png"
-	},
-	"test_folder": {
-		"type": "folder",
-		"size": "0 items",
-		"modified": "Today",
-		"value": {
-			"test_file2": {
-				"type": "text",
-				"size": "7B",
-				"modified": "Today",
-				"value": "HEHEHE"
+var server_files: Dictionary = {
+	"Server": {},
+	"Server 1A": {
+		"test_file": {
+			"type": "text",
+			"size": "7B",
+			"modified": "Today",
+			"value": "HEHEHE"
+		},
+		"test_executable": {
+			"type": "executable",
+			"size": "1,3KB",
+			"modified": "Today",
+			"value": func run(_path: String, _popup: ScreenPopup): print("I was just run!")
+		},
+		"test_image": {
+			"type": "image",
+			"size": "449B",
+			"modified": "Today",
+			"value": "res://assets/textures/packets/normal_packet.png"
+		},
+		"test_folder": {
+			"type": "folder",
+			"size": "0 items",
+			"modified": "Today",
+			"value": {
+				"test_file2": {
+					"type": "text",
+					"size": "7B",
+					"modified": "Today",
+					"value": "HEHEHE"
+				}
 			}
 		}
 	}
 }:
 	set(value):
-		structure = value
+		server_files = value
 		update_contents()
 var current_files: Dictionary
 
-var root_folder_name: String = "Server"
+var root_folder_name: String = "":
+	set(value):
+		if server_files.has(value):
+			root_folder_name = value
+		else:
+			root_folder_name = ""
+			push_warning("Server with the root folder name \"" + value + "\" not found")
+		update_contents()
 var current_folder_path: String = "":
 	set(value):
 		current_folder_path = value
@@ -58,6 +68,9 @@ func _ready() -> void:
 	update_contents()
 
 func update_contents() -> void:
+	visible = !root_folder_name.is_empty()
+	if root_folder_name.is_empty():
+		return
 	folder_path_label.text = root_folder_name
 	if !current_folder_path.is_empty():
 		folder_path_label.text += " ► " + current_folder_path.replace("/", " ► ")
@@ -90,9 +103,9 @@ func update_contents() -> void:
 
 func get_files_for_current_folder_path() -> Dictionary:
 	if current_folder_path.is_empty():
-		return structure
+		return server_files[root_folder_name]
 	var folders: PackedStringArray = current_folder_path.split("/", false)
-	var files = structure
+	var files = server_files[root_folder_name]
 	for folder in folders:
 		files = files[folder]["value"]
 	return files
@@ -107,7 +120,7 @@ func _on_file_pressed(file_name: String) -> void:
 	if type == "folder":
 		current_folder_path = file_path
 	else:
-		pressed_file.emit(file_path, type, current_files[file_name]["value"])
+		pressed_file.emit(root_folder_name + "/" + file_path, type, current_files[file_name]["value"])
 
 func _on_back_button_pressed() -> void:
 	if current_folder_path.contains("/"):

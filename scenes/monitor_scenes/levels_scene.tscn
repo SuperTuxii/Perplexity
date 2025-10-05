@@ -98,6 +98,7 @@ scale = Vector2(1, 1)
 
 [node name="Server6" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(85, 596)
+root_folder_name = "Server 1A"
 
 [node name="Mask" type="Sprite2D" parent="."]
 texture_filter = 1
