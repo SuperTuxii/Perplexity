@@ -1,6 +1,7 @@
 class_name ScreenPopup extends PanelContainer
 
 signal focus(popup: ScreenPopup)
+signal close(popup: ScreenPopup)
 
 @export
 var title: String:
@@ -8,6 +9,7 @@ var title: String:
 		$VBoxContainer/Top/TitleLabel.text = value
 	get:
 		return $VBoxContainer/Top/TitleLabel.text
+var path: String = ""
 
 var show_tween: Tween
 var mouse_pressed: bool = false
@@ -27,6 +29,8 @@ func _on_visibility_changed() -> void:
 		global_position = Vector2(0, get_viewport_rect().size.y)
 		scale = Vector2()
 		show_tween.play()
+	else:
+		close.emit(self)
 
 func _on_title_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

@@ -1,6 +1,6 @@
 class_name ScreenFileBrowser extends ScreenPopup
 
-signal pressed_file(type: String, value: Variant)
+signal pressed_file(path: String, type: String, value: Variant)
 
 @onready
 var folder_path_label: Label = $VBoxContainer/Content/VBoxContainer/HBoxContainer/FolderPathLabel
@@ -20,13 +20,13 @@ var structure: Dictionary = {
 		"type": "executable",
 		"size": "1,3KB",
 		"modified": "Today",
-		"value": func run(): print("I was just run!")
+		"value": func run(_path: String, _popup: ScreenPopup): print("I was just run!")
 	},
 	"test_image": {
 		"type": "image",
 		"size": "449B",
 		"modified": "Today",
-		"value": load("res://assets/textures/packets/normal_packet.png")
+		"value": "res://assets/textures/packets/normal_packet.png"
 	},
 	"test_folder": {
 		"type": "folder",
@@ -99,13 +99,15 @@ func get_files_for_current_folder_path() -> Dictionary:
 
 func _on_file_pressed(file_name: String) -> void:
 	var type: String = current_files[file_name]["type"]
-	if type == "folder":
-		if current_folder_path.is_empty():
-			current_folder_path = file_name
-		else:
-			current_folder_path += "/" + file_name
+	var file_path = current_folder_path
+	if file_path.is_empty():
+		file_path = file_name
 	else:
-		pressed_file.emit(type, current_files[file_name]["value"])
+		file_path += "/" + file_name
+	if type == "folder":
+		current_folder_path = file_path
+	else:
+		pressed_file.emit(file_path, type, current_files[file_name]["value"])
 
 func _on_back_button_pressed() -> void:
 	if current_folder_path.contains("/"):

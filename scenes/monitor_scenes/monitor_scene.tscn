@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=7 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="PackedScene" uid="uid://bxff4ce1n02gg" path="res://scenes/monitor_scenes/levels_scene.tscn" id="2_lmcqu"]
 [ext_resource type="PackedScene" uid="uid://d00ixyg22g8s5" path="res://scenes/monitor_scenes/screen_file_browser.tscn" id="3_upgkn"]
-[ext_resource type="PackedScene" uid="uid://rd2krhk6l0x" path="res://scenes/monitor_scenes/screen_popup.tscn" id="4_ym2u4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -79,25 +78,5 @@ offset_top = 67.0
 offset_right = 1228.0
 offset_bottom = 367.0
 
-[node name="ScreenPopup" parent="." instance=ExtResource("4_ym2u4")]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 411.0
-offset_right = 657.0
-offset_bottom = 578.0
-
-[node name="ScreenPopup2" parent="." instance=ExtResource("4_ym2u4")]
-layout_mode = 0
-offset_left = 236.0
-offset_top = 139.0
-offset_right = 436.0
-offset_bottom = 306.0
-
-[node name="ScreenPopup3" parent="." instance=ExtResource("4_ym2u4")]
-layout_mode = 0
-offset_left = 911.0
-offset_top = 451.0
-offset_right = 1111.0
-offset_bottom = 618.0
-
+[connection signal="focus" from="ScreenFileBrowser" to="." method="focus_popup"]
 [connection signal="pressed_file" from="ScreenFileBrowser" to="." method="_on_file_browser_pressed_file"]

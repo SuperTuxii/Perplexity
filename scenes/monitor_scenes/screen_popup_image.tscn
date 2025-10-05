@@ -18,7 +18,7 @@ corner_radius_top_right = 5
 corner_detail = 5
 
 [node name="ScreenPopupImage" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 250)
+custom_minimum_size = Vector2(200, 150)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
