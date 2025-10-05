@@ -69,14 +69,14 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 	if tutorial_stage <= 0:
 		$ClickServerTutorial.queue_free()
 		$ScreenFileBrowser/FileBrowserTutorial.visible = true
-		EventBus.schedule($ScreenFileBrowser/FileBrowserTutorial, "queue_free", 7.5)
+		EventBus.schedule(self, "_on_screen_file_browser_close", 7.5)
 		tutorial_stage = 1
 	if $ScreenFileBrowser.root_folder_name == root_folder_name:
 		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible
 	else:
 		$ScreenFileBrowser.root_folder_name = root_folder_name
 
-func _on_screen_file_browser_close(_popup: ScreenPopup) -> void:
+func _on_screen_file_browser_close(_popup: ScreenPopup = null) -> void:
 	if tutorial_stage == 1:
 		$ScreenFileBrowser/FileBrowserTutorial.queue_free()
 		tutorial_stage = 2
