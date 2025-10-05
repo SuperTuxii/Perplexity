@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://rd2krhk6l0x"]
+[gd_scene load_steps=6 format=3 uid="uid://rd2krhk6l0x"]
 
 [ext_resource type="Script" uid="uid://cpbnoqpmk35ns" path="res://scripts/screen_popup.gd" id="1_7uyd3"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="1_rs3sa"]
@@ -16,6 +16,9 @@ bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
+content_margin_right = 50.0
 
 [node name="ScreenPopup" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 150)
@@ -38,6 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
 text = "Popup Title"
 horizontal_alignment = 1
 vertical_alignment = 1

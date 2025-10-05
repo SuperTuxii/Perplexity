@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2cea0mw1etdw"]
+[gd_scene load_steps=6 format=3 uid="uid://2cea0mw1etdw"]
 
 [ext_resource type="Script" uid="uid://ekgi34e6kgxs" path="res://scripts/screen_popup_image.gd" id="1_bufec"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_h3kau"]
@@ -16,6 +16,9 @@ bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bufec"]
+content_margin_right = 50.0
 
 [node name="ScreenPopupImage" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 150)
@@ -38,6 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bufec")
 text = "Image"
 horizontal_alignment = 1
 vertical_alignment = 1

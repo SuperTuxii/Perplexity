@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx3f3hbarpww"]
+[gd_scene load_steps=6 format=3 uid="uid://bx3f3hbarpww"]
 
 [ext_resource type="Script" uid="uid://blsquaqx8s0sd" path="res://scripts/screen_popup_text.gd" id="1_a0g7q"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_ye3lw"]
@@ -16,6 +16,9 @@ bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0g7q"]
+content_margin_right = 50.0
 
 [node name="ScreenPopupText" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 150)
@@ -38,6 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a0g7q")
 text = "Text"
 horizontal_alignment = 1
 vertical_alignment = 1

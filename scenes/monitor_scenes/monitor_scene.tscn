@@ -72,11 +72,18 @@ horizontal_alignment = 1
 [node name="LevelsScene" parent="." instance=ExtResource("2_lmcqu")]
 
 [node name="ScreenFileBrowser" parent="." instance=ExtResource("3_upgkn")]
-layout_mode = 0
-offset_left = 728.0
-offset_top = 67.0
-offset_right = 1228.0
-offset_bottom = 367.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]
 [connection signal="focus" from="ScreenFileBrowser" to="." method="focus_popup"]

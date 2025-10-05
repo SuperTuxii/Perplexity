@@ -51,50 +51,63 @@ server_sprites_collection = NodePath("../ServerSprites")
 
 [node name="Server" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(1335, -36)
+root_folder_name = "Server 6A"
 
 [node name="Server2" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(1085, 130)
+root_folder_name = "Server 5A"
 
 [node name="Server" parent="ServerSprites/Server2" instance=ExtResource("3_mxg54")]
 position = Vector2(-93, 5.666664)
 scale = Vector2(1, 1)
+root_folder_name = "Server 5B"
 
 [node name="Server2" parent="ServerSprites/Server2" instance=ExtResource("3_mxg54")]
 position = Vector2(11.6666565, 70)
 scale = Vector2(1, 1)
+root_folder_name = "Server 5C"
 
 [node name="Server3" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(898.00006, 414)
+root_folder_name = "Server 4A"
 
 [node name="Server" parent="ServerSprites/Server3" instance=ExtResource("3_mxg54")]
 position = Vector2(19.333313, 60.333344)
 scale = Vector2(1, 1)
+root_folder_name = "Server 4B"
 
 [node name="Server4" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(529, 319)
+root_folder_name = "Server 3A"
 
 [node name="Server" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
 position = Vector2(-83.33335, -68)
 scale = Vector2(1, 1)
+root_folder_name = "Server 3B"
 
 [node name="Server2" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
 position = Vector2(39.33333, 72.00001)
 scale = Vector2(1, 1)
+root_folder_name = "Server 3C"
 
 [node name="Server3" parent="ServerSprites/Server4" instance=ExtResource("3_mxg54")]
 position = Vector2(4.6666565, -63)
 scale = Vector2(1, 1)
+root_folder_name = "Server 3D"
 
 [node name="Server5" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(238, 447)
+root_folder_name = "Server 2A"
 
 [node name="Server2" parent="ServerSprites/Server5" instance=ExtResource("3_mxg54")]
 position = Vector2(54.666664, 32.66667)
 scale = Vector2(1, 1)
+root_folder_name = "Server 2B"
 
 [node name="Server3" parent="ServerSprites/Server5" instance=ExtResource("3_mxg54")]
 position = Vector2(-42.333336, -61.33333)
 scale = Vector2(1, 1)
+root_folder_name = "Server 2C"
 
 [node name="Server6" parent="ServerSprites" instance=ExtResource("3_mxg54")]
 position = Vector2(85, 596)

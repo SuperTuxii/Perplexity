@@ -22,7 +22,8 @@ var server_files: Dictionary = {
 			"type": "executable",
 			"size": "1,3KB",
 			"modified": "Today",
-			"value": func run(_path: String, _popup: ScreenPopup): print("I was just run!")
+			"value": func run(popup: ScreenPopup): 
+	popup.title = popup.path
 		},
 		"test_image": {
 			"type": "image",
@@ -39,7 +40,7 @@ var server_files: Dictionary = {
 					"type": "text",
 					"size": "7B",
 					"modified": "Today",
-					"value": "HEHEHE"
+					"value": "HEHEHE 2"
 				}
 			}
 		}

@@ -44,7 +44,8 @@ func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -
 			popup.image = load(value)
 		elif type == "executable":
 			popup = popup_scene.instantiate()
-			value.call(path, popup)
+			popup.path = path
+			value.call(popup)
 		popup.path = path
 		popup.position = (size / 2) - (popup.size / 2)
 		popup.focus.connect(focus_popup)
@@ -54,4 +55,7 @@ func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -
 	focus_popup(open_files[path])
 
 func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
-	$ScreenFileBrowser.root_folder_name = root_folder_name
+	if $ScreenFileBrowser.root_folder_name == root_folder_name:
+		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible
+	else:
+		$ScreenFileBrowser.root_folder_name = root_folder_name
