@@ -75,3 +75,8 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible
 	else:
 		$ScreenFileBrowser.root_folder_name = root_folder_name
+
+func _on_screen_file_browser_close(_popup: ScreenPopup) -> void:
+	if tutorial_stage == 1:
+		$ScreenFileBrowser/FileBrowserTutorial.queue_free()
+		tutorial_stage = 2
