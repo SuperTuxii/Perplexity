@@ -1,6 +1,7 @@
 class_name LevelsScene extends Node2D
 
 signal open_server_files(root_folder_name: String)
+signal mask_walk_finished
 
 @export
 var mask_server_hack_sound: AudioStream
@@ -50,6 +51,7 @@ func _process(delta: float) -> void:
 				$Mask.visible = false
 				$ServerSprites.get_child(floori(mask_walk_time)).pressable = true
 				EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
+				mask_walk_finished.emit()
 			else:
 				EventBus.play_monitor_sound.emit(mask_server_hack_sound, -32.5)
 	elif mask_walk_time != -1:
@@ -85,6 +87,7 @@ func skip_mask_walk() -> void:
 	var last_child = $ServerSprites.get_child($ServerSprites.get_child_count() - 1)
 	last_child.pressable = true
 	last_child.hacked = true
+	mask_walk_finished.emit()
 
 func finished_focus_change(focus: int) -> void:
 	if focus == 1:

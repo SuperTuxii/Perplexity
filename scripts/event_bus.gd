@@ -14,3 +14,6 @@ signal play_monitor_sound(sound: AudioStream, volume_db: float)
 signal play_music(music: AudioStream, volume_db: float)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
+
+func schedule(object: Object, function_name: StringName, delay: float):
+	get_tree().create_timer(delay, false).timeout.connect(Callable(object, function_name))

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=8 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="PackedScene" uid="uid://bxff4ce1n02gg" path="res://scenes/monitor_scenes/levels_scene.tscn" id="2_lmcqu"]
 [ext_resource type="PackedScene" uid="uid://d00ixyg22g8s5" path="res://scenes/monitor_scenes/screen_file_browser.tscn" id="3_upgkn"]
+[ext_resource type="PackedScene" uid="uid://bx3f3hbarpww" path="res://scenes/monitor_scenes/screen_popup_text.tscn" id="4_ycll6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -85,6 +86,24 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="IntroPopupInformation" parent="." instance=ExtResource("4_ycll6")]
+visible = false
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 0
+offset_left = 858.0
+offset_top = 164.0
+offset_right = 1208.0
+offset_bottom = 564.0
+text = "I didn't expect anyone to still be working this late.
+Well since I accidentally triggered the shutdown alarm, all doors are probably locked now and you are completely isolated from the outside world.
+I was going to demand a ransom fee even though I would have deleted everything anyway, but because you are here I am going to have some fun :). 
+You have no other choice than to solve some puzzles that I have prepared to unlock the servers again and turn off the alarm. Oh, and don't go insane, ok? 
+Good Luck :)"
+title = "Oh hi…"
+
+[connection signal="mask_walk_finished" from="LevelsScene" to="." method="_on_levels_scene_mask_walk_finished"]
 [connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]
 [connection signal="focus" from="ScreenFileBrowser" to="." method="focus_popup"]
 [connection signal="pressed_file" from="ScreenFileBrowser" to="." method="_on_file_browser_pressed_file"]
+[connection signal="close" from="IntroPopupInformation" to="." method="close_popup"]
+[connection signal="focus" from="IntroPopupInformation" to="." method="focus_popup"]

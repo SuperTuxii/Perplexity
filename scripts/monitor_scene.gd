@@ -54,6 +54,9 @@ func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -
 		open_files[path] = popup
 	focus_popup(open_files[path])
 
+func _on_levels_scene_mask_walk_finished() -> void:
+	EventBus.schedule($IntroPopupInformation, "show", 2.5)
+
 func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 	if $ScreenFileBrowser.root_folder_name == root_folder_name:
 		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible

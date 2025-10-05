@@ -64,6 +64,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/Content"]
 layout_mode = 2
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
