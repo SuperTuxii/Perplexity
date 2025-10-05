@@ -19,8 +19,15 @@ var security_breached_visible: bool = false:
 	get:
 		return $SecurityBreachedPanel.visible
 
+var tutorial_stage: int = -1
+
 var focused_popup: ScreenPopup
 var open_files: Dictionary = {}
+
+func start_tutorial() -> void:
+	if tutorial_stage == -1:
+		tutorial_stage = 0
+		$ClickServerTutorial.visible = true
 
 func focus_popup(popup: ScreenPopup) -> void:
 	if focused_popup:
@@ -55,9 +62,15 @@ func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -
 	focus_popup(open_files[path])
 
 func _on_levels_scene_mask_walk_finished() -> void:
-	EventBus.schedule($IntroPopupInformation, "show", 2.5)
+	EventBus.schedule($IntroPopupInformation, "show", 1.5)
+	EventBus.schedule(self, "start_tutorial", 4)
 
 func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
+	if tutorial_stage <= 0:
+		$ClickServerTutorial.queue_free()
+		$ScreenFileBrowser/FileBrowserTutorial.visible = true
+		EventBus.schedule($ScreenFileBrowser/FileBrowserTutorial, "queue_free", 7.5)
+		tutorial_stage = 1
 	if $ScreenFileBrowser.root_folder_name == root_folder_name:
 		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible
 	else:

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=11 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="PackedScene" uid="uid://bxff4ce1n02gg" path="res://scenes/monitor_scenes/levels_scene.tscn" id="2_lmcqu"]
 [ext_resource type="PackedScene" uid="uid://d00ixyg22g8s5" path="res://scenes/monitor_scenes/screen_file_browser.tscn" id="3_upgkn"]
 [ext_resource type="PackedScene" uid="uid://bx3f3hbarpww" path="res://scenes/monitor_scenes/screen_popup_text.tscn" id="4_ycll6"]
+[ext_resource type="Texture2D" uid="uid://dbwvccoct18sw" path="res://assets/textures/tutorial/arrow.svg" id="5_5bx6i"]
+[ext_resource type="Texture2D" uid="uid://dkr5mbucuud23" path="res://assets/textures/tutorial/left_click.svg" id="6_cr26o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -24,6 +26,9 @@ shadow_color = Color(0.18, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6v2g8"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_fblv2"]
 font_size = 30
 
 [node name="MonitorScene" type="ColorRect"]
@@ -86,20 +91,90 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="FileBrowserTutorial" type="Node2D" parent="ScreenFileBrowser"]
+visible = false
+
+[node name="Arrow" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
+position = Vector2(137, 336)
+scale = Vector2(0.36948717, 0.36948717)
+texture = ExtResource("5_5bx6i")
+
+[node name="LeftClick" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
+position = Vector2(62, 413)
+scale = Vector2(0.4121094, 0.4121094)
+texture = ExtResource("6_cr26o")
+
+[node name="Label" type="Label" parent="ScreenFileBrowser/FileBrowserTutorial"]
+offset_left = 95.0
+offset_top = 389.0
+offset_right = 804.0
+offset_bottom = 431.0
+text = "Left click on the name of the file/folder to open it"
+label_settings = SubResource("LabelSettings_fblv2")
+
+[node name="Arrow2" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
+position = Vector2(15.000002, -7)
+rotation = 2.911505
+scale = Vector2(0.33151728, 0.33151728)
+texture = ExtResource("5_5bx6i")
+
+[node name="LeftClick2" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
+position = Vector2(-36.000023, -81.999985)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("6_cr26o")
+
+[node name="Label2" type="Label" parent="ScreenFileBrowser/FileBrowserTutorial"]
+offset_left = 9.0
+offset_top = -107.0
+offset_right = 757.0
+offset_bottom = -65.0
+text = "Left click on the back button to get to the previous folder"
+label_settings = SubResource("LabelSettings_fblv2")
+
 [node name="IntroPopupInformation" parent="." instance=ExtResource("4_ycll6")]
 visible = false
-custom_minimum_size = Vector2(350, 400)
-layout_mode = 0
-offset_left = 858.0
-offset_top = 164.0
-offset_right = 1208.0
-offset_bottom = 564.0
+custom_minimum_size = Vector2(350, 425)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.985
+anchor_top = 0.5
+anchor_right = 0.985
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -212.5
+offset_right = 0.0
+offset_bottom = 212.5
+grow_horizontal = 0
+grow_vertical = 2
 text = "I didn't expect anyone to still be working this late.
 Well since I accidentally triggered the shutdown alarm, all doors are probably locked now and you are completely isolated from the outside world.
 I was going to demand a ransom fee even though I would have deleted everything anyway, but because you are here I am going to have some fun :). 
 You have no other choice than to solve some puzzles that I have prepared to unlock the servers again and turn off the alarm. Oh, and don't go insane, ok? 
-Good Luck :)"
+Good Luck :)
+(And don't forget, I'm watching)"
 title = "Oh hi…"
+
+[node name="ClickServerTutorial" type="Node2D" parent="."]
+visible = false
+
+[node name="Arrow" type="Sprite2D" parent="ClickServerTutorial"]
+position = Vector2(178.99997, 634)
+rotation = -1.176049
+scale = Vector2(0.47318298, 0.47318298)
+texture = ExtResource("5_5bx6i")
+
+[node name="LeftClick" type="Sprite2D" parent="ClickServerTutorial"]
+position = Vector2(280, 661.00006)
+scale = Vector2(0.5653076, 0.5590086)
+texture = ExtResource("6_cr26o")
+
+[node name="Label" type="Label" parent="ClickServerTutorial"]
+offset_left = 329.0
+offset_top = 639.0
+offset_right = 1100.0
+offset_bottom = 681.0
+text = "Left click on any server to browse through its files"
+label_settings = SubResource("LabelSettings_fblv2")
 
 [connection signal="mask_walk_finished" from="LevelsScene" to="." method="_on_levels_scene_mask_walk_finished"]
 [connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]
