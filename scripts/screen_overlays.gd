@@ -4,8 +4,9 @@ signal skipped
 
 @onready
 var eyelid_animator: AnimationPlayer = $EyelidAnimator
-@onready
-var subtitle_animator: AnimationPlayer = $SubtitleContainer/SubtitleAnimator
+
+var subtitle_tween: Tween
+var subtitle_time: float
 
 var eyes_closed: bool:
 	get:
@@ -27,19 +28,36 @@ func set_eyelids_instantly(close: bool) -> void:
 	$Eyelids.texture.gradient.offsets[0] = 0 if close else 1
 	$Eyelids.texture.gradient.offsets[1] = 0 if close else 1
 
-func set_subtitles(subtitle: String, stay_seconds: float = 0, subtitle_speed: float = 1) -> void:
-	subtitle_animator.play("show", -1, subtitle_speed)
+func set_subtitles(subtitle: String, stay_seconds: float = 0, subtitle_show_time: float = 1) -> void:
+	if subtitle_tween:
+		subtitle_tween.kill()
+	subtitle_tween = create_tween()
+	subtitle_tween.set_parallel(true)
+	subtitle_tween.tween_method(play_subtitle_effects, 0, subtitle.length(), subtitle_show_time)
+	subtitle_tween.tween_property($SubtitleContainer/Subtitles, "visible_characters", subtitle.length(), subtitle_show_time)
+	subtitle_tween.play()
+	subtitle_time = subtitle_show_time
+	$SubtitleContainer/Subtitles.visible_characters = 0
 	$SubtitleContainer/Subtitles.text = subtitle
 	$SubtitleContainer/StayTimer.start(stay_seconds)
 
-func remove_subtitles() -> void:
-	subtitle_animator.play("show", -1, -subtitle_animator.speed_scale, true)
+func play_subtitle_effects(value) -> void:
+	if !$SubtitleContainer/SubtitleEffectsPlayer.playing and $SubtitleContainer/Subtitles.visible_characters != value:
+		$SubtitleContainer/SubtitleEffectsPlayer.play()
+
+func remove_subtitles(time: float = subtitle_time) -> void:
+	if subtitle_tween:
+		subtitle_tween.kill()
+	subtitle_tween = create_tween()
+	subtitle_tween.tween_property($SubtitleContainer/Subtitles, "visible_characters", 0, time)
+	subtitle_tween.play()
 	if !$SubtitleContainer/StayTimer.is_stopped():
 		$SubtitleContainer/StayTimer.stop()
 
 func remove_subtitles_instantly() -> void:
-	$SubtitleContainer/Subtitles.visible_ratio = 0
-	subtitle_animator.stop()
+	$SubtitleContainer/Subtitles.visible_characters = 0
+	if subtitle_tween:
+		subtitle_tween.kill()
 	if !$SubtitleContainer/StayTimer.is_stopped():
 		$SubtitleContainer/StayTimer.stop()
 
