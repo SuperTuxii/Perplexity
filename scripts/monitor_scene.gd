@@ -40,20 +40,22 @@ func close_popup(popup: ScreenPopup) -> void:
 		open_files.erase(popup.path)
 	popup.queue_free()
 
-func _on_file_browser_pressed_file(path: String, type: String, value: Variant) -> void:
+func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary) -> void:
 	if !open_files.has(path):
-		var popup
+		var popup: ScreenPopup
 		if type == "text":
 			popup = popup_text_scene.instantiate()
-			popup.text = value
+			popup.text = data["value"]
 		elif type == "image":
 			popup = popup_image_scene.instantiate()
-			popup.image = load(value)
+			popup.image = load(data["value"])
 		elif type == "executable":
 			popup = popup_scene.instantiate()
 			popup.path = path
-			value.call(popup)
+			data["value"].call(popup)
 		popup.path = path
+		if data.has("width") and data.has("height"):
+			popup.custom_minimum_size = Vector2(data["width"], data["height"])
 		popup.position = (size / 2) - (popup.size / 2)
 		popup.focus.connect(focus_popup)
 		popup.close.connect(close_popup)

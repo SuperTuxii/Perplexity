@@ -1,6 +1,6 @@
 class_name ScreenFileBrowser extends ScreenPopup
 
-signal pressed_file(path: String, type: String, value: Variant)
+signal pressed_file(path: String, type: String, data: Dictionary)
 
 @onready
 var folder_path_label: Label = $VBoxContainer/Content/VBoxContainer/HBoxContainer/FolderPathLabel
@@ -12,38 +12,87 @@ var layout: GridContainer = $VBoxContainer/Content/VBoxContainer/ScrollContainer
 var server_files: Dictionary = {
 	"Server": {},
 	"Server 1A": {
-		"test_file": {
+		"tutorial": {
 			"type": "text",
-			"size": "7B",
+			"size": "514B",
 			"modified": "Today",
-			"value": "HEHEHE"
+			"value": ""
 		},
-		"test_executable": {
+		"unlock": {
 			"type": "executable",
-			"size": "1,3KB",
+			"size": "1,2KB",
 			"modified": "Today",
-			"value": func run(popup: ScreenPopup): 
-	popup.title = popup.path
+			"value": func run(popup: ScreenPopup):
+	popup.title = "Enter code to unlock"
+	var content = popup.get_node("VBoxContainer/Content")
+	var content_layout = VBoxContainer.new()
+	content_layout.set_anchors_preset(Control.PRESET_CENTER)
+	var label = Label.new()
+	label.text = "Enter the code to unlock the server:"
+	content_layout.add_child(label)
+	var code_field = LineEdit.new()
+	content_layout.add_child(code_field)
+	content.add_child(content_layout)
 		},
-		"test_image": {
+		"code": {
 			"type": "image",
-			"size": "449B",
+			"size": "831B",
 			"modified": "Today",
-			"value": "res://assets/textures/packets/normal_packet.png"
+			"value": ""
 		},
-		"test_folder": {
+		"reports": {
 			"type": "folder",
-			"size": "0 items",
+			"size": "2 items",
 			"modified": "Today",
 			"value": {
-				"test_file2": {
-					"type": "text",
-					"size": "7B",
+				"report-103": {
+					"type": "image",
+					"size": "687B",
 					"modified": "Today",
-					"value": "HEHEHE 2"
+					"value": ""
+				},
+				"report-107": {
+					"type": "text",
+					"size": "134B",
+					"modified": "30/09/25",
+					"width": 300,
+					"height": 350,
+					"value": "The toilet on the south side of the second floor is clogged again. The janitor isn't available, so in the meantime don't try to flush that toilet under any circumstances! The reason probably is that the cleaning people keep emptying their buckets in the toilets even though they were told multiple times not to do that. Maybe someone should tell them again, but I doubt that it will help."
 				}
 			}
 		}
+		#"test_file": {
+			#"type": "text",
+			#"size": "7B",
+			#"modified": "Today",
+			#"value": "HEHEHE"
+		#},
+		#"test_executable": {
+			#"type": "executable",
+			#"size": "1,3KB",
+			#"modified": "Today",
+			#"value": func run(popup: ScreenPopup): 
+	#popup.title = popup.path
+		#},
+		#"test_image": {
+			#"type": "image",
+			#"size": "449B",
+			#"modified": "Today",
+			#"value": "res://assets/textures/packets/normal_packet.png"
+		#},
+		#"test_folder": {
+			#"type": "folder",
+			#"size": "0 items",
+			#"modified": "Today",
+			#"value": {
+				#"test_file2": {
+					#"type": "text",
+					#"size": "7B",
+					#"modified": "Today",
+					#"value": "HEHEHE 2"
+				#}
+			#}
+		#}
 	}
 }:
 	set(value):
@@ -121,7 +170,7 @@ func _on_file_pressed(file_name: String) -> void:
 	if type == "folder":
 		current_folder_path = file_path
 	else:
-		pressed_file.emit(root_folder_name + "/" + file_path, type, current_files[file_name]["value"])
+		pressed_file.emit(root_folder_name + "/" + file_path, type, current_files[file_name])
 
 func _on_back_button_pressed() -> void:
 	if current_folder_path.contains("/"):

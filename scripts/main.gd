@@ -176,6 +176,11 @@ func _on_screen_area_mouse_entered() -> void:
 	is_mouse_inside = true
 func _on_screen_area_mouse_exited() -> void:
 	is_mouse_inside = false
+func _unhandled_input(event):
+	for mouse_event in [InputEventMouseButton, InputEventMouseMotion, InputEventScreenDrag, InputEventScreenTouch]:
+		if is_instance_of(event, mouse_event):
+			return
+	$MonitorViewport.push_input(event)
 func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		return
