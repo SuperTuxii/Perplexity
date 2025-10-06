@@ -39,7 +39,7 @@ var server_files: Dictionary = {
 			"type": "image",
 			"size": "831B",
 			"modified": "Today",
-			"value": ""
+			"value": "res://assets/textures/server_1a/code.svg"
 		},
 		"reports": {
 			"type": "folder",
