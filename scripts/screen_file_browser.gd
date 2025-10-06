@@ -16,23 +16,24 @@ var server_files: Dictionary = {
 			"type": "text",
 			"size": "514B",
 			"modified": "Today",
-			"value": ""
+			"width": 400,
+			"height": 400,
+			"title": "Tutorial",
+			"value": "In every hacked server you will find an \"unlock\" executable. [i]It is useful to run this first, so you know what you need to unlock the server (In this case it is a 4 digit code).[/i]\nTo find whatever is needed to unlock the server, you should investigate the files that can be found on this or previous servers. [i]The \"modified\" property for every file may hint at what files are important, but don't trust it too much![/i]\nIf you've got no clue what to do next, you may click the \"give me a hint\" executable to receive a hint (hints don't give you the answer directly and you will still need to use your brain)."
 		},
 		"unlock": {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
-			"value": func run(popup: ScreenPopup):
-	popup.title = "Enter code to unlock"
-	var content = popup.get_node("VBoxContainer/Content")
-	var content_layout = VBoxContainer.new()
-	content_layout.set_anchors_preset(Control.PRESET_CENTER)
-	var label = Label.new()
-	label.text = "Enter the code to unlock the server:"
-	content_layout.add_child(label)
-	var code_field = LineEdit.new()
-	content_layout.add_child(code_field)
-	content.add_child(content_layout)
+			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
+	return preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+		},
+		"give me a hint": {
+			"type": "executable",
+			"size": "923B",
+			"modified": "Today",
+			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
+	return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
 		},
 		"code": {
 			"type": "image",
@@ -71,8 +72,8 @@ var server_files: Dictionary = {
 			#"type": "executable",
 			#"size": "1,3KB",
 			#"modified": "Today",
-			#"value": func run(popup: ScreenPopup): 
-	#popup.title = popup.path
+			#"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
+	#return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
 		#},
 		#"test_image": {
 			#"type": "image",

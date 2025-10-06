@@ -50,12 +50,12 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 			popup = popup_image_scene.instantiate()
 			popup.image = load(data["value"])
 		elif type == "executable":
-			popup = popup_scene.instantiate()
-			popup.path = path
-			data["value"].call(popup)
+			popup = data["value"].call(path, data)
 		popup.path = path
 		if data.has("width") and data.has("height"):
-			popup.custom_minimum_size = Vector2(data["width"], data["height"])
+			popup.size = Vector2(data["width"], data["height"])
+		if data.has("title"):
+			popup.title = data["title"]
 		popup.position = (size / 2) - (popup.size / 2)
 		popup.focus.connect(focus_popup)
 		popup.close.connect(close_popup)
