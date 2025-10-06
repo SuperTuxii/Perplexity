@@ -45,7 +45,7 @@ var server_files: Dictionary = {
 		},
 		"reports": {
 			"type": "folder",
-			"size": "2 items",
+			"size": "3 items",
 			"modified": "Today",
 			"value": {
 				"report-88": {
@@ -72,38 +72,6 @@ var server_files: Dictionary = {
 				}
 			}
 		}
-		#"test_file": {
-			#"type": "text",
-			#"size": "7B",
-			#"modified": "Today",
-			#"value": "HEHEHE"
-		#},
-		#"test_executable": {
-			#"type": "executable",
-			#"size": "1,3KB",
-			#"modified": "Today",
-			#"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
-	#return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
-		#},
-		#"test_image": {
-			#"type": "image",
-			#"size": "449B",
-			#"modified": "Today",
-			#"value": "res://assets/textures/packets/normal_packet.png"
-		#},
-		#"test_folder": {
-			#"type": "folder",
-			#"size": "0 items",
-			#"modified": "Today",
-			#"value": {
-				#"test_file2": {
-					#"type": "text",
-					#"size": "7B",
-					#"modified": "Today",
-					#"value": "HEHEHE 2"
-				#}
-			#}
-		#}
 	}
 }:
 	set(value):
