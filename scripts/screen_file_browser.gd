@@ -32,13 +32,15 @@ var server_files: Dictionary = {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
+			"title": "Hint",
 			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
 	return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
 		},
 		"code": {
 			"type": "image",
-			"size": "831B",
+			"size": "4,8KB",
 			"modified": "Today",
+			"title": "Code",
 			"value": "res://assets/textures/server_1a/code.svg"
 		},
 		"reports": {
@@ -46,16 +48,24 @@ var server_files: Dictionary = {
 			"size": "2 items",
 			"modified": "Today",
 			"value": {
+				"report-88": {
+					"type": "text",
+					"size": "234B",
+					"modified": "Last week",
+					"width": 300,
+					"height": 350,
+					"value": "There is a creepy looking person in front of the company building! They suddenly came out of nowhere and told me: \"The square is the file size's last digit\". I have no idea what that is supposed to mean, but I am reporting this, because they looked like a security risk and so that we know this happened once already if this were to happen again."
+				},
 				"report-103": {
 					"type": "image",
-					"size": "687B",
+					"size": "12,8KB",
 					"modified": "Today",
-					"value": ""
+					"value": "res://assets/textures/server_1a/report-103.png"
 				},
 				"report-107": {
 					"type": "text",
 					"size": "134B",
-					"modified": "30/09/25",
+					"modified": "Yesterday",
 					"width": 300,
 					"height": 350,
 					"value": "The toilet on the south side of the second floor is clogged again. The janitor isn't available, so in the meantime don't try to flush that toilet under any circumstances! The reason probably is that the cleaning people keep emptying their buckets in the toilets even though they were told multiple times not to do that. Maybe someone should tell them again, but I doubt that it will help."
