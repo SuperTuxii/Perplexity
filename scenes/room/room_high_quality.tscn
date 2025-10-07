@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=37 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
+[ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scenes/monitor_scene.tscn" id="2_gyaw3"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="3_gyaw3"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/blender/WindowWall.blend" id="4_1xu3x"]
@@ -401,6 +402,14 @@ emission_texture = SubResource("ViewportTexture_pkh84")
 
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
+
+[node name="MonitorViewport" type="SubViewport" parent="."]
+disable_3d = true
+gui_embed_subwindows = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="MonitorScene" parent="MonitorViewport" instance=ExtResource("2_gyaw3")]
 
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
