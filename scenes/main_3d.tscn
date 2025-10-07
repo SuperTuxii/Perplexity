@@ -61,59 +61,47 @@ tracks/0/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MonitorViewport/MonitorScene:security_breached_visible")
+tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-60, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -198,64 +186,10 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".")
+tracks/4/path = NodePath("MusicPlayer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0],
-"method": &"set_focus"
-}]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MonitorViewport/MonitorScene:security_breached_visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("ScreenOverlays")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"remove_subtitles_instantly"
-}]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("ScreenOverlays")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_eyelids_instantly"
-}]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("MusicPlayer")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -263,10 +197,66 @@ tracks/8/keys = {
 "method": &"fade_into_after_cutscene_music"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RoomHighQuality")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"set_focus"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RoomHighQuality")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_door_lock"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RoomHighQuality")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_subtitles_instantly"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RoomHighQuality")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_eyelids_instantly"
+}]
+}
 tracks/9/type = "method"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath(".")
+tracks/9/path = NodePath("RoomHighQuality")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -274,7 +264,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [true],
-"method": &"set_door_lock"
+"method": &"set_security_breached"
 }]
 }
 
@@ -292,121 +282,58 @@ tracks/0/keys = {
 "points": PackedFloat32Array(0, 0, 0, 1, 0, -1.047, -0.25, 0.5, 0, 0, -1.047, 0, 0, 2.25, 0, 0, -0.25, 0, 0, 0),
 "times": PackedFloat32Array(0, 4, 7, 10)
 }
-tracks/1/type = "method"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ScreenOverlays")
+tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2, 6.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [true, 1.0],
-"method": &"set_eyelids"
-}, {
-"args": [false, 0.25],
-"method": &"set_eyelids"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ScreenOverlays")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["I'm feeling a bit tire...", 3.5, 2.0],
-"method": &"set_subtitles"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MonitorViewport/MonitorScene:security_breached_visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, 0, 0, 0.5, 0, -60, -0.5, 0, 0, 0),
 "times": PackedFloat32Array(6, 9)
 }
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-60, 0, 0, 0.5, 0, -0.031403676, -0.5, 0, 0, 0),
 "times": PackedFloat32Array(6, 7)
 }
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-80, 0, 0, 1, 0, 0, -1, 0, 0, 0),
 "times": PackedFloat32Array(5, 9)
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 5, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [-1],
-"method": &"set_focus"
-}, {
-"args": [true],
-"method": &"set_door_lock"
-}, {
-"args": [],
-"method": &"finish_cutscene"
-}]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("MusicPlayer")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MusicPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(2, 6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -415,6 +342,38 @@ tracks/9/keys = {
 }, {
 "args": [4.0],
 "method": &"fade_into_after_cutscene_music"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RoomHighQuality")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4.5, 5, 6.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [-1],
+"method": &"set_focus"
+}, {
+"args": ["I'm feeling a bit tire...", 3.5, 2.0],
+"method": &"set_subtitles"
+}, {
+"args": [true, 1.0],
+"method": &"set_eyelids"
+}, {
+"args": [true],
+"method": &"set_security_breached"
+}, {
+"args": [true],
+"method": &"set_door_lock"
+}, {
+"args": [false, 0.25],
+"method": &"set_eyelids"
+}, {
+"args": [],
+"method": &"finish_cutscene"
 }]
 }
 
@@ -784,11 +743,11 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
-[connection signal="input_event" from="RoomHighQuality/Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
-[connection signal="mouse_entered" from="RoomHighQuality/Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
-[connection signal="mouse_exited" from="RoomHighQuality/Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]
-[connection signal="input_event" from="RoomHighQuality/Desk Setup/ScreenArea" to="." method="_on_screen_area_input_event"]
-[connection signal="mouse_entered" from="RoomHighQuality/Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_entered"]
-[connection signal="mouse_exited" from="RoomHighQuality/Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_exited"]
+[connection signal="input_event" from="RoomHighQuality/Desk Setup/MonitorArea" to="RoomHighQuality" method="_on_monitor_area_input_event"]
+[connection signal="mouse_entered" from="RoomHighQuality/Desk Setup/MonitorArea" to="RoomHighQuality" method="_on_monitor_area_mouse_entered"]
+[connection signal="mouse_exited" from="RoomHighQuality/Desk Setup/MonitorArea" to="RoomHighQuality" method="_on_monitor_area_mouse_exited"]
+[connection signal="input_event" from="RoomHighQuality/Desk Setup/ScreenArea" to="RoomHighQuality" method="_on_screen_area_input_event"]
+[connection signal="mouse_entered" from="RoomHighQuality/Desk Setup/ScreenArea" to="RoomHighQuality" method="_on_screen_area_mouse_entered"]
+[connection signal="mouse_exited" from="RoomHighQuality/Desk Setup/ScreenArea" to="RoomHighQuality" method="_on_screen_area_mouse_exited"]
 
 [editable path="RoomHighQuality/Desk Setup/Monitor"]
