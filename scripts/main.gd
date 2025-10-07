@@ -1,7 +1,5 @@
 class_name Main extends Node3D
 
-@export
-var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @onready
 var room: Room = $RoomHighQuality
 @onready
@@ -17,7 +15,6 @@ var paused: bool:
 			$PauseMenu.show_pause_menu()
 		else:
 			$PauseMenu.back()
-
 var focus: int = 0:
 	set(value):
 		room.focus = value
@@ -26,6 +23,7 @@ var focus: int = 0:
 var tutorial_stage: int = 0
 
 func _ready() -> void:
+	room.main = self
 	EventBus.focus_changed.connect(on_focus_changed)
 	EventBus.finished_focus_change.connect(finished_focus)
 	screen_overlays.show_drag_tutorial()
@@ -40,7 +38,7 @@ func _process(_delta: float) -> void:
 				tutorial_stage = -1
 				focus = -1
 				screen_overlays.skipped.disconnect(skip_tutorial)
-				EventBus.schedule(room, "start_cutscene", 0)
+				room.start_cutscene.call_deferred() # Called deffered otherwise instantly skipped
 				$PauseMenu.continue_to_start_game()
 			paused = !paused
 		else:
@@ -63,8 +61,8 @@ func finished_focus(index: int) -> void:
 				screen_overlays.show_pause_tutorial()
 				tutorial_stage = 4
 		1:
-			if $MonitorViewport/MonitorScene.security_breached_visible and tutorial_stage == -1:
-				$MonitorViewport/MonitorScene.security_breached_visible = false
+			if room.monitor_viewport.get_node("MonitorScene").security_breached_visible and tutorial_stage == -1:
+				EventBus.set_security_breached.emit(false)
 				room.alarm_ease_out()
 
 func skip_tutorial() -> void:
@@ -74,6 +72,6 @@ func skip_tutorial() -> void:
 	screen_overlays.hide_pause_tutorial()
 	screen_overlays.skipped.disconnect(skip_tutorial)
 	tutorial_stage = -1
-	EventBus.schedule(room, "start_cutscene", 0)
+	room.start_cutscene.call_deferred()
 	$PauseMenu.continue_to_start_game()
 	paused = true

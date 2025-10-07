@@ -22,7 +22,8 @@ anchor_right = 1.0
 anchor_bottom = 0.15
 offset_bottom = 42.0
 grow_horizontal = 2
-text = "Press the left mouse button and move your mouse to look around"
+text = "Press the left mouse button and move your mouse to look around
+(move around a bit to continue)"
 label_settings = SubResource("LabelSettings_8ho6b")
 horizontal_alignment = 1
 vertical_alignment = 1

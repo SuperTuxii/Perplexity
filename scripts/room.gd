@@ -5,9 +5,8 @@ var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
-var main: Main = $".."
-@onready
-var monitor_viewport: SubViewport = $"../MonitorViewport"
+var monitor_viewport: SubViewport = $MonitorViewport
+var main: Main
 
 @export
 var focus_speed: float = 2.5
