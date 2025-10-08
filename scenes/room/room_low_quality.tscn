@@ -1,33 +1,33 @@
-[gd_scene load_steps=37 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=37 format=3 uid="uid://bd2hqprnckayp"]
 
-[ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
-[ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scenes/monitor_scene.tscn" id="2_gyaw3"]
-[ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
-[ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="3_gyaw3"]
-[ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="4_1xu3x"]
-[ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/high/Shelf.blend" id="5_rkjd6"]
-[ext_resource type="PackedScene" uid="uid://w3kt8jygllid" path="res://assets/3d/high/Plant.blend" id="6_tuh4a"]
-[ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/high/Container.blend" id="7_osqes"]
-[ext_resource type="PackedScene" uid="uid://b7831qwr1cxxm" path="res://assets/3d/high/Door.blend" id="8_n2rew"]
-[ext_resource type="PackedScene" uid="uid://blw6j5qkort24" path="res://assets/3d/high/Window.blend" id="9_4jv0p"]
-[ext_resource type="PackedScene" uid="uid://gi5ltvp4dm4a" path="res://assets/3d/high/Light.blend" id="10_tpplh"]
-[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="11_868if"]
-[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="12_qhxp0"]
-[ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/high/Monitor.blend" id="13_y8h5b"]
-[ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/high/Keyboard.blend" id="14_sr182"]
-[ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/high/Mouse.blend" id="15_ewkbm"]
-[ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/high/Telephone.blend" id="16_sgbve"]
-[ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/high/Paper.blend" id="17_tlyrg"]
-[ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/high/Pencil.blend" id="18_aso14"]
-[ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/high/Desk.blend" id="19_bijjx"]
-[ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/high/Chair.blend" id="20_5rly2"]
+[ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
+[ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scenes/monitor_scene.tscn" id="2_4nn56"]
+[ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
+[ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
+[ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
+[ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/high/Shelf.blend" id="6_4y21u"]
+[ext_resource type="PackedScene" uid="uid://w3kt8jygllid" path="res://assets/3d/high/Plant.blend" id="7_22xxa"]
+[ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/high/Container.blend" id="8_vd8ga"]
+[ext_resource type="PackedScene" uid="uid://b7831qwr1cxxm" path="res://assets/3d/high/Door.blend" id="9_x2sdw"]
+[ext_resource type="PackedScene" uid="uid://gi5ltvp4dm4a" path="res://assets/3d/high/Light.blend" id="11_sus3n"]
+[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="12_hnok6"]
+[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="13_s883v"]
+[ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/high/Monitor.blend" id="14_ivbx0"]
+[ext_resource type="PackedScene" uid="uid://bgp3i5g48ofab" path="res://assets/3d/high/Keyboard.blend" id="15_02vy7"]
+[ext_resource type="PackedScene" uid="uid://bb4vdk5hedbq" path="res://assets/3d/high/Mouse.blend" id="16_ypiuf"]
+[ext_resource type="PackedScene" uid="uid://dlhjh7kmq35f4" path="res://assets/3d/high/Telephone.blend" id="17_t1jdb"]
+[ext_resource type="PackedScene" uid="uid://bvgbmah0s5uco" path="res://assets/3d/high/Paper.blend" id="18_kpxoo"]
+[ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/high/Pencil.blend" id="19_v6un3"]
+[ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/high/Desk.blend" id="20_vi4yj"]
+[ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/high/Chair.blend" id="21_v0l10"]
+[ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
 
 [sub_resource type="Animation" id="Animation_ml77k"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RoomHighQuality/Desk Setup/Chair/Camera:rotation:x")
+tracks/0/path = NodePath("RoomLowQuality/Desk Setup/Chair/Camera:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
+tracks/1/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,7 +49,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/2/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -60,7 +60,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/3/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -72,7 +72,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/4/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -85,7 +85,7 @@ tracks/4/keys = {
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/0/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/1/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -112,7 +112,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
+tracks/0/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -124,7 +124,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/1/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -136,7 +136,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/2/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -148,7 +148,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/3/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -174,7 +174,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RoomHighQuality")
+tracks/5/path = NodePath("RoomLowQuality")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -188,7 +188,7 @@ tracks/5/keys = {
 tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("RoomHighQuality")
+tracks/6/path = NodePath("RoomLowQuality")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -202,7 +202,7 @@ tracks/6/keys = {
 tracks/7/type = "method"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("RoomHighQuality")
+tracks/7/path = NodePath("RoomLowQuality")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -216,7 +216,7 @@ tracks/7/keys = {
 tracks/8/type = "method"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("RoomHighQuality")
+tracks/8/path = NodePath("RoomLowQuality")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -230,7 +230,7 @@ tracks/8/keys = {
 tracks/9/type = "method"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("RoomHighQuality")
+tracks/9/path = NodePath("RoomLowQuality")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -248,7 +248,7 @@ length = 10.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RoomHighQuality/Desk Setup/Chair/Camera:rotation:x")
+tracks/0/path = NodePath("RoomLowQuality/Desk Setup/Chair/Camera:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -259,7 +259,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
+tracks/1/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_0/volume")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -270,7 +270,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
+tracks/2/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:stream:stream_1/volume")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -281,7 +281,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
+tracks/3/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -292,7 +292,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RoomHighQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
+tracks/4/path = NodePath("RoomLowQuality/Desk Setup/MonitorArea/AlarmAudioStream:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -321,7 +321,7 @@ tracks/5/keys = {
 tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("RoomHighQuality")
+tracks/6/path = NodePath("RoomLowQuality")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -376,9 +376,9 @@ size = Vector3(0.17623138, 0.5098648, 0.58078)
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_c2q4g"]
 stream_count = 2
-stream_0/stream = ExtResource("11_868if")
+stream_0/stream = ExtResource("12_hnok6")
 stream_0/volume = 0.0
-stream_1/stream = ExtResource("12_qhxp0")
+stream_1/stream = ExtResource("13_s883v")
 stream_1/volume = -60.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2q4g"]
@@ -400,8 +400,8 @@ emission_enabled = true
 emission_energy_multiplier = 0.75
 emission_texture = SubResource("ViewportTexture_pkh84")
 
-[node name="RoomHighQuality" type="Node3D"]
-script = ExtResource("1_lg6en")
+[node name="RoomLowQuality" type="Node3D"]
+script = ExtResource("1_0vuq4")
 
 [node name="MonitorViewport" type="SubViewport" parent="."]
 disable_3d = true
@@ -409,7 +409,7 @@ gui_embed_subwindows = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="MonitorScene" parent="MonitorViewport" instance=ExtResource("2_gyaw3")]
+[node name="MonitorScene" parent="MonitorViewport" instance=ExtResource("2_4nn56")]
 
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
@@ -424,91 +424,91 @@ environment = SubResource("Environment_igkv5")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("2_sxhs2")
+surface_material_override/0 = ExtResource("3_rgsb6")
 
 [node name="Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, 0)
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_gyaw3")
+surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5)
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_gyaw3")
+surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall2" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.25, 5)
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_gyaw3")
+surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall3" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, 4.371139e-08, -3.821371e-15, -1, -4.371139e-08, -1.7485936, 1.2520432, -0.00611192)
 mesh = SubResource("QuadMesh_238tj")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_gyaw3")
+surface_material_override/0 = ExtResource("4_hgq2s")
 
-[node name="WindowWall" parent="." instance=ExtResource("4_1xu3x")]
+[node name="WindowWall" parent="." instance=ExtResource("5_k43xu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.75, 0, 0)
 
-[node name="Shelf" parent="." groups=["focus_1_hide"] instance=ExtResource("5_rkjd6")]
+[node name="Shelf" parent="." groups=["focus_1_hide"] instance=ExtResource("6_4y21u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.163, 0, 4.765)
 
-[node name="Plant" parent="Shelf" groups=["focus_1_hide"] instance=ExtResource("6_tuh4a")]
+[node name="Plant" parent="Shelf" groups=["focus_1_hide"] instance=ExtResource("7_22xxa")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.06993103, 1.025, 0.19374502)
 
-[node name="Shelf2" parent="." groups=["focus_1_hide"] instance=ExtResource("5_rkjd6")]
+[node name="Shelf2" parent="." groups=["focus_1_hide"] instance=ExtResource("6_4y21u")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.1515977, 0, -4.756388)
 
-[node name="Plant" parent="Shelf2" groups=["focus_1_hide"] instance=ExtResource("6_tuh4a")]
+[node name="Plant" parent="Shelf2" groups=["focus_1_hide"] instance=ExtResource("7_22xxa")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.11277914, 1.55, 0.43187022)
 
-[node name="Container" parent="." groups=["focus_1_hide"] instance=ExtResource("7_osqes")]
+[node name="Container" parent="." groups=["focus_1_hide"] instance=ExtResource("8_vd8ga")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
-[node name="Container2" parent="." groups=["focus_1_hide"] instance=ExtResource("7_osqes")]
+[node name="Container2" parent="." groups=["focus_1_hide"] instance=ExtResource("8_vd8ga")]
 transform = Transform3D(0.15077768, 0, -0.9885677, 0, 1, 0, 0.9885677, 0, 0.15077768, -1.4118675, 0, -4.6119647)
 
-[node name="Door" parent="." groups=["focus_1_hide"] instance=ExtResource("8_n2rew")]
+[node name="Door" parent="." groups=["focus_1_hide"] instance=ExtResource("9_x2sdw")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -5)
 
-[node name="Door2" parent="." groups=["focus_1_hide"] instance=ExtResource("8_n2rew")]
+[node name="Door2" parent="." groups=["focus_1_hide"] instance=ExtResource("9_x2sdw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 5)
 
 [node name="Windows" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.975, -0.3)
 
-[node name="Window" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("9_4jv0p")]
+[node name="Window" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("22_4nn56")]
 
-[node name="Window2" parent="Windows" instance=ExtResource("9_4jv0p")]
+[node name="Window2" parent="Windows" instance=ExtResource("22_4nn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 
-[node name="Window3" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("9_4jv0p")]
+[node name="Window3" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("22_4nn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.59999996)
 
-[node name="Window4" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("9_4jv0p")]
+[node name="Window4" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("22_4nn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
 
-[node name="Window5" parent="Windows" instance=ExtResource("9_4jv0p")]
+[node name="Window5" parent="Windows" instance=ExtResource("22_4nn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
 
-[node name="Window6" parent="Windows" instance=ExtResource("9_4jv0p")]
+[node name="Window6" parent="Windows" instance=ExtResource("22_4nn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="Light" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("10_tpplh")]
+[node name="Light" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("11_sus3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.9996078)
 
-[node name="Light2" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("10_tpplh")]
+[node name="Light2" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("11_sus3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.9996078)
 
-[node name="Light3" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("10_tpplh")]
+[node name="Light3" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("11_sus3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -1.0003922)
 
-[node name="Light4" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("10_tpplh")]
+[node name="Light4" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("11_sus3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3.0003922)
 
 [node name="OmniLight" type="OmniLight3D" parent="Lights"]
@@ -577,31 +577,31 @@ input_capture_on_drag = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/ScreenArea"]
 shape = SubResource("BoxShape3D_c2q4g")
 
-[node name="Monitor" parent="Desk Setup" instance=ExtResource("13_y8h5b")]
+[node name="Monitor" parent="Desk Setup" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.13549083, 0.84665704, 0.79999983, -0.11270814)
 
 [node name="Monitor" parent="Desk Setup/Monitor" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_csyg1")
 
-[node name="Keyboard" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("14_sr182")]
+[node name="Keyboard" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("15_02vy7")]
 transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08964175, 0.89874196, 0.8, 0.14296462)
 
-[node name="Mouse" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("15_ewkbm")]
+[node name="Mouse" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("16_ypiuf")]
 transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
 
-[node name="Telephone" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("16_sgbve")]
+[node name="Telephone" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("17_t1jdb")]
 transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
-[node name="Paper" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("17_tlyrg")]
+[node name="Paper" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("18_kpxoo")]
 transform = Transform3D(0.12836285, 0, 0.9917273, 0, 1, 0, -0.9917273, 0, 0.12836285, 1.5654562, 0.8009999, -0.09600202)
 
-[node name="Pencil" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("18_aso14")]
+[node name="Pencil" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("19_v6un3")]
 transform = Transform3D(0.91735214, 0, 0.39807668, 0, 1, 0, -0.39807668, 0, 0.91735214, 1.5084169, 0.7999999, -0.23985696)
 
-[node name="Desk" parent="Desk Setup" instance=ExtResource("19_bijjx")]
+[node name="Desk" parent="Desk Setup" instance=ExtResource("20_vi4yj")]
 transform = Transform3D(-0.02949183, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.02949183, 1.157391, 0, 0.04792154)
 
-[node name="Chair" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("20_5rly2")]
+[node name="Chair" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("21_v0l10")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0.75)
 
 [node name="Camera" type="Camera3D" parent="Desk Setup/Chair"]
@@ -610,93 +610,93 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 [node name="Desk Setup2" type="Node3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)
 
-[node name="Desk" parent="Desk Setup2" instance=ExtResource("19_bijjx")]
+[node name="Desk" parent="Desk Setup2" instance=ExtResource("20_vi4yj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.1343858, 0, -2.3886957)
 
-[node name="Chair" parent="Desk Setup2" instance=ExtResource("20_5rly2")]
+[node name="Chair" parent="Desk Setup2" instance=ExtResource("21_v0l10")]
 transform = Transform3D(0.26050454, 0, 0.96547264, 0, 1, 0, -0.96547264, 0, 0.26050454, 1.2227111, 0, -1.427202)
 
-[node name="Monitor" parent="Desk Setup2" instance=ExtResource("13_y8h5b")]
+[node name="Monitor" parent="Desk Setup2" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(0.07858096, 0, -0.99690765, 0, 1, 0, 0.99690765, 0, 0.07858096, 1.1296928, 0.8, -2.5622752)
 
-[node name="Keyboard" parent="Desk Setup2" instance=ExtResource("14_sr182")]
+[node name="Keyboard" parent="Desk Setup2" instance=ExtResource("15_02vy7")]
 transform = Transform3D(0.013438687, 0, -0.9999098, 0, 1, 0, 0.9999098, 0, 0.013438687, 0.9603573, 0.8000001, -2.2485528)
 
-[node name="Mouse" parent="Desk Setup2" instance=ExtResource("15_ewkbm")]
+[node name="Mouse" parent="Desk Setup2" instance=ExtResource("16_ypiuf")]
 transform = Transform3D(0.16425568, 0, 0.9864178, 0, 1, 0, -0.9864178, 0, 0.16425568, 1.4387496, 0.8, -2.240602)
 
-[node name="Paper" parent="Desk Setup2" instance=ExtResource("17_tlyrg")]
+[node name="Paper" parent="Desk Setup2" instance=ExtResource("18_kpxoo")]
 transform = Transform3D(0.16222386, 0, 0.986754, 0, 1, 0, -0.986754, 0, 0.16222386, 1.5595767, 0.80100006, -2.5282907)
 
-[node name="Pencil" parent="Desk Setup2" instance=ExtResource("18_aso14")]
+[node name="Pencil" parent="Desk Setup2" instance=ExtResource("19_v6un3")]
 transform = Transform3D(0.41405782, 0, 0.9102506, 0, 1, 0, -0.9102506, 0, 0.41405782, 1.489348, 0.8000001, -2.626216)
 
-[node name="Pencil2" parent="Desk Setup2" instance=ExtResource("18_aso14")]
+[node name="Pencil2" parent="Desk Setup2" instance=ExtResource("19_v6un3")]
 transform = Transform3D(0.41350177, 0, 0.91050345, 0, 1, 0, -0.91050345, 0, 0.41350177, 1.4929107, 0.8000001, -2.6150649)
 
 [node name="Desk Setup3" type="Node3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.499758)
 
-[node name="Desk" parent="Desk Setup3" instance=ExtResource("19_bijjx")]
+[node name="Desk" parent="Desk Setup3" instance=ExtResource("20_vi4yj")]
 transform = Transform3D(0.07059212, 0, -0.99750525, 0, 1, 0, 0.99750525, 0, 0.07059212, -1.109972, 0, -1.7878487)
 
-[node name="Chair" parent="Desk Setup3" instance=ExtResource("20_5rly2")]
+[node name="Chair" parent="Desk Setup3" instance=ExtResource("21_v0l10")]
 transform = Transform3D(-0.9762961, 0, -0.2164397, 0, 1, 0, 0.2164397, 0, -0.9762961, -1.1494002, 0, -2.8619614)
 
-[node name="Monitor" parent="Desk Setup3" instance=ExtResource("13_y8h5b")]
+[node name="Monitor" parent="Desk Setup3" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(-0.34940624, 0, 0.9369713, 0, 1, 0, -0.9369713, 0, -0.34940624, -0.7942643, 0.79999995, -1.6265509)
 
-[node name="Monitor2" parent="Desk Setup3" instance=ExtResource("13_y8h5b")]
+[node name="Monitor2" parent="Desk Setup3" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(0.020401381, 0, 0.999792, 0, 1, 0, -0.999792, 0, 0.020401381, -1.3797665, 0.80000013, -1.5285914)
 
-[node name="Telephone" parent="Desk Setup3" instance=ExtResource("16_sgbve")]
+[node name="Telephone" parent="Desk Setup3" instance=ExtResource("17_t1jdb")]
 transform = Transform3D(0.9898408, 0, 0.14217977, 0, 1, 0, -0.14217977, 0, 0.9898408, -1.083781, 0.8, -1.5806655)
 
-[node name="Keyboard" parent="Desk Setup3" instance=ExtResource("14_sr182")]
+[node name="Keyboard" parent="Desk Setup3" instance=ExtResource("15_02vy7")]
 transform = Transform3D(-0.21285987, 0, 0.9770828, 0, 1, 0, -0.9770828, 0, -0.21285987, -0.99037915, 0.8, -1.8774756)
 
-[node name="Mouse" parent="Desk Setup3" instance=ExtResource("15_ewkbm")]
+[node name="Mouse" parent="Desk Setup3" instance=ExtResource("16_ypiuf")]
 transform = Transform3D(-0.12403444, 0, -0.99227804, 0, 1, 0, 0.99227804, 0, -0.12403444, -1.4277867, 0.8, -1.8239783)
 
 [node name="Desk Setup4" type="Node3D" parent="."]
 transform = Transform3D(-0.037289083, 0, -0.99930453, 0, 1, 0, 0.99930453, 0, -0.037289083, -1.127, 0, 0.666)
 
-[node name="Desk" parent="Desk Setup4" instance=ExtResource("19_bijjx")]
+[node name="Desk" parent="Desk Setup4" instance=ExtResource("20_vi4yj")]
 
-[node name="Chair" parent="Desk Setup4" instance=ExtResource("20_5rly2")]
+[node name="Chair" parent="Desk Setup4" instance=ExtResource("21_v0l10")]
 transform = Transform3D(0.03664372, 0, -0.9993284, 0, 1, 0, 0.9993284, 0, 0.03664372, -0.44524294, 0, 0.0073649883)
 
-[node name="Monitor" parent="Desk Setup4" instance=ExtResource("13_y8h5b")]
+[node name="Monitor" parent="Desk Setup4" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(-0.99333847, 0, -0.11523196, 0, 1, 0, 0.11523196, 0, -0.99333847, 0.19606817, 0.8, -0.14396626)
 
-[node name="Keyboard" parent="Desk Setup4" instance=ExtResource("14_sr182")]
+[node name="Keyboard" parent="Desk Setup4" instance=ExtResource("15_02vy7")]
 transform = Transform3D(-0.9892952, 0, -0.1459277, 0, 1, 0, 0.1459277, 0, -0.9892952, -0.082962334, 0.8, -0.14808792)
 
-[node name="Mouse" parent="Desk Setup4" instance=ExtResource("15_ewkbm")]
+[node name="Mouse" parent="Desk Setup4" instance=ExtResource("16_ypiuf")]
 transform = Transform3D(0.963933, 0, -0.266145, 0, 1, 0, 0.266145, 0, 0.963933, -0.06410414, 0.8, 0.30814695)
 
-[node name="Plant" parent="Desk Setup4" instance=ExtResource("6_tuh4a")]
+[node name="Plant" parent="Desk Setup4" instance=ExtResource("7_22xxa")]
 transform = Transform3D(-0.037289083, 0, 0.99930453, 0, 1, 0, -0.99930453, 0, -0.037289083, 0.33215463, 0.8, -0.33764583)
 
 [node name="Desk Setup5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 
-[node name="Desk" parent="Desk Setup5" instance=ExtResource("19_bijjx")]
+[node name="Desk" parent="Desk Setup5" instance=ExtResource("20_vi4yj")]
 transform = Transform3D(-0.036800727, 0, -0.99932265, 0, 1, 0, 0.99932265, 0, -0.036800727, -1.1266552, 0, 1.6240368)
 
-[node name="Chair" parent="Desk Setup5" instance=ExtResource("20_5rly2")]
+[node name="Chair" parent="Desk Setup5" instance=ExtResource("21_v0l10")]
 transform = Transform3D(0.84056664, 0, -0.5417082, 0, 1, 0, 0.5417082, 0, 0.84056664, -1.183666, 0, 2.2171516)
 
-[node name="Telephone" parent="Desk Setup5" instance=ExtResource("16_sgbve")]
+[node name="Telephone" parent="Desk Setup5" instance=ExtResource("17_t1jdb")]
 transform = Transform3D(-0.949639, 0, -0.3133461, 0, 1, 0, 0.3133461, 0, -0.949639, -1.5244768, 0.8, 1.4482685)
 
-[node name="Monitor" parent="Desk Setup5" instance=ExtResource("13_y8h5b")]
+[node name="Monitor" parent="Desk Setup5" instance=ExtResource("14_ivbx0")]
 transform = Transform3D(-0.1978113, 0, -0.9802401, 0, 1, 0, 0.9802401, 0, -0.1978113, -0.9766621, 0.8, 1.4753807)
 
-[node name="Keyboard" parent="Desk Setup5" instance=ExtResource("14_sr182")]
+[node name="Keyboard" parent="Desk Setup5" instance=ExtResource("15_02vy7")]
 transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05644893, -1.0205574, 0.8, 1.7269081)
 
-[node name="Mouse" parent="Desk Setup5" instance=ExtResource("15_ewkbm")]
+[node name="Mouse" parent="Desk Setup5" instance=ExtResource("16_ypiuf")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]

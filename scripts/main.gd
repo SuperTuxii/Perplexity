@@ -1,7 +1,7 @@
 class_name Main extends Node3D
 
 @onready
-var room: Room = $RoomHighQuality
+var room: Room = $RoomLowQuality
 @onready
 var options: OptionsMenu = $PauseMenu/OptionsMenu
 @onready
