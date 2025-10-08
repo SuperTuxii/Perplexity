@@ -2,6 +2,8 @@ class_name OptionsMenu extends PanelContainer
 
 signal back
 
+signal room_quality_changed
+
 @export
 var bus_layout: AudioBusLayout = preload("res://default_bus_layout.tres")
 @export
@@ -14,6 +16,8 @@ var volume: float = 1.0
 var music_volume: float = 1.0
 @export
 var sfx_volume: float = 1.0
+@export
+var room_quality: int = 0
 
 func _ready() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume))
@@ -49,3 +53,7 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 func _on_sfx_volume_slider_value_changed(value: float) -> void:
 	sfx_volume = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
+
+func _on_room_quality_options_item_selected(index: int) -> void:
+	room_quality = index
+	room_quality_changed.emit()

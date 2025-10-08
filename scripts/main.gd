@@ -1,11 +1,16 @@
 class_name Main extends Node3D
 
 @onready
-var room: Room = $RoomLowQuality
-@onready
 var options: OptionsMenu = $PauseMenu/OptionsMenu
 @onready
 var screen_overlays: ScreenOverlays = $ScreenOverlays
+var room: Room
+
+@export
+var room_scenes: Array[PackedScene] = [
+	preload("res://scenes/room/room_high_quality.tscn"),
+	preload("res://scenes/room/room_low_quality.tscn")
+]
 
 var paused: bool:
 	get:
@@ -23,7 +28,8 @@ var focus: int = 0:
 var tutorial_stage: int = 0
 
 func _ready() -> void:
-	room.main = self
+	load_room()
+	options.room_quality_changed.connect(load_room)
 	EventBus.focus_changed.connect(on_focus_changed)
 	EventBus.finished_focus_change.connect(finished_focus)
 	screen_overlays.show_drag_tutorial()
@@ -43,6 +49,13 @@ func _process(_delta: float) -> void:
 			paused = !paused
 		else:
 			focus = 0
+
+func load_room() -> void:
+	if room:
+		room.queue_free()
+	room = room_scenes[options.room_quality].instantiate()
+	room.main = self
+	add_child(room)
 
 func on_focus_changed(index: int) -> void:
 	if index != -1 and tutorial_stage == -1:

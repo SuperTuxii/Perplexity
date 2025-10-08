@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=15 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://deu5aup1ru16f" path="res://scenes/pause_menu.tscn" id="2_jl2p6"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://dpnxshfb25vju" path="res://assets/audio/music/after_start_bgm1.mp3" id="11_jf700"]
 [ext_resource type="AudioStream" uid="uid://0ljttkicg5v3" path="res://assets/audio/music/after_start_bgm2.mp3" id="12_80pr4"]
 [ext_resource type="AudioStream" uid="uid://cpmtn18e7iiw6" path="res://assets/audio/music/after_start_bgm3.mp3" id="13_nlluf"]
-[ext_resource type="PackedScene" uid="uid://bd2hqprnckayp" path="res://scenes/room/room_low_quality.tscn" id="14_v55lt"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhbng"]
 streams_count = 5
@@ -30,6 +29,7 @@ stream_2/stream = ExtResource("13_nlluf")
 
 [node name="Main3D" type="Node3D"]
 script = ExtResource("1_jl2p6")
+room_scenes = null
 
 [node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
 
@@ -44,7 +44,5 @@ bus = &"Music"
 script = ExtResource("10_nhbng")
 start_music = SubResource("AudioStreamRandomizer_nhbng")
 after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
-
-[node name="RoomLowQuality" parent="." instance=ExtResource("14_v55lt")]
 
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
