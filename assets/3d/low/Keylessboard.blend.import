@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://kmqcgrf8hnuj"
-path="res://.godot/imported/Desk.blend-9ada90828b29f473e8926362754d92c1.scn"
+uid="uid://caoqy67vf7yav"
+path="res://.godot/imported/Keylessboard.blend-c19d2511333bf0a32f6bf32d113a190a.scn"
 
 [deps]
 
-source_file="res://assets/3d/low/Desk.blend"
-dest_files=["res://.godot/imported/Desk.blend-9ada90828b29f473e8926362754d92c1.scn"]
+source_file="res://assets/3d/low/Keylessboard.blend"
+dest_files=["res://.godot/imported/Keylessboard.blend-c19d2511333bf0a32f6bf32d113a190a.scn"]
 
 [params]
 
@@ -36,7 +36,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 materials/extract=1
 materials/extract_format=0
-materials/extract_path="res://materials/desk"
+materials/extract_path="res://materials/desk/keyboard"
 _subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
