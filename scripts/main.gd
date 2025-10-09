@@ -35,12 +35,11 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
 		if focus <= 0:
 			EventBus.paused_change.emit(!paused)
-			paused = !paused
 		else:
 			focus = 0
 
 func load_room() -> void:
-	var prev_room_states: Dictionary
+	var prev_room_states: RoomStates = preload("res://room_states.tres")
 	if room:
 		prev_room_states = room.states
 		room.queue_free()
@@ -48,6 +47,7 @@ func load_room() -> void:
 	room.options = options
 	if prev_room_states:
 		room.states = prev_room_states
+	room.states.paused = paused
 	add_child(room)
 
 func on_paused_change(is_paused: bool) -> void:

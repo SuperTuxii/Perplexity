@@ -26,6 +26,7 @@ func back() -> void:
 		visible = false
 		$Layout.visible = false
 		pause_open = false
+		EventBus.paused_change.emit(false)
 		if is_inside_tree():
 			get_tree().paused = false
 

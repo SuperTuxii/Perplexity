@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jtb28eplj4ap"]
+
+[ext_resource type="Script" uid="uid://c3gmnc3ihltfd" path="res://scripts/room_states.gd" id="1_ewxur"]
+
+[resource]
+resource_name = "RoomStates"
+script = ExtResource("1_ewxur")
