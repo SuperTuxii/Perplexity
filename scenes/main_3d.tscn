@@ -29,7 +29,6 @@ stream_2/stream = ExtResource("13_nlluf")
 
 [node name="Main3D" type="Node3D"]
 script = ExtResource("1_jl2p6")
-room_scenes = null
 
 [node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
 

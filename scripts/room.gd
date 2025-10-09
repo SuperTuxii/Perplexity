@@ -6,75 +6,117 @@ var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
 var monitor_viewport: SubViewport = $MonitorViewport
-var main: Main
+var options: OptionsMenu
 
-@export
-var focus_speed: float = 2.5
-var focus_weight: float = -1
-var focus_from_position: Vector3 = Vector3()
-var focus_from_rotation: Vector3 = Vector3()
-var focus_to_position: Vector3 = Vector3()
-var focus_to_rotation: Vector3 = Vector3()
-var focus: int = 0:
-	set = set_focus
-
-var head_fall_weight: float = -1
-
-var mouse_motion: Vector2 = Vector2()
-var mouse_pressed: bool = false
-var mouse_movement: float = 0
+var states: Dictionary = {
+	"paused": false,
+	"focus_speed": 2.5,
+	"focus_weight": -1,
+	"focus_from_position": Vector3(),
+	"focus_from_rotation": Vector3(),
+	"focus_to_position": Vector3(),
+	"focus_to_rotation": Vector3(),
+	"focus": 0, #should not be set here! Use "set_focus" function instead!
+	"head_fall_weight": -1,
+	"mouse_motion": Vector2(),
+	"mouse_pressed": false,
+	"mouse_movement": 0,
+	"tutorial_stage": 0,
+}
 
 func _ready() -> void:
+	EventBus.paused_change.connect(on_paused_change)
 	EventBus.play_monitor_sound.connect(play_monitor_sound)
+	EventBus.drag_tutorial_visible.emit(true)
+	EventBus.set_skip_button.emit(true)
+	EventBus.skipped.connect(skip_tutorial)
 
 func _process(delta: float) -> void:
-	if focus == 0 and focus_weight == -1: # Applying screen drag when focus is 0
-		mouse_motion.y = clamp(mouse_motion.y, -1.56, 1.56)
-		camera.transform.basis = Basis.from_euler(Vector3(mouse_motion.y, 0, 0))
-		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, mouse_motion.x, 0))
-	if focus_weight != -1: # Focus animation
-		focus_weight += delta * focus_speed
-		focus_weight = minf(focus_weight, 1)
-		camera.position = focus_from_position.slerp(focus_to_position, focus_weight)
-		camera.rotation = focus_from_rotation.slerp(focus_to_rotation * (PI / 180), focus_weight)
-		if focus_weight == 1:
-			camera.position = focus_to_position
-			camera.rotation = focus_to_rotation * (PI / 180)
-			focus_weight = -1
+	if states.focus == 0 and states.focus_weight == -1: # Applying screen drag when focus is 0
+		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
+		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
+		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
+	if states.focus_weight != -1: # Focus animation
+		states.focus_weight += delta * states.focus_speed
+		states.focus_weight = minf(states.focus_weight, 1)
+		camera.position = states.focus_from_position.slerp(states.focus_to_position, states.focus_weight)
+		camera.rotation = states.focus_from_rotation.slerp(states.focus_to_rotation * (PI / 180), states.focus_weight)
+		if states.focus_weight == 1:
+			camera.position = states.focus_to_position
+			camera.rotation = states.focus_to_rotation * (PI / 180)
+			states.focus_weight = -1
 			finished_focus()
 
 func set_focus(index: int) -> void:
-	if get_tree().has_group("focus_" + str(focus) + "_hide"):
-		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
+	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
+		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = true
-	focus = index
-	EventBus.focus_changed.emit(focus)
+	states.focus = index
+	EventBus.focus_changed.emit(index)
+	if index != -1 and states.tutorial_stage == -1:
+		EventBus.set_skip_button.emit(false)
+	if index == 1 and states.tutorial_stage == 1:
+		EventBus.focus_tutorial_visible.emit(false)
+		EventBus.unfocus_tutorial_visible.emit(true)
+		states.tutorial_stage = 3
 	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
 	match index:
 		0: # No focus/on chair
-			mouse_motion.y = 0
+			states.mouse_motion.y = 0
 			camera.reparent($"Desk Setup/Chair")
-			focus_to_position = Vector3(0, 1.2, 0)
-			focus_to_rotation = Vector3()
+			states.focus_to_position = Vector3(0, 1.2, 0)
+			states.focus_to_rotation = Vector3()
 		1: # Monitor focused
 			$"Desk Setup/Monitor/Monitor".material_overlay = null
 			camera.reparent($"Desk Setup/Monitor")
-			focus_to_position = Vector3(0.3, 0.34, 0)
-			focus_to_rotation = Vector3(0, 90, 0)
-	focus_from_position = camera.position
-	focus_from_rotation = camera.rotation
-	focus_weight = 0
+			states.focus_to_position = Vector3(0.3, 0.34, 0)
+			states.focus_to_rotation = Vector3(0, 90, 0)
+	states.focus_from_position = camera.position
+	states.focus_from_rotation = camera.rotation
+	states.focus_weight = 0
 
 func finished_focus() -> void:
-	EventBus.finished_focus_change.emit(focus)
-	if get_tree().has_group("focus_" + str(focus) + "_hide"):
-		for object in get_tree().get_nodes_in_group("focus_" + str(focus) + "_hide"):
+	EventBus.finished_focus_change.emit(states.focus)
+	# Actions when focus animation finishes
+	match states.focus:
+		0:
+			if states.tutorial_stage == 3:
+				EventBus.unfocus_tutorial_visible.emit(false)
+				EventBus.pause_tutorial_visible.emit(true)
+				states.tutorial_stage = 4
+		1:
+			if $MonitorViewport/MonitorScene.security_breached_visible and states.tutorial_stage == -1:
+				$MonitorViewport/MonitorScene.security_breached_visible = false
+				$CutsceneAnimator.play("alarm_ease_out")
+	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
+		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = false
 
+func on_paused_change(is_paused: bool) -> void:
+	states.paused = is_paused
+	if states.tutorial_stage == 4:
+		EventBus.pause_tutorial_visible.emit(false)
+		states.tutorial_stage = -1
+		states.focus = -1
+		EventBus.skipped.disconnect(skip_tutorial)
+		start_cutscene.call_deferred() # Called deffered otherwise instantly skipped
+		EventBus.continue_to_start_game.emit()
+
+func skip_tutorial() -> void:
+	EventBus.drag_tutorial_visible.emit(false)
+	EventBus.focus_tutorial_visible.emit(false)
+	EventBus.unfocus_tutorial_visible.emit(false)
+	EventBus.pause_tutorial_visible.emit(false)
+	EventBus.skipped.disconnect(skip_tutorial)
+	states.tutorial_stage = -1
+	start_cutscene.call_deferred()
+	EventBus.continue_to_start_game.emit()
+	EventBus.paused_change.emit(true)
+
 func start_cutscene() -> void:
-	focus = -1
+	states.focus = -1
 	$CutsceneAnimator.play("start_sleep")
 	EventBus.set_skip_button.emit(true)
 	EventBus.skipped.connect(skip_cutscene)
@@ -88,32 +130,29 @@ func skip_cutscene() -> void:
 func finish_cutscene() -> void:
 	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_cutscene)
-	focus = 0
-
-func alarm_ease_out() -> void:
-	$CutsceneAnimator.play("alarm_ease_out")
+	states.focus = 0
 
 func _input(event: InputEvent) -> void:
-	if !main.paused and focus == 0 and focus_weight == -1: # Saving screen drag when focus is 0
+	if !states.paused and states.focus == 0 and states.focus_weight == -1: # Saving screen drag when focus is 0
 		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			mouse_pressed = event.pressed
+			states.mouse_pressed = event.pressed
 			if event.pressed:
-				mouse_movement = 0
-		if event is InputEventMouseMotion and mouse_pressed:
-			mouse_motion += event.relative * main.options.turn_sensitivity * (-1 if !main.options.drag_mirrored else 1)
-			mouse_movement += (event.relative * main.options.turn_sensitivity).length()
-			if main.tutorial_stage == 0 and mouse_movement > 0.5:
-				main.screen_overlays.hide_drag_tutorial()
-				main.screen_overlays.show_focus_tutorial()
-				main.tutorial_stage = 1
+				states.mouse_movement = 0
+		if event is InputEventMouseMotion and states.mouse_pressed:
+			states.mouse_motion += event.relative * options.turn_sensitivity * (-1 if !options.drag_mirrored else 1)
+			states.mouse_movement += (event.relative * options.turn_sensitivity).length()
+			if states.tutorial_stage == 0 and states.mouse_movement > 0.5:
+				EventBus.drag_tutorial_visible.emit(false)
+				EventBus.focus_tutorial_visible.emit(true)
+				states.tutorial_stage = 1
 
 # Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		if !event.pressed and focus == 0 and mouse_movement < 0.05 and main.tutorial_stage != 0:
-			focus = 1
+		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
+			states.focus = 1
 func _on_monitor_area_mouse_entered() -> void:
-	if focus == 0 and focus_weight == -1:
+	if states.focus == 0 and states.focus_weight == -1:
 		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 func _on_monitor_area_mouse_exited() -> void:
 	$"Desk Setup/Monitor/Monitor".material_overlay = null
@@ -181,7 +220,7 @@ func set_door_lock(locked: bool) -> void:
 
 #Functions for CutsceneAnimator
 func set_security_breached(security_breached_visible: bool) -> void:
-	EventBus.set_security_breached.emit(security_breached_visible)
+	$MonitorViewport/MonitorScene.security_breached_visible = security_breached_visible
 
 func set_eyelids(close: bool, eyelid_speed: float) -> void:
 	EventBus.set_eyelids.emit(close, eyelid_speed)

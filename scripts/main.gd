@@ -20,71 +20,36 @@ var paused: bool:
 			$PauseMenu.show_pause_menu()
 		else:
 			$PauseMenu.back()
-var focus: int = 0:
+var focus: int:
 	set(value):
-		room.focus = value
+		room.set_focus(value)
 	get:
-		return room.focus
-var tutorial_stage: int = 0
+		return room.states.focus
 
 func _ready() -> void:
 	load_room()
 	options.room_quality_changed.connect(load_room)
-	EventBus.focus_changed.connect(on_focus_changed)
-	EventBus.finished_focus_change.connect(finished_focus)
-	screen_overlays.show_drag_tutorial()
-	screen_overlays.set_skip_button(true)
-	screen_overlays.skipped.connect(skip_tutorial)
+	EventBus.paused_change.connect(on_paused_change)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
 		if focus <= 0:
-			if tutorial_stage == 4:
-				screen_overlays.hide_pause_tutorial()
-				tutorial_stage = -1
-				focus = -1
-				screen_overlays.skipped.disconnect(skip_tutorial)
-				room.start_cutscene.call_deferred() # Called deffered otherwise instantly skipped
-				$PauseMenu.continue_to_start_game()
+			EventBus.paused_change.emit(!paused)
 			paused = !paused
 		else:
 			focus = 0
 
 func load_room() -> void:
+	var prev_room_states: Dictionary
 	if room:
+		prev_room_states = room.states
 		room.queue_free()
 	room = room_scenes[options.room_quality].instantiate()
-	room.main = self
+	room.options = options
+	if prev_room_states:
+		room.states = prev_room_states
 	add_child(room)
 
-func on_focus_changed(index: int) -> void:
-	if index != -1 and tutorial_stage == -1:
-		screen_overlays.set_skip_button(false)
-	if index == 1 and tutorial_stage == 1:
-		screen_overlays.hide_focus_tutorial()
-		screen_overlays.show_unfocus_tutorial()
-		tutorial_stage = 3
-
-func finished_focus(index: int) -> void:
-	# Actions when focus animation finishes
-	match index:
-		0:
-			if tutorial_stage == 3:
-				screen_overlays.hide_unfocus_tutorial()
-				screen_overlays.show_pause_tutorial()
-				tutorial_stage = 4
-		1:
-			if room.monitor_viewport.get_node("MonitorScene").security_breached_visible and tutorial_stage == -1:
-				EventBus.set_security_breached.emit(false)
-				room.alarm_ease_out()
-
-func skip_tutorial() -> void:
-	screen_overlays.hide_drag_tutorial()
-	screen_overlays.hide_focus_tutorial()
-	screen_overlays.hide_unfocus_tutorial()
-	screen_overlays.hide_pause_tutorial()
-	screen_overlays.skipped.disconnect(skip_tutorial)
-	tutorial_stage = -1
-	room.start_cutscene.call_deferred()
-	$PauseMenu.continue_to_start_game()
-	paused = true
+func on_paused_change(is_paused: bool) -> void:
+	if paused != is_paused:
+		paused = is_paused

@@ -19,6 +19,10 @@ func _ready() -> void:
 	EventBus.remove_subtitles.connect(remove_subtitles)
 	EventBus.remove_subtitles_instantly.connect(remove_subtitles_instantly)
 	EventBus.set_skip_button.connect(set_skip_button)
+	EventBus.drag_tutorial_visible.connect(set_drag_tutorial_visible)
+	EventBus.focus_tutorial_visible.connect(set_focus_tutorial_visible)
+	EventBus.unfocus_tutorial_visible.connect(set_unfocus_tutorial_visible)
+	EventBus.pause_tutorial_visible.connect(set_pause_tutorial_visible)
 
 func set_eyelids(close: bool, eyelid_speed: float = 1) -> void:
 	eyelid_animator.play("close", -1, eyelid_speed * (1 if close else -1), !close)
@@ -64,22 +68,14 @@ func remove_subtitles_instantly() -> void:
 func set_skip_button(button_visible: bool) -> void:
 	$MarginContainer/SkipButton.visible = button_visible
 
-func show_drag_tutorial() -> void:
-	$DragTutorial.visible = true
-func hide_drag_tutorial() -> void:
-	$DragTutorial.visible = false
-func show_focus_tutorial() -> void:
-	$FocusTutorial.visible = true
-func hide_focus_tutorial() -> void:
-	$FocusTutorial.visible = false
-func show_unfocus_tutorial() -> void:
-	$UnfocusTutorial.visible = true
-func hide_unfocus_tutorial() -> void:
-	$UnfocusTutorial.visible = false
-func show_pause_tutorial() -> void:
-	$PauseTutorial.visible = true
-func hide_pause_tutorial() -> void:
-	$PauseTutorial.visible = false
+func set_drag_tutorial_visible(tutorial_visible: bool) -> void:
+	$DragTutorial.visible = tutorial_visible
+func set_focus_tutorial_visible(tutorial_visible: bool) -> void:
+	$FocusTutorial.visible = tutorial_visible
+func set_unfocus_tutorial_visible(tutorial_visible: bool) -> void:
+	$UnfocusTutorial.visible = tutorial_visible
+func set_pause_tutorial_visible(tutorial_visible: bool) -> void:
+	$PauseTutorial.visible = tutorial_visible
 
 func _on_stay_timer_timeout() -> void:
 	remove_subtitles()

@@ -23,9 +23,6 @@ var tutorial_stage: int = -1
 var focused_popup: ScreenPopup
 var open_files: Dictionary = {}
 
-func _ready() -> void:
-	EventBus.set_security_breached.connect(func set(value: bool): security_breached_visible = value)
-
 func start_tutorial() -> void:
 	if tutorial_stage == -1:
 		tutorial_stage = 0

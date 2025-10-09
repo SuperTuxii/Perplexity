@@ -2,6 +2,9 @@ class_name PauseMenu extends Control
 
 var pause_open: bool = false
 
+func _ready() -> void:
+	EventBus.continue_to_start_game.connect(continue_to_start_game)
+
 func show_pause_menu() -> void:
 	if is_inside_tree():
 		get_tree().paused = true
