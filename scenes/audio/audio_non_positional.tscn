@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgtx4wje160hb"]
+
+[ext_resource type="Script" uid="uid://d1tmm0wdekxml" path="res://scripts/audio.gd" id="1_an4ua"]
+[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="2_idd6r"]
+[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="3_3cycd"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_pkh84"]
+stream_count = 2
+stream_0/stream = ExtResource("2_idd6r")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_3cycd")
+stream_1/volume = -60.0
+
+[node name="AudioNonPositional" type="Node"]
+script = ExtResource("1_an4ua")
+
+[node name="AlarmAudioStream" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_pkh84")
+bus = &"SFX"
+
+[node name="MonitorAudioStream" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MonitorAudioStream2" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

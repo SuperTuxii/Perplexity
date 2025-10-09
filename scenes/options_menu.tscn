@@ -181,6 +181,19 @@ popup/item_0/id = 0
 popup/item_1/text = "Low"
 popup/item_1/id = 1
 
+[node name="PositionalAudioLabel" type="Label" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Positional Audio:"
+label_settings = SubResource("LabelSettings_liyum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PositionalAudioCheckButton" type="CheckButton" parent="Layout/ScrollContainer/TableLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+
 [node name="BackButton" type="Button" parent="Layout"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
@@ -197,4 +210,5 @@ text = "Back"
 [connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Layout/ScrollContainer/TableLayout/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="item_selected" from="Layout/ScrollContainer/TableLayout/RoomQualityOptions" to="." method="_on_room_quality_options_item_selected"]
+[connection signal="toggled" from="Layout/ScrollContainer/TableLayout/PositionalAudioCheckButton" to="." method="_on_positional_audio_check_button_toggled"]
 [connection signal="pressed" from="Layout/BackButton" to="." method="_on_back_button_pressed"]

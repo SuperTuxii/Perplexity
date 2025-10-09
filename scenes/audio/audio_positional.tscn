@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://boqk4qqx2xih1"]
+
+[ext_resource type="Script" uid="uid://d1tmm0wdekxml" path="res://scripts/audio.gd" id="1_t5l1p"]
+[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="2_n6fik"]
+[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="3_6ccil"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_pkh84"]
+stream_count = 2
+stream_0/stream = ExtResource("2_n6fik")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_6ccil")
+stream_1/volume = -60.0
+
+[node name="AudioPositional" type="Node3D"]
+script = ExtResource("1_t5l1p")
+
+[node name="AlarmAudioStream" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+stream = SubResource("AudioStreamSynchronized_pkh84")
+bus = &"SFX"
+
+[node name="MonitorAudioStream" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+bus = &"SFX"
+
+[node name="MonitorAudioStream2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+bus = &"SFX"

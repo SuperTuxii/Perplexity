@@ -4,8 +4,14 @@ class_name Main extends Node3D
 var options: OptionsMenu = $PauseMenu/OptionsMenu
 @onready
 var screen_overlays: ScreenOverlays = $ScreenOverlays
+var audio: Audio
 var room: Room
 
+@export
+var audio_scenes: Array[PackedScene] = [
+	preload("res://scenes/audio/audio_non_positional.tscn"),
+	preload("res://scenes/audio/audio_positional.tscn")
+]
 @export
 var room_scenes: Array[PackedScene] = [
 	preload("res://scenes/room/room_high_quality.tscn"),
@@ -27,7 +33,9 @@ var focus: int:
 		return room.states.focus
 
 func _ready() -> void:
+	load_audio()
 	load_room()
+	options.positional_audio_changed.connect(load_audio)
 	options.room_quality_changed.connect(load_room)
 	EventBus.paused_change.connect(on_paused_change)
 
@@ -37,6 +45,20 @@ func _process(_delta: float) -> void:
 			EventBus.paused_change.emit(!paused)
 		else:
 			focus = 0
+
+func load_audio() -> void:
+	if paused and is_inside_tree():
+		get_tree().paused = false
+	var prev_audio_states: Dictionary
+	if audio:
+		prev_audio_states = audio.save_states()
+		audio.queue_free()
+	audio = audio_scenes[int(options.positional_audio)].instantiate()
+	add_child(audio)
+	if prev_audio_states:
+		audio.load_states(prev_audio_states)
+	if paused and is_inside_tree():
+		get_tree().paused = true
 
 func load_room() -> void:
 	var prev_room_states: RoomStates = preload("res://room_states.tres")
