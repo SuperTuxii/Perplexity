@@ -31,7 +31,6 @@ func save_states() -> Dictionary:
 		"position": $MonitorAudioStream2.get_playback_position(),
 		"volume": $MonitorAudioStream2.volume_db / volume_amplifier,
 	}
-	print(states)
 	return states
 
 func load_states(states: Dictionary) -> void:
