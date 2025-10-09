@@ -220,6 +220,21 @@ func set_door_lock(locked: bool) -> void:
 	lock_material.emission = lock_material.albedo_color
 
 #Functions and Variables for CutsceneAnimator
+@export
+var alarm_volume: float:
+	set(value):
+		EventBus.set_alarm_volume.emit(value)
+@export
+var alarm0_volume: float:
+	set(value):
+		EventBus.set_alarm0_volume.emit(value)
+@export
+var alarm1_volume: float:
+	set(value):
+		EventBus.set_alarm1_volume.emit(value)
+func set_alarm(playing: bool) -> void:
+	EventBus.set_alarm.emit(playing)
+
 func set_security_breached(security_breached_visible: bool) -> void:
 	$MonitorViewport/MonitorScene.security_breached_visible = security_breached_visible
 
