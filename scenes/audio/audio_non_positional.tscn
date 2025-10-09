@@ -13,6 +13,7 @@ stream_1/volume = -60.0
 
 [node name="AudioNonPositional" type="Node"]
 script = ExtResource("1_an4ua")
+volume_amplifier = 0.35
 
 [node name="AlarmAudioStream" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_pkh84")
