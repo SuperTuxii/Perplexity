@@ -19,6 +19,8 @@ signal pause_tutorial_visible(visible: bool)
 
 signal play_monitor_sound(sound: AudioStream, volume_db: float)
 signal play_music(music: AudioStream, volume_db: float)
+signal music_fade_out(time: float)
+signal fade_into_after_cutscene_music(time: float)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
 

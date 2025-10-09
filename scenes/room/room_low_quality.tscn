@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=37 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
-[ext_resource type="PackedScene" uid="uid://dhuwy04skbd8s" path="res://scenes/monitor_scenes/monitor_scene.tscn" id="2_4nn56"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
@@ -161,15 +160,15 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MusicPlayer")
+tracks/4/path = NodePath("RoomLowQuality")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0.0],
-"method": &"fade_into_after_cutscene_music"
+"args": [0],
+"method": &"set_focus"
 }]
 }
 tracks/5/type = "method"
@@ -182,8 +181,8 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0],
-"method": &"set_focus"
+"args": [true],
+"method": &"set_door_lock"
 }]
 }
 tracks/6/type = "method"
@@ -196,8 +195,8 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [true],
-"method": &"set_door_lock"
+"args": [],
+"method": &"remove_subtitles_instantly"
 }]
 }
 tracks/7/type = "method"
@@ -210,8 +209,8 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"remove_subtitles_instantly"
+"args": [false],
+"method": &"set_eyelids_instantly"
 }]
 }
 tracks/8/type = "method"
@@ -224,8 +223,8 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [false],
-"method": &"set_eyelids_instantly"
+"args": [true],
+"method": &"set_security_breached"
 }]
 }
 tracks/9/type = "method"
@@ -238,8 +237,8 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [true],
-"method": &"set_security_breached"
+"args": [0.0],
+"method": &"fade_into_after_cutscene_music"
 }]
 }
 
@@ -305,27 +304,10 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MusicPlayer")
+tracks/5/path = NodePath("RoomLowQuality")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(2, 6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [4.0],
-"method": &"fade_out"
-}, {
-"args": [4.0],
-"method": &"fade_into_after_cutscene_music"
-}]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("RoomLowQuality")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 1, 2, 4.5, 5, 6.5, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "values": [{
@@ -349,6 +331,23 @@ tracks/6/keys = {
 }, {
 "args": [],
 "method": &"finish_cutscene"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RoomLowQuality")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [4.0],
+"method": &"music_fade_out"
+}, {
+"args": [4.0],
+"method": &"fade_into_after_cutscene_music"
 }]
 }
 
@@ -409,8 +408,6 @@ disable_3d = true
 gui_embed_subwindows = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
-
-[node name="MonitorScene" parent="MonitorViewport" instance=ExtResource("2_4nn56")]
 
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

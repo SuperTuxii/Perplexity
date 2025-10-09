@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=19 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://deu5aup1ru16f" path="res://scenes/pause_menu.tscn" id="2_jl2p6"]
@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://dpnxshfb25vju" path="res://assets/audio/music/after_start_bgm1.mp3" id="11_jf700"]
 [ext_resource type="AudioStream" uid="uid://0ljttkicg5v3" path="res://assets/audio/music/after_start_bgm2.mp3" id="12_80pr4"]
 [ext_resource type="AudioStream" uid="uid://cpmtn18e7iiw6" path="res://assets/audio/music/after_start_bgm3.mp3" id="13_nlluf"]
+[ext_resource type="Script" uid="uid://d1tmm0wdekxml" path="res://scripts/audio.gd" id="13_v55lt"]
+[ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="14_86wku"]
+[ext_resource type="AudioStream" uid="uid://dvu1gsd1q0jhp" path="res://assets/audio/security_alarm_distorted.wav" id="15_ud2te"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhbng"]
 streams_count = 5
@@ -26,6 +29,13 @@ streams_count = 3
 stream_0/stream = ExtResource("11_jf700")
 stream_1/stream = ExtResource("12_80pr4")
 stream_2/stream = ExtResource("13_nlluf")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_pkh84"]
+stream_count = 2
+stream_0/stream = ExtResource("14_86wku")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("15_ud2te")
+stream_1/volume = -60.0
 
 [node name="Main3D" type="Node3D"]
 script = ExtResource("1_jl2p6")
@@ -43,5 +53,21 @@ bus = &"Music"
 script = ExtResource("10_nhbng")
 start_music = SubResource("AudioStreamRandomizer_nhbng")
 after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
+
+[node name="AudioPositional" type="Node3D" parent="."]
+script = ExtResource("13_v55lt")
+
+[node name="AlarmAudioStream" type="AudioStreamPlayer3D" parent="AudioPositional"]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+stream = SubResource("AudioStreamSynchronized_pkh84")
+bus = &"SFX"
+
+[node name="MonitorAudioStream" type="AudioStreamPlayer3D" parent="AudioPositional"]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+bus = &"SFX"
+
+[node name="MonitorAudioStream2" type="AudioStreamPlayer3D" parent="AudioPositional"]
+transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 1.1251493, 1.6372919)
+bus = &"SFX"
 
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

@@ -9,6 +9,8 @@ var fade_tween: Tween
 
 func _ready() -> void:
 	EventBus.play_music.connect(play_music)
+	EventBus.music_fade_out.connect(fade_out)
+	EventBus.fade_into_after_cutscene_music.connect(fade_into_after_cutscene_music)
 	EventBus.play_music.emit(start_music, linear_to_db(0.4))
 
 func play_music(music: AudioStream, volume: float, fade_in_time: float = 0) -> void:

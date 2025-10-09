@@ -41,6 +41,7 @@ func _process(_delta: float) -> void:
 func load_room() -> void:
 	var prev_room_states: RoomStates = preload("res://room_states.tres")
 	if room:
+		room.save_transfer_states()
 		prev_room_states = room.states
 		room.queue_free()
 	room = room_scenes[options.room_quality].instantiate()

@@ -2,6 +2,8 @@ class_name Room extends Node3D
 
 @export
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
+@export
+var monitor_scene: PackedScene = preload("res://scenes/monitor_scenes/monitor_scene.tscn")
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
@@ -12,27 +14,29 @@ var states: RoomStates
 func _ready() -> void:
 	_process(0)
 	EventBus.paused_change.connect(on_paused_change)
-	EventBus.play_monitor_sound.connect(play_monitor_sound)
 	if states.tutorial_stage == 0:
 		EventBus.drag_tutorial_visible.emit(true)
 		EventBus.set_skip_button.emit(true)
 		EventBus.skipped.connect(skip_tutorial)
-	if states.current_cutscene:
-		$CutsceneAnimator.play(states.current_cutscene, -1, states.cutscene_speed_scale)
-		$CutsceneAnimator.seek(states.current_cutscene_position)
+	if !states.monitor_scene:
+		states.monitor_scene = monitor_scene.instantiate()
+	$MonitorViewport.add_child(states.monitor_scene)
+	if states.cutscene_playing:
+		start_cutscene()
+		$CutsceneAnimator.seek(states.current_cutscene_position, true)
 
 func _exit_tree() -> void:
-	print("exit")
 	EventBus.paused_change.disconnect(on_paused_change)
-	EventBus.play_monitor_sound.disconnect(play_monitor_sound)
 	if EventBus.skipped.is_connected(skip_tutorial):
 		EventBus.skipped.disconnect(skip_tutorial)
 	if EventBus.skipped.is_connected(skip_cutscene):
 		EventBus.skipped.disconnect(skip_cutscene)
-	states.current_cutscene = $CutsceneAnimator.current_animation
-	if $CutsceneAnimator.is_playing():
+
+func save_transfer_states() -> void:
+	$MonitorViewport.remove_child(states.monitor_scene)
+	states.cutscene_playing = $CutsceneAnimator.current_animation == "start_sleep"
+	if states.cutscene_playing:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
-		states.cutscene_speed_scale = $CutsceneAnimator.speed_scale
 
 func _process(delta: float) -> void:
 	if states.focus == 0 and states.focus_weight == -1: # Applying screen drag when focus is 0
@@ -209,22 +213,13 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	last_event_time = now
 	monitor_viewport.push_input(event)
 
-# Monitor Audio
-func play_monitor_sound(sound: AudioStream, volume_db: float) -> void:
-	var audio_stream = $"Desk Setup/MonitorArea/MonitorAudioStream"
-	if audio_stream.playing:
-		audio_stream = $"Desk Setup/MonitorArea/MonitorAudioStream2"
-	audio_stream.stream = sound
-	audio_stream.volume_db = volume_db
-	audio_stream.play()
-
 # Door Lock Material
 func set_door_lock(locked: bool) -> void:
 	var lock_material: StandardMaterial3D = $Door/LockStatus.mesh.surface_get_material(0)
 	lock_material.albedo_color = Color(0.9, 0.225, 0.225, 1.0) if locked else Color("#39e639ff")
 	lock_material.emission = lock_material.albedo_color
 
-#Functions for CutsceneAnimator
+#Functions and Variables for CutsceneAnimator
 func set_security_breached(security_breached_visible: bool) -> void:
 	$MonitorViewport/MonitorScene.security_breached_visible = security_breached_visible
 
@@ -239,3 +234,9 @@ func set_subtitles(subtitle: String, stay_seconds: float, subtitle_show_time: fl
 
 func remove_subtitles_instantly() -> void:
 	EventBus.remove_subtitles_instantly.emit()
+
+func music_fade_out(time: float) -> void:
+	EventBus.music_fade_out.emit(time)
+
+func fade_into_after_cutscene_music(time: float) -> void:
+	EventBus.fade_into_after_cutscene_music.emit(time)

@@ -14,6 +14,7 @@ var mouse_pressed: bool = false
 var mouse_movement: float = 0
 var tutorial_stage: int = 0
 
-var current_cutscene: String
+var cutscene_playing: bool
 var current_cutscene_position: float
-var cutscene_speed_scale: float
+
+var monitor_scene: MonitorScene
