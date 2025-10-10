@@ -48,13 +48,27 @@ var server_files: Dictionary = {
 			"size": "3 items",
 			"modified": "Today",
 			"value": {
+				"report-45": {
+					"type": "image",
+					"size": "7,1KB",
+					"modified": "Last Month",
+					"value": "res://assets/textures/server_1a/report-45.png"
+				},
 				"report-88": {
 					"type": "text",
-					"size": "234B",
+					"size": "236B",
 					"modified": "Last week",
 					"width": 300,
 					"height": 350,
 					"value": "There is a creepy looking person in front of the company building! They suddenly came out of nowhere and told me: \"The square is the file size's last digit\". I have no idea what that is supposed to mean, but I am reporting this, because they looked like a security risk and so that we know this happened once already if this were to happen again."
+				},
+				"report-90": {
+					"type": "text",
+					"size": "196B",
+					"modified": "Last week",
+					"width": 300,
+					"height": 300,
+					"value": "I just came in and noticed some random piece of paper on my desk. It has a circle and the number five on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^."
 				},
 				"report-103": {
 					"type": "image",

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733335"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="report-45.svg"
+   inkscape:export-filename="/home/tobias/Dokumente/GodotProjects/Perplexity/assets/textures/server_1a/report-45.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect841"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="188.51436"
+     inkscape:cy="162.27092"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1142"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="fill:#bf0000;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="path833"
+       sodipodi:sides="8"
+       sodipodi:cx="32.79744"
+       sodipodi:cy="27.048885"
+       sodipodi:r1="20.510458"
+       sodipodi:r2="18.949192"
+       sodipodi:arg1="0.78539816"
+       sodipodi:arg2="1.1780972"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 47.300524,41.551969 32.79744,47.559343 18.294356,41.551969 12.286982,27.048885 18.294356,12.545801 32.79744,6.5384274 47.300523,12.545801 53.307898,27.048885 Z"
+       transform="matrix(0.92387361,0.38268351,-0.38268099,0.92387973,13.917072,-10.654261)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9332px;line-height:1.25;font-family:Bandal;-inkscape-font-specification:Bandal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264582"
+       x="16.227859"
+       y="31.825623"
+       id="text837"><tspan
+         sodipodi:role="line"
+         id="tspan835"
+         x="16.227859"
+         y="31.825623"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9332px;font-family:Bandal;-inkscape-font-specification:Bandal;fill:#ffffff;fill-opacity:1;stroke-width:0.264582">ST8P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.4667px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264584"
+       x="34.075554"
+       y="54.701496"
+       id="text845"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan843"
+         x="34.075554"
+         y="54.701496"
+         style="font-size:8.4667px;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264584">EATING AT</tspan><tspan
+         sodipodi:role="line"
+         x="34.075554"
+         y="65.284874"
+         style="font-size:8.4667px;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264584"
+         id="tspan847">YOUR TABLES</tspan></text>
+  </g>
+</svg>
