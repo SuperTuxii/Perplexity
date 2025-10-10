@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgtx4wje160hb"]
+[gd_scene load_steps=6 format=3 uid="uid://bgtx4wje160hb"]
 
 [ext_resource type="Script" uid="uid://d1tmm0wdekxml" path="res://scripts/audio.gd" id="1_an4ua"]
 [ext_resource type="AudioStream" uid="uid://cfq5ovx8ii13s" path="res://assets/audio/security_alarm.wav" id="2_idd6r"]
@@ -10,6 +10,12 @@ stream_0/stream = ExtResource("2_idd6r")
 stream_0/volume = 0.0
 stream_1/stream = ExtResource("3_3cycd")
 stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_an4ua"]
+playback_mode = 1
+random_pitch = 1.5
+random_volume_offset_db = 5.0
+streams_count = 1
 
 [node name="AudioNonPositional" type="Node"]
 script = ExtResource("1_an4ua")
@@ -23,4 +29,8 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="MonitorAudioStream2" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MouseClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_an4ua")
 bus = &"SFX"

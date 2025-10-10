@@ -81,3 +81,7 @@ func _on_screen_file_browser_close(_popup: ScreenPopup = null) -> void:
 	if tutorial_stage == 1:
 		$ScreenFileBrowser/FileBrowserTutorial.queue_free()
 		tutorial_stage = 2
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		EventBus.play_mouse_sound.emit(event.pressed, -20)

@@ -2,6 +2,10 @@ class_name Audio extends Node
 
 @export
 var volume_amplifier: float = 1.0
+@export
+var mouse_click_press: AudioStream = preload("res://assets/audio/mouse_press.mp3")
+@export
+var mouse_click_release: AudioStream = preload("res://assets/audio/mouse_release.mp3")
 
 func _ready() -> void:
 	EventBus.play_monitor_sound.connect(play_monitor_sound)
@@ -9,6 +13,7 @@ func _ready() -> void:
 	EventBus.set_alarm_volume.connect(set_alarm_volume)
 	EventBus.set_alarm0_volume.connect(set_alarm0_volume)
 	EventBus.set_alarm1_volume.connect(set_alarm1_volume)
+	EventBus.play_mouse_sound.connect(play_mouse_sound)
 
 func save_states() -> Dictionary:
 	var states: Dictionary = {}
@@ -67,3 +72,10 @@ func set_alarm0_volume(volume: float) -> void:
 
 func set_alarm1_volume(volume: float) -> void:
 	$AlarmAudioStream.stream.set_sync_stream_volume(1, volume)
+
+func play_mouse_sound(pressed: bool, volume_db: float) -> void:
+	if $MouseClickPlayer.playing:
+		return
+	$MouseClickPlayer.stream.set_stream(0, mouse_click_press if pressed else mouse_click_release)
+	$MouseClickPlayer.volume_db = volume_db
+	$MouseClickPlayer.play()
