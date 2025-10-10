@@ -29,5 +29,7 @@ signal fade_into_after_cutscene_music(time: float)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
 
+signal unlock_server(name: String)
+
 func schedule(object: Object, function_name: StringName, delay: float):
 	get_tree().create_timer(delay, false).timeout.connect(Callable(object, function_name))

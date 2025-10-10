@@ -25,8 +25,11 @@ var server_files: Dictionary = {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
-			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
-	return preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	var unlock_code_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+	print("unlock code init: " + str(data))
+	unlock_code_exec.data = data
+	return unlock_code_exec
 		},
 		"give me a hint": {
 			"type": "executable",
@@ -56,7 +59,7 @@ var server_files: Dictionary = {
 				},
 				"report-88": {
 					"type": "text",
-					"size": "236B",
+					"size": "231B",
 					"modified": "Last week",
 					"width": 300,
 					"height": 350,

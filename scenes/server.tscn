@@ -115,7 +115,7 @@ texture_filter = 1
 texture_repeat = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mp518")
-animation = &"normal_server"
+animation = &"changing_server"
 script = ExtResource("15_mp518")
 
 [node name="Button" type="Button" parent="."]

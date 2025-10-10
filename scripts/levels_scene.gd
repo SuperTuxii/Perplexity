@@ -12,6 +12,8 @@ var mask_server_start_hack_sound: AudioStream
 @export
 var mask_final_server_start_hack_sound: AudioStream
 @export
+var server_unlock_sound: AudioStream
+@export
 var mask_walk_speed: float = 2
 var mask_server_speed: float = 0.4
 var mask_walk_time: float = -1:
@@ -29,6 +31,7 @@ var mask_server_time: float = -1
 
 func _ready() -> void:
 	init_servers_recursive($ServerSprites)
+	EventBus.unlock_server.connect(unlock_server)
 
 func init_servers_recursive(object: Node2D) -> void:
 	for child in object.get_children():
@@ -81,6 +84,9 @@ func skip_mask_walk() -> void:
 		if child is Server:
 			child.visible = false
 			child.hacked = true
+			for child_child in child.get_children():
+				if child_child is Server:
+					child_child.visible = false
 	$ServerLine.compute_line()
 	EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
 	$Mask.visible = false
@@ -92,3 +98,22 @@ func skip_mask_walk() -> void:
 func finished_focus_change(focus: int) -> void:
 	if focus == 1:
 		EventBus.set_skip_button.emit(true)
+
+func unlock_server(server_name: String) -> void:
+	for i in range($ServerSprites.get_child_count()):
+		var child = $ServerSprites.get_child(i)
+		if child is Server and child.root_folder_name == server_name:
+			child.hacked = false
+			child.change_completed.connect(func unlock() -> void:
+				if i != 0:
+					$ServerSprites.get_child(i-1).visible = true
+					$ServerSprites.get_child(i-1).pressable = true
+				for child_child in child.get_children():
+					if child_child is Server:
+						child_child.visible = true
+						child_child.pressable = true
+				$ServerLine.compute_line()
+				EventBus.play_monitor_sound.emit(server_unlock_sound, -32.5)
+				child.change_completed.disconnect(child.change_completed.get_connections().back().callable)
+			)
+			EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -36)

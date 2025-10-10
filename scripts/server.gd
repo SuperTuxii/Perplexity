@@ -4,6 +4,8 @@ signal pressed
 signal button_down
 signal button_up
 
+signal change_completed
+
 @export
 var root_folder_name: String = "Server"
 
@@ -34,6 +36,7 @@ func _on_animation_looped() -> void:
 		animation = "hacked_server" if hacked else "normal_server"
 		frame = randi_range(0, sprite_frames.get_frame_count(animation) - 1)
 		speed_scale = randf_range(0.5, 1.5)
+		change_completed.emit()
 
 func _on_frame_changed() -> void:
 	if animation != "changing_server":

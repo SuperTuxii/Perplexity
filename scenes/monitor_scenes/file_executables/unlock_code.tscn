@@ -21,7 +21,7 @@ corner_detail = 5
 content_margin_right = 50.0
 
 [node name="UnlockCode" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(310, 175)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
@@ -85,6 +85,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Unlock"
 
+[node name="CorrectLabel" type="Label" parent="VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "Correct :)
+
+The server is unlocking!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlreadyUnlockedLabel" type="Label" parent="VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "What are you doing back here?
+
+The server is already unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/Content/VBoxContainer/CodeLineEdit" to="." method="_on_code_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/Content/VBoxContainer/UnlockButton" to="." method="_on_unlock_button_pressed"]
