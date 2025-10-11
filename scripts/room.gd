@@ -24,6 +24,8 @@ func _ready() -> void:
 	if states.cutscene_playing:
 		start_cutscene()
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
+	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
+	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
 
 func _exit_tree() -> void:
 	EventBus.paused_change.disconnect(on_paused_change)
@@ -76,7 +78,7 @@ func set_focus(index: int) -> void:
 			states.focus_to_position = Vector3(0, 1.2, 0)
 			states.focus_to_rotation = Vector3()
 		1: # Monitor focused
-			$"Desk Setup/Monitor/Monitor".material_overlay = null
+			$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
 			camera.reparent($"Desk Setup/Monitor")
 			states.focus_to_position = Vector3(0.3, 0.34, 0)
 			states.focus_to_rotation = Vector3(0, 90, 0)
@@ -163,9 +165,9 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 			set_focus(1)
 func _on_monitor_area_mouse_entered() -> void:
 	if states.focus == 0 and states.focus_weight == -1:
-		$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
+		$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 1
 func _on_monitor_area_mouse_exited() -> void:
-	$"Desk Setup/Monitor/Monitor".material_overlay = null
+	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
 
 # Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
 var is_mouse_inside = false

@@ -2,9 +2,8 @@
 
 [resource]
 transparency = 1
-blend_mode = 4
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0.9, 0.9, 0.9, 1)
+albedo_color = Color(1, 1, 1, 0)
 grow = true
 grow_amount = 0.005

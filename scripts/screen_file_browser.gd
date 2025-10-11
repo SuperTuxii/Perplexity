@@ -27,7 +27,6 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var unlock_code_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
-	print("unlock code init: " + str(data))
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
