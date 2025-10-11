@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -37,7 +37,57 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/plant"
-_subresources={}
+_subresources={
+"materials": {
+"DirtMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/DirtMaterial.tres",
+"use_external/path": "uid://c14g41nfm70bn"
+},
+"PlantMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/PlantMaterial.tres",
+"use_external/path": "uid://8twudmp76qt5"
+},
+"PotMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/PotMaterial.tres",
+"use_external/path": "uid://d33jnqfmhokjf"
+}
+},
+"nodes": {
+"PATH:Leaf": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf10": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf4": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf5": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf6": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf7": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf8": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf9": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

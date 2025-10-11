@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -37,7 +37,45 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/container"
-_subresources={}
+_subresources={
+"materials": {
+"ContainerDrawerMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerDrawerMaterial.tres",
+"use_external/path": "uid://dfjbm8qvnfr7u"
+},
+"ContainerFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerFrameMaterial.tres",
+"use_external/path": "uid://drt6kx0olds01"
+},
+"ContainerHandleMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerHandleMaterial.tres",
+"use_external/path": "uid://d0w1yrmw3ox1s"
+}
+},
+"nodes": {
+"PATH:Frame/Drawer1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer1/Handle1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer2/Handle2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer3/Handle3": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

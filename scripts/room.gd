@@ -1,6 +1,8 @@
 class_name Room extends Node3D
 
 @export
+var shadow_quality: int = 2
+@export
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @export
 var monitor_scene: PackedScene = preload("res://scenes/monitor_scenes/monitor_scene.tscn")
@@ -12,6 +14,8 @@ var options: OptionsMenu
 var states: RoomStates
 
 func _ready() -> void:
+	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
+	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", shadow_quality)
 	_process(0)
 	EventBus.paused_change.connect(on_paused_change)
 	if states.tutorial_stage == 0:
