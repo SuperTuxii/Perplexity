@@ -36,6 +36,10 @@ movie_writer/movie_file="/home/tobias/Downloads/video.avi"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[gui]
+
+theme/custom_font="uid://cvx1ij1c4enhk"
+
 [input]
 
 pause={

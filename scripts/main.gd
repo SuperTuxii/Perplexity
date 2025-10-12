@@ -34,9 +34,8 @@ var focus: int:
 
 func _ready() -> void:
 	load_audio()
-	#load_room()
+	options.room_quality_changed.connect(load_room)
 	options.positional_audio_changed.connect(load_audio)
-	#options.room_quality_changed.connect(load_room)
 	EventBus.paused_change.connect(on_paused_change)
 
 func _process(_delta: float) -> void:
@@ -60,7 +59,9 @@ func load_audio() -> void:
 	if paused and is_inside_tree():
 		get_tree().paused = true
 
-func load_room() -> void:
+func load_room(create: bool = false, tutorial: bool = false) -> void:
+	if !room and !create:
+		return
 	var prev_room_states: RoomStates = preload("res://room_states.tres")
 	if room:
 		room.save_transfer_states()
@@ -70,9 +71,24 @@ func load_room() -> void:
 	room.options = options
 	if prev_room_states:
 		room.states = prev_room_states
+	if tutorial:
+		room.states.tutorial_stage = 0
+		room.states.cutscene_playing = false
 	room.states.paused = paused
 	add_child(room)
 
 func on_paused_change(is_paused: bool) -> void:
 	if paused != is_paused:
 		paused = is_paused
+
+
+func _on_title_screen_start_game() -> void:
+	$TitleScreen.visible = false
+	load_room(true)
+
+func _on_title_screen_start_tutorial() -> void:
+	$TitleScreen.visible = false
+	load_room(true, true)
+
+func _on_title_screen_show_options_menu() -> void:
+	$PauseMenu.show_options_menu()

@@ -19,6 +19,8 @@ func back() -> void:
 		$OptionsMenu.visible = false
 		if pause_open:
 			$Layout.visible = true
+		else:
+			visible = false
 	elif $Layout.visible:
 		visible = false
 		$Layout.visible = false

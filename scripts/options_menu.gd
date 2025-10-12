@@ -6,8 +6,6 @@ signal room_quality_changed
 signal positional_audio_changed
 
 @export
-var bus_layout: AudioBusLayout = preload("res://default_bus_layout.tres")
-@export
 var turn_sensitivity: float = 0.005
 @export
 var drag_mirrored: bool = false

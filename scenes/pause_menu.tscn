@@ -78,6 +78,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
 text = "Continue"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_myx47")]
+process_mode = 3
 visible = false
 layout_mode = 1
 

@@ -10,7 +10,40 @@ var back_button: Button = $VBoxContainer/Content/VBoxContainer/HBoxContainer/Bac
 var layout: GridContainer = $VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer
 
 var server_files: Dictionary = {
-	"Server": {},
+	"Server": {
+		"unlock": {
+			"type": "executable",
+			"size": "1,2KB",
+			"modified": "Today",
+			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	var unlock_code_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+	unlock_code_exec.correct_code = "1234"
+	unlock_code_exec.data = data
+	return unlock_code_exec
+		},
+		"give me a hint": {
+			"type": "executable",
+			"size": "923B",
+			"modified": "Today",
+			"title": "Hint",
+			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
+	return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
+		},
+		"folder": {
+			"type": "folder",
+			"size": "1 item",
+			"modified": "Today",
+			"value": {
+				"code": {
+					"type": "text",
+					"size": "8B",
+					"modified": "Today",
+					"title": "Code",
+					"value": "1234"
+				}
+			}
+		}
+	},
 	"Server 1A": {
 		"tutorial": {
 			"type": "text",
@@ -27,6 +60,7 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var unlock_code_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+	unlock_code_exec.correct_code = "3518"
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
@@ -112,6 +146,7 @@ var root_folder_name: String = "":
 		else:
 			root_folder_name = ""
 			push_warning("Server with the root folder name \"" + value + "\" not found")
+		current_folder_path = ""
 		update_contents()
 var current_folder_path: String = "":
 	set(value):

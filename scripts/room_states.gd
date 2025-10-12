@@ -12,9 +12,9 @@ var head_fall_weight: int = -1
 var mouse_motion: Vector2 = Vector2()
 var mouse_pressed: bool = false
 var mouse_movement: float = 0
-var tutorial_stage: int = 0
+var tutorial_stage: int = -1
 
-var cutscene_playing: bool
-var current_cutscene_position: float
+var cutscene_playing: bool = true
+var current_cutscene_position: float = 0
 
 var monitor_scene: MonitorScene

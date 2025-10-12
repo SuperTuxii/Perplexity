@@ -1,5 +1,6 @@
 class_name UnlockCode extends ScreenPopup
 
+var correct_code: String
 var data: Dictionary
 
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _on_unlock_button_pressed() -> void:
 	check_code($VBoxContainer/Content/VBoxContainer/CodeLineEdit.text)
 
 func check_code(code: String) -> void:
-	if code.strip_edges() == "3518":
+	if code.strip_edges() == correct_code:
 		data["unlocked"] = true
 		$VBoxContainer/Content/VBoxContainer.visible = false
 		$VBoxContainer/Content/CorrectLabel.visible = true

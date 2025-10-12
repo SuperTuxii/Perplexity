@@ -30,6 +30,7 @@ func _ready() -> void:
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
 	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
 		#$Camera3D.make_current()
 		#states.monitor_scene.security_breached_visible = true
@@ -125,7 +126,7 @@ func on_paused_change(is_paused: bool) -> void:
 		set_focus(-1)
 		EventBus.skipped.disconnect(skip_tutorial)
 		start_cutscene.call_deferred() # Called deffered otherwise instantly skipped
-		EventBus.continue_to_start_game.emit()
+		# TODO: Back to title screen
 
 func skip_tutorial() -> void:
 	set_focus(0)
@@ -138,8 +139,8 @@ func skip_tutorial() -> void:
 	EventBus.skipped.disconnect(skip_tutorial)
 	states.tutorial_stage = -1
 	start_cutscene.call_deferred()
-	EventBus.continue_to_start_game.emit()
 	EventBus.paused_change.emit(true)
+	# TODO: back to title screen
 
 func start_cutscene() -> void:
 	set_focus(-1)

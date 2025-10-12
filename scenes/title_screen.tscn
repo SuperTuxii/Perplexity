@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ho6g13j7mrkj"]
+[gd_scene load_steps=8 format=3 uid="uid://ho6g13j7mrkj"]
 
 [ext_resource type="CompressedCubemap" uid="uid://e5sxpwrcfvq" path="res://assets/3d/title_screen/cube_map2.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://cmmnk35q6vcb7" path="res://scripts/title_screen.gd" id="1_s4lrb"]
 [ext_resource type="FontFile" uid="uid://b6rja8kc8ili" path="res://assets/fonts/RubikDoodleTriangles-Regular.ttf" id="2_sa3yf"]
 
 [sub_resource type="Shader" id="Shader_aba4p"]
@@ -31,13 +32,21 @@ ambient_light_source = 1
 reflected_light_source = 1
 
 [node name="TitleScreen" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kxs86")
+script = ExtResource("1_s4lrb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_kxs86")
 
-[node name="Title" type="Label" parent="."]
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
 anchor_top = 0.1
@@ -55,25 +64,34 @@ text = "Perplexity"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.425
+anchor_left = 0.4
 anchor_top = 0.5
-anchor_right = 0.575
+anchor_right = 0.6
 anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Start Game"
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+[node name="TutorialButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Options"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
