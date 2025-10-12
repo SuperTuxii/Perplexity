@@ -37,7 +37,19 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/container"
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Frame/Drawer1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer3": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

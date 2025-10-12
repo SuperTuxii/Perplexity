@@ -37,7 +37,67 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/desk/telephone"
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Telephone Base Bottom": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Cable": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Cable/Cable Cover": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Cable/CablePath": {
+"import/skip_import": true
+},
+"PATH:Telephone Base Bottom/Telephone Base Top": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button #": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button *": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 0": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 4": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 5": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 6": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 7": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 8": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Button 9": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Contact List": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Telephone Base Bottom/Telephone Base Top/Telephone Receiver": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

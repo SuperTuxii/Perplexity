@@ -37,7 +37,33 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/desk/keyboard"
-_subresources={}
+_subresources={
+"materials": {
+"KeyboardBaseMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/keyboard/KeyboardBaseMaterial.tres",
+"use_external/path": "uid://y6nwb58q8fyc"
+},
+"KeyboardCapsSideMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/keyboard/KeyboardCapsSideMaterial.tres",
+"use_external/path": "uid://dc3rca60eu8d8"
+},
+"KeyboardCapsTopMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/keyboard/KeyboardCapsTopMaterial.tres",
+"use_external/path": "uid://b2n0ffb7ntfnw"
+}
+},
+"nodes": {
+"PATH:Base": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Base/Key": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

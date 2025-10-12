@@ -37,7 +37,20 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room"
-_subresources={}
+_subresources={
+"materials": {
+"WallMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/WallMaterial.tres",
+"use_external/path": "uid://clianvqtedhw6"
+}
+},
+"nodes": {
+"PATH:Plane": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

@@ -362,30 +362,35 @@ environment = SubResource("Environment_igkv5")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_sxhs2")
 
 [node name="Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_gyaw3")
 
 [node name="Wall" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_gyaw3")
 
 [node name="Wall2" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.25, 5)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_gyaw3")
 
 [node name="Wall3" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, 4.371139e-08, -3.821371e-15, -1, -4.371139e-08, -1.7485936, 1.2520432, -0.00611192)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_238tj")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_gyaw3")
@@ -520,7 +525,7 @@ transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.1552
 transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
 [node name="Paper" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("17_tlyrg")]
-transform = Transform3D(0.12836285, 0, 0.9917273, 0, 1, 0, -0.9917273, 0, 0.12836285, 1.5654562, 0.8009999, -0.09600202)
+transform = Transform3D(0.12836285, 0, 0.9917273, 0, 1, 0, -0.9917273, 0, 0.12836285, 1.565, 0.801, -0.096)
 
 [node name="Pencil" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("18_aso14")]
 transform = Transform3D(0.91735214, 0, 0.39807668, 0, 1, 0, -0.39807668, 0, 0.91735214, 1.5084169, 0.7999999, -0.23985696)
@@ -625,10 +630,6 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("15_ewkbm")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
-
-[node name="LightmapGI" type="LightmapGI" parent="."]
-quality = 2
-interior = true
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]

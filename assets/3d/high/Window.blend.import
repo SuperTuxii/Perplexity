@@ -37,7 +37,28 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/window"
-_subresources={}
+_subresources={
+"materials": {
+"WindowFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/window/WindowFrameMaterial.tres",
+"use_external/path": "uid://cw4pqcmxklb0n"
+},
+"WindowMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/window/WindowMaterial.tres",
+"use_external/path": "uid://cnsvkcqritwif"
+}
+},
+"nodes": {
+"PATH:Frame": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Glass": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

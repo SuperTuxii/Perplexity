@@ -37,7 +37,25 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/light"
-_subresources={}
+_subresources={
+"materials": {
+"LightFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/light/LightFrameMaterial.tres",
+"use_external/path": "uid://btwsdb3f4k2b"
+},
+"LightMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/light/LightMaterial.tres",
+"use_external/path": "uid://dyatts0h64xk2"
+}
+},
+"nodes": {
+"PATH:Light": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

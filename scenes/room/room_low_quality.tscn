@@ -370,30 +370,35 @@ environment = SubResource("Environment_igkv5")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_rgsb6")
 
 [node name="Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall2" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.25, 5)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
 [node name="Wall3" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, 4.371139e-08, -3.821371e-15, -1, -4.371139e-08, -1.7485936, 1.2520432, -0.00611192)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_238tj")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")

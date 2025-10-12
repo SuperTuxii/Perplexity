@@ -37,7 +37,15 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/desk/pen&paper"
-_subresources={}
+_subresources={
+"materials": {
+"PaperMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/pen&paper/PaperMaterial.tres",
+"use_external/path": "uid://dmep5um3n8xux"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
