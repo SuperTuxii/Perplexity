@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ho6g13j7mrkj"]
+
+[ext_resource type="CompressedCubemap" uid="uid://be1ecdy4h1cj0" path="res://assets/3d/title_screen/cube_map.png" id="1_fgkus"]
+
+[sub_resource type="Shader" id="Shader_aba4p"]
+code = "shader_type sky;
+
+uniform samplerCube source_panorama : filter_linear, source_color, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+
+void sky() {
+    // If importing a cubemap from another engine, you may need to flip one of the `EYEDIR` components below
+    // by replacing it with `-EYEDIR`.
+    vec3 eyedir = vec3(-EYEDIR.x, -EYEDIR.y, EYEDIR.z);
+    COLOR = texture(source_panorama, eyedir).rgb * exposure;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hl4rc"]
+shader = SubResource("Shader_aba4p")
+shader_parameter/source_panorama = ExtResource("1_fgkus")
+shader_parameter/exposure = 1.0
+
+[sub_resource type="Sky" id="Sky_hbx4b"]
+sky_material = SubResource("ShaderMaterial_hl4rc")
+
+[sub_resource type="Environment" id="Environment_kxs86"]
+background_mode = 2
+sky = SubResource("Sky_hbx4b")
+ambient_light_source = 1
+reflected_light_source = 1
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kxs86")
