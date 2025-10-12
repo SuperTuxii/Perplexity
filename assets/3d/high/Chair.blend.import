@@ -37,7 +37,173 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/chair"
-_subresources={}
+_subresources={
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_0.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_0.tres"
+},
+"@MATERIAL:10": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_10.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_10.tres"
+},
+"@MATERIAL:12": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_12.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_12.tres"
+},
+"@MATERIAL:14": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_14.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_14.tres"
+},
+"@MATERIAL:15": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_15.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_15.tres"
+},
+"@MATERIAL:16": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_16.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_16.tres"
+},
+"@MATERIAL:17": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_17.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_17.tres"
+},
+"@MATERIAL:3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_3.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_3.tres"
+},
+"@MATERIAL:5": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_5.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_5.tres"
+},
+"@MATERIAL:6": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_6.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_6.tres"
+},
+"@MATERIAL:8": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/@MATERIAL_8.tres",
+"use_external/path": "res://materials/chair/@MATERIAL_8.tres"
+},
+"ChairArmRestHolderMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairArmRestHolderMaterial.tres",
+"use_external/path": "uid://dqo0i1ockpufm"
+},
+"ChairArmRestMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairArmRestMaterial.tres",
+"use_external/path": "uid://b5hpbc5st5f5n"
+},
+"ChairBackRestMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairBackRestMaterial.tres",
+"use_external/path": "uid://cqmfo7ywh65kw"
+},
+"ChairCylinderMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairCylinderMaterial.tres",
+"use_external/path": "uid://b7qns28plwscj"
+},
+"ChairSeatMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairSeatMaterial.tres",
+"use_external/path": "uid://cdyyouqkt6kqg"
+},
+"ChairStarMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairStarMaterial.tres",
+"use_external/path": "uid://wsgyiws1tkgd"
+},
+"ChairTechnicBoxMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairTechnicBoxMaterial.tres",
+"use_external/path": "uid://rf7ih2ddpjlh"
+},
+"ChairWheelMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/chair/ChairWheelMaterial.tres",
+"use_external/path": "uid://cdm71f1ij10xk"
+}
+},
+"nodes": {
+"PATH:Chair": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/ArmRests": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/ArmRests/ArmRestsShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/BackRest": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/BackRest/BackRestShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/ChairShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/PressureCylinder": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/PressureCylinder/PressureCylinderShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/SeatArea": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/SeatArea/SeatAreaShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/TechnicBox": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/TechnicBox/TechnicBoxShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Wheel1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Wheel1/Wheel1Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Wheel2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Wheel2/Wheel2Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Wheel3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Wheel3/Wheel3Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Wheel4": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Wheel4/Wheel4Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Wheel5": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Wheel5/Wheel5Shadow": {
+"mesh_instance/cast_shadow": 3
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

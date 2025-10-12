@@ -38,15 +38,95 @@ materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/container"
 _subresources={
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_0.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_0.tres"
+},
+"@MATERIAL:1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_1.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_1.tres"
+},
+"@MATERIAL:4": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_4.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_4.tres"
+},
+"@MATERIAL:5": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_5.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_5.tres"
+},
+"@MATERIAL:6": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_6.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_6.tres"
+},
+"@MATERIAL:7": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/@MATERIAL_7.tres",
+"use_external/path": "res://materials/room/container/@MATERIAL_7.tres"
+},
+"ContainerDrawerMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerDrawerMaterial.tres",
+"use_external/path": "uid://dfjbm8qvnfr7u"
+},
+"ContainerFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerFrameMaterial.tres",
+"use_external/path": "uid://drt6kx0olds01"
+},
+"ContainerHandleMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/ContainerHandleMaterial.tres",
+"use_external/path": "uid://d0w1yrmw3ox1s"
+}
+},
 "nodes": {
+"PATH:Frame": {
+"mesh_instance/cast_shadow": 0
+},
 "PATH:Frame/Drawer1": {
 "mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer1/Drawer1Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Frame/Drawer1/Handle1": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer1/Handle1/Handle1Shadow": {
+"mesh_instance/cast_shadow": 3
 },
 "PATH:Frame/Drawer2": {
 "mesh_instance/cast_shadow": 0
 },
+"PATH:Frame/Drawer2/Drawer2Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Frame/Drawer2/Handle2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer2/Handle2/Handle2Shadow": {
+"mesh_instance/cast_shadow": 3
+},
 "PATH:Frame/Drawer3": {
 "mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer3/Drawer3Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Frame/Drawer3/Handle3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Drawer3/Handle3/Handle3Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Frame/FrameShadow": {
+"mesh_instance/cast_shadow": 3
 }
 }
 }
