@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=34 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
-[ext_resource type="LightmapGIData" uid="uid://dseosyp73ey88" path="res://room_low_quality.lmbake" id="20_i04u4"]
 [ext_resource type="PackedScene" uid="uid://caoqy67vf7yav" path="res://assets/3d/low/Keylessboard.blend" id="22_02vy7"]
 [ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
 [ext_resource type="PackedScene" uid="uid://b3xsuhxnpw1dw" path="res://assets/3d/low/Pencil.blend" id="22_4y21u"]
@@ -462,6 +461,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.
 light_energy = 0.75
 light_indirect_energy = 0.0
 shadow_enabled = true
+shadow_bias = 0.05
 omni_range = 3.5
 omni_attenuation = 2.0
 
@@ -487,6 +487,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.
 light_energy = 0.75
 light_indirect_energy = 0.0
 shadow_enabled = true
+shadow_bias = 0.05
 omni_range = 3.5
 omni_attenuation = 2.0
 
@@ -604,11 +605,6 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("22_22xxa")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
-
-[node name="LightmapGI" type="LightmapGI" parent="."]
-quality = 3
-interior = true
-light_data = ExtResource("20_i04u4")
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]

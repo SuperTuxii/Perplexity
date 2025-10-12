@@ -454,7 +454,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3.0003922)
 [node name="OmniLight" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.99973667, 0, 2.475, 3)
 light_energy = 0.75
-light_indirect_energy = 0.0
+light_indirect_energy = 0.25
 shadow_enabled = true
 shadow_bias = 0.05
 omni_range = 3.5
@@ -463,7 +463,7 @@ omni_attenuation = 2.0
 [node name="OmniLight2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.99973667, 0, 2.475, 1)
 light_energy = 0.75
-light_indirect_energy = 0.0
+light_indirect_energy = 0.25
 shadow_enabled = true
 shadow_bias = 0.05
 omni_range = 3.5
@@ -472,7 +472,7 @@ omni_attenuation = 2.0
 [node name="OmniLight3" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.99973667, 0, 2.475, -1)
 light_energy = 0.75
-light_indirect_energy = 0.0
+light_indirect_energy = 0.25
 shadow_enabled = true
 shadow_bias = 0.05
 omni_range = 3.5
@@ -481,7 +481,7 @@ omni_attenuation = 2.0
 [node name="OmniLight4" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.99973667, -0.022949066, 0, 0.022949066, 0.99973667, 0, 2.475, -3)
 light_energy = 0.75
-light_indirect_energy = 0.0
+light_indirect_energy = 0.25
 shadow_enabled = true
 shadow_bias = 0.05
 omni_range = 3.5
@@ -625,6 +625,10 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("15_ewkbm")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 2
+interior = true
 
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
