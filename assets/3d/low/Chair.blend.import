@@ -81,6 +81,30 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:Chair/Arm Rests": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Arm Rests/ArmRestsShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Back Rest": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Back Rest/BackRestShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Pressure Cylinder": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Pressure Cylinder/PressureCylinderShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Chair/Seat Area": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Chair/Seat Area/SeatAreaShadow": {
+"mesh_instance/cast_shadow": 3
+},
 "PATH:Chair/Technic Box": {
 "mesh_instance/cast_shadow": 0
 },

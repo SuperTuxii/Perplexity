@@ -37,7 +37,33 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/desk/monitor"
-_subresources={}
+_subresources={
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/monitor/@MATERIAL_0.tres",
+"use_external/path": "res://materials/desk/monitor/@MATERIAL_0.tres"
+},
+"MonitorFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/monitor/MonitorFrameMaterial.tres",
+"use_external/path": "uid://ba0i5xa6knjqj"
+},
+"MonitorMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/monitor/MonitorMaterial.tres",
+"use_external/path": "uid://ewfns2b8uhxr"
+}
+},
+"nodes": {
+"PATH:Monitor": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Monitor/MonitorShadow": {
+"mesh_instance/cast_shadow": 3
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
