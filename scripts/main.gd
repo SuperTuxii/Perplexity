@@ -34,9 +34,9 @@ var focus: int:
 
 func _ready() -> void:
 	load_audio()
-	load_room()
+	#load_room()
 	options.positional_audio_changed.connect(load_audio)
-	options.room_quality_changed.connect(load_room)
+	#options.room_quality_changed.connect(load_room)
 	EventBus.paused_change.connect(on_paused_change)
 
 func _process(_delta: float) -> void:

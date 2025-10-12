@@ -30,6 +30,16 @@ func _ready() -> void:
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
 	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+	#if has_node("Camera3D"):
+		#$Camera3D.make_current()
+		#states.monitor_scene.security_breached_visible = true
+		#set_door_lock(true)
+		#EventBus.schedule(self, "take_picture", 1.0)
+#
+#func take_picture() -> void:
+	#var image = get_viewport().get_texture().get_image()
+	#var timestamp = str(Time.get_datetime_string_from_system())
+	#print(image.save_png("user://screenshot_" + timestamp + ".png"))
 
 func _exit_tree() -> void:
 	EventBus.paused_change.disconnect(on_paused_change)

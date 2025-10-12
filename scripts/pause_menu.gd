@@ -2,9 +2,6 @@ class_name PauseMenu extends Control
 
 var pause_open: bool = false
 
-func _ready() -> void:
-	EventBus.continue_to_start_game.connect(continue_to_start_game)
-
 func show_pause_menu() -> void:
 	if is_inside_tree():
 		get_tree().paused = true
@@ -29,9 +26,6 @@ func back() -> void:
 		EventBus.paused_change.emit(false)
 		if is_inside_tree():
 			get_tree().paused = false
-
-func continue_to_start_game() -> void:
-	$Layout/ContinueButton.text = "Start Game"
 
 func _on_options_button_pressed() -> void:
 	show_options_menu()

@@ -2,7 +2,6 @@
 class_name Events extends Node
 
 signal paused_change(paused: bool)
-signal continue_to_start_game
 
 #Screen Overlays
 signal set_eyelids(close: bool, eyelid_speed: float)

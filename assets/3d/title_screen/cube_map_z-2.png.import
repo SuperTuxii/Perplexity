@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yyeabqgpet3u"
-path="res://.godot/imported/cube_map_y+.png-837f3dd1794b0b8faca9c89801f78e86.ctex"
+uid="uid://gs3o0l8l54vy"
+path="res://.godot/imported/cube_map_z-2.png-e3eddb4c38aa0afb89d97b05c5e5c3d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/3d/title_screen/cube_map_y+.png"
-dest_files=["res://.godot/imported/cube_map_y+.png-837f3dd1794b0b8faca9c89801f78e86.ctex"]
+source_file="res://assets/3d/title_screen/cube_map_z-2.png"
+dest_files=["res://.godot/imported/cube_map_z-2.png-e3eddb4c38aa0afb89d97b05c5e5c3d4.ctex"]
 
 [params]
 

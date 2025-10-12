@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=12 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
+[ext_resource type="FontFile" uid="uid://c8h1vr6ka1otr" path="res://assets/fonts/RubikGlitch-Regular.ttf" id="2_cr26o"]
 [ext_resource type="PackedScene" uid="uid://bxff4ce1n02gg" path="res://scenes/monitor_scenes/levels_scene.tscn" id="2_lmcqu"]
 [ext_resource type="PackedScene" uid="uid://d00ixyg22g8s5" path="res://scenes/monitor_scenes/screen_file_browser.tscn" id="3_upgkn"]
 [ext_resource type="PackedScene" uid="uid://bx3f3hbarpww" path="res://scenes/monitor_scenes/screen_popup_text.tscn" id="4_ycll6"]
@@ -20,12 +21,14 @@ corner_radius_bottom_left = 5
 corner_detail = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwc3u"]
+font = ExtResource("2_cr26o")
 font_size = 60
 shadow_size = 10
 shadow_color = Color(0.18, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6v2g8"]
+font = ExtResource("2_cr26o")
 font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_fblv2"]
