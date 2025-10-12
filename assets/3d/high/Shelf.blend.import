@@ -37,7 +37,34 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/shelf"
-_subresources={}
+_subresources={
+"materials": {
+"ShelfFrameMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/shelf/ShelfFrameMaterial.tres",
+"use_external/path": "uid://cc4m4trfubm62"
+},
+"ShelfMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/shelf/ShelfMaterial.tres",
+"use_external/path": "uid://2ocygkttt275"
+}
+},
+"nodes": {
+"PATH:Frame": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/Shelves": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Frame/ShelvesShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:FrameShadow": {
+"mesh_instance/cast_shadow": 3
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

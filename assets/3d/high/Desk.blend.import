@@ -37,7 +37,28 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/desk"
-_subresources={}
+_subresources={
+"materials": {
+"@MATERIAL:1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/@MATERIAL_1.tres",
+"use_external/path": "res://materials/desk/@MATERIAL_1.tres"
+},
+"DeskMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/desk/DeskMaterial.tres",
+"use_external/path": "uid://cgao4fbv6lj2k"
+}
+},
+"nodes": {
+"PATH:Desk": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:DeskShadow": {
+"mesh_instance/cast_shadow": 3
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

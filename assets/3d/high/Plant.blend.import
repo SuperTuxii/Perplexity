@@ -37,7 +37,101 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/plant"
-_subresources={}
+_subresources={
+"materials": {
+"@MATERIAL:3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/@MATERIAL_3.tres",
+"use_external/path": "res://materials/room/plant/@MATERIAL_3.tres"
+},
+"DirtMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/DirtMaterial.tres",
+"use_external/path": "uid://c14g41nfm70bn"
+},
+"PlantMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/PlantMaterial.tres",
+"use_external/path": "uid://8twudmp76qt5"
+},
+"PotMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/PotMaterial.tres",
+"use_external/path": "uid://d33jnqfmhokjf"
+}
+},
+"nodes": {
+"PATH:Dirt": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf10": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf10Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf2": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf2Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf3": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf3Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf4": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf4Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf5": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf5Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf6": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf6Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf7": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf7Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf8": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf8Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Leaf9": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Leaf9Shadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:LeafShadow": {
+"mesh_instance/cast_shadow": 3
+},
+"PATH:Pot": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:PotShadow": {
+"mesh_instance/cast_shadow": 3
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

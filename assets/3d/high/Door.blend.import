@@ -39,6 +39,11 @@ materials/extract_format=0
 materials/extract_path="res://materials/room/door"
 _subresources={
 "materials": {
+"@MATERIAL:1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/door/@MATERIAL_1.tres",
+"use_external/path": "res://materials/room/door/@MATERIAL_1.tres"
+},
 "DoorFrameMaterial": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://materials/room/door/DoorFrameMaterial.tres",
@@ -74,8 +79,14 @@ _subresources={
 "PATH:Door": {
 "mesh_instance/cast_shadow": 0
 },
+"PATH:Door/Handle": {
+"mesh_instance/cast_shadow": 0
+},
 "PATH:Door/Handle Cover": {
 "mesh_instance/cast_shadow": 0
+},
+"PATH:Door/Handle/HandleShadow": {
+"mesh_instance/cast_shadow": 3
 },
 "PATH:Frame": {
 "mesh_instance/cast_shadow": 0

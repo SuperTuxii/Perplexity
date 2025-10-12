@@ -39,6 +39,11 @@ materials/extract_format=0
 materials/extract_path="res://materials/room/plant"
 _subresources={
 "materials": {
+"@MATERIAL:3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/plant/@MATERIAL_3.tres",
+"use_external/path": "res://materials/room/plant/@MATERIAL_3.tres"
+},
 "DirtMaterial": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://materials/room/plant/DirtMaterial.tres",
@@ -56,6 +61,9 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:Dirt": {
+"mesh_instance/cast_shadow": 0
+},
 "PATH:Leaf": {
 "mesh_instance/cast_shadow": 0
 },
@@ -85,6 +93,12 @@ _subresources={
 },
 "PATH:Leaf9": {
 "mesh_instance/cast_shadow": 0
+},
+"PATH:Pot": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:PotShadow": {
+"mesh_instance/cast_shadow": 3
 }
 }
 }
