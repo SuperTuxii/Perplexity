@@ -75,11 +75,10 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 
 func _on_levels_scene_mask_walk_finished() -> void:
 	EventBus.schedule($IntroPopupInformation, "show", 1.5)
-	EventBus.schedule(self, "start_tutorial", 4)
 
 func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
-	if tutorial_stage <= 0:
-		$ClickServerTutorial.queue_free()
+	if tutorial_stage == 0:
+		$ClickServerTutorial.visible = false
 		$ScreenFileBrowser/FileTutorial.visible = true
 		$ScreenFileBrowser.pressed_file.connect(_on_file_browser_file_pressed)
 		tutorial_stage = 1
