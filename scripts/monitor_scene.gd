@@ -74,9 +74,6 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 		$ClickServerTutorial.queue_free()
 		$ScreenFileBrowser/FileTutorial.visible = true
 		$ScreenFileBrowser.pressed_file.connect(_on_file_browser_file_pressed)
-		$ScreenFileBrowser.pressed_folder.connect(_on_file_browser_file_pressed)
-		#$ScreenFileBrowser/BackTutorial.visible = true
-		#$ScreenFileBrowser.pressed_back.connect(_on_file_browser_back_pressed)
 		tutorial_stage = 1
 	if tutorial_stage >= 0:
 		root_folder_name = "Server"
@@ -86,22 +83,29 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 		$ScreenFileBrowser.root_folder_name = root_folder_name
 
 # Tutorial signal handlers
-func _on_file_browser_file_pressed(path: String = "", _type: String = "", _data: Dictionary = {}) -> void:
+func _on_file_browser_file_pressed(path: String, _type: String, _data: Dictionary) -> void:
 	if path == "Server/unlock":
 		$ScreenFileBrowser/FileTutorial.visible = false
 		$ScreenFileBrowser.pressed_file.disconnect(_on_file_browser_file_pressed)
-		$ScreenFileBrowser.pressed_folder.disconnect(_on_file_browser_file_pressed)
 		$UnlockCodeTutorial.visible = true
 		open_files["Server/unlock"].close.connect(_on_unlock_code_close)
 		tutorial_stage = 2
 func _on_unlock_code_close(popup: ScreenPopup) -> void:
 	$UnlockCodeTutorial.visible = false
 	popup.close.disconnect(_on_unlock_code_close)
+	$SearchFilesTutorial.visible = true
+	$ScreenFileBrowser.pressed_folder.connect(_on_file_browser_folder_pressed)
 	tutorial_stage = 3
-#func _on_file_browser_back_pressed() -> void:
-	#$ScreenFileBrowser/BackTutorial.visible = false
-	#$ScreenFileBrowser.pressed_back.disconnect(_on_file_browser_back_pressed)
-	#tutorial_stage = 3
+func _on_file_browser_folder_pressed() -> void:
+	$SearchFilesTutorial.visible = false
+	$ScreenFileBrowser.pressed_folder.disconnect(_on_file_browser_folder_pressed)
+	$ScreenFileBrowser/BackTutorial.visible = true
+	$ScreenFileBrowser.pressed_back.connect(_on_file_browser_back_pressed)
+	tutorial_stage = 4
+func _on_file_browser_back_pressed() -> void:
+	$ScreenFileBrowser/BackTutorial.visible = false
+	$ScreenFileBrowser.pressed_back.disconnect(_on_file_browser_back_pressed)
+	tutorial_stage = 5
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

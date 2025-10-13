@@ -27,7 +27,7 @@ offset_bottom = 42.000008
 grow_horizontal = 2
 text = "Click the left mouse button while hovering over 
 highlighting objects to focus onto them
-(for example the monitor)"
+(focus the monitor to continue)"
 label_settings = SubResource("LabelSettings_8ho6b")
 horizontal_alignment = 1
 vertical_alignment = 1

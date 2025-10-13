@@ -23,7 +23,7 @@ var server_files: Dictionary = {
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
-		"give me a hint (still todo)": {
+		"give me a hint (not yet)": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",

@@ -105,6 +105,8 @@ func finished_focus_change(focus: int) -> void:
 		EventBus.set_skip_button.emit(true)
 
 func unlock_server(server_name: String) -> void:
+	if server_name == "Server":
+		return
 	for i in range($ServerSprites.get_child_count()):
 		var child = $ServerSprites.get_child(i)
 		if child is Server and child.root_folder_name == server_name:

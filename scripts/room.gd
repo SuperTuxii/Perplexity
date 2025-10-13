@@ -19,7 +19,7 @@ func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
 	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", shadow_quality)
 	_process(0)
-	EventBus.paused_change.connect(on_paused_change)
+	EventBus.paused_change.connect(_on_paused_change)
 	if states.tutorial_stage == 0:
 		EventBus.drag_tutorial_visible.emit(true)
 		EventBus.set_skip_button.emit(true)
@@ -45,7 +45,7 @@ func _ready() -> void:
 	#print(image.save_png("user://screenshot_" + timestamp + ".png"))
 
 func _exit_tree() -> void:
-	EventBus.paused_change.disconnect(on_paused_change)
+	EventBus.paused_change.disconnect(_on_paused_change)
 	if EventBus.skipped.is_connected(skip_tutorial):
 		EventBus.skipped.disconnect(skip_tutorial)
 	if EventBus.skipped.is_connected(skip_cutscene):
@@ -83,9 +83,8 @@ func set_focus(index: int) -> void:
 		EventBus.set_skip_button.emit(false)
 	if index == 1 and states.tutorial_stage == 1:
 		EventBus.focus_tutorial_visible.emit(false)
-		# TODO: monitor_scene tutorial first
 		$MonitorViewport/MonitorScene.start_tutorial()
-		#EventBus.unfocus_tutorial_visible.emit(true)
+		EventBus.unlock_server.connect(_on_unlock_server)
 		states.tutorial_stage = 2
 	if index == -1:
 		return # Other focus like a cutscene
@@ -122,7 +121,7 @@ func finished_focus() -> void:
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = false
 
-func on_paused_change(is_paused: bool) -> void:
+func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
 	if states.tutorial_stage == 4:
 		EventBus.pause_tutorial_visible.emit(false)
@@ -130,6 +129,13 @@ func on_paused_change(is_paused: bool) -> void:
 		set_focus(-1)
 		EventBus.skipped.disconnect(skip_tutorial)
 		tutorial_finished.emit()
+
+func _on_unlock_server(_name: String) -> void:
+	if $MonitorViewport/MonitorScene.tutorial_stage == 5:
+		EventBus.unlock_server.disconnect(_on_unlock_server)
+		$MonitorViewport/MonitorScene.tutorial_stage = -1
+		EventBus.unfocus_tutorial_visible.emit(true)
+		states.tutorial_stage = 3
 
 func skip_tutorial() -> void:
 	set_focus(0)

@@ -129,13 +129,23 @@ position = Vector2(85, -60)
 scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("6_cr26o")
 
-[node name="Label2" type="Label" parent="ScreenFileBrowser/BackTutorial"]
+[node name="Label" type="Label" parent="ScreenFileBrowser/BackTutorial"]
 offset_left = -235.0
-offset_top = -159.0
+offset_top = -165.0
 offset_right = 741.0
-offset_bottom = -117.0
+offset_bottom = -123.0
 theme_override_font_sizes/font_size = 30
 text = "Left click on the back button to get to the previous folder"
+
+[node name="Label2" type="Label" parent="ScreenFileBrowser/BackTutorial"]
+offset_left = -235.0
+offset_top = -140.0
+offset_right = 741.0
+offset_bottom = -98.0
+theme_override_font_sizes/font_size = 22
+text = "(Unlock the server to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="IntroPopupInformation" parent="." instance=ExtResource("4_ycll6")]
 visible = false
@@ -213,7 +223,47 @@ offset_bottom = 37.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 22
 text = "Run this first to know what you have to do
-(Close the Enter Code Window to continue)"
+(Close the \"Enter code\" window to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SearchFilesTutorial" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.075
+anchor_right = 0.5
+anchor_bottom = 0.075
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="SearchFilesTutorial"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -37.0
+offset_right = 356.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Search through the files to find clues on the code"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="SearchFilesTutorial"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -356.0
+offset_right = 356.0
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "There might be something in that folder"
 horizontal_alignment = 1
 vertical_alignment = 1
 
