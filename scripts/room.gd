@@ -130,7 +130,7 @@ func _on_paused_change(is_paused: bool) -> void:
 		EventBus.continue_to_back_to_title.emit()
 		states.tutorial_stage = 5
 	elif states.tutorial_stage == 5:
-		$MonitorViewport/MonitorScene.tutorial_stage = -1
+		$MonitorViewport/MonitorScene.finish_tutorial()
 		states.tutorial_stage = -1
 		tutorial_finished.emit()
 
@@ -150,7 +150,7 @@ func skip_tutorial() -> void:
 	EventBus.pause_tutorial_visible.emit(false)
 	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_tutorial)
-	$MonitorViewport/MonitorScene.tutorial_stage = -1
+	$MonitorViewport/MonitorScene.finish_tutorial()
 	states.tutorial_stage = -1
 	tutorial_finished.emit()
 

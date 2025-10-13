@@ -18,14 +18,7 @@ var security_breached_visible: bool = false:
 	get:
 		return $SecurityBreachedPanel.visible
 
-var tutorial_stage: int = -1:
-	set(value):
-		if value == -1:
-			for key in open_files:
-				close_popup(open_files[key])
-			$LevelsScene.run_for_all_servers(func unlock_server(server: Server) -> void:
-				server.pressable = false
-			)
+var tutorial_stage: int = -1
 
 var focused_popup: ScreenPopup
 var open_files: Dictionary = {}
@@ -37,6 +30,14 @@ func start_tutorial() -> void:
 		$LevelsScene.run_for_all_servers(func unlock_server(server: Server) -> void:
 			server.pressable = true
 		)
+
+func finish_tutorial() -> void:
+	tutorial_stage = -1
+	for key in open_files:
+		close_popup(open_files[key])
+	$LevelsScene.run_for_all_servers(func unlock_server(server: Server) -> void:
+		server.pressable = false
+	)
 
 func focus_popup(popup: ScreenPopup) -> void:
 	if focused_popup:
