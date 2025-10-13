@@ -31,6 +31,8 @@ script = ExtResource("1_jl2p6")
 
 [node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
 
+[node name="TitleScreen" parent="." instance=ExtResource("2_hl4rc")]
+
 [node name="PauseMenu" parent="." instance=ExtResource("2_jl2p6")]
 process_mode = 2
 visible = false
@@ -43,9 +45,7 @@ script = ExtResource("10_nhbng")
 start_music = SubResource("AudioStreamRandomizer_nhbng")
 after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
 
-[node name="TitleScreen" parent="." instance=ExtResource("2_hl4rc")]
-
-[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 [connection signal="show_options_menu" from="TitleScreen" to="." method="_on_title_screen_show_options_menu"]
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="start_tutorial" from="TitleScreen" to="." method="_on_title_screen_start_tutorial"]
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

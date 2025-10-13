@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=11 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="FontFile" uid="uid://c8h1vr6ka1otr" path="res://assets/fonts/RubikGlitch-Regular.ttf" id="2_cr26o"]
@@ -29,9 +29,6 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6v2g8"]
 font = ExtResource("2_cr26o")
-font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_fblv2"]
 font_size = 30
 
 [node name="MonitorScene" type="ColorRect"]
@@ -81,6 +78,7 @@ horizontal_alignment = 1
 [node name="LevelsScene" parent="." instance=ExtResource("2_lmcqu")]
 
 [node name="ScreenFileBrowser" parent="." instance=ExtResource("3_upgkn")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,45 +92,50 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FileBrowserTutorial" type="Node2D" parent="ScreenFileBrowser"]
+[node name="FileTutorial" type="Node2D" parent="ScreenFileBrowser"]
 visible = false
 
-[node name="Arrow" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
-position = Vector2(137, 336)
-scale = Vector2(0.36948717, 0.36948717)
+[node name="Arrow" type="Sprite2D" parent="ScreenFileBrowser/FileTutorial"]
+position = Vector2(155.99998, 341.00003)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_5bx6i")
 
-[node name="LeftClick" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
-position = Vector2(62, 413)
+[node name="LeftClick" type="Sprite2D" parent="ScreenFileBrowser/FileTutorial"]
+position = Vector2(87, 360)
 scale = Vector2(0.4121094, 0.4121094)
 texture = ExtResource("6_cr26o")
 
-[node name="Label" type="Label" parent="ScreenFileBrowser/FileBrowserTutorial"]
-offset_left = 95.0
-offset_top = 389.0
-offset_right = 804.0
-offset_bottom = 431.0
-text = "Left click on the name of the file/folder to open it"
-label_settings = SubResource("LabelSettings_fblv2")
+[node name="Label" type="Label" parent="ScreenFileBrowser/FileTutorial"]
+offset_left = -195.0
+offset_top = 409.0
+offset_right = 665.0
+offset_bottom = 451.0
+theme_override_font_sizes/font_size = 30
+text = "Left click on the name of the file/folder to open it
+(Open the unlock file to continue)"
+horizontal_alignment = 1
 
-[node name="Arrow2" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
-position = Vector2(15.000002, -7)
-rotation = 2.911505
-scale = Vector2(0.33151728, 0.33151728)
+[node name="BackTutorial" type="Node2D" parent="ScreenFileBrowser"]
+visible = false
+
+[node name="Arrow2" type="Sprite2D" parent="ScreenFileBrowser/BackTutorial"]
+position = Vector2(21, -36)
+rotation = 3.0816607
+scale = Vector2(0.54999995, 0.54999995)
 texture = ExtResource("5_5bx6i")
 
-[node name="LeftClick2" type="Sprite2D" parent="ScreenFileBrowser/FileBrowserTutorial"]
-position = Vector2(-36.000023, -81.999985)
+[node name="LeftClick2" type="Sprite2D" parent="ScreenFileBrowser/BackTutorial"]
+position = Vector2(85, -60)
 scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("6_cr26o")
 
-[node name="Label2" type="Label" parent="ScreenFileBrowser/FileBrowserTutorial"]
-offset_left = 9.0
-offset_top = -107.0
-offset_right = 757.0
-offset_bottom = -65.0
+[node name="Label2" type="Label" parent="ScreenFileBrowser/BackTutorial"]
+offset_left = -235.0
+offset_top = -159.0
+offset_right = 741.0
+offset_bottom = -117.0
+theme_override_font_sizes/font_size = 30
 text = "Left click on the back button to get to the previous folder"
-label_settings = SubResource("LabelSettings_fblv2")
 
 [node name="IntroPopupInformation" parent="." instance=ExtResource("4_ycll6")]
 visible = false
@@ -160,28 +163,62 @@ title = "Oh hi…"
 [node name="ClickServerTutorial" type="Node2D" parent="."]
 visible = false
 
-[node name="Arrow" type="Sprite2D" parent="ClickServerTutorial"]
-position = Vector2(178.99997, 634)
-rotation = -1.176049
-scale = Vector2(0.47318298, 0.47318298)
-texture = ExtResource("5_5bx6i")
-
 [node name="LeftClick" type="Sprite2D" parent="ClickServerTutorial"]
-position = Vector2(280, 661.00006)
+position = Vector2(186.00002, 655.00006)
 scale = Vector2(0.5653076, 0.5590086)
 texture = ExtResource("6_cr26o")
 
 [node name="Label" type="Label" parent="ClickServerTutorial"]
-offset_left = 329.0
-offset_top = 639.0
-offset_right = 1100.0
-offset_bottom = 681.0
+offset_left = 244.0
+offset_top = 638.0
+offset_right = 1104.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 30
 text = "Left click on any server to browse through its files"
-label_settings = SubResource("LabelSettings_fblv2")
+
+[node name="UnlockCodeTutorial" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.065
+anchor_right = 0.5
+anchor_bottom = 0.065
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="UnlockCodeTutorial"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -37.0
+offset_right = 356.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Every unlockable server will have this file"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UnlockCodeTutorial"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -356.0
+offset_right = 356.0
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "Run this first to know what you have to do
+(Close the Enter Code Window to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mask_walk_finished" from="LevelsScene" to="." method="_on_levels_scene_mask_walk_finished"]
 [connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]
-[connection signal="close" from="ScreenFileBrowser" to="." method="_on_screen_file_browser_close"]
 [connection signal="focus" from="ScreenFileBrowser" to="." method="focus_popup"]
 [connection signal="pressed_file" from="ScreenFileBrowser" to="." method="_on_file_browser_pressed_file"]
 [connection signal="close" from="IntroPopupInformation" to="." method="close_popup"]

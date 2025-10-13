@@ -81,6 +81,9 @@ func on_paused_change(is_paused: bool) -> void:
 	if paused != is_paused:
 		paused = is_paused
 
+func on_tutorial_finished() -> void:
+	room.queue_free()
+	$TitleScreen.visible = true
 
 func _on_title_screen_start_game() -> void:
 	$TitleScreen.visible = false
@@ -89,6 +92,7 @@ func _on_title_screen_start_game() -> void:
 func _on_title_screen_start_tutorial() -> void:
 	$TitleScreen.visible = false
 	load_room(true, true)
+	room.tutorial_finished.connect(on_tutorial_finished)
 
 func _on_title_screen_show_options_menu() -> void:
 	$PauseMenu.show_options_menu()

@@ -1,5 +1,7 @@
 class_name Room extends Node3D
 
+signal tutorial_finished
+
 @export
 var shadow_quality: int = 2
 @export
@@ -81,8 +83,10 @@ func set_focus(index: int) -> void:
 		EventBus.set_skip_button.emit(false)
 	if index == 1 and states.tutorial_stage == 1:
 		EventBus.focus_tutorial_visible.emit(false)
-		EventBus.unfocus_tutorial_visible.emit(true)
-		states.tutorial_stage = 3
+		# TODO: monitor_scene tutorial first
+		$MonitorViewport/MonitorScene.start_tutorial()
+		#EventBus.unfocus_tutorial_visible.emit(true)
+		states.tutorial_stage = 2
 	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
@@ -125,8 +129,7 @@ func on_paused_change(is_paused: bool) -> void:
 		states.tutorial_stage = -1
 		set_focus(-1)
 		EventBus.skipped.disconnect(skip_tutorial)
-		start_cutscene.call_deferred() # Called deffered otherwise instantly skipped
-		# TODO: Back to title screen
+		tutorial_finished.emit()
 
 func skip_tutorial() -> void:
 	set_focus(0)
@@ -138,9 +141,8 @@ func skip_tutorial() -> void:
 	EventBus.pause_tutorial_visible.emit(false)
 	EventBus.skipped.disconnect(skip_tutorial)
 	states.tutorial_stage = -1
-	start_cutscene.call_deferred()
 	EventBus.paused_change.emit(true)
-	# TODO: back to title screen
+	tutorial_finished.emit()
 
 func start_cutscene() -> void:
 	set_focus(-1)

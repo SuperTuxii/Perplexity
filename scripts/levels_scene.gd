@@ -30,14 +30,19 @@ var mask_walk_time: float = -1:
 var mask_server_time: float = -1
 
 func _ready() -> void:
-	init_servers_recursive($ServerSprites)
+	run_for_all_servers(func init_server(server: Server) -> void:
+		server.pressed.connect(func run(): open_server_files.emit(server.root_folder_name))
+	)
 	EventBus.unlock_server.connect(unlock_server)
 
-func init_servers_recursive(object: Node2D) -> void:
+func run_for_all_servers(function: Callable) -> void:
+	run_for_all_servers_recursive($ServerSprites, function)
+
+func run_for_all_servers_recursive(object: Node2D, function: Callable) -> void:
 	for child in object.get_children():
 		if child is Server:
-			child.pressed.connect(func run(): open_server_files.emit(child.root_folder_name))
-			init_servers_recursive(child)
+			function.call(child)
+			run_for_all_servers_recursive(child, function)
 
 func _process(delta: float) -> void:
 	# Mask animation

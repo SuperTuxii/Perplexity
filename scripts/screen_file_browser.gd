@@ -1,6 +1,8 @@
 class_name ScreenFileBrowser extends ScreenPopup
 
 signal pressed_file(path: String, type: String, data: Dictionary)
+signal pressed_folder
+signal pressed_back
 
 @onready
 var folder_path_label: Label = $VBoxContainer/Content/VBoxContainer/HBoxContainer/FolderPathLabel
@@ -21,7 +23,7 @@ var server_files: Dictionary = {
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
-		"give me a hint": {
+		"give me a hint (still todo)": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
@@ -209,6 +211,7 @@ func _on_file_pressed(file_name: String) -> void:
 		file_path += "/" + file_name
 	if type == "folder":
 		current_folder_path = file_path
+		pressed_folder.emit()
 	else:
 		pressed_file.emit(root_folder_name + "/" + file_path, type, current_files[file_name])
 
@@ -217,3 +220,4 @@ func _on_back_button_pressed() -> void:
 		current_folder_path = current_folder_path.substr(0, current_folder_path.rfind("/"))
 	else:
 		current_folder_path = ""
+	pressed_back.emit()
