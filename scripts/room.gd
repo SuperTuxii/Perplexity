@@ -125,15 +125,18 @@ func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
 	if states.tutorial_stage == 4:
 		EventBus.pause_tutorial_visible.emit(false)
-		states.tutorial_stage = -1
-		set_focus(-1)
+		EventBus.set_skip_button.emit(false)
 		EventBus.skipped.disconnect(skip_tutorial)
+		EventBus.continue_to_back_to_title.emit()
+		states.tutorial_stage = 5
+	elif states.tutorial_stage == 5:
+		$MonitorViewport/MonitorScene.tutorial_stage = -1
+		states.tutorial_stage = -1
 		tutorial_finished.emit()
 
 func _on_unlock_server(_name: String) -> void:
 	if $MonitorViewport/MonitorScene.tutorial_stage == 5:
 		EventBus.unlock_server.disconnect(_on_unlock_server)
-		$MonitorViewport/MonitorScene.tutorial_stage = -1
 		EventBus.unfocus_tutorial_visible.emit(true)
 		states.tutorial_stage = 3
 
@@ -145,9 +148,10 @@ func skip_tutorial() -> void:
 	EventBus.focus_tutorial_visible.emit(false)
 	EventBus.unfocus_tutorial_visible.emit(false)
 	EventBus.pause_tutorial_visible.emit(false)
+	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_tutorial)
+	$MonitorViewport/MonitorScene.tutorial_stage = -1
 	states.tutorial_stage = -1
-	EventBus.paused_change.emit(true)
 	tutorial_finished.emit()
 
 func start_cutscene() -> void:

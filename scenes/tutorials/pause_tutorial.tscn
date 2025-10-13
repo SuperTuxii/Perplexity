@@ -9,14 +9,14 @@ font_size = 30
 font_size = 100
 font_color = Color(0.9, 0.9, 0.9, 1)
 
-[node name="PauseTutorial" type="ColorRect"]
+[node name="PauseTutorial" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.5, 0.5, 0.5, 0.19607843)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -82,6 +82,9 @@ func on_paused_change(is_paused: bool) -> void:
 		paused = is_paused
 
 func on_tutorial_finished() -> void:
+	room.states.mouse_motion = Vector2()
+	room.states.cutscene_playing = true
+	room.states.current_cutscene_position = 0
 	room.queue_free()
 	$TitleScreen.visible = true
 
