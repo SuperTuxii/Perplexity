@@ -14,7 +14,7 @@ func randomize_movement() -> void:
 		move_tween.kill()
 	move_tween = create_tween()
 	$Camera3D.rotation = Vector3()
-	move_tween.tween_property($Camera3D, "rotation", Vector3(0, -TAU, 0), 60)
+	move_tween.tween_property($Camera3D, "rotation", Vector3(0, -TAU, 0), 90)
 	move_tween.tween_callback(randomize_movement)
 
 func _on_visibility_changed() -> void:

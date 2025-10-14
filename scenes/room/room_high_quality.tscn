@@ -342,8 +342,7 @@ emission_texture = SubResource("ViewportTexture_pkh84")
 
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
-alarm_volume = -80.0
-alarm1_volume = -60.0
+alarm0_volume = -60.0
 
 [node name="MonitorViewport" type="SubViewport" parent="."]
 disable_3d = true

@@ -12,6 +12,8 @@ signal remove_subtitles
 signal remove_subtitles_instantly
 signal set_skip_button(visible: bool)
 signal skipped
+signal set_skip_to_game_button(visible: bool)
+signal skipped_to_game
 signal drag_tutorial_visible(visible: bool)
 signal focus_tutorial_visible(visible: bool)
 signal unfocus_tutorial_visible(visible: bool)

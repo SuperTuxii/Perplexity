@@ -156,7 +156,18 @@ grow_vertical = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="SkipButton" type="Button" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SkipToGameButton" type="Button" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Skip to game"
+
+[node name="SkipButton" type="Button" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
@@ -164,4 +175,5 @@ size_flags_vertical = 8
 text = "Skip"
 
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]
-[connection signal="pressed" from="MarginContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SkipToGameButton" to="." method="_on_skip_to_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

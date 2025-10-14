@@ -81,9 +81,10 @@ func set_focus(index: int) -> void:
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
 		EventBus.set_skip_button.emit(false)
+		EventBus.set_skip_to_game_button.emit(false)
 	if index == 1 and states.tutorial_stage == 1:
 		EventBus.focus_tutorial_visible.emit(false)
-		$MonitorViewport/MonitorScene.start_tutorial()
+		states.monitor_scene.start_tutorial()
 		EventBus.unlock_server.connect(_on_unlock_server)
 		states.tutorial_stage = 2
 	if index == -1:
@@ -114,8 +115,8 @@ func finished_focus() -> void:
 				EventBus.pause_tutorial_visible.emit(true)
 				states.tutorial_stage = 4
 		1:
-			if $MonitorViewport/MonitorScene.security_breached_visible and states.tutorial_stage == -1:
-				$MonitorViewport/MonitorScene.security_breached_visible = false
+			if states.monitor_scene.security_breached_visible and states.tutorial_stage == -1:
+				states.monitor_scene.security_breached_visible = false
 				$CutsceneAnimator.play("alarm_ease_out")
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
@@ -130,7 +131,7 @@ func _on_paused_change(is_paused: bool) -> void:
 		EventBus.continue_to_back_to_title.emit()
 		states.tutorial_stage = 5
 	elif states.tutorial_stage == 5:
-		$MonitorViewport/MonitorScene.finish_tutorial()
+		states.monitor_scene.finish_tutorial()
 		states.tutorial_stage = -1
 		tutorial_finished.emit()
 
@@ -149,7 +150,7 @@ func skip_tutorial() -> void:
 	EventBus.pause_tutorial_visible.emit(false)
 	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_tutorial)
-	$MonitorViewport/MonitorScene.finish_tutorial()
+	states.monitor_scene.finish_tutorial()
 	states.tutorial_stage = -1
 	tutorial_finished.emit()
 
@@ -158,17 +159,38 @@ func start_cutscene() -> void:
 	$CutsceneAnimator.play("start_sleep")
 	EventBus.set_skip_button.emit(true)
 	EventBus.skipped.connect(skip_cutscene)
+	EventBus.set_skip_to_game_button.emit(true)
+	EventBus.skipped_to_game.connect(skip_to_game)
 
 func skip_cutscene() -> void:
 	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_cutscene)
+	EventBus.set_skip_to_game_button.emit(false)
+	EventBus.skipped_to_game.disconnect(skip_to_game)
 	$CutsceneAnimator.play("skip_" + $CutsceneAnimator.current_animation)
 	camera.rotation.x = 0
 
 func finish_cutscene() -> void:
 	EventBus.set_skip_button.emit(false)
 	EventBus.skipped.disconnect(skip_cutscene)
+	EventBus.set_skip_to_game_button.emit(false)
+	EventBus.skipped_to_game.disconnect(skip_to_game)
 	set_focus(0)
+
+func skip_to_game() -> void:
+	EventBus.set_skip_button.emit(false)
+	EventBus.skipped.disconnect(skip_cutscene)
+	EventBus.set_skip_to_game_button.emit(false)
+	EventBus.skipped_to_game.disconnect(skip_to_game)
+	set_door_lock(true)
+	remove_subtitles_instantly()
+	set_eyelids_instantly(false)
+	set_security_breached(true)
+	fade_into_after_cutscene_music(0)
+	set_focus(1)
+	states.focus_weight = 1
+	_process(0)
+	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
 	if !states.paused and states.focus == 0 and states.focus_weight == -1: # Saving screen drag when focus is 0
@@ -262,24 +284,17 @@ var alarm1_volume: float:
 		EventBus.set_alarm1_volume.emit(value)
 func set_alarm(playing: bool) -> void:
 	EventBus.set_alarm.emit(playing)
-
 func set_security_breached(security_breached_visible: bool) -> void:
-	$MonitorViewport/MonitorScene.security_breached_visible = security_breached_visible
-
+	states.monitor_scene.security_breached_visible = security_breached_visible
 func set_eyelids(close: bool, eyelid_speed: float) -> void:
 	EventBus.set_eyelids.emit(close, eyelid_speed)
-
 func set_eyelids_instantly(close: bool) -> void:
 	EventBus.set_eyelids_instantly.emit(close)
-
 func set_subtitles(subtitle: String, stay_seconds: float, subtitle_show_time: float) -> void:
 	EventBus.set_subtitles.emit(subtitle, stay_seconds, subtitle_show_time)
-
 func remove_subtitles_instantly() -> void:
 	EventBus.remove_subtitles_instantly.emit()
-
 func music_fade_out(time: float) -> void:
 	EventBus.music_fade_out.emit(time)
-
 func fade_into_after_cutscene_music(time: float) -> void:
 	EventBus.fade_into_after_cutscene_music.emit(time)

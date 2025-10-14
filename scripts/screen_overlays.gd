@@ -1,6 +1,7 @@
 class_name ScreenOverlays extends Control
 
 signal skipped
+signal skipped_to_game
 
 @onready
 var eyelid_animator: AnimationPlayer = $EyelidAnimator
@@ -19,6 +20,7 @@ func _ready() -> void:
 	EventBus.remove_subtitles.connect(remove_subtitles)
 	EventBus.remove_subtitles_instantly.connect(remove_subtitles_instantly)
 	EventBus.set_skip_button.connect(set_skip_button)
+	EventBus.set_skip_to_game_button.connect(set_skip_to_game_button)
 	EventBus.drag_tutorial_visible.connect(set_drag_tutorial_visible)
 	EventBus.focus_tutorial_visible.connect(set_focus_tutorial_visible)
 	EventBus.unfocus_tutorial_visible.connect(set_unfocus_tutorial_visible)
@@ -66,7 +68,10 @@ func remove_subtitles_instantly() -> void:
 		$SubtitleContainer/StayTimer.stop()
 
 func set_skip_button(button_visible: bool) -> void:
-	$MarginContainer/SkipButton.visible = button_visible
+	$MarginContainer/HBoxContainer/SkipButton.visible = button_visible
+
+func set_skip_to_game_button(button_visible: bool) -> void:
+	$MarginContainer/HBoxContainer/SkipToGameButton.visible = button_visible
 
 func set_drag_tutorial_visible(tutorial_visible: bool) -> void:
 	$DragTutorial.visible = tutorial_visible
@@ -83,3 +88,7 @@ func _on_stay_timer_timeout() -> void:
 func _on_skip_button_pressed() -> void:
 	skipped.emit()
 	EventBus.skipped.emit()
+
+func _on_skip_to_game_button_pressed() -> void:
+	skipped_to_game.emit()
+	EventBus.skipped_to_game.emit()
