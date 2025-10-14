@@ -22,7 +22,6 @@ boot_splash/show_image=false
 [audio]
 
 buses/default_bus_layout="uid://wa130b6sd4re"
-general/default_playback_type=1
 
 [autoload]
 
