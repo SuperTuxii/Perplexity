@@ -135,10 +135,9 @@ func _on_paused_change(is_paused: bool) -> void:
 		tutorial_finished.emit()
 
 func _on_unlock_server(_name: String) -> void:
-	if $MonitorViewport/MonitorScene.tutorial_stage == 5:
-		EventBus.unlock_server.disconnect(_on_unlock_server)
-		EventBus.unfocus_tutorial_visible.emit(true)
-		states.tutorial_stage = 3
+	EventBus.unlock_server.disconnect(_on_unlock_server)
+	EventBus.unfocus_tutorial_visible.emit(true)
+	states.tutorial_stage = 3
 
 func skip_tutorial() -> void:
 	set_focus(0)

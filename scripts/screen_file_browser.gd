@@ -23,13 +23,15 @@ var server_files: Dictionary = {
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
-		"give me a hint (not yet)": {
+		"give me a hint": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
 			"title": "Hint",
 			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
-	return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
+	var hint: ScreenPopupText = preload("res://scenes/monitor_scenes/screen_popup_text.tscn").instantiate()
+	hint.text = "There might be something in that folder"
+	return hint
 		},
 		"folder": {
 			"type": "folder",
@@ -134,7 +136,7 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"width": 300,
 			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles as well as the hints for the first level and more reports for the first level. I hope you enjoyed it this far.[/i]"
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles as well more reports for the first level. I hope you enjoyed it this far.[/i]"
 		}
 	}
 }:

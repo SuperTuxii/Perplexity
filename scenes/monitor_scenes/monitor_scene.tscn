@@ -262,8 +262,10 @@ offset_left = -356.0
 offset_right = 356.0
 offset_bottom = 37.0
 grow_horizontal = 2
+theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 22
-text = "There might be something in that folder"
+text = "Run \"give me a hint\" if you need a hint
+(always available alongside the \"unlock\" file)"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -35,7 +35,7 @@ func finish_tutorial() -> void:
 	tutorial_stage = -1
 	for key in open_files:
 		close_popup(open_files[key])
-	$LevelsScene.run_for_all_servers(func unlock_server(server: Server) -> void:
+	$LevelsScene.run_for_all_servers(func lock_server(server: Server) -> void:
 		server.pressable = false
 	)
 
