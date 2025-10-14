@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfmygl18faxqt"]
+
+[ext_resource type="Script" uid="uid://4aclhv3qhpkn" path="res://scripts/file_executables/hints_lvl1.gd" id="1_k1yyq"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_2hit2"]
+[ext_resource type="Texture2D" uid="uid://c3vkmaygqvcuo" path="res://assets/textures/server_1a/code_triangle.svg" id="3_e6cu3"]
+[ext_resource type="Texture2D" uid="uid://cet4ehhina4b0" path="res://assets/textures/server_1a/code_circle.svg" id="4_ka2ut"]
+[ext_resource type="Texture2D" uid="uid://c5le7pdgrirpn" path="res://assets/textures/server_1a/code_square.svg" id="5_k3e3b"]
+[ext_resource type="Texture2D" uid="uid://2yxr6xu4il0j" path="res://assets/textures/server_1a/code_octagon.svg" id="6_isk2u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
+bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
+content_margin_right = 50.0
+
+[node name="ScreenPopup" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 200)
+offset_right = 183.0
+offset_bottom = 167.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
+script = ExtResource("1_k1yyq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
+text = "Hint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_2hit2")
+flat = true
+icon_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TypeSelectionLayout" type="HBoxContainer" parent="VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+
+[node name="TriangleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+icon = ExtResource("3_e6cu3")
+
+[node name="CircleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+icon = ExtResource("4_ka2ut")
+
+[node name="SquareButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+icon = ExtResource("5_k3e3b")
+
+[node name="OctagonButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+icon = ExtResource("6_isk2u")
+
+[node name="HintText" type="RichTextLabel" parent="VBoxContainer/Content"]
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/TriangleButton" to="." method="_on_triangle_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/CircleButton" to="." method="_on_circle_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/SquareButton" to="." method="_on_square_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/OctagonButton" to="." method="_on_octagon_button_pressed"]

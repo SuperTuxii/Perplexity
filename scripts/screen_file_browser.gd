@@ -71,8 +71,10 @@ var server_files: Dictionary = {
 			"size": "923B",
 			"modified": "Today",
 			"title": "Hint",
-			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
-	return preload("res://scenes/monitor_scenes/screen_popup.tscn").instantiate()
+			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
+	hints_exec.data = data
+	return hints_exec
 		},
 		"code": {
 			"type": "image",
