@@ -22,6 +22,7 @@ boot_splash/show_image=false
 [audio]
 
 buses/default_bus_layout="uid://wa130b6sd4re"
+driver/output_latency.web=100
 
 [autoload]
 
