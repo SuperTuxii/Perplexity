@@ -96,13 +96,29 @@ var server_files: Dictionary = {
 					"modified": "Last Month",
 					"value": "res://assets/textures/server_1a/report-45.png"
 				},
-				"report-88": {
+				"report-58": {
+					"type": "text",
+					"size": "193B",
+					"modified": "2 weeks ago",
+					"width": 300,
+					"height": 300,
+					"value": "The kitchen service wasn't done yesterday, but I also haven't seen the employee that was in charge of it yesterday for quite some time. Is he even still part of this company? Would be nice to know so I could update the plan if that is the case."
+				},
+				"report-83": {
 					"type": "text",
 					"size": "231B",
 					"modified": "Last week",
 					"width": 300,
 					"height": 350,
 					"value": "There is a creepy looking person in front of the company building! They suddenly came out of nowhere and told me: \"The square is the file size's last digit\". I have no idea what that is supposed to mean, but I am reporting this, because they looked like a security risk and so that we know this happened once already if this were to happen again."
+				},
+				"report-87": {
+					"type": "text",
+					"size": "126B",
+					"modified": "Last week",
+					"width": 300,
+					"height": 200,
+					"value": "HELP, my pc won't turn on. Is there anyone who can help me? If that is the case please come over to my desk and I promise I won't be too much of a pain."
 				},
 				"report-90": {
 					"type": "text",
@@ -111,6 +127,14 @@ var server_files: Dictionary = {
 					"width": 300,
 					"height": 300,
 					"value": "I just came in and noticed some random piece of paper on my desk. It has a circle and the number five on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^."
+				},
+				"report-99": {
+					"type": "text",
+					"size": "153B",
+					"modified": "3 days ago",
+					"width": 300,
+					"height": 200,
+					"value": "Good morning,\nI think I lost my USB Stick. In case anyone spots a blue USB Stick please return it to me. Thanks in advance."
 				},
 				"report-103": {
 					"type": "image",
