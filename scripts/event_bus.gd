@@ -28,6 +28,7 @@ signal play_mouse_sound(pressed: bool, volume_db: float)
 signal play_music(music: AudioStream, volume_db: float)
 signal music_fade_out(time: float)
 signal fade_into_after_cutscene_music(time: float)
+signal play_sound_effect(sound: AudioStream, volume_db: float)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
 

@@ -45,6 +45,8 @@ script = ExtResource("10_nhbng")
 start_music = SubResource("AudioStreamRandomizer_nhbng")
 after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
 
+[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="show_options_menu" from="TitleScreen" to="." method="_on_title_screen_show_options_menu"]
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="start_tutorial" from="TitleScreen" to="." method="_on_title_screen_start_tutorial"]

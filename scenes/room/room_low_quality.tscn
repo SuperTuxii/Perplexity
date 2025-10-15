@@ -1,8 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=38 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
+[ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_4nn56"]
+[ext_resource type="AudioStream" uid="uid://bhdv266lswnvv" path="res://assets/audio/light_flicker2.wav" id="3_hgq2s"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
+[ext_resource type="AudioStream" uid="uid://bfoivwkkqmo4f" path="res://assets/audio/light_flicker3.wav" id="4_k43xu"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
 [ext_resource type="PackedScene" uid="uid://caoqy67vf7yav" path="res://assets/3d/low/Keylessboard.blend" id="22_02vy7"]
 [ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
@@ -19,6 +22,13 @@
 [ext_resource type="PackedScene" uid="uid://wy8rqd4vl60h" path="res://assets/3d/low/Monitor.blend" id="22_vd8ga"]
 [ext_resource type="PackedScene" uid="uid://dt4mndwh776ep" path="res://assets/3d/low/Light.blend" id="22_x2sdw"]
 [ext_resource type="PackedScene" uid="uid://dn3ke7mq6up7t" path="res://assets/3d/low/Paper.blend" id="23_rgsb6"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4y21u"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("2_4nn56")
+stream_1/stream = ExtResource("3_hgq2s")
+stream_2/stream = ExtResource("4_k43xu")
 
 [sub_resource type="Animation" id="Animation_ml77k"]
 length = 0.001
@@ -350,6 +360,7 @@ emission_texture = SubResource("ViewportTexture_pkh84")
 [node name="RoomLowQuality" type="Node3D"]
 script = ExtResource("1_0vuq4")
 shadow_quality = 0
+light_flicker_sound = SubResource("AudioStreamRandomizer_4y21u")
 alarm_volume = -80.0
 alarm1_volume = -60.0
 

@@ -36,7 +36,8 @@ func _ready() -> void:
 	load_audio()
 	options.room_quality_changed.connect(load_room)
 	options.positional_audio_changed.connect(load_audio)
-	EventBus.paused_change.connect(on_paused_change)
+	EventBus.paused_change.connect(_on_paused_change)
+	EventBus.play_sound_effect.connect(play_sound_effect)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
@@ -77,11 +78,18 @@ func load_room(create: bool = false, tutorial: bool = false) -> void:
 	room.states.paused = paused
 	add_child(room)
 
-func on_paused_change(is_paused: bool) -> void:
+func play_sound_effect(sound: AudioStream, volume_db: float) -> void:
+	if $SoundEffectPlayer.playing:
+		return
+	$SoundEffectPlayer.stream = sound
+	$SoundEffectPlayer.volume_db = volume_db
+	$SoundEffectPlayer.play()
+
+func _on_paused_change(is_paused: bool) -> void:
 	if paused != is_paused:
 		paused = is_paused
 
-func on_tutorial_finished() -> void:
+func _on_tutorial_finished() -> void:
 	room.states.mouse_motion = Vector2()
 	room.states.cutscene_playing = true
 	room.states.current_cutscene_position = 0
@@ -95,7 +103,7 @@ func _on_title_screen_start_game() -> void:
 func _on_title_screen_start_tutorial() -> void:
 	$TitleScreen.visible = false
 	load_room(true, true)
-	room.tutorial_finished.connect(on_tutorial_finished)
+	room.tutorial_finished.connect(_on_tutorial_finished)
 
 func _on_title_screen_show_options_menu() -> void:
 	$PauseMenu.show_options_menu()
