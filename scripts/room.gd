@@ -7,6 +7,8 @@ var shadow_quality: int = 2
 @export
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @export
+var light_frame_material: Material = preload("res://materials/room/light/LightFrameMaterial.tres")
+@export
 var monitor_scene: PackedScene = preload("res://scenes/monitor_scenes/monitor_scene.tscn")
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
@@ -279,8 +281,7 @@ func set_door_lock(locked: bool) -> void:
 #endregion
 #region Random Events
 func roll_random_event() -> void:
-	var roll: int = randi_range(0, time_random_events_pool.keys().back()-1)
-	print("ROLL " + str(roll))
+	var roll: int = randi_range(0, time_random_events_pool.keys().back())
 	var key: int = roll
 	while !time_random_events_pool.has(key):
 		key+=1
@@ -288,15 +289,24 @@ func roll_random_event() -> void:
 		time_random_events_pool[key].call()
 	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
 func light_flicker() -> void:
-	print("FLICKER")
-	var light: OmniLight3D = $Lights.get_child(randi_range(4, 7))
+	var child_index: int = randi_range(0, 3)
+	var light_model: MeshInstance3D = $Lights.get_child(child_index).get_child(0)
+	var light: OmniLight3D = $Lights.get_child(child_index + 4)
 	var tween: Tween = create_tween()
+	var set_override_material: Callable = func run():
+		light_model.material_override = light_frame_material
+	var del_override_material: Callable = func run():
+		light_model.material_override = null
+	light_model.material_override = light_frame_material
 	light.visible = false
-	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_interval(randf_range(0.025, 0.25))
+	tween.tween_callback(del_override_material)
 	tween.tween_property(light, "visible", true, 0)
-	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_interval(randf_range(0.025, 0.25))
+	tween.tween_callback(set_override_material)
 	tween.tween_property(light, "visible", false, 0)
-	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_interval(randf_range(0.025, 0.25))
+	tween.tween_callback(del_override_material)
 	tween.tween_property(light, "visible", true, 0)
 	tween.play()
 #endregion
