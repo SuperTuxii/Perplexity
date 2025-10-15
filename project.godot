@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [gui]
 
+theme/custom="uid://dbqsov72nna8f"
 theme/custom_font="uid://cvx1ij1c4enhk"
 
 [input]
