@@ -129,7 +129,7 @@ var server_files: Dictionary = {
 					"modified": "Last week",
 					"width": 300,
 					"height": 300,
-					"value": "I just came in and noticed some random piece of paper on my desk. It has a circle and the number five on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^."
+					"value": "I just came in and noticed some random piece of paper on my desk. It has a circle and the number 5 on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^."
 				},
 				"report-99": {
 					"type": "text",
