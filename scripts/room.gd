@@ -20,10 +20,10 @@ var options: OptionsMenu
 var states: RoomStates
 
 @export
-var time_random_events_interval: float = 10
+var time_random_events_interval: float = 15
 var time_random_events_pool: Dictionary = {
-	0: null,
-	5: light_flicker
+	3: null,
+	4: light_flicker
 }
 
 func _ready() -> void:
