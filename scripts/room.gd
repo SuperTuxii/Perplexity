@@ -15,6 +15,13 @@ var monitor_viewport: SubViewport = $MonitorViewport
 var options: OptionsMenu
 var states: RoomStates
 
+@export
+var time_random_events_interval: float = 15
+var time_random_events_pool: Dictionary = {
+	3: null,
+	4: light_flicker
+}
+
 func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
 	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", shadow_quality)
@@ -32,6 +39,7 @@ func _ready() -> void:
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
 	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
 	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
 		#$Camera3D.make_current()
@@ -206,7 +214,7 @@ func _input(event: InputEvent) -> void:
 				EventBus.focus_tutorial_visible.emit(true)
 				states.tutorial_stage = 1
 
-# Monitor hover and focus
+#region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
@@ -216,8 +224,8 @@ func _on_monitor_area_mouse_entered() -> void:
 		$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 1
 func _on_monitor_area_mouse_exited() -> void:
 	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
-
-# Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
+#endregion
+#region Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
 var is_mouse_inside = false
 var last_event_pos2D = null
 var last_event_time: float = -1.0
@@ -262,14 +270,37 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	last_event_pos2D = event_pos2D
 	last_event_time = now
 	monitor_viewport.push_input(event)
-
-# Door Lock Material
+#endregion
+#region Door Lock Material
 func set_door_lock(locked: bool) -> void:
 	var lock_material: StandardMaterial3D = $Door/LockStatus.mesh.surface_get_material(0)
 	lock_material.albedo_color = Color(0.9, 0.225, 0.225, 1.0) if locked else Color("#39e639ff")
 	lock_material.emission = lock_material.albedo_color
-
-#Functions and Variables for CutsceneAnimator
+#endregion
+#region Random Events
+func roll_random_event() -> void:
+	var roll: int = randi_range(0, time_random_events_pool.keys().back()-1)
+	print("ROLL " + str(roll))
+	var key: int = roll
+	while !time_random_events_pool.has(key):
+		key+=1
+	if time_random_events_pool[key] is Callable:
+		time_random_events_pool[key].call()
+	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
+func light_flicker() -> void:
+	print("FLICKER")
+	var light: OmniLight3D = $Lights.get_child(randi_range(4, 7))
+	var tween: Tween = create_tween()
+	light.visible = false
+	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_property(light, "visible", true, 0)
+	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_property(light, "visible", false, 0)
+	tween.tween_interval(randf_range(0.25, 1))
+	tween.tween_property(light, "visible", true, 0)
+	tween.play()
+#endregion
+#region Functions and Variables for CutsceneAnimator
 @export
 var alarm_volume: float:
 	set(value):
@@ -298,3 +329,4 @@ func music_fade_out(time: float) -> void:
 	EventBus.music_fade_out.emit(time)
 func fade_into_after_cutscene_music(time: float) -> void:
 	EventBus.fade_into_after_cutscene_music.emit(time)
+#endregion
