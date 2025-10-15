@@ -160,7 +160,7 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"width": 300,
 			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles as well more reports for the first level. I hope you enjoyed it this far.[/i]"
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles. I hope you enjoyed it this far.[/i]"
 		}
 	}
 }:
