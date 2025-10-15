@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://deu5aup1ru16f"]
+[gd_scene load_steps=4 format=3 uid="uid://deu5aup1ru16f"]
 
 [ext_resource type="Script" uid="uid://17xhj7gqgv3w" path="res://scripts/pause_menu.gd" id="1_n87rw"]
 [ext_resource type="PackedScene" uid="uid://bwbcbnlibfqfq" path="res://scenes/options_menu.tscn" id="2_myx47"]
@@ -11,18 +11,6 @@ outline_color = Color(0.1, 0.1, 0.1, 1)
 shadow_size = 15
 shadow_color = Color(0.2, 0.2, 0.2, 1)
 shadow_offset = Vector2(2, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.05, 0.05, 0.05, 0.78431374)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -65,7 +53,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
 text = "Options"
 
 [node name="ContinueButton" type="Button" parent="Layout"]
@@ -74,7 +61,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_n87rw")
 text = "Continue"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_myx47")]
