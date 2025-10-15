@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfmygl18faxqt"]
+[gd_scene load_steps=9 format=3 uid="uid://bfmygl18faxqt"]
 
 [ext_resource type="Script" uid="uid://4aclhv3qhpkn" path="res://scripts/file_executables/hints_lvl1.gd" id="1_k1yyq"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_2hit2"]
@@ -7,137 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://c5le7pdgrirpn" path="res://assets/textures/server_1a/code_square.svg" id="5_k3e3b"]
 [ext_resource type="Texture2D" uid="uid://2yxr6xu4il0j" path="res://assets/textures/server_1a/code_octagon.svg" id="6_isk2u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
-bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cu3"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_detail = 5
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
 content_margin_right = 50.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cu3"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.75, 0.75, 0.75, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka2ut"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.5, 0.5, 0.5, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3e3b"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.85, 0.85, 0.85, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isk2u"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.5, 0.5, 0.5, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdxj5"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.85, 0.85, 0.85, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m0b5"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.5, 0.5, 0.5, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b51cm"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.85, 0.85, 0.85, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4peqd"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.5, 0.5, 0.5, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mevct"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.85, 0.85, 0.85, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [node name="ScreenPopup" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 150)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
 script = ExtResource("1_k1yyq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -146,7 +31,7 @@ layout_mode = 2
 [node name="Top" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6cu3")
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
 layout_mode = 2
@@ -187,30 +72,18 @@ layout_mode = 2
 
 [node name="TriangleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e6cu3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ka2ut")
-theme_override_styles/hover = SubResource("StyleBoxFlat_k3e3b")
 icon = ExtResource("3_e6cu3")
 
 [node name="CircleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e6cu3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_isk2u")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hdxj5")
 icon = ExtResource("4_ka2ut")
 
 [node name="SquareButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e6cu3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2m0b5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b51cm")
 icon = ExtResource("5_k3e3b")
 
 [node name="OctagonButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e6cu3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4peqd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mevct")
 icon = ExtResource("6_isk2u")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

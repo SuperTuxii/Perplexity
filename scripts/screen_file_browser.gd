@@ -11,6 +11,9 @@ var back_button: Button = $VBoxContainer/Content/VBoxContainer/HBoxContainer/Bac
 @onready
 var layout: GridContainer = $VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer
 
+@export
+var button_theme: Theme = preload("res://theme/file_manager_table_theme.tres")
+
 var server_files: Dictionary = {
 	"Server": {
 		"unlock": {
@@ -204,21 +207,20 @@ func update_contents() -> void:
 		name_button.text = file_name
 		name_button.icon = load("res://assets/textures/file_types/" + current_files[file_name]["type"] + ".svg")
 		name_button.focus_mode = Control.FOCUS_NONE
+		name_button.theme = button_theme
 		name_button.pressed.connect(func run(): _on_file_pressed(file_name))
 		layout.add_child(name_button)
 		var size_button: Button = Button.new()
 		size_button.text = current_files[file_name]["size"]
 		size_button.disabled = true
 		size_button.focus_mode = Control.FOCUS_NONE
-		size_button.add_theme_color_override("font_disabled_color", name_button.get_theme_color("font_color"))
-		size_button.add_theme_stylebox_override("disabled", name_button.get_theme_stylebox("normal"))
+		size_button.theme = button_theme
 		layout.add_child(size_button)
 		var modified_button: Button = Button.new()
 		modified_button.text = current_files[file_name]["modified"]
 		modified_button.disabled = true
 		modified_button.focus_mode = Control.FOCUS_NONE
-		modified_button.add_theme_color_override("font_disabled_color", name_button.get_theme_color("font_color"))
-		modified_button.add_theme_stylebox_override("disabled", name_button.get_theme_stylebox("normal"))
+		modified_button.theme = button_theme
 		layout.add_child(modified_button)
 
 func get_files_for_current_folder_path() -> Dictionary:

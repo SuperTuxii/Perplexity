@@ -1,21 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://rd2krhk6l0x"]
+[gd_scene load_steps=5 format=3 uid="uid://rd2krhk6l0x"]
 
 [ext_resource type="Script" uid="uid://cpbnoqpmk35ns" path="res://scripts/screen_popup.gd" id="1_7uyd3"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="1_rs3sa"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
-bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_detail = 5
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
 content_margin_right = 50.0
@@ -25,7 +19,6 @@ custom_minimum_size = Vector2(200, 150)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
 script = ExtResource("1_7uyd3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

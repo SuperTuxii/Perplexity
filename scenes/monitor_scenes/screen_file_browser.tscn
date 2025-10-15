@@ -1,22 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://d00ixyg22g8s5"]
+[gd_scene load_steps=15 format=3 uid="uid://d00ixyg22g8s5"]
 
 [ext_resource type="Script" uid="uid://qdmgh2h1wrm8" path="res://scripts/screen_file_browser.gd" id="1_fecks"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_0kh3a"]
 [ext_resource type="Texture2D" uid="uid://b6foa3i6rp1hq" path="res://assets/textures/back.svg" id="3_0kh3a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uyd3"]
-bg_color = Color(0.12, 0.12, 0.12, 0.78431374)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kh3a"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_detail = 5
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5xwi"]
 content_margin_right = 50.0
@@ -32,7 +26,8 @@ bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 0.78431374)
-corner_detail = 5
+corner_radius_top_left = 5
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7815"]
 
@@ -62,7 +57,8 @@ bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
 border_width_left = 1
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 0.78431374)
-corner_detail = 5
+corner_radius_top_right = 5
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7t5cm"]
 
@@ -71,7 +67,6 @@ custom_minimum_size = Vector2(500, 300)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_7uyd3")
 script = ExtResource("1_fecks")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -80,7 +75,7 @@ layout_mode = 2
 [node name="Top" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kh3a")
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
 layout_mode = 2

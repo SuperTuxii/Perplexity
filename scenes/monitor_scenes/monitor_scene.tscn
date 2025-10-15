@@ -149,7 +149,7 @@ vertical_alignment = 1
 
 [node name="IntroPopupInformation" parent="." instance=ExtResource("4_ycll6")]
 visible = false
-custom_minimum_size = Vector2(350, 425)
+custom_minimum_size = Vector2(350, 450)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.985
