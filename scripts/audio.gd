@@ -13,12 +13,6 @@ var subtitles: AudioStream
 @export
 var alarm: AudioStream
 @export
-var mouse_click_press: AudioStream = preload("res://assets/audio/mouse_press.mp3")
-@export
-var mouse_click_release: AudioStream = preload("res://assets/audio/mouse_release.mp3")
-@export
-var light_flicker: AudioStream
-@export
 var mask_server_hack: AudioStream
 @export
 var mask_final_server_hack: AudioStream
@@ -28,6 +22,14 @@ var mask_server_start_hack: AudioStream
 var mask_final_server_start_hack: AudioStream
 @export
 var server_unlock: AudioStream
+@export
+var mouse_click_press: AudioStream
+@export
+var mouse_click_release: AudioStream
+@export
+var light_flicker: AudioStream
+@export
+var door_knock: AudioStream
 
 signal player_finished(key: StringName)
 

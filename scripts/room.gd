@@ -20,8 +20,9 @@ var states: RoomStates
 @export
 var time_random_events_interval: float = 15
 var time_random_events_pool: Dictionary = {
-	3: null,
-	4: light_flicker
+	6: null,
+	8: light_flicker,
+	9: knock_door
 }
 
 func _ready() -> void:
@@ -282,6 +283,7 @@ func set_door_lock(locked: bool) -> void:
 #region Random Events
 func roll_random_event() -> void:
 	var roll: int = randi_range(0, time_random_events_pool.keys().back())
+	print(roll)
 	var key: int = roll
 	while !time_random_events_pool.has(key):
 		key+=1
@@ -310,6 +312,9 @@ func light_flicker() -> void:
 	tween.tween_property(light, "visible", true, 0)
 	tween.play()
 	Audio.play("light_flicker", Audio.light_flicker, -2.5, "SFX", light.global_position)
+func knock_door() -> void:
+	var door_position: Vector3 = Vector3(0, 1.25, 5 if randi_range(0, 1) == 0 else -5)
+	Audio.play("door_knock", Audio.door_knock, -2.5, "SFX", door_position)
 #endregion
 #region Functions and Variables for CutsceneAnimator
 @export
