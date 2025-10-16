@@ -345,6 +345,7 @@ func music_fade_out(time: float) -> void:
 	fade_tween.tween_callback(func stop_music(): Audio.stop("music"))
 	fade_tween.play()
 func fade_into_after_cutscene_music(time: float) -> void:
+	Audio.stop("music")
 	Audio.play("music", Audio.after_cutscene_music, -80, "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
 	var fade_tween: Tween = create_tween()
 	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), -80, linear_to_db(0.4), time)
