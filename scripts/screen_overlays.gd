@@ -48,8 +48,8 @@ func set_subtitles(subtitle: String, stay_seconds: float = 0, subtitle_show_time
 	$SubtitleContainer/StayTimer.start(stay_seconds)
 
 func play_subtitle_effects(value) -> void:
-	if !$SubtitleContainer/SubtitleEffectsPlayer.playing and $SubtitleContainer/Subtitles.visible_characters != value:
-		$SubtitleContainer/SubtitleEffectsPlayer.play()
+	if !Audio.is_playing("subtitles") and $SubtitleContainer/Subtitles.visible_characters != value:
+		Audio.play("subtitles", Audio.subtitles, -20, "SFX")
 
 func remove_subtitles(time: float = subtitle_time) -> void:
 	if subtitle_tween:

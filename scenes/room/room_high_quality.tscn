@@ -1,12 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=33 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
-[ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_gyaw3"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
-[ext_resource type="AudioStream" uid="uid://bhdv266lswnvv" path="res://assets/audio/light_flicker2.wav" id="3_1xu3x"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="3_gyaw3"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="4_1xu3x"]
-[ext_resource type="AudioStream" uid="uid://bfoivwkkqmo4f" path="res://assets/audio/light_flicker3.wav" id="4_rkjd6"]
 [ext_resource type="PackedScene" uid="uid://sq1lt63o4nxk" path="res://assets/3d/high/Shelf.blend" id="5_rkjd6"]
 [ext_resource type="PackedScene" uid="uid://w3kt8jygllid" path="res://assets/3d/high/Plant.blend" id="6_tuh4a"]
 [ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/high/Container.blend" id="7_osqes"]
@@ -21,13 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://j0ctyk34mj7h" path="res://assets/3d/high/Pencil.blend" id="18_aso14"]
 [ext_resource type="PackedScene" uid="uid://sf3oecv7ei5a" path="res://assets/3d/high/Desk.blend" id="19_bijjx"]
 [ext_resource type="PackedScene" uid="uid://8xp4rx0lugwy" path="res://assets/3d/high/Chair.blend" id="20_5rly2"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tuh4a"]
-random_pitch = 1.5
-streams_count = 3
-stream_0/stream = ExtResource("2_gyaw3")
-stream_1/stream = ExtResource("3_1xu3x")
-stream_2/stream = ExtResource("4_rkjd6")
 
 [sub_resource type="Animation" id="Animation_ml77k"]
 length = 0.001
@@ -352,7 +342,6 @@ emission_texture = SubResource("ViewportTexture_pkh84")
 
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
-light_flicker_sound = SubResource("AudioStreamRandomizer_tuh4a")
 alarm0_volume = -60.0
 
 [node name="MonitorViewport" type="SubViewport" parent="."]

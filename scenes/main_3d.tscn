@@ -1,30 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4ws4gaic8rjp"]
+[gd_scene load_steps=5 format=3 uid="uid://b4ws4gaic8rjp"]
 
 [ext_resource type="Script" uid="uid://dfiayifsnx3cp" path="res://scripts/main.gd" id="1_jl2p6"]
 [ext_resource type="PackedScene" uid="uid://ho6g13j7mrkj" path="res://scenes/title_screen.tscn" id="2_hl4rc"]
 [ext_resource type="PackedScene" uid="uid://deu5aup1ru16f" path="res://scenes/pause_menu.tscn" id="2_jl2p6"]
-[ext_resource type="AudioStream" uid="uid://cumsimcwpnd8r" path="res://assets/audio/music/start_bgm1.mp3" id="2_n2cvh"]
 [ext_resource type="PackedScene" uid="uid://dkaofyvw6ltoh" path="res://scenes/screen_overlays.tscn" id="4_ml77k"]
-[ext_resource type="AudioStream" uid="uid://coiuuce22bxmb" path="res://assets/audio/music/start_bgm2.mp3" id="4_o5vb4"]
-[ext_resource type="AudioStream" uid="uid://bf8ucm1kmio5d" path="res://assets/audio/music/start_bgm3.mp3" id="5_ixjt1"]
-[ext_resource type="AudioStream" uid="uid://b5483h71hgxur" path="res://assets/audio/music/start_bgm4.mp3" id="6_jf700"]
-[ext_resource type="Script" uid="uid://wnb1w6pahw7s" path="res://scripts/music_player.gd" id="10_nhbng"]
-[ext_resource type="AudioStream" uid="uid://dpnxshfb25vju" path="res://assets/audio/music/after_start_bgm1.mp3" id="11_jf700"]
-[ext_resource type="AudioStream" uid="uid://0ljttkicg5v3" path="res://assets/audio/music/after_start_bgm2.mp3" id="12_80pr4"]
-[ext_resource type="AudioStream" uid="uid://cpmtn18e7iiw6" path="res://assets/audio/music/after_start_bgm3.mp3" id="13_nlluf"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhbng"]
-streams_count = 4
-stream_0/stream = ExtResource("2_n2cvh")
-stream_1/stream = ExtResource("4_o5vb4")
-stream_2/stream = ExtResource("5_ixjt1")
-stream_3/stream = ExtResource("6_jf700")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kufr5"]
-streams_count = 3
-stream_0/stream = ExtResource("11_jf700")
-stream_1/stream = ExtResource("12_80pr4")
-stream_2/stream = ExtResource("13_nlluf")
 
 [node name="Main3D" type="Node3D"]
 script = ExtResource("1_jl2p6")
@@ -38,16 +17,6 @@ process_mode = 2
 visible = false
 mouse_filter = 1
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-bus = &"Music"
-script = ExtResource("10_nhbng")
-start_music = SubResource("AudioStreamRandomizer_nhbng")
-after_cutscene_music = SubResource("AudioStreamRandomizer_kufr5")
-
-[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]
-
 [connection signal="show_options_menu" from="TitleScreen" to="." method="_on_title_screen_show_options_menu"]
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="start_tutorial" from="TitleScreen" to="." method="_on_title_screen_start_tutorial"]
-[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

@@ -4,14 +4,8 @@ class_name Main extends Node3D
 var options: OptionsMenu = $PauseMenu/OptionsMenu
 @onready
 var screen_overlays: ScreenOverlays = $ScreenOverlays
-var audio: Audio
 var room: Room
 
-@export
-var audio_scenes: Array[PackedScene] = [
-	preload("res://scenes/audio/audio_non_positional.tscn"),
-	preload("res://scenes/audio/audio_positional.tscn")
-]
 @export
 var room_scenes: Array[PackedScene] = [
 	preload("res://scenes/room/room_high_quality.tscn"),
@@ -33,11 +27,10 @@ var focus: int:
 		return room.states.focus
 
 func _ready() -> void:
-	load_audio()
 	options.room_quality_changed.connect(load_room)
-	options.positional_audio_changed.connect(load_audio)
 	EventBus.paused_change.connect(_on_paused_change)
-	EventBus.play_sound_effect.connect(play_sound_effect)
+	Audio.play("music", Audio.start_music, linear_to_db(0.4), "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
+	Audio.player_finished.connect(_on_audio_player_finished)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
@@ -45,20 +38,6 @@ func _process(_delta: float) -> void:
 			EventBus.paused_change.emit(!paused)
 		else:
 			focus = 0
-
-func load_audio() -> void:
-	if paused and is_inside_tree():
-		get_tree().paused = false
-	var prev_audio_states: Dictionary
-	if audio:
-		prev_audio_states = audio.save_states()
-		audio.queue_free()
-	audio = audio_scenes[int(options.positional_audio)].instantiate()
-	add_child(audio)
-	if prev_audio_states:
-		audio.load_states(prev_audio_states)
-	if paused and is_inside_tree():
-		get_tree().paused = true
 
 func load_room(create: bool = false, tutorial: bool = false) -> void:
 	if !room and !create:
@@ -77,13 +56,6 @@ func load_room(create: bool = false, tutorial: bool = false) -> void:
 		room.states.cutscene_playing = false
 	room.states.paused = paused
 	add_child(room)
-
-func play_sound_effect(sound: AudioStream, volume_db: float) -> void:
-	if $SoundEffectPlayer.playing:
-		return
-	$SoundEffectPlayer.stream = sound
-	$SoundEffectPlayer.volume_db = volume_db
-	$SoundEffectPlayer.play()
 
 func _on_paused_change(is_paused: bool) -> void:
 	if paused != is_paused:
@@ -107,3 +79,7 @@ func _on_title_screen_start_tutorial() -> void:
 
 func _on_title_screen_show_options_menu() -> void:
 	$PauseMenu.show_options_menu()
+
+func _on_audio_player_finished(key: StringName) -> void:
+	if key == "music":
+		Audio.play_again("music")

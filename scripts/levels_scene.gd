@@ -48,9 +48,11 @@ func _process(delta: float) -> void:
 			if mask_walk_time == -1:
 				$Mask.visible = false
 				$ServerSprites.get_child(floori(mask_walk_time)).pressable = true
+				Audio.stop("final_server_hack")
 				Audio.play("final_server_hack", Audio.mask_final_server_hack, -30, "SFX", Audio.MONITOR_POSITION)
 				mask_walk_finished.emit()
 			else:
+				Audio.stop("server_hack")
 				Audio.play("server_hack", Audio.mask_server_hack, -32.5, "SFX", Audio.MONITOR_POSITION)
 	elif mask_walk_time != -1:
 		var prev_index: int = floori(mask_walk_time)
@@ -61,8 +63,10 @@ func _process(delta: float) -> void:
 		if prev_index != floori(mask_walk_time):
 			mask_server_time = 0
 			if mask_walk_time == $ServerSprites.get_child_count()-1:
+				Audio.stop("final_server_start_hack")
 				Audio.play("final_server_start_hack", Audio.mask_final_server_start_hack, -32.5, "SFX", Audio.MONITOR_POSITION)
 			else:
+				Audio.stop("server_start_hack")
 				Audio.play("server_start_hack", Audio.mask_server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)
 			$ServerSprites.get_child(floori(mask_walk_time)).hacked = true
 			$Mask.position = from_position
@@ -83,6 +87,7 @@ func skip_mask_walk() -> void:
 				if child_child is Server:
 					child_child.visible = false
 	$ServerLine.compute_line()
+	Audio.stop("final_server_hack")
 	Audio.play("final_server_hack", Audio.mask_final_server_hack, -30, "SFX", Audio.MONITOR_POSITION)
 	$Mask.visible = false
 	var last_child = $ServerSprites.get_child($ServerSprites.get_child_count() - 1)
@@ -110,7 +115,9 @@ func unlock_server(server_name: String) -> void:
 						child_child.visible = true
 						child_child.pressable = true
 				$ServerLine.compute_line()
+				Audio.stop("server_unlock")
 				Audio.play("server_unlock", Audio.server_unlock, -32.5, "SFX", Audio.MONITOR_POSITION)
 				child.change_completed.disconnect(child.change_completed.get_connections().back().callable)
 			)
+			Audio.stop("server_start_hack")
 			Audio.play("server_start_hack", Audio.server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)

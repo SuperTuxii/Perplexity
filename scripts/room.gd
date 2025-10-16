@@ -315,17 +315,20 @@ func light_flicker() -> void:
 @export
 var alarm_volume: float:
 	set(value):
-		EventBus.set_alarm_volume.emit(value)
+		Audio.set_volume("alarm", value)
 @export
 var alarm0_volume: float:
 	set(value):
-		EventBus.set_alarm0_volume.emit(value)
+		Audio.alarm.set_sync_stream_volume(0, value)
 @export
 var alarm1_volume: float:
 	set(value):
-		EventBus.set_alarm1_volume.emit(value)
+		Audio.alarm.set_sync_stream_volume(1, value)
 func set_alarm(playing: bool) -> void:
-	EventBus.set_alarm.emit(playing)
+	if playing:
+		Audio.play("alarm", Audio.alarm, -80, "SFX", Audio.MONITOR_POSITION)
+	else:
+		Audio.stop("alarm")
 func set_security_breached(security_breached_visible: bool) -> void:
 	states.monitor_scene.security_breached_visible = security_breached_visible
 func set_eyelids(close: bool, eyelid_speed: float) -> void:
@@ -337,7 +340,13 @@ func set_subtitles(subtitle: String, stay_seconds: float, subtitle_show_time: fl
 func remove_subtitles_instantly() -> void:
 	EventBus.remove_subtitles_instantly.emit()
 func music_fade_out(time: float) -> void:
-	EventBus.music_fade_out.emit(time)
+	var fade_tween: Tween = create_tween()
+	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), linear_to_db(0.4), -80, time)
+	fade_tween.tween_callback(func stop_music(): Audio.stop("music"))
+	fade_tween.play()
 func fade_into_after_cutscene_music(time: float) -> void:
-	EventBus.fade_into_after_cutscene_music.emit(time)
+	Audio.play("music", Audio.after_cutscene_music, -80, "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
+	var fade_tween: Tween = create_tween()
+	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), -80, linear_to_db(0.4), time)
+	fade_tween.play()
 #endregion

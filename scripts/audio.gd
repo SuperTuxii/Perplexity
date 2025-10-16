@@ -1,81 +1,117 @@
-class_name AudioOld extends Node
+extends Node3D
+
+const MONITOR_POSITION: Vector3 = Vector3(0.847, 1.125, 1.637)
+const MOUSE_POSITION: Vector3 = Vector3(1.266, 0.83, 1.854)
 
 @export
-var volume_amplifier: float = 1.0
+var start_music: AudioStream
+@export
+var after_cutscene_music: AudioStream
+
+@export
+var subtitles: AudioStream
+@export
+var alarm: AudioStream
 @export
 var mouse_click_press: AudioStream = preload("res://assets/audio/mouse_press.mp3")
 @export
 var mouse_click_release: AudioStream = preload("res://assets/audio/mouse_release.mp3")
+@export
+var light_flicker: AudioStream
+@export
+var mask_server_hack: AudioStream
+@export
+var mask_final_server_hack: AudioStream
+@export
+var mask_server_start_hack: AudioStream
+@export
+var mask_final_server_start_hack: AudioStream
+@export
+var server_unlock: AudioStream
 
-func _ready() -> void:
-	EventBus.play_monitor_sound.connect(play_monitor_sound)
-	EventBus.set_alarm.connect(set_alarm)
-	EventBus.set_alarm_volume.connect(set_alarm_volume)
-	EventBus.set_alarm0_volume.connect(set_alarm0_volume)
-	EventBus.set_alarm1_volume.connect(set_alarm1_volume)
-	EventBus.play_mouse_sound.connect(play_mouse_sound)
+signal player_finished(key: StringName)
 
-func save_states() -> Dictionary:
-	var states: Dictionary = {}
-	states["AlarmAudioStream"] = {
-		"playing": $AlarmAudioStream.playing,
-		"position": $AlarmAudioStream.get_playback_position(),
-		"volume": $AlarmAudioStream.volume_db / volume_amplifier,
-		"alarm0_volume": $AlarmAudioStream.stream.get_sync_stream_volume(0),
-		"alarm1_volume": $AlarmAudioStream.stream.get_sync_stream_volume(1)
-	}
-	states["MonitorAudioStream"] = {
-		"stream": $MonitorAudioStream.stream,
-		"playing": $MonitorAudioStream.playing,
-		"position": $MonitorAudioStream.get_playback_position(),
-		"volume": $MonitorAudioStream.volume_db / volume_amplifier,
-	}
-	states["MonitorAudioStream2"] = {
-		"stream": $MonitorAudioStream2.stream,
-		"playing": $MonitorAudioStream2.playing,
-		"position": $MonitorAudioStream2.get_playback_position(),
-		"volume": $MonitorAudioStream2.volume_db / volume_amplifier,
-	}
-	return states
+@onready
+var positional_audio: Array[AudioStreamPlayer3D] = [
+	$AudioStreamPlayer3D,
+	$AudioStreamPlayer3D2,
+	$AudioStreamPlayer3D3
+]
+@onready
+var non_positional_audio: Array[AudioStreamPlayer] = [
+	$AudioStreamPlayer,
+	$AudioStreamPlayer2,
+	$AudioStreamPlayer3
+]
 
-func load_states(states: Dictionary) -> void:
-	set_alarm(states["AlarmAudioStream"].playing)
-	$AlarmAudioStream.seek(states["AlarmAudioStream"].position)
-	set_alarm_volume(states["AlarmAudioStream"].volume * volume_amplifier)
-	set_alarm0_volume(states["AlarmAudioStream"].alarm0_volume)
-	set_alarm1_volume(states["AlarmAudioStream"].alarm1_volume)
-	$MonitorAudioStream.stream = states["MonitorAudioStream"].stream
-	$MonitorAudioStream.playing = states["MonitorAudioStream"].playing
-	$MonitorAudioStream.seek(states["MonitorAudioStream"].position)
-	$MonitorAudioStream.volume_db = states["MonitorAudioStream"].volume * volume_amplifier
-	$MonitorAudioStream2.stream = states["MonitorAudioStream2"].stream
-	$MonitorAudioStream2.playing = states["MonitorAudioStream2"].playing
-	$MonitorAudioStream2.seek(states["MonitorAudioStream2"].position)
-	$MonitorAudioStream2.volume_db = states["MonitorAudioStream2"].volume * volume_amplifier
+var key_to_player: Dictionary = {}
 
-func play_monitor_sound(sound: AudioStream, volume_db: float) -> void:
-	var audio_stream = $MonitorAudioStream
-	if audio_stream.playing:
-		audio_stream = $MonitorAudioStream2
-	audio_stream.stream = sound
-	audio_stream.volume_db = volume_db * volume_amplifier
-	audio_stream.play()
+func play(key: StringName, sound: AudioStream, volume_db: float, bus: StringName, player_position: Vector3 = Vector3(), player_process_mode: ProcessMode = ProcessMode.PROCESS_MODE_INHERIT) -> void:
+	if player_position.is_zero_approx():
+		play_non_positional(key, sound, volume_db, bus, player_process_mode)
+	else:
+		play_positional(key, sound, volume_db, bus, player_position, player_process_mode)
 
-func set_alarm(playing: bool) -> void:
-	$AlarmAudioStream.playing = playing
-
-func set_alarm_volume(volume: float) -> void:
-	$AlarmAudioStream.volume_db = volume * volume_amplifier
-
-func set_alarm0_volume(volume: float) -> void:
-	$AlarmAudioStream.stream.set_sync_stream_volume(0, volume)
-
-func set_alarm1_volume(volume: float) -> void:
-	$AlarmAudioStream.stream.set_sync_stream_volume(1, volume)
-
-func play_mouse_sound(pressed: bool, volume_db: float) -> void:
-	if $MouseClickPlayer.playing:
+func play_non_positional(key: StringName, sound: AudioStream, volume_db: float, bus: StringName, player_process_mode: ProcessMode = ProcessMode.PROCESS_MODE_INHERIT) -> void:
+	if key_to_player.has(key):
 		return
-	$MouseClickPlayer.stream.set_stream(0, mouse_click_press if pressed else mouse_click_release)
-	$MouseClickPlayer.volume_db = volume_db
-	$MouseClickPlayer.play()
+	for player in non_positional_audio:
+		if player.playing:
+			continue
+		player.stream = sound
+		player.volume_db = volume_db
+		player.bus = bus
+		player.process_mode = player_process_mode
+		player.finished.connect(func on_finished(): _on_player_finished(key))
+		player.play()
+		key_to_player[key] = player
+		return
+	push_warning("Not enough non positional audio players! Audio with the key " + key + " was just skipped.")
+
+func play_positional(key: StringName, sound: AudioStream, volume_db: float, bus: StringName, player_position: Vector3 = Vector3(), player_process_mode: ProcessMode = ProcessMode.PROCESS_MODE_INHERIT) -> void:
+	if key_to_player.has(key):
+		return
+	for player in positional_audio:
+		if player.playing:
+			continue
+		player.stream = sound
+		player.volume_db = volume_db
+		player.bus = bus
+		player.position = player_position
+		player.process_mode = player_process_mode
+		player.finished.connect(func on_finished(): _on_player_finished(key))
+		player.play()
+		key_to_player[key] = player
+		return
+	push_warning("Not enough positional audio players! Audio with the key " + key + " was just skipped.")
+
+func play_again(key: StringName) -> void:
+	if key_to_player.has(key):
+		key_to_player[key].play()
+
+func stop(key: StringName) -> void:
+	if key_to_player.has(key):
+		var player = key_to_player[key]
+		player.stop()
+		key_to_player.erase(key)
+		player.finished.disconnect(player.finished.get_connections().back().callable)
+
+func set_volume(key: StringName, volume_db: float) -> void:
+	if key_to_player.has(key):
+		key_to_player[key].volume_db = volume_db
+
+func set_player_position(key: StringName, player_position: Vector3) -> void:
+	if key_to_player.has(key):
+		key_to_player[key].position = player_position
+
+func is_playing(key: StringName) -> bool:
+	return key_to_player.has(key)
+
+func _on_player_finished(key: StringName) -> void:
+	if !key_to_player.has(key):
+		return
+	var player = key_to_player[key]
+	player_finished.emit(key)
+	if !player.playing:
+		key_to_player.erase(key)
+		player.finished.disconnect(player.finished.get_connections().back().callable)
