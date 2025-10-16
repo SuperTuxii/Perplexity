@@ -10,8 +10,6 @@ var monitor_scene: PackedScene = preload("res://scenes/monitor_scenes/monitor_sc
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @export
 var light_frame_material: Material = preload("res://materials/room/light/LightFrameMaterial.tres")
-@export
-var light_flicker_sound: AudioStream
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
@@ -311,7 +309,7 @@ func light_flicker() -> void:
 	tween.tween_callback(del_override_material)
 	tween.tween_property(light, "visible", true, 0)
 	tween.play()
-	EventBus.play_sound_effect.emit(light_flicker_sound, -2.5)
+	Audio.play("light_flicker", Audio.light_flicker, -2.5, "SFX", light.global_position)
 #endregion
 #region Functions and Variables for CutsceneAnimator
 @export

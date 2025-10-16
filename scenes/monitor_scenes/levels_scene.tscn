@@ -1,54 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://bxff4ce1n02gg"]
+[gd_scene load_steps=7 format=3 uid="uid://bxff4ce1n02gg"]
 
 [ext_resource type="Script" uid="uid://bq3tkekp5gk0l" path="res://scripts/levels_scene.gd" id="1_p1nwe"]
 [ext_resource type="Texture2D" uid="uid://uw3o3he2skgt" path="res://assets/textures/line_profile.png" id="1_ym5wk"]
-[ext_resource type="AudioStream" uid="uid://cdq0fcck73c8h" path="res://assets/audio/shut_down1.mp3" id="2_6bjy7"]
 [ext_resource type="Script" uid="uid://27f0trnoqbl2" path="res://scripts/server_line.gd" id="2_p1nwe"]
-[ext_resource type="AudioStream" uid="uid://c1xrppcs34gbt" path="res://assets/audio/shut_down2.mp3" id="3_ins12"]
 [ext_resource type="PackedScene" uid="uid://dmglpm2hsr6jv" path="res://scenes/server.tscn" id="3_mxg54"]
 [ext_resource type="Texture2D" uid="uid://drv6g5w2bdus0" path="res://assets/textures/mask.png" id="4_7qn53"]
-[ext_resource type="AudioStream" uid="uid://c3iyw4pc0sj1a" path="res://assets/audio/shut_down3.mp3" id="4_y1066"]
-[ext_resource type="AudioStream" uid="uid://bwe0lgmqm0l3t" path="res://assets/audio/epic_shut_down.mp3" id="5_6ld33"]
-[ext_resource type="AudioStream" uid="uid://b8eepfs5xdewf" path="res://assets/audio/glitch_effect1.mp3" id="6_mluev"]
 [ext_resource type="Texture2D" uid="uid://gkx84t16aayd" path="res://assets/textures/business_man.png" id="6_mxg54"]
-[ext_resource type="AudioStream" uid="uid://c2c2l5d3y0ock" path="res://assets/audio/glitch_effect2.mp3" id="7_3k8eq"]
-[ext_resource type="AudioStream" uid="uid://c7qrorxdtxy5d" path="res://assets/audio/glitch_effect3.mp3" id="8_r07bn"]
-[ext_resource type="AudioStream" uid="uid://b4uw41cn6r1y4" path="res://assets/audio/epic_glitch.mp3" id="9_1uppm"]
-[ext_resource type="AudioStream" uid="uid://d12wl6ab0en6a" path="res://assets/audio/turn_on1.mp3" id="10_r07bn"]
-[ext_resource type="AudioStream" uid="uid://dnv0bmh3ldrdb" path="res://assets/audio/turn_on2.mp3" id="11_1uppm"]
-[ext_resource type="AudioStream" uid="uid://cl5qatxc2moc5" path="res://assets/audio/turn_on3.mp3" id="12_dohd2"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dohd2"]
-random_pitch = 1.5
-random_volume_offset_db = 2.5
-streams_count = 3
-stream_0/stream = ExtResource("2_6bjy7")
-stream_1/stream = ExtResource("3_ins12")
-stream_2/stream = ExtResource("4_y1066")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rmgfy"]
-random_pitch = 1.5
-random_volume_offset_db = 2.5
-streams_count = 3
-stream_0/stream = ExtResource("6_mluev")
-stream_1/stream = ExtResource("7_3k8eq")
-stream_2/stream = ExtResource("8_r07bn")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8vh2s"]
-random_pitch = 1.5
-random_volume_offset_db = 2.5
-streams_count = 3
-stream_0/stream = ExtResource("10_r07bn")
-stream_1/stream = ExtResource("11_1uppm")
-stream_2/stream = ExtResource("12_dohd2")
 
 [node name="LevelsScene" type="Node2D"]
 script = ExtResource("1_p1nwe")
-mask_server_hack_sound = SubResource("AudioStreamRandomizer_dohd2")
-mask_final_server_hack_sound = ExtResource("5_6ld33")
-mask_server_start_hack_sound = SubResource("AudioStreamRandomizer_rmgfy")
-mask_final_server_start_hack_sound = ExtResource("9_1uppm")
-server_unlock_sound = SubResource("AudioStreamRandomizer_8vh2s")
 
 [node name="ServerLine" type="Line2D" parent="." node_paths=PackedStringArray("server_sprites_collection")]
 texture_filter = 1

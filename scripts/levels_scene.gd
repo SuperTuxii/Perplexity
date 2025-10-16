@@ -4,16 +4,6 @@ signal open_server_files(root_folder_name: String)
 signal mask_walk_finished
 
 @export
-var mask_server_hack_sound: AudioStream
-@export
-var mask_final_server_hack_sound: AudioStream
-@export
-var mask_server_start_hack_sound: AudioStream
-@export
-var mask_final_server_start_hack_sound: AudioStream
-@export
-var server_unlock_sound: AudioStream
-@export
 var mask_walk_speed: float = 2
 var mask_server_speed: float = 0.4
 var mask_walk_time: float = -1:
@@ -58,10 +48,10 @@ func _process(delta: float) -> void:
 			if mask_walk_time == -1:
 				$Mask.visible = false
 				$ServerSprites.get_child(floori(mask_walk_time)).pressable = true
-				EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30)
+				Audio.play("final_server_hack", Audio.mask_final_server_hack, -30, "SFX", Audio.MONITOR_POSITION)
 				mask_walk_finished.emit()
 			else:
-				EventBus.play_monitor_sound.emit(mask_server_hack_sound, -32.5)
+				Audio.play("server_hack", Audio.mask_server_hack, -32.5, "SFX", Audio.MONITOR_POSITION)
 	elif mask_walk_time != -1:
 		var prev_index: int = floori(mask_walk_time)
 		mask_walk_time += delta * mask_walk_speed
@@ -71,9 +61,9 @@ func _process(delta: float) -> void:
 		if prev_index != floori(mask_walk_time):
 			mask_server_time = 0
 			if mask_walk_time == $ServerSprites.get_child_count()-1:
-				EventBus.play_monitor_sound.emit(mask_final_server_start_hack_sound, -32.5)
+				Audio.play("final_server_start_hack", Audio.mask_final_server_start_hack, -32.5, "SFX", Audio.MONITOR_POSITION)
 			else:
-				EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -36)
+				Audio.play("server_start_hack", Audio.mask_server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)
 			$ServerSprites.get_child(floori(mask_walk_time)).hacked = true
 			$Mask.position = from_position
 		else:
@@ -93,7 +83,7 @@ func skip_mask_walk() -> void:
 				if child_child is Server:
 					child_child.visible = false
 	$ServerLine.compute_line()
-	EventBus.play_monitor_sound.emit(mask_final_server_hack_sound, -30) #Sample not supported?!?!
+	Audio.play("final_server_hack", Audio.mask_final_server_hack, -30, "SFX", Audio.MONITOR_POSITION)
 	$Mask.visible = false
 	var last_child = $ServerSprites.get_child($ServerSprites.get_child_count() - 1)
 	last_child.pressable = true
@@ -120,7 +110,7 @@ func unlock_server(server_name: String) -> void:
 						child_child.visible = true
 						child_child.pressable = true
 				$ServerLine.compute_line()
-				EventBus.play_monitor_sound.emit(server_unlock_sound, -32.5)
+				Audio.play("server_unlock", Audio.server_unlock, -32.5, "SFX", Audio.MONITOR_POSITION)
 				child.change_completed.disconnect(child.change_completed.get_connections().back().callable)
 			)
-			EventBus.play_monitor_sound.emit(mask_server_start_hack_sound, -36)
+			Audio.play("server_start_hack", Audio.server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)

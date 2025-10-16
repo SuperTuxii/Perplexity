@@ -1,4 +1,4 @@
-class_name Audio extends Node
+class_name AudioOld extends Node
 
 @export
 var volume_amplifier: float = 1.0

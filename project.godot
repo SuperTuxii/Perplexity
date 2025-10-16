@@ -27,6 +27,7 @@ driver/output_latency.web=100
 [autoload]
 
 EventBus="*res://scripts/event_bus.gd"
+Audio="*res://scenes/audio.tscn"
 
 [editor]
 
