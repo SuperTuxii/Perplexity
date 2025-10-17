@@ -49,8 +49,12 @@ func _ready() -> void:
 	monitor_mesh.material_overlay = outline_material.duplicate()
 	monitor_mesh.material_overlay.albedo_color.a = 0
 	telephone_mesh.material_overlay = outline_material.duplicate()
-	telephone_receiver_mesh.material_overlay = telephone_mesh.material_overlay
+	telephone_receiver_mesh.material_overlay = outline_material.duplicate()
 	telephone_mesh.material_overlay.albedo_color.a = 0
+	for i in range(12):
+		var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(i))
+		button.material_overlay = outline_material.duplicate()
+		button.material_overlay.albedo_color.a = 0
 	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
@@ -117,10 +121,12 @@ func set_focus(index: int) -> void:
 	match index:
 		0:
 			states.mouse_motion.y = 0
+			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
 			telephone_mesh.material_overlay.albedo_color.a = 0
+			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 	var state: Dictionary = get_focus_state(index)
 	camera.reparent(state.parent)
 	states.focus_tween.tween_property(camera, "position",  state.position, states.focus_time)
@@ -145,10 +151,12 @@ func set_focus_instantly(index: int) -> void:
 	match index:
 		0:
 			states.mouse_motion.y = 0
+			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
 			telephone_mesh.material_overlay.albedo_color.a = 0
+			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 	var state: Dictionary = get_focus_state(index)
 	camera.reparent(state.parent)
 	camera.position = state.position
@@ -263,17 +271,6 @@ func _on_monitor_area_mouse_entered() -> void:
 func _on_monitor_area_mouse_exited() -> void:
 	monitor_mesh.material_overlay.albedo_color.a = 0
 #endregion
-#region Telephone hover and focus
-func _on_telephone_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
-			set_focus(2)
-func _on_telephone_area_mouse_entered() -> void:
-	if states.focus == 0 and !states.focussing:
-		telephone_mesh.material_overlay.albedo_color.a = 1
-func _on_telephone_area_mouse_exited() -> void:
-	telephone_mesh.material_overlay.albedo_color.a = 0
-#endregion
 #region Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
 var is_mouse_inside = false
 var last_event_pos2D = null
@@ -319,6 +316,41 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	last_event_pos2D = event_pos2D
 	last_event_time = now
 	monitor_viewport.push_input(event)
+#endregion
+#region Telephone hover and focus
+func _on_telephone_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
+			set_focus(2)
+func _on_telephone_area_mouse_entered() -> void:
+	if states.focus == 0 and !states.focussing:
+		telephone_mesh.material_overlay.albedo_color.a = 1
+		telephone_receiver_mesh.material_overlay.albedo_color.a = 1
+func _on_telephone_area_mouse_exited() -> void:
+	telephone_mesh.material_overlay.albedo_color.a = 0
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+#endregion
+#region Telephone focus handling
+var telephone_button_index: int = 0
+
+func _on_telephone_keys_area_input_event(_camera: Node, _event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	var relative_position: Vector3 = (event_position - $"Desk Setup/TelephoneKeysArea/CollisionShape3D".global_position).rotated(Vector3.UP, deg_to_rad(-177.9))
+	var size: Vector3 = $"Desk Setup/TelephoneKeysArea/CollisionShape3D".shape.size
+	relative_position -= size / 2
+	var index: int = floor((relative_position.z / size.z) * -4) + floor((relative_position.x / size.x) * -3) * 4
+	var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(index))
+	$"Desk Setup/TelephoneReceiverArea/HoverSelect".global_position = button.global_position
+	$"Desk Setup/TelephoneReceiverArea/HoverSelect".global_rotation = button.global_rotation
+	telephone_button_index = index
+
+func _on_telephone_receiver_area_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	pass # Replace with function body.
+
+func _on_telephone_receiver_area_mouse_entered() -> void:
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 1
+
+func _on_telephone_receiver_area_mouse_exited() -> void:
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
