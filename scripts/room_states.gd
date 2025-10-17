@@ -1,6 +1,11 @@
 class_name RoomStates extends Resource
 
 var paused: bool = false
+var focus_tween: Tween
+var focus_time: float = 0.4
+var focussing: bool:
+	get:
+		return focus_tween and focus_tween.is_running()
 var focus_speed: float = 2.5
 var focus_weight: float = -1
 var focus_from_position: Vector3 = Vector3()

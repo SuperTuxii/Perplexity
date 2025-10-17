@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=34 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -340,6 +340,9 @@ emission_enabled = true
 emission_energy_multiplier = 0.75
 emission_texture = SubResource("ViewportTexture_pkh84")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_toh8r"]
+size = Vector3(0.19, 0.075, 0.235)
+
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
 alarm0_volume = -60.0
@@ -520,6 +523,13 @@ transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08
 [node name="Mouse" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("15_ewkbm")]
 transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
 
+[node name="TelephoneArea" type="Area3D" parent="Desk Setup"]
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015876293, 0.023925722, -0.00074374676)
+shape = SubResource("BoxShape3D_toh8r")
+
 [node name="Telephone" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("16_sgbve")]
 transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
@@ -637,5 +647,8 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_exited"]
+[connection signal="input_event" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_exited"]
 
 [editable path="Desk Setup/Monitor"]

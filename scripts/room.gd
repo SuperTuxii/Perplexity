@@ -14,6 +14,13 @@ var light_frame_material: Material = preload("res://materials/room/light/LightFr
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
 var monitor_viewport: SubViewport = $MonitorViewport
+@onready
+var monitor_mesh: MeshInstance3D = $"Desk Setup/Monitor/Monitor"
+@onready
+var telephone_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top"
+@onready
+var telephone_receiver_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Telephone Receiver"
+
 var options: OptionsMenu
 var states: RoomStates
 
@@ -40,8 +47,11 @@ func _ready() -> void:
 	if states.cutscene_playing:
 		start_cutscene()
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
-	$"Desk Setup/Monitor/Monitor".material_overlay = outline_material
-	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+	monitor_mesh.material_overlay = outline_material.duplicate()
+	monitor_mesh.material_overlay.albedo_color.a = 0
+	telephone_mesh.material_overlay = outline_material.duplicate()
+	telephone_receiver_mesh.material_overlay = telephone_mesh.material_overlay
+	telephone_mesh.material_overlay.albedo_color.a = 0
 	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
@@ -101,20 +111,34 @@ func set_focus(index: int) -> void:
 	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
+	states.focus_tween = create_tween()
+	states.focus_tween.set_parallel()
 	match index:
 		0: # No focus/on chair
 			states.mouse_motion.y = 0
 			camera.reparent($"Desk Setup/Chair")
-			states.focus_to_position = Vector3(0, 1.2, 0)
-			states.focus_to_rotation = Vector3()
+			states.focus_tween.tween_property(camera, "position", Vector3(0, 1.2, 0), states.focus_time)
+			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(), states.focus_time)
+			#states.focus_to_position = Vector3(0, 1.2, 0)
+			#states.focus_to_rotation = Vector3()
 		1: # Monitor focused
-			$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+			monitor_mesh.material_overlay.albedo_color.a = 0
 			camera.reparent($"Desk Setup/Monitor")
-			states.focus_to_position = Vector3(0.3, 0.34, 0)
-			states.focus_to_rotation = Vector3(0, 90, 0)
-	states.focus_from_position = camera.position
-	states.focus_from_rotation = camera.rotation
-	states.focus_weight = 0
+			states.focus_tween.tween_property(camera, "position", Vector3(0.3, 0.34, 0), states.focus_time)
+			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(0, 90, 0), states.focus_time)
+			#states.focus_to_position = Vector3(0.3, 0.34, 0)
+			#states.focus_to_rotation = Vector3(0, 90, 0)
+		2: # Telephone focused
+			telephone_mesh.material_overlay.albedo_color.a = 0
+			camera.reparent($"Desk Setup/Telephone")
+			states.focus_tween.tween_property(camera, "position",  Vector3(-0.005, 0.19, -0.1), states.focus_time)
+			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(-65, 177.9, 5), states.focus_time)
+			#states.focus_to_position = Vector3(-0.005, 0.19, -0.1)
+			#states.focus_to_rotation = Vector3(-65, 177.9, 5)
+	states.focus_tween.set_trans(Tween.TRANS_QUAD)
+	#states.focus_from_position = camera.position
+	#states.focus_from_rotation = camera.rotation
+	#states.focus_weight = 0
 
 func finished_focus() -> void:
 	EventBus.finished_focus_change.emit(states.focus)
@@ -224,9 +248,20 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 			set_focus(1)
 func _on_monitor_area_mouse_entered() -> void:
 	if states.focus == 0 and states.focus_weight == -1:
-		$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 1
+		monitor_mesh.material_overlay.albedo_color.a = 1
 func _on_monitor_area_mouse_exited() -> void:
-	$"Desk Setup/Monitor/Monitor".material_overlay.albedo_color.a = 0
+	monitor_mesh.material_overlay.albedo_color.a = 0
+#endregion
+#region Telephone hover and focus
+func _on_telephone_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
+			set_focus(2)
+func _on_telephone_area_mouse_entered() -> void:
+	if states.focus == 0 and states.focus_weight == -1:
+		telephone_mesh.material_overlay.albedo_color.a = 1
+func _on_telephone_area_mouse_exited() -> void:
+	telephone_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
 var is_mouse_inside = false
