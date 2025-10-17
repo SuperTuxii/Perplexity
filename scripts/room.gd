@@ -90,7 +90,7 @@ func get_focus_state(index: int) -> Dictionary:
 		1:
 			return { "position": Vector3(0.3, 0.34, 0), "rotation": Vector3(0, 90, 0), "parent": $"Desk Setup/Monitor" }
 		2:
-			return { "position": Vector3(-0.005, 0.19, -0.1), "rotation": Vector3(-65, 177.9, 5), "parent": $"Desk Setup/Telephone" }
+			return { "position": Vector3(-0.005, 0.19, -0.1), "rotation": Vector3(-65, -182.1, 5), "parent": $"Desk Setup/Telephone" }
 	return { "position": Vector3(0, 1.2, 0), "rotation": Vector3(), "parent": $"Desk Setup/Chair" }
 
 func set_focus(index: int) -> void:
