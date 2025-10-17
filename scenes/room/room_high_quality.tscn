@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=36 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -349,14 +349,6 @@ size = Vector3(0.055292968, 0.01669678, 0.07534607)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg6en"]
 size = Vector3(0.043273926, 0.039978027, 0.19682312)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_toh8r"]
-transparency = 1
-shading_mode = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_yb7ja"]
-material = SubResource("StandardMaterial3D_toh8r")
-size = Vector2(0.02, 0.02)
-
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
 alarm0_volume = -60.0
@@ -558,10 +550,6 @@ transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047881365, 0.02859497, -0.0022819042)
 shape = SubResource("BoxShape3D_lg6en")
 
-[node name="HoverSelect" type="MeshInstance3D" parent="Desk Setup/TelephoneReceiverArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030685663, 0.025351226, 0.00011396408)
-mesh = SubResource("PlaneMesh_yb7ja")
-
 [node name="Telephone" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("16_sgbve")]
 transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
@@ -683,6 +671,8 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="mouse_entered" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_exited"]

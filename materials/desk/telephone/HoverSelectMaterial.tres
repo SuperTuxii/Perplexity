@@ -2,6 +2,6 @@
 
 [resource]
 resource_name = "HoverSelectMaterial"
-cull_mode = 2
-albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
-roughness = 0.5
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)

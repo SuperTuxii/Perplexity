@@ -337,11 +337,16 @@ func _on_telephone_keys_area_input_event(_camera: Node, _event: InputEvent, even
 	var relative_position: Vector3 = (event_position - $"Desk Setup/TelephoneKeysArea/CollisionShape3D".global_position).rotated(Vector3.UP, deg_to_rad(-177.9))
 	var size: Vector3 = $"Desk Setup/TelephoneKeysArea/CollisionShape3D".shape.size
 	relative_position -= size / 2
-	var index: int = floor((relative_position.z / size.z) * -4) + floor((relative_position.x / size.x) * -3) * 4
+	var index: int = clamp(floor((relative_position.x / size.x) * -3) + floor((relative_position.z / size.z) * -4) * 3, 0, 11)
 	var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(index))
-	$"Desk Setup/TelephoneReceiverArea/HoverSelect".global_position = button.global_position
-	$"Desk Setup/TelephoneReceiverArea/HoverSelect".global_rotation = button.global_rotation
+	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
 	telephone_button_index = index
+
+func _on_telephone_keys_area_mouse_entered() -> void:
+	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 1
+
+func _on_telephone_keys_area_mouse_exited() -> void:
+	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 0
 
 func _on_telephone_receiver_area_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	pass # Replace with function body.
