@@ -35,7 +35,6 @@ var time_random_events_pool: Dictionary = {
 func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
 	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", shadow_quality)
-	_process(0)
 	EventBus.paused_change.connect(_on_paused_change)
 	if states.tutorial_stage == 0:
 		EventBus.drag_tutorial_visible.emit(true)
@@ -78,21 +77,21 @@ func save_transfer_states() -> void:
 	if states.cutscene_playing:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
 
-func _process(delta: float) -> void:
-	if states.focus == 0 and states.focus_weight == -1: # Applying screen drag when focus is 0
+func _process(_delta: float) -> void:
+	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
-	if states.focus_weight != -1: # Focus animation
-		states.focus_weight += delta * states.focus_speed
-		states.focus_weight = minf(states.focus_weight, 1)
-		camera.position = states.focus_from_position.slerp(states.focus_to_position, states.focus_weight)
-		camera.rotation = states.focus_from_rotation.slerp(states.focus_to_rotation * (PI / 180), states.focus_weight)
-		if states.focus_weight == 1:
-			camera.position = states.focus_to_position
-			camera.rotation = states.focus_to_rotation * (PI / 180)
-			states.focus_weight = -1
-			finished_focus()
+
+func get_focus_state(index: int) -> Dictionary:
+	match index:
+		0:
+			return { "position": Vector3(0, 1.2, 0), "rotation": Vector3(), "parent": $"Desk Setup/Chair" }
+		1:
+			return { "position": Vector3(0.3, 0.34, 0), "rotation": Vector3(0, 90, 0), "parent": $"Desk Setup/Monitor" }
+		2:
+			return { "position": Vector3(-0.005, 0.19, -0.1), "rotation": Vector3(-65, 177.9, 5), "parent": $"Desk Setup/Telephone" }
+	return { "position": Vector3(0, 1.2, 0), "rotation": Vector3(), "parent": $"Desk Setup/Chair" }
 
 func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
@@ -114,31 +113,45 @@ func set_focus(index: int) -> void:
 	states.focus_tween = create_tween()
 	states.focus_tween.set_parallel()
 	match index:
-		0: # No focus/on chair
+		0:
 			states.mouse_motion.y = 0
-			camera.reparent($"Desk Setup/Chair")
-			states.focus_tween.tween_property(camera, "position", Vector3(0, 1.2, 0), states.focus_time)
-			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(), states.focus_time)
-			#states.focus_to_position = Vector3(0, 1.2, 0)
-			#states.focus_to_rotation = Vector3()
-		1: # Monitor focused
+		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
-			camera.reparent($"Desk Setup/Monitor")
-			states.focus_tween.tween_property(camera, "position", Vector3(0.3, 0.34, 0), states.focus_time)
-			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(0, 90, 0), states.focus_time)
-			#states.focus_to_position = Vector3(0.3, 0.34, 0)
-			#states.focus_to_rotation = Vector3(0, 90, 0)
-		2: # Telephone focused
+		2:
 			telephone_mesh.material_overlay.albedo_color.a = 0
-			camera.reparent($"Desk Setup/Telephone")
-			states.focus_tween.tween_property(camera, "position",  Vector3(-0.005, 0.19, -0.1), states.focus_time)
-			states.focus_tween.tween_property(camera, "rotation_degrees", Vector3(-65, 177.9, 5), states.focus_time)
-			#states.focus_to_position = Vector3(-0.005, 0.19, -0.1)
-			#states.focus_to_rotation = Vector3(-65, 177.9, 5)
+	var state: Dictionary = get_focus_state(index)
+	camera.reparent(state.parent)
+	states.focus_tween.tween_property(camera, "position",  state.position, states.focus_time)
+	states.focus_tween.tween_property(camera, "rotation_degrees", state.rotation, states.focus_time)
+	var finish_tween: Tween = create_tween()
+	finish_tween.tween_interval(states.focus_time)
+	finish_tween.tween_callback(finished_focus)
+	states.focus_tween.tween_subtween(finish_tween)
 	states.focus_tween.set_trans(Tween.TRANS_QUAD)
-	#states.focus_from_position = camera.position
-	#states.focus_from_rotation = camera.rotation
-	#states.focus_weight = 0
+
+func set_focus_instantly(index: int) -> void:
+	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
+		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
+				object.visible = true
+	states.focus = index
+	EventBus.focus_changed.emit(index)
+	if index != -1 and states.tutorial_stage == -1:
+		EventBus.set_skip_button.emit(false)
+		EventBus.set_skip_to_game_button.emit(false)
+	if index == -1:
+		return # Other focus like a cutscene
+	match index:
+		0:
+			states.mouse_motion.y = 0
+		1:
+			monitor_mesh.material_overlay.albedo_color.a = 0
+		2:
+			telephone_mesh.material_overlay.albedo_color.a = 0
+	var state: Dictionary = get_focus_state(index)
+	camera.reparent(state.parent)
+	camera.position = state.position
+	camera.rotation_degrees = state.rotation
+	finished_focus()
 
 func finished_focus() -> void:
 	EventBus.finished_focus_change.emit(states.focus)
@@ -176,9 +189,7 @@ func _on_unlock_server(_name: String) -> void:
 	states.tutorial_stage = 3
 
 func skip_tutorial() -> void:
-	set_focus(0)
-	states.focus_weight = 1
-	_process(0)
+	set_focus_instantly(0)
 	EventBus.drag_tutorial_visible.emit(false)
 	EventBus.focus_tutorial_visible.emit(false)
 	EventBus.unfocus_tutorial_visible.emit(false)
@@ -222,13 +233,11 @@ func skip_to_game() -> void:
 	set_eyelids_instantly(false)
 	set_security_breached(true)
 	fade_into_after_cutscene_music(0)
-	set_focus(1)
-	states.focus_weight = 1
-	_process(0)
+	set_focus_instantly(1)
 	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
-	if !states.paused and states.focus == 0 and states.focus_weight == -1: # Saving screen drag when focus is 0
+	if !states.paused and states.focus == 0 and !states.focussing: # Saving screen drag when focus is 0
 		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 			states.mouse_pressed = event.pressed
 			if event.pressed:
@@ -247,7 +256,7 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
 			set_focus(1)
 func _on_monitor_area_mouse_entered() -> void:
-	if states.focus == 0 and states.focus_weight == -1:
+	if states.focus == 0 and !states.focussing:
 		monitor_mesh.material_overlay.albedo_color.a = 1
 func _on_monitor_area_mouse_exited() -> void:
 	monitor_mesh.material_overlay.albedo_color.a = 0
@@ -258,7 +267,7 @@ func _on_telephone_area_input_event(_camera: Node, event: InputEvent, _event_pos
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
 			set_focus(2)
 func _on_telephone_area_mouse_entered() -> void:
-	if states.focus == 0 and states.focus_weight == -1:
+	if states.focus == 0 and !states.focussing:
 		telephone_mesh.material_overlay.albedo_color.a = 1
 func _on_telephone_area_mouse_exited() -> void:
 	telephone_mesh.material_overlay.albedo_color.a = 0
