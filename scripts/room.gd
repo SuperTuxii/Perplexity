@@ -110,6 +110,8 @@ func set_focus(index: int) -> void:
 	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
+	if states.focus_tween:
+		states.focus_tween.kill()
 	states.focus_tween = create_tween()
 	states.focus_tween.set_parallel()
 	match index:
