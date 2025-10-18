@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cet4ehhina4b0"
-path="res://.godot/imported/code_circle.svg-a48a879e35c635f575ec129f6bc30a2e.ctex"
+uid="uid://8lyc71m8v46x"
+path="res://.godot/imported/star.svg-ec9e909b9434fdf1cddc4a28ab819fc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/server_1a/code_circle.svg"
-dest_files=["res://.godot/imported/code_circle.svg-a48a879e35c635f575ec129f6bc30a2e.ctex"]
+source_file="res://assets/textures/shapes/star.svg"
+dest_files=["res://.godot/imported/star.svg-ec9e909b9434fdf1cddc4a28ab819fc2.ctex"]
 
 [params]
 

@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="code_circle.svg">
+   sodipodi:docname="octagon.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,11 +52,21 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <circle
-       style="fill:#192619;fill-opacity:1;fill-rule:evenodd;stroke:#0d0d0d;stroke-width:0.711718;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill"
-       id="path875"
-       cx="16.933332"
-       cy="16.933332"
-       r="8.1108074" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#0d0d0d;stroke-width:1.81632;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill"
+       id="path881"
+       sodipodi:sides="8"
+       sodipodi:cx="89.286713"
+       sodipodi:cy="10.96203"
+       sodipodi:r1="23.452543"
+       sodipodi:r2="21.667324"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-1.1780972"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 89.286713,-12.490513 16.583457,6.8690915 6.86909,16.5834525 -6.8691,16.583452 L 89.286712,34.414574 72.70326,27.545482 65.834169,10.96203 72.703261,-5.6214224 Z"
+       transform="matrix(0.34648998,0.14352085,-0.14352085,0.34648998,-12.430339,0.32059398)" />
   </g>
 </svg>

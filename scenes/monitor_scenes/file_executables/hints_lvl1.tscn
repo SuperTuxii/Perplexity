@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://4aclhv3qhpkn" path="res://scripts/file_executables/hints_lvl1.gd" id="1_k1yyq"]
 [ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_2hit2"]
-[ext_resource type="Texture2D" uid="uid://c3vkmaygqvcuo" path="res://assets/textures/server_1a/code_triangle.svg" id="3_e6cu3"]
-[ext_resource type="Texture2D" uid="uid://cet4ehhina4b0" path="res://assets/textures/server_1a/code_circle.svg" id="4_ka2ut"]
-[ext_resource type="Texture2D" uid="uid://c5le7pdgrirpn" path="res://assets/textures/server_1a/code_square.svg" id="5_k3e3b"]
-[ext_resource type="Texture2D" uid="uid://2yxr6xu4il0j" path="res://assets/textures/server_1a/code_octagon.svg" id="6_isk2u"]
+[ext_resource type="Texture2D" uid="uid://b0y58oo3tqx3q" path="res://assets/textures/shapes/triangle.svg" id="3_e6cu3"]
+[ext_resource type="Texture2D" uid="uid://c04dww3b3yt8j" path="res://assets/textures/shapes/circle.svg" id="4_e6cu3"]
+[ext_resource type="Texture2D" uid="uid://b817o6s2ix8w2" path="res://assets/textures/shapes/square.svg" id="5_ka2ut"]
+[ext_resource type="Texture2D" uid="uid://dj7k38e1rkqoj" path="res://assets/textures/shapes/octagon.svg" id="6_k3e3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cu3"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -72,19 +72,39 @@ layout_mode = 2
 
 [node name="TriangleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_focus_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_pressed_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_hover_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
 icon = ExtResource("3_e6cu3")
 
 [node name="CircleButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-icon = ExtResource("4_ka2ut")
+theme_override_colors/icon_normal_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_focus_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_pressed_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_hover_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+icon = ExtResource("4_e6cu3")
 
 [node name="SquareButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-icon = ExtResource("5_k3e3b")
+theme_override_colors/icon_normal_color = Color(0.09803922, 0.14901961, 0.14901961, 1)
+theme_override_colors/icon_focus_color = Color(0.09803922, 0.14901961, 0.14901961, 1)
+theme_override_colors/icon_pressed_color = Color(0.09803922, 0.14901961, 0.14901961, 1)
+theme_override_colors/icon_hover_color = Color(0.09803922, 0.14901961, 0.14901961, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.09803922, 0.14901961, 0.14901961, 1)
+icon = ExtResource("5_ka2ut")
 
 [node name="OctagonButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
-icon = ExtResource("6_isk2u")
+theme_override_colors/icon_normal_color = Color(0.14901961, 0.09803922, 0.14901961, 1)
+theme_override_colors/icon_focus_color = Color(0.14901961, 0.09803922, 0.14901961, 1)
+theme_override_colors/icon_pressed_color = Color(0.14901961, 0.09803922, 0.14901961, 1)
+theme_override_colors/icon_hover_color = Color(0.14901961, 0.09803922, 0.14901961, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.14901961, 0.09803922, 0.14901961, 1)
+icon = ExtResource("6_k3e3b")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]

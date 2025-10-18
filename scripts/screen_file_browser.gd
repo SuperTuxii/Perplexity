@@ -66,10 +66,10 @@ var server_files: Dictionary = {
 			"size": "1,2KB",
 			"modified": "Today",
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
-	var unlock_code_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
-	unlock_code_exec.correct_code = "3518"
-	unlock_code_exec.data = data
-	return unlock_code_exec
+	var unlock_exec: UnlockCode = preload("res://scenes/monitor_scenes/file_executables/unlock_code.tscn").instantiate()
+	unlock_exec.correct_code = "3518"
+	unlock_exec.data = data
+	return unlock_exec
 		},
 		"give me a hint": {
 			"type": "executable",
@@ -164,6 +164,29 @@ var server_files: Dictionary = {
 			"width": 300,
 			"height": 300,
 			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles. I hope you enjoyed it this far.[/i]"
+		},
+		"unlock": {
+			"type": "executable",
+			"size": "1,2KB",
+			"modified": "Today",
+			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	var unlock_exec: UnlockSymbolCombination = preload("res://scenes/monitor_scenes/file_executables/unlock_symbol_combination.tscn").instantiate()
+	unlock_exec.correct_shapes = []
+	unlock_exec.correct_colors = []
+	unlock_exec.data = data
+	return unlock_exec
+		},
+		"give me a hint": {
+			"type": "text",
+			#"type": "executable",
+			"size": "923B",
+			"modified": "Today",
+			"title": "Hint",
+			"value": "Coming soon"
+			#"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	#var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
+	#hints_exec.data = data
+	#return hints_exec
 		}
 	}
 }:

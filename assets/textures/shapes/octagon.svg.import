@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5le7pdgrirpn"
-path="res://.godot/imported/code_square.svg-398d8e6b8819a319c38b2f509ccdbf1a.ctex"
+uid="uid://dj7k38e1rkqoj"
+path="res://.godot/imported/octagon.svg-a32e3a461ad6722f3a8a03526b8a9fc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/server_1a/code_square.svg"
-dest_files=["res://.godot/imported/code_square.svg-398d8e6b8819a319c38b2f509ccdbf1a.ctex"]
+source_file="res://assets/textures/shapes/octagon.svg"
+dest_files=["res://.godot/imported/octagon.svg-a32e3a461ad6722f3a8a03526b8a9fc1.ctex"]
 
 [params]
 

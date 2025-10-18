@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://2ew5w7ck7m5g"]
+
+[ext_resource type="Script" uid="uid://2y8um3vvskfb" path="res://scripts/file_executables/unlock_symbol_combination.gd" id="1_7cy1i"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_htrl1"]
+[ext_resource type="Texture2D" uid="uid://b6foa3i6rp1hq" path="res://assets/textures/back.svg" id="3_aj3ch"]
+[ext_resource type="Texture2D" uid="uid://c04dww3b3yt8j" path="res://assets/textures/shapes/circle.svg" id="3_lfqhv"]
+[ext_resource type="Texture2D" uid="uid://8lyc71m8v46x" path="res://assets/textures/shapes/star.svg" id="4_aj3ch"]
+[ext_resource type="Texture2D" uid="uid://bctdkq3c5tr1" path="res://assets/textures/shapes/hexagon.svg" id="5_lfqhv"]
+[ext_resource type="Texture2D" uid="uid://b0y58oo3tqx3q" path="res://assets/textures/shapes/triangle.svg" id="6_2ka0w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
+content_margin_right = 50.0
+
+[node name="UnlockSymbolCombination" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 300)
+offset_right = 183.0
+offset_bottom = 167.0
+mouse_filter = 1
+script = ExtResource("1_7cy1i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
+text = "Enter Code"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_htrl1")
+flat = true
+icon_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="UnlockButton" type="Button" parent="VBoxContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Unlock"
+
+[node name="Line2D" type="Line2D" parent="VBoxContainer/Content"]
+points = PackedVector2Array(2, 125, 84, 171, 184, 75, 326, 158, 433, 60, 493, 125)
+width = 5.0
+default_color = Color(0.75, 0.75, 0.75, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Back" type="Sprite2D" parent="VBoxContainer/Content/Line2D"]
+texture_filter = 1
+position = Vector2(490, 122)
+rotation = -2.3561945
+scale = Vector2(2, 2)
+texture = ExtResource("3_aj3ch")
+
+[node name="Symbols" type="Control" parent="VBoxContainer/Content"]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="Symbol0" type="Button" parent="VBoxContainer/Content/Symbols"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 104.0
+offset_right = 138.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/icon_disabled_color = Color(0.099, 0.15, 0.15, 1)
+disabled = true
+icon = ExtResource("3_lfqhv")
+flat = true
+
+[node name="Symbol1" type="Button" parent="VBoxContainer/Content/Symbols"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 4.0
+offset_right = 236.0
+offset_bottom = 140.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/icon_disabled_color = Color(0.099, 0.15, 0.099, 1)
+disabled = true
+icon = ExtResource("4_aj3ch")
+flat = true
+
+[node name="Symbol2" type="Button" parent="VBoxContainer/Content/Symbols"]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 88.0
+offset_right = 379.0
+offset_bottom = 224.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/icon_disabled_color = Color(0.15, 0.099, 0.15, 1)
+disabled = true
+icon = ExtResource("5_lfqhv")
+flat = true
+
+[node name="Symbol3" type="Button" parent="VBoxContainer/Content/Symbols"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = -19.0
+offset_right = 486.0
+offset_bottom = 117.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/icon_disabled_color = Color(0.15, 0.099, 0.099, 1)
+disabled = true
+icon = ExtResource("6_2ka0w")
+flat = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]

@@ -120,4 +120,4 @@ func unlock_server(server_name: String) -> void:
 				child.change_completed.disconnect(child.change_completed.get_connections().back().callable)
 			)
 			Audio.stop("server_start_hack")
-			Audio.play("server_start_hack", Audio.server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)
+			Audio.play("server_start_hack", Audio.mask_server_start_hack, -36, "SFX", Audio.MONITOR_POSITION)

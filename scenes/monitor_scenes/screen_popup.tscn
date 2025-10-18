@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rd2krhk6l0x"]
+[gd_scene load_steps=5 format=3 uid="uid://c0oosx60rego"]
 
 [ext_resource type="Script" uid="uid://cpbnoqpmk35ns" path="res://scripts/screen_popup.gd" id="1_7uyd3"]
-[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="1_rs3sa"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_htrl1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -43,7 +43,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("1_rs3sa")
+icon = ExtResource("2_htrl1")
 flat = true
 icon_alignment = 1
 
