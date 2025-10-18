@@ -8,8 +8,10 @@ var start_music: AudioStream
 @export
 var after_cutscene_music: AudioStream
 
+# screen overlays
 @export
 var subtitles: AudioStream
+# focus 1 (monitor)
 @export
 var alarm: AudioStream
 @export
@@ -26,6 +28,14 @@ var server_unlock: AudioStream
 var mouse_click_press: AudioStream
 @export
 var mouse_click_release: AudioStream
+# focus 2 (telephone)
+@export
+var button_press: AudioStream
+@export
+var button_release: AudioStream
+@export
+var telephone_ringing: AudioStream
+# random events
 @export
 var light_flicker: AudioStream
 @export

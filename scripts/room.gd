@@ -125,6 +125,7 @@ func set_focus(index: int) -> void:
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
+			telephone_number = ""
 			telephone_mesh.material_overlay.albedo_color.a = 0
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 	var state: Dictionary = get_focus_state(index)
@@ -272,14 +273,14 @@ func _on_monitor_area_mouse_exited() -> void:
 	monitor_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
-var is_mouse_inside = false
-var last_event_pos2D = null
-var last_event_time: float = -1.0
+var is_mouse_inside_screen = false
+var last_event_pos2D_screen = null
+var last_event_time_screen: float = -1.0
 
 func _on_screen_area_mouse_entered() -> void:
-	is_mouse_inside = true
+	is_mouse_inside_screen = true
 func _on_screen_area_mouse_exited() -> void:
-	is_mouse_inside = false
+	is_mouse_inside_screen = false
 func _unhandled_input(event):
 	for mouse_event in [InputEventMouseButton, InputEventMouseMotion, InputEventScreenDrag, InputEventScreenTouch]:
 		if is_instance_of(event, mouse_event):
@@ -294,7 +295,7 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 	event_pos3D = $"Desk Setup/ScreenArea".global_transform.affine_inverse() * event_pos3D
 	var now: float = Time.get_ticks_msec() / 1000.0
 	var event_pos2D: Vector2 = Vector2()
-	if is_mouse_inside:
+	if is_mouse_inside_screen:
 		event_pos2D = Vector2(event_pos3D.z, -event_pos3D.y)
 		event_pos2D.x = event_pos2D.x / quad_mesh_size.x
 		event_pos2D.y = event_pos2D.y / quad_mesh_size.y
@@ -302,19 +303,19 @@ func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_positio
 		event_pos2D.y += 0.5
 		event_pos2D.x *= monitor_viewport.size.x
 		event_pos2D.y *= monitor_viewport.size.y
-	elif last_event_pos2D != null:
-		event_pos2D = last_event_pos2D
+	elif last_event_pos2D_screen != null:
+		event_pos2D = last_event_pos2D_screen
 	event.position = event_pos2D
 	if event is InputEventMouse:
 		event.global_position = event_pos2D
 	if event is InputEventMouseMotion or event is InputEventScreenDrag:
-		if last_event_pos2D == null:
+		if last_event_pos2D_screen == null:
 			event.relative = Vector2(0, 0)
 		else:
-			event.relative = event_pos2D - last_event_pos2D
-			event.velocity = event.relative / (now - last_event_time)
-	last_event_pos2D = event_pos2D
-	last_event_time = now
+			event.relative = event_pos2D - last_event_pos2D_screen
+			event.velocity = event.relative / (now - last_event_time_screen)
+	last_event_pos2D_screen = event_pos2D
+	last_event_time_screen = now
 	monitor_viewport.push_input(event)
 #endregion
 #region Telephone hover and focus
@@ -331,9 +332,10 @@ func _on_telephone_area_mouse_exited() -> void:
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Telephone focus handling
+var telephone_number: String = ""
 var telephone_button_index: int = 0
 
-func _on_telephone_keys_area_input_event(_camera: Node, _event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	var relative_position: Vector3 = (event_position - $"Desk Setup/TelephoneKeysArea/CollisionShape3D".global_position).rotated(Vector3.UP, deg_to_rad(-177.9))
 	var size: Vector3 = $"Desk Setup/TelephoneKeysArea/CollisionShape3D".shape.size
 	relative_position -= size / 2
@@ -341,6 +343,17 @@ func _on_telephone_keys_area_input_event(_camera: Node, _event: InputEvent, even
 	var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(index))
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
 	telephone_button_index = index
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		Audio.play("button_press" if event.pressed else "button_release", Audio.button_press if event.pressed else Audio.button_release, -5, "SFX", Vector3(1.2, 0.829, 1.619))
+		if !event.pressed:
+			if telephone_button_index < 9:
+				telephone_number += str(telephone_button_index+1)
+			elif telephone_button_index == 9:
+				telephone_number += "*"
+			elif telephone_button_index == 10:
+				telephone_number += "0"
+			else:
+				telephone_number += "#"
 
 func _on_telephone_keys_area_mouse_entered() -> void:
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 1
@@ -348,8 +361,10 @@ func _on_telephone_keys_area_mouse_entered() -> void:
 func _on_telephone_keys_area_mouse_exited() -> void:
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 0
 
-func _on_telephone_receiver_area_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	pass # Replace with function body.
+func _on_telephone_receiver_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		Audio.play("telephone_ringing", Audio.telephone_ringing, -5, "SFX", Vector3(1.2, 0.829, 1.619))
+		telephone_number = ""
 
 func _on_telephone_receiver_area_mouse_entered() -> void:
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 1

@@ -6,12 +6,6 @@ var focus_time: float = 0.4
 var focussing: bool:
 	get:
 		return focus_tween and focus_tween.is_running()
-#var focus_speed: float = 2.5
-#var focus_weight: float = -1
-#var focus_from_position: Vector3 = Vector3()
-#var focus_from_rotation: Vector3 = Vector3()
-#var focus_to_position: Vector3 = Vector3()
-#var focus_to_rotation: Vector3 = Vector3()
 var focus: int = 0 #should not be set here! Use "set_focus" function instead!
 var head_fall_weight: int = -1
 var mouse_motion: Vector2 = Vector2()

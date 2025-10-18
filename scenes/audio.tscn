@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c6mycvc66v0o4"]
+[gd_scene load_steps=50 format=3 uid="uid://c6mycvc66v0o4"]
 
 [ext_resource type="Script" uid="uid://wqwsr5t2ol7n" path="res://scripts/audio.gd" id="1_6n3bj"]
 [ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_hlm5c"]
@@ -29,8 +29,13 @@
 [ext_resource type="AudioStream" uid="uid://dnv0bmh3ldrdb" path="res://assets/audio/turn_on2.mp3" id="14_ol1yi"]
 [ext_resource type="AudioStream" uid="uid://cl5qatxc2moc5" path="res://assets/audio/turn_on3.mp3" id="15_7qyse"]
 [ext_resource type="AudioStream" uid="uid://dy36v2mgf052s" path="res://assets/audio/mouse_release.mp3" id="15_cy4hn"]
+[ext_resource type="AudioStream" uid="uid://c1d83j2owois4" path="res://assets/audio/button_press1.wav" id="27_kgeci"]
+[ext_resource type="AudioStream" uid="uid://bltrr08drkv8e" path="res://assets/audio/button_press2.wav" id="28_1cumw"]
+[ext_resource type="AudioStream" uid="uid://ba6sgvbcaltbv" path="res://assets/audio/button_release1.wav" id="29_0vrus"]
+[ext_resource type="AudioStream" uid="uid://bjbkmmv3yaufb" path="res://assets/audio/button_release2.wav" id="30_c33hk"]
 [ext_resource type="AudioStream" uid="uid://chj8sjsqqsabd" path="res://assets/audio/door_knock1.wav" id="30_tnaq4"]
 [ext_resource type="AudioStream" uid="uid://gs00q3xq58xp" path="res://assets/audio/door_knock2.wav" id="31_77t5w"]
+[ext_resource type="AudioStream" uid="uid://dgwv2hy3pr0wr" path="res://assets/audio/telephone_ringing.mp3" id="31_ci2oj"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ab7u"]
 streams_count = 4
@@ -97,6 +102,20 @@ random_volume_offset_db = 2.5
 streams_count = 1
 stream_0/stream = ExtResource("15_cy4hn")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ro2x6"]
+random_pitch = 1.5
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("27_kgeci")
+stream_1/stream = ExtResource("28_1cumw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4wv76"]
+random_pitch = 1.5
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("29_0vrus")
+stream_1/stream = ExtResource("30_c33hk")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0qlvm"]
 random_pitch = 1.5
 random_volume_offset_db = 3.0
@@ -126,6 +145,9 @@ mask_final_server_start_hack = ExtResource("12_rc0tf")
 server_unlock = SubResource("AudioStreamRandomizer_g0r51")
 mouse_click_press = SubResource("AudioStreamRandomizer_77t5w")
 mouse_click_release = SubResource("AudioStreamRandomizer_mqlij")
+button_press = SubResource("AudioStreamRandomizer_ro2x6")
+button_release = SubResource("AudioStreamRandomizer_4wv76")
+telephone_ringing = ExtResource("31_ci2oj")
 light_flicker = SubResource("AudioStreamRandomizer_0qlvm")
 door_knock = SubResource("AudioStreamRandomizer_nomo1")
 
