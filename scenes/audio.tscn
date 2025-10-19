@@ -167,6 +167,8 @@ door_knock = SubResource("AudioStreamRandomizer_nomo1")
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="."]
 
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="."]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]

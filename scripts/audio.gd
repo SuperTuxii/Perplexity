@@ -51,7 +51,8 @@ signal player_finished(key: StringName)
 var positional_audio: Array[AudioStreamPlayer3D] = [
 	$AudioStreamPlayer3D,
 	$AudioStreamPlayer3D2,
-	$AudioStreamPlayer3D3
+	$AudioStreamPlayer3D3,
+	$AudioStreamPlayer3D4
 ]
 @onready
 var non_positional_audio: Array[AudioStreamPlayer] = [
