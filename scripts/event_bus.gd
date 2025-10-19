@@ -26,5 +26,5 @@ signal unlock_server(name: String)
 signal called_number(number: String)
 signal updated_lvl2_unlock
 
-func schedule(object: Object, function_name: StringName, delay: float):
-	get_tree().create_timer(delay, false).timeout.connect(Callable(object, function_name))
+func schedule(callable: Callable, delay: float, ...args: Array):
+	get_tree().create_timer(delay, false).timeout.connect(func timeout(): callable.call(args))

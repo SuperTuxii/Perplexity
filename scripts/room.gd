@@ -55,7 +55,7 @@ func _ready() -> void:
 		var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(i))
 		button.material_overlay = outline_material.duplicate()
 		button.material_overlay.albedo_color.a = 0
-	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
+	EventBus.schedule(roll_random_event, time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
 		#$Camera3D.make_current()
@@ -387,7 +387,7 @@ func roll_random_event() -> void:
 		key+=1
 	if time_random_events_pool[key] is Callable:
 		time_random_events_pool[key].call()
-	EventBus.schedule(self, "roll_random_event", time_random_events_interval)
+	EventBus.schedule(roll_random_event, time_random_events_interval)
 func light_flicker() -> void:
 	var child_index: int = randi_range(0, 3)
 	var light_model: MeshInstance3D = $Lights.get_child(child_index).get_child(0)

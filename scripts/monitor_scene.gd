@@ -95,7 +95,7 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 	focus_popup(open_files[path])
 
 func _on_levels_scene_mask_walk_finished() -> void:
-	EventBus.schedule($IntroPopupInformation, "show", 1.5)
+	EventBus.schedule($IntroPopupInformation.show, 1.5)
 
 func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 	if tutorial_stage == 0:
@@ -121,10 +121,7 @@ func _on_called_number(number: String) -> void:
 				else:
 					UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], action.scope, action)
 			EventBus.updated_lvl2_unlock.emit()
-			EventBus.schedule(self, "play_number_accepted_sound", 5)
-
-func play_number_accepted_sound() -> void:
-	Audio.play("number_accepted", Audio.telephone_pickup, 0, "SFX", Audio.TELEPHONE_POSITION)
+			EventBus.schedule(Audio.play, 5, "number_accepted", Audio.telephone_pickup, 0, "SFX", Audio.TELEPHONE_POSITION)
 
 # Tutorial signal handlers
 func _on_file_browser_file_pressed(path: String, _type: String, _data: Dictionary) -> void:
