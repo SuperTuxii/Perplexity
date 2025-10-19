@@ -1,5 +1,10 @@
 class_name MonitorScene extends ColorRect
 
+@onready
+var file_browser: ScreenFileBrowser = $ScreenFileBrowser
+@onready
+var levels_scene: LevelsScene = $LevelsScene
+
 @export
 var popup_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup.tscn")
 @export
@@ -12,9 +17,9 @@ var popup_staff_scene: PackedScene = preload("res://scenes/monitor_scenes/screen
 var security_breached_visible: bool = false:
 	set(value):
 		$SecurityBreachedPanel.visible = value
-		$LevelsScene.visible = !value
+		levels_scene.visible = !value
 		if !value:
-			$LevelsScene.mask_walk_time = 0
+			levels_scene.mask_walk_time = 0
 		else:
 			color = Color("301111ff")
 	get:
@@ -25,11 +30,14 @@ var tutorial_stage: int = -1
 var focused_popup: ScreenPopup
 var open_files: Dictionary = {}
 
+func _ready() -> void:
+	EventBus.called_number.connect(_on_called_number)
+
 func start_tutorial() -> void:
 	if tutorial_stage == -1:
 		tutorial_stage = 0
 		$ClickServerTutorial.visible = true
-		$LevelsScene.run_for_all_servers(func unlock_server(server: Server) -> void:
+		levels_scene.run_for_all_servers(func unlock_server(server: Server) -> void:
 			server.pressable = true
 		)
 
@@ -37,7 +45,7 @@ func finish_tutorial() -> void:
 	tutorial_stage = -1
 	for key in open_files:
 		close_popup(open_files[key])
-	$LevelsScene.run_for_all_servers(func lock_server(server: Server) -> void:
+	levels_scene.run_for_all_servers(func lock_server(server: Server) -> void:
 		server.pressable = false
 	)
 
@@ -93,20 +101,23 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 	if tutorial_stage == 0:
 		$ClickServerTutorial.visible = false
 		$ScreenFileBrowser/FileTutorial.visible = true
-		$ScreenFileBrowser.pressed_file.connect(_on_file_browser_file_pressed)
+		file_browser.pressed_file.connect(_on_file_browser_file_pressed)
 		tutorial_stage = 1
 	if tutorial_stage >= 0:
 		root_folder_name = "Server"
-	if $ScreenFileBrowser.root_folder_name == root_folder_name:
-		$ScreenFileBrowser.visible = !$ScreenFileBrowser.visible
+	if file_browser.root_folder_name == root_folder_name:
+		file_browser.visible = !file_browser.visible
 	else:
-		$ScreenFileBrowser.root_folder_name = root_folder_name
+		file_browser.root_folder_name = root_folder_name
+
+func _on_called_number(number: String) -> void:
+	pass
 
 # Tutorial signal handlers
 func _on_file_browser_file_pressed(path: String, _type: String, _data: Dictionary) -> void:
 	if path == "Server/unlock":
 		$ScreenFileBrowser/FileTutorial.visible = false
-		$ScreenFileBrowser.pressed_file.disconnect(_on_file_browser_file_pressed)
+		file_browser.pressed_file.disconnect(_on_file_browser_file_pressed)
 		$UnlockCodeTutorial.visible = true
 		open_files["Server/unlock"].close.connect(_on_unlock_code_close)
 		tutorial_stage = 2
@@ -114,17 +125,17 @@ func _on_unlock_code_close(popup: ScreenPopup) -> void:
 	$UnlockCodeTutorial.visible = false
 	popup.close.disconnect(_on_unlock_code_close)
 	$SearchFilesTutorial.visible = true
-	$ScreenFileBrowser.pressed_folder.connect(_on_file_browser_folder_pressed)
+	file_browser.pressed_folder.connect(_on_file_browser_folder_pressed)
 	tutorial_stage = 3
 func _on_file_browser_folder_pressed() -> void:
 	$SearchFilesTutorial.visible = false
-	$ScreenFileBrowser.pressed_folder.disconnect(_on_file_browser_folder_pressed)
+	file_browser.pressed_folder.disconnect(_on_file_browser_folder_pressed)
 	$ScreenFileBrowser/BackTutorial.visible = true
-	$ScreenFileBrowser.pressed_back.connect(_on_file_browser_back_pressed)
+	file_browser.pressed_back.connect(_on_file_browser_back_pressed)
 	tutorial_stage = 4
 func _on_file_browser_back_pressed() -> void:
 	$ScreenFileBrowser/BackTutorial.visible = false
-	$ScreenFileBrowser.pressed_back.disconnect(_on_file_browser_back_pressed)
+	file_browser.pressed_back.disconnect(_on_file_browser_back_pressed)
 	tutorial_stage = 5
 
 func _input(event: InputEvent) -> void:

@@ -19,6 +19,8 @@ var mask_walk_time: float = -1:
 			EventBus.finished_focus_change.disconnect(finished_focus_change)
 var mask_server_time: float = -1
 
+var unlocked_servers: PackedStringArray = []
+
 func _ready() -> void:
 	run_for_all_servers(func init_server(server: Server) -> void:
 		server.pressed.connect(func run(): open_server_files.emit(server.root_folder_name))
@@ -102,6 +104,7 @@ func finished_focus_change(focus: int) -> void:
 func unlock_server(server_name: String) -> void:
 	if server_name == "Server":
 		return
+	unlocked_servers.append(server_name)
 	for i in range($ServerSprites.get_child_count()):
 		var child = $ServerSprites.get_child(i)
 		if child is Server and child.root_folder_name == server_name:
