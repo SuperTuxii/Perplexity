@@ -76,3 +76,9 @@ func update_information() -> void:
 	).replace("{responsibilities}", responsibilities
 	).replace("{qualifications}", qualifications)
 	$VBoxContainer/Content/RichTextLabel.text = text
+
+static func apply_color_shader(color: Color) -> Color:
+	color.s = 0.75
+	color.v = 0.50
+	color.a = 1
+	return color

@@ -210,8 +210,8 @@ var server_files: Dictionary = {
 					"department": "Owner",
 					"superior": "---",
 					"telephone": "000",
-					"responsibilities": "- leadership\n- planning",
-					"qualifications": "- interpersonal skills\n- leadership\n- creativity"
+					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]planning[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]financial management[/color]",
+					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]creativity[/color]"
 				}
 			}
 		}
