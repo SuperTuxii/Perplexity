@@ -144,3 +144,4 @@ flat = true
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/UnlockButton" to="." method="_on_unlock_button_pressed"]

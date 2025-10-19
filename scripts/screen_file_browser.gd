@@ -163,12 +163,14 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"width": 300,
 			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles. I hope you enjoyed it this far.[/i]"
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level, because at the moment you can't complete it. I hope you enjoyed it this far.[/i]"
 		},
 		"unlock": {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
+			"current_shapes": [ "circle", "star", "hexagon", "triangle" ],
+			"current_colors": [ Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED ],
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var unlock_exec: UnlockSymbolCombination = preload("res://scenes/monitor_scenes/file_executables/unlock_symbol_combination.tscn").instantiate()
 	unlock_exec.correct_shapes = []

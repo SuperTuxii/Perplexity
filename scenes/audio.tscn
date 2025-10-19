@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c6mycvc66v0o4"]
+[gd_scene load_steps=53 format=3 uid="uid://c6mycvc66v0o4"]
 
 [ext_resource type="Script" uid="uid://wqwsr5t2ol7n" path="res://scripts/audio.gd" id="1_6n3bj"]
 [ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_hlm5c"]
@@ -29,6 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://dnv0bmh3ldrdb" path="res://assets/audio/turn_on2.mp3" id="14_ol1yi"]
 [ext_resource type="AudioStream" uid="uid://cl5qatxc2moc5" path="res://assets/audio/turn_on3.mp3" id="15_7qyse"]
 [ext_resource type="AudioStream" uid="uid://dy36v2mgf052s" path="res://assets/audio/mouse_release.mp3" id="15_cy4hn"]
+[ext_resource type="AudioStream" uid="uid://d24dt221qur4f" path="res://assets/audio/correct.wav" id="25_0vrus"]
+[ext_resource type="AudioStream" uid="uid://babfyweiif3dj" path="res://assets/audio/wrong.wav" id="26_c33hk"]
 [ext_resource type="AudioStream" uid="uid://c1d83j2owois4" path="res://assets/audio/button_press1.wav" id="27_kgeci"]
 [ext_resource type="AudioStream" uid="uid://bltrr08drkv8e" path="res://assets/audio/button_press2.wav" id="28_1cumw"]
 [ext_resource type="AudioStream" uid="uid://ba6sgvbcaltbv" path="res://assets/audio/button_release1.wav" id="29_0vrus"]
@@ -90,6 +92,12 @@ stream_0/stream = ExtResource("13_mgily")
 stream_1/stream = ExtResource("14_ol1yi")
 stream_2/stream = ExtResource("15_7qyse")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ci2oj"]
+random_pitch = 1.5
+random_volume_offset_db = 2.5
+streams_count = 1
+stream_0/stream = ExtResource("26_c33hk")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_77t5w"]
 random_pitch = 1.5
 random_volume_offset_db = 2.5
@@ -143,6 +151,8 @@ mask_final_server_hack = ExtResource("8_xrc4d")
 mask_server_start_hack = SubResource("AudioStreamRandomizer_m8t7n")
 mask_final_server_start_hack = ExtResource("12_rc0tf")
 server_unlock = SubResource("AudioStreamRandomizer_g0r51")
+correct = ExtResource("25_0vrus")
+wrong = SubResource("AudioStreamRandomizer_ci2oj")
 mouse_click_press = SubResource("AudioStreamRandomizer_77t5w")
 mouse_click_release = SubResource("AudioStreamRandomizer_mqlij")
 button_press = SubResource("AudioStreamRandomizer_ro2x6")

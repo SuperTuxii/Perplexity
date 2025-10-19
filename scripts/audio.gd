@@ -25,6 +25,10 @@ var mask_final_server_start_hack: AudioStream
 @export
 var server_unlock: AudioStream
 @export
+var correct: AudioStream
+@export
+var wrong: AudioStream
+@export
 var mouse_click_press: AudioStream
 @export
 var mouse_click_release: AudioStream

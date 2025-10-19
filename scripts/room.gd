@@ -364,6 +364,7 @@ func _on_telephone_keys_area_mouse_exited() -> void:
 func _on_telephone_receiver_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
 		Audio.play("telephone_ringing", Audio.telephone_ringing, -5, "SFX", Vector3(1.2, 0.829, 1.619))
+		EventBus.called_number.emit(telephone_number)
 		telephone_number = ""
 
 func _on_telephone_receiver_area_mouse_entered() -> void:
