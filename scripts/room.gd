@@ -131,6 +131,8 @@ func set_focus(index: int) -> void:
 	var state: Dictionary = get_focus_state(index)
 	camera.reparent(state.parent)
 	states.focus_tween.tween_property(camera, "position",  state.position, states.focus_time)
+	if camera.rotation_degrees.y > 0 and state.rotation.y < 0:
+		state.rotation.y += 360
 	states.focus_tween.tween_property(camera, "rotation_degrees", state.rotation, states.focus_time)
 	var finish_tween: Tween = create_tween()
 	finish_tween.tween_interval(states.focus_time)

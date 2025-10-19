@@ -27,4 +27,7 @@ signal called_number(number: String)
 signal updated_lvl2_unlock
 
 func schedule(callable: Callable, delay: float, ...args: Array):
-	get_tree().create_timer(delay, false).timeout.connect(func timeout(): callable.call(args))
+	if args.size() == 0:
+		get_tree().create_timer(delay, false).timeout.connect(callable)
+	else:
+		get_tree().create_timer(delay, false).timeout.connect(func timeout(): callable.callv(args))
