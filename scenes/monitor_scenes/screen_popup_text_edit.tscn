@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsbwq0w5m8v08"]
+
+[ext_resource type="Script" uid="uid://d1aslhlkg244d" path="res://scripts/screen_popup_text_edit.gd" id="1_6yx8x"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_ght2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwko"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
+content_margin_right = 50.0
+
+[node name="ScreenPopupTextEdit" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 300)
+offset_right = 183.0
+offset_bottom = 167.0
+mouse_filter = 1
+script = ExtResource("1_6yx8x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uwko")
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
+text = "Text Edit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_ght2r")
+flat = true
+icon_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Content"]
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/Content/TextEdit" to="." method="_on_text_edit_text_changed"]

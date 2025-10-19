@@ -265,6 +265,7 @@ grow_horizontal = 2
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 22
 text = "Run \"give me a hint\" if you need a hint
+Use the \"notes\" file if you want to take notes
 (always available alongside the \"unlock\" file)"
 horizontal_alignment = 1
 vertical_alignment = 1

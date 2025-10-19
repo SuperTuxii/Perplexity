@@ -10,6 +10,8 @@ var popup_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup
 @export
 var popup_text_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_text.tscn")
 @export
+var popup_text_edit_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_text_edit.tscn")
+@export
 var popup_image_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_image.tscn")
 @export
 var popup_staff_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_staff.tscn")
@@ -66,6 +68,10 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 		if type == "text":
 			popup = popup_text_scene.instantiate()
 			popup.text = data["value"]
+		elif type == "text_edit":
+			popup = popup_text_edit_scene.instantiate()
+			popup.text = data["value"]
+			popup.data = data
 		elif type == "image":
 			popup = popup_image_scene.instantiate()
 			popup.image = load(data["value"])

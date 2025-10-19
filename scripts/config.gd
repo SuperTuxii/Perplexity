@@ -24,6 +24,12 @@ var server_files: Dictionary = {
 	hint.text = "There might be something in that folder"
 	return hint
 		},
+		"notes": {
+			"type": "text_edit",
+			"size": "0B",
+			"modified": "Today",
+			"value": ""
+		},
 		"folder": {
 			"type": "folder",
 			"size": "1 item",
@@ -68,6 +74,12 @@ var server_files: Dictionary = {
 	var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
 	hints_exec.data = data
 	return hints_exec
+		},
+		"notes": {
+			"type": "text_edit",
+			"size": "0B",
+			"modified": "Today",
+			"value": ""
 		},
 		"code": {
 			"type": "image",
@@ -177,6 +189,12 @@ var server_files: Dictionary = {
 	#var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
 	#hints_exec.data = data
 	#return hints_exec
+		},
+		"notes": {
+			"type": "text_edit",
+			"size": "0B",
+			"modified": "Today",
+			"value": ""
 		},
 		"code": {
 			"type": "image",
