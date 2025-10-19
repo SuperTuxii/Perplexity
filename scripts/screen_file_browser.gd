@@ -194,6 +194,26 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"title": "Code",
 			"value": "res://assets/textures/server_2a/code.svg"
+		},
+		"staff": {
+			"type": "folder",
+			"size": "3 items",
+			"modified": "Today",
+			"value": {
+				"staff-0": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "Last Year",
+					"profile_color": Color.DIM_GRAY,
+					"name": "Bob",
+					"job_title": "Owner",
+					"department": "Owner",
+					"superior": "---",
+					"telephone": "000",
+					"responsibilities": "- leadership\n- planning",
+					"qualifications": "- interpersonal skills\n- leadership\n- creativity"
+				}
+			}
 		}
 	}
 }:

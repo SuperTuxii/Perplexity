@@ -6,6 +6,8 @@ var popup_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup
 var popup_text_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_text.tscn")
 @export
 var popup_image_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_image.tscn")
+@export
+var popup_staff_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup_staff.tscn")
 
 var security_breached_visible: bool = false:
 	set(value):
@@ -59,6 +61,17 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 		elif type == "image":
 			popup = popup_image_scene.instantiate()
 			popup.image = load(data["value"])
+		elif type == "staff":
+			popup = popup_staff_scene.instantiate()
+			if data.has("profile_color"):
+				popup.profile_color = data["profile_color"]
+			popup.staff_name = data["name"]
+			popup.job_title = data["job_title"]
+			popup.department = data["department"]
+			popup.superior = data["superior"]
+			popup.telephone = data["telephone"]
+			popup.responsibilities = data["responsibilities"]
+			popup.qualifications = data["qualifications"]
 		elif type == "executable":
 			popup = data["value"].call(path, data)
 		popup.path = path
