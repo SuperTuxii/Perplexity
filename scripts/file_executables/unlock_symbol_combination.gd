@@ -51,15 +51,19 @@ static func apply_color_shader(color: Color) -> Color:
 	color.a = 1
 	return color
 
+static func apply_action(data: Dictionary, symbol_index: int, action: Dictionary) -> void:
+	if action.has("from_color") and data["current_colors"][symbol_index] != action.from_color:
+		return
+
 func _on_unlock_button_pressed() -> void:
 	for i in range(current_shapes.size()):
 		if current_shapes[i] != correct_shapes[i] or current_colors[i] != correct_colors[i]:
-			Audio.play("wrong", Audio.wrong, -10, "SFX", Audio.MONITOR_POSITION)
+			Audio.play("wrong", Audio.wrong, -30, "SFX", Audio.MONITOR_POSITION)
 			return
 	data["unlocked"] = true
 	$VBoxContainer/Content/UnlockButton.visible = false
 	$VBoxContainer/Content/Line2D.visible = false
 	$VBoxContainer/Content/Symbols.visible = false
 	$VBoxContainer/Content/CorrectLabel.visible = true
-	Audio.play("correct", Audio.correct, -10, "SFX", Audio.MONITOR_POSITION)
+	Audio.play("correct", Audio.correct, -35, "SFX", Audio.MONITOR_POSITION)
 	EventBus.unlock_server.emit(path.substr(0, path.find("/")))

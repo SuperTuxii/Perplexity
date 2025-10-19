@@ -112,7 +112,18 @@ func _on_levels_scene_open_server_files(root_folder_name: String) -> void:
 
 func _on_called_number(number: String) -> void:
 	if levels_scene.unlocked_servers.has("Server 1A") and !levels_scene.unlocked_servers.has("Server 2A"):
-		pass
+		if Config.telephone_actions["Server 2A"].has(number):
+			var actions: Array = Config.telephone_actions["Server 2A"][number]
+			for action in actions:
+				if action.scope == -1:
+					for i in range(Config.telephone_actions["Server 2A"][number]["current_shapes"].size()):
+						UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], i, action)
+				else:
+					UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], action.scope, action)
+			EventBus.schedule(self, "play_number_accepted_sound", 5)
+
+func play_number_accepted_sound() -> void:
+	Audio.play("number_accepted", Audio.telephone_pickup, 0, "SFX", Audio.TELEPHONE_POSITION)
 
 # Tutorial signal handlers
 func _on_file_browser_file_pressed(path: String, _type: String, _data: Dictionary) -> void:

@@ -22,7 +22,7 @@ func check_code(code: String) -> void:
 		data["unlocked"] = true
 		$VBoxContainer/Content/VBoxContainer.visible = false
 		$VBoxContainer/Content/CorrectLabel.visible = true
-		Audio.play("correct", Audio.correct, -10, "SFX", Audio.MONITOR_POSITION)
+		Audio.play("correct", Audio.correct, -35, "SFX", Audio.MONITOR_POSITION)
 		EventBus.unlock_server.emit(path.substr(0, path.find("/")))
 	else:
-		Audio.play("wrong", Audio.wrong, -10, "SFX", Audio.MONITOR_POSITION)
+		Audio.play("wrong", Audio.wrong, -30, "SFX", Audio.MONITOR_POSITION)

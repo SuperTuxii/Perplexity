@@ -210,3 +210,25 @@ var server_files: Dictionary = {
 	set(value):
 		server_files = value
 		server_files_changed.emit()
+
+var telephone_actions: Dictionary = {
+	"Server 2A": {
+		"000": [
+			{
+				"scope": -1,
+				"from_color": Color.CYAN,
+				"to_color": Color.RED
+			},
+			{
+				"scope": -1,
+				"from_color": Color.YELLOW,
+				"to_color": Color.GREEN
+			},
+			{
+				"scope": -1,
+				"from_color": Color.BLUE,
+				"to_color": Color.MAGENTA
+			}
+		]
+	}
+}

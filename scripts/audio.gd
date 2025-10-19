@@ -2,6 +2,7 @@ extends Node3D
 
 const MONITOR_POSITION: Vector3 = Vector3(0.847, 1.125, 1.637)
 const MOUSE_POSITION: Vector3 = Vector3(1.266, 0.83, 1.854)
+const TELEPHONE_POSITION: Vector3 = Vector3(1.2, 0.829, 1.619)
 
 @export
 var start_music: AudioStream
@@ -39,6 +40,8 @@ var button_press: AudioStream
 var button_release: AudioStream
 @export
 var telephone_ringing: AudioStream
+@export
+var telephone_pickup: AudioStream
 # random events
 @export
 var light_flicker: AudioStream

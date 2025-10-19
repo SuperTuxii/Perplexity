@@ -344,7 +344,7 @@ func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
 	telephone_button_index = index
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		Audio.play("button_press" if event.pressed else "button_release", Audio.button_press if event.pressed else Audio.button_release, -5, "SFX", Vector3(1.2, 0.829, 1.619))
+		Audio.play("button_press" if event.pressed else "button_release", Audio.button_press if event.pressed else Audio.button_release, -5, "SFX", Audio.TELEPHONE_POSITION)
 		if !event.pressed:
 			if telephone_button_index < 9:
 				telephone_number += str(telephone_button_index+1)
@@ -363,7 +363,7 @@ func _on_telephone_keys_area_mouse_exited() -> void:
 
 func _on_telephone_receiver_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
-		Audio.play("telephone_ringing", Audio.telephone_ringing, -5, "SFX", Vector3(1.2, 0.829, 1.619))
+		Audio.play("telephone_ringing", Audio.telephone_ringing, -5, "SFX", Audio.TELEPHONE_POSITION)
 		EventBus.called_number.emit(telephone_number)
 		telephone_number = ""
 
