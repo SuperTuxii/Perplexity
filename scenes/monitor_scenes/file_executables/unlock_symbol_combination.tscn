@@ -141,6 +141,26 @@ disabled = true
 icon = ExtResource("6_2ka0w")
 flat = true
 
+[node name="CorrectLabel" type="Label" parent="VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "Correct :)
+
+The server is unlocking!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlreadyUnlockedLabel" type="Label" parent="VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "What are you doing back here?
+
+The server is already unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]

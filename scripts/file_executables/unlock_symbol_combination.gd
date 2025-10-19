@@ -17,11 +17,17 @@ var data: Dictionary
 
 func _ready() -> void:
 	super._ready()
-	for i in range(symbols.get_child_count()):
-		var symbol_button: Button = symbols.get_child(i)
-		symbol_button.icon = load("res://assets/textures/shapes/" + current_shapes[i] + ".svg")
-		symbol_button.add_theme_color_override("icon_disabled_color", apply_color_shader(current_colors[i]))
-
+	if data.has("unlocked") and data["unlocked"]:
+		$VBoxContainer/Content/UnlockButton.visible = false
+		$VBoxContainer/Content/Line2D.visible = false
+		$VBoxContainer/Content/Symbols.visible = false
+		$VBoxContainer/Content/AlreadyUnlockedLabel.visible = true
+	else:
+		for i in range(symbols.get_child_count()):
+			var symbol_button: Button = symbols.get_child(i)
+			symbol_button.icon = load("res://assets/textures/shapes/" + current_shapes[i] + ".svg")
+			symbol_button.add_theme_color_override("icon_disabled_color", apply_color_shader(current_colors[i]))
+	
 func set_symbol(symbol_index: int, symbol_shape: String, symbol_color: Color) -> void:
 	var symbol_button: Button = symbols.get_child(symbol_index)
 	current_shapes[symbol_index] = symbol_shape
@@ -46,7 +52,14 @@ static func apply_color_shader(color: Color) -> Color:
 	return color
 
 func _on_unlock_button_pressed() -> void:
-	if false: #TODO: Unlock Condition
-		Audio.play("correct", Audio.correct, -10, "SFX", Audio.MONITOR_POSITION)
-	else:
-		Audio.play("wrong", Audio.wrong, -10, "SFX", Audio.MONITOR_POSITION)
+	for i in range(current_shapes.size()):
+		if current_shapes[i] != correct_shapes[i] or current_colors[i] != correct_colors[i]:
+			Audio.play("wrong", Audio.wrong, -10, "SFX", Audio.MONITOR_POSITION)
+			return
+	data["unlocked"] = true
+	$VBoxContainer/Content/UnlockButton.visible = false
+	$VBoxContainer/Content/Line2D.visible = false
+	$VBoxContainer/Content/Symbols.visible = false
+	$VBoxContainer/Content/CorrectLabel.visible = true
+	Audio.play("correct", Audio.correct, -10, "SFX", Audio.MONITOR_POSITION)
+	EventBus.unlock_server.emit(path.substr(0, path.find("/")))

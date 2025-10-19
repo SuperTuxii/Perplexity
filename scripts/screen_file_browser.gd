@@ -173,8 +173,8 @@ var server_files: Dictionary = {
 			"current_colors": [ Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED ],
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var unlock_exec: UnlockSymbolCombination = preload("res://scenes/monitor_scenes/file_executables/unlock_symbol_combination.tscn").instantiate()
-	unlock_exec.correct_shapes = []
-	unlock_exec.correct_colors = []
+	unlock_exec.correct_shapes = [ "star", "square", "hexagon", "circle" ]
+	unlock_exec.correct_colors = [ Color.GREEN, Color.CYAN, Color.YELLOW, Color.BLUE ]
 	unlock_exec.data = data
 	return unlock_exec
 		},
