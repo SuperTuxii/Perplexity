@@ -187,6 +187,13 @@ var server_files: Dictionary = {
 	#var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
 	#hints_exec.data = data
 	#return hints_exec
+		},
+		"code": {
+			"type": "image",
+			"size": "4,8KB",
+			"modified": "Today",
+			"title": "Code",
+			"value": "res://assets/textures/server_2a/code.svg"
 		}
 	}
 }:
