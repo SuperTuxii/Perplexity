@@ -28,6 +28,7 @@ var server_files: Dictionary = {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
+			"title": "Notes",
 			"value": ""
 		},
 		"folder": {
@@ -79,6 +80,7 @@ var server_files: Dictionary = {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
+			"title": "Notes",
 			"value": ""
 		},
 		"code": {
@@ -194,6 +196,7 @@ var server_files: Dictionary = {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
+			"title": "Notes",
 			"value": ""
 		},
 		"code": {

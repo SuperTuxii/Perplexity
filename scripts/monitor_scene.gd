@@ -93,6 +93,7 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 			popup.size = Vector2(data["width"], data["height"])
 		if data.has("title"):
 			popup.title = data["title"]
+		popup.title += " (" + path.substr(0, path.find("/")) + ")"
 		popup.position = (size / 2) - (popup.size / 2)
 		popup.focus.connect(focus_popup)
 		popup.close.connect(close_popup)
