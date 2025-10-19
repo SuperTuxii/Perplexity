@@ -221,8 +221,21 @@ var server_files: Dictionary = {
 					"department": "Owner",
 					"superior": "---",
 					"telephone": "000",
-					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]planning[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]financial management[/color]",
-					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]creativity[/color]"
+					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]planning[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]financial management[/color]",
+					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]creativity[/color]"
+				},
+				"staff-5": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "Last Year",
+					"profile_color": Color.DIM_GRAY,
+					"name": "Michelle",
+					"job_title": "Manager",
+					"department": "Management",
+					"superior": "Bob",
+					"telephone": "011",
+					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]setting goals[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]delegating tasks[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.INDIGO).to_html() + "]leading a team[/color]",
+					"qualifications": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]communication[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.ORANGE).to_html() + "]time management[/color]"
 				}
 			}
 		}
@@ -242,13 +255,30 @@ var telephone_actions: Dictionary = {
 			},
 			{
 				"scope": -1,
-				"from_color": Color.YELLOW,
-				"to_color": Color.GREEN
+				"from_color": Color.GREEN,
+				"to_color": Color.YELLOW
 			},
 			{
 				"scope": -1,
 				"from_color": Color.BLUE,
 				"to_color": Color.MAGENTA
+			}
+		],
+		"011": [
+			{
+				"scope": 0,
+				"from_color": Color.RED,
+				"to_color": Color.GREEN
+			},
+			{
+				"scope": 2,
+				"from_color": Color.MAGENTA,
+				"to_color": Color.GREEN
+			},
+			{
+				"scope": 3,
+				"from_color": Color.ORANGE,
+				"to_color": Color.INDIGO
 			}
 		]
 	}
