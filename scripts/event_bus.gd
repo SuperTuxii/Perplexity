@@ -24,6 +24,7 @@ signal finished_focus_change(focus: int)
 
 signal unlock_server(name: String)
 signal called_number(number: String)
+signal updated_lvl2_unlock
 
 func schedule(object: Object, function_name: StringName, delay: float):
 	get_tree().create_timer(delay, false).timeout.connect(Callable(object, function_name))

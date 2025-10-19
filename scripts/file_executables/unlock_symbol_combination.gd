@@ -23,11 +23,15 @@ func _ready() -> void:
 		$VBoxContainer/Content/Symbols.visible = false
 		$VBoxContainer/Content/AlreadyUnlockedLabel.visible = true
 	else:
-		for i in range(symbols.get_child_count()):
-			var symbol_button: Button = symbols.get_child(i)
-			symbol_button.icon = load("res://assets/textures/shapes/" + current_shapes[i] + ".svg")
-			symbol_button.add_theme_color_override("icon_disabled_color", apply_color_shader(current_colors[i]))
-	
+		update_symbols()
+		EventBus.updated_lvl2_unlock.connect(update_symbols)
+
+func update_symbols() -> void:
+	for i in range(symbols.get_child_count()):
+		var symbol_button: Button = symbols.get_child(i)
+		symbol_button.icon = load("res://assets/textures/shapes/" + current_shapes[i] + ".svg")
+		symbol_button.add_theme_color_override("icon_disabled_color", apply_color_shader(current_colors[i]))
+
 func set_symbol(symbol_index: int, symbol_shape: String, symbol_color: Color) -> void:
 	var symbol_button: Button = symbols.get_child(symbol_index)
 	current_shapes[symbol_index] = symbol_shape
@@ -51,9 +55,15 @@ static func apply_color_shader(color: Color) -> Color:
 	color.a = 1
 	return color
 
-static func apply_action(data: Dictionary, symbol_index: int, action: Dictionary) -> void:
-	if action.has("from_color") and data["current_colors"][symbol_index] != action.from_color:
+static func apply_action(file_data: Dictionary, symbol_index: int, action: Dictionary) -> void:
+	if action.has("from_color") and file_data["current_colors"][symbol_index] != action.from_color:
 		return
+	if action.has("from_shape") and file_data["current_colors"][symbol_index] != action.from_shape:
+		return
+	if action.has("to_color"):
+		file_data["current_colors"][symbol_index] = action.to_color
+	if action.has("to_shape"):
+		file_data["current_shapes"][symbol_index] = action.to_shape
 
 func _on_unlock_button_pressed() -> void:
 	for i in range(current_shapes.size()):

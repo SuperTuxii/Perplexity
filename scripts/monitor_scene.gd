@@ -116,10 +116,11 @@ func _on_called_number(number: String) -> void:
 			var actions: Array = Config.telephone_actions["Server 2A"][number]
 			for action in actions:
 				if action.scope == -1:
-					for i in range(Config.telephone_actions["Server 2A"][number]["current_shapes"].size()):
+					for i in range(Config.server_files["Server 2A"]["unlock"]["current_shapes"].size()):
 						UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], i, action)
 				else:
 					UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], action.scope, action)
+			EventBus.updated_lvl2_unlock.emit()
 			EventBus.schedule(self, "play_number_accepted_sound", 5)
 
 func play_number_accepted_sound() -> void:
