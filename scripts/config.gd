@@ -221,8 +221,21 @@ var server_files: Dictionary = {
 					"department": "Owner",
 					"superior": "---",
 					"telephone": "000",
-					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]planning[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]financial management[/color]",
-					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]creativity[/color]"
+					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]planning[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]financial management[/color]",
+					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]creativity[/color]"
+				},
+				"staff-3": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "Last year",
+					"profile_color": Color.DARK_GRAY,
+					"name": "Sharyl",
+					"job_title": "HR Manager",
+					"department": "HR",
+					"superior": "Bob",
+					"telephone": "010",
+					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]managing employees[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]record keeping[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]health and safety[/color]",
+					"qualifications": "1 interpersonal skills\n3 coaching\n4 skills management"
 				},
 				"staff-5": {
 					"type": "staff",
@@ -232,8 +245,8 @@ var server_files: Dictionary = {
 					"name": "Michelle",
 					"job_title": "Manager",
 					"department": "Management",
-					"superior": "Bob",
-					"telephone": "011",
+					"superior": "Sharyl",
+					"telephone": "021",
 					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]setting goals[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]delegating tasks[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.INDIGO).to_html() + "]leading a team[/color]",
 					"qualifications": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]communication[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.ORANGE).to_html() + "]time management[/color]"
 				},
@@ -288,7 +301,20 @@ var server_files: Dictionary = {
 					"telephone": "139",
 					"responsibilities": "- server maintenance\n- monitoring\n- security measures",
 					"qualifications": "- technical skills\n- maintenance\n- problem solving"
-				}
+				},
+				"staff-21": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "6 months ago",
+					"profile_color": Color.GRAY,
+					"name": "Davin",
+					"job_title": "Developer",
+					"department": "Development",
+					"superior": "Michelle",
+					"telephone": "254",
+					"responsibilities": "2 [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]customer projects[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]software design[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]update maintenance[/color]",
+					"qualifications": "2 [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]knowledge[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]problem solving[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]analytical thinking skills[/color]"
+				},
 			}
 		},
 		"requests": {
@@ -350,12 +376,26 @@ var telephone_actions: Dictionary = {
 				"to_color": Color.YELLOW
 			},
 			{
-				"scope": -1,
-				"from_color": Color.BLUE,
-				"to_color": Color.MAGENTA
+				"scope": 3,
+				"from_color": Color.MAGENTA,
+				"to_color": Color.BLUE
 			}
 		],
-		"011": [
+		"010": [
+			{
+				"scope": 0,
+				"to_color": Color.CYAN
+			},
+			{
+				"scope": 2,
+				"to_color": Color.MAGENTA
+			},
+			{
+				"scope": 3,
+				"to_color": Color.RED
+			}
+		],
+		"021": [
 			{
 				"scope": 0,
 				"from_color": Color.RED,
@@ -398,6 +438,23 @@ var telephone_actions: Dictionary = {
 				"scope": -1,
 				"from_shape": "square",
 				"to_shape": "circle"
+			}
+		],
+		"254": [
+			{
+				"scope": 1,
+				"from_color": Color.YELLOW,
+				"to_color": Color.CYAN
+			},
+			{
+				"scope": -1,
+				"from_color": Color.MAGENTA,
+				"to_color": Color.CYAN
+			},
+			{
+				"scope": -1,
+				"from_color": Color.RED,
+				"to_color": Color.MAGENTA
 			}
 		]
 	}
