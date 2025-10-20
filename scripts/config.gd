@@ -252,7 +252,7 @@ var server_files: Dictionary = {
 				}
 			}
 		},
-		"pending requests": {
+		"requests": {
 			"type": "folder",
 			"size": "1 items",
 			"modified": "Today",
@@ -263,7 +263,7 @@ var server_files: Dictionary = {
 					"modified": "Yesterday",
 					"width": 300,
 					"height": 350,
-					"value": "[b]Janitor key no longer working[/b]\nMy electronic key stopped working today and I was told that is a big security risk and my key should be deactivated immediately. I don't know about that but make sure to deactivated it and give me a new one, I guess.\n\n[i]unresolved[/i]"
+					"value": "[b]Janitor key no longer working[/b]\nMy electronic key stopped working today and I was told that is a big security risk and my key should be deactivated immediately. I don't know about that but make sure to deactivated it and give me a new one, I guess. In case you need it, I currently have the key permissions 1 star, 2 triangle and 4 square.\n\n[i]unresolved[/i]"
 				}
 			}
 		}
@@ -307,6 +307,20 @@ var telephone_actions: Dictionary = {
 				"scope": 3,
 				"from_color": Color.ORANGE,
 				"to_color": Color.INDIGO
+			}
+		],
+		"801": [
+			{
+				"scope": 0,
+				"to_shape": "star"
+			},
+			{
+				"scope": 1,
+				"to_shape": "triangle"
+			},
+			{
+				"scope": 3,
+				"to_shape": "square"
 			}
 		]
 	}
