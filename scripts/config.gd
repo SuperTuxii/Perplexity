@@ -214,7 +214,7 @@ var server_files: Dictionary = {
 				"staff-0": {
 					"type": "staff",
 					"size": "3,2KB",
-					"modified": "Last Year",
+					"modified": "Last year",
 					"profile_color": Color.DIM_GRAY,
 					"name": "Bob",
 					"job_title": "Owner",
@@ -227,8 +227,8 @@ var server_files: Dictionary = {
 				"staff-5": {
 					"type": "staff",
 					"size": "3,2KB",
-					"modified": "Last Year",
-					"profile_color": Color.DIM_GRAY,
+					"modified": "Last year",
+					"profile_color": Color.DARK_GRAY,
 					"name": "Michelle",
 					"job_title": "Manager",
 					"department": "Management",
@@ -236,6 +236,34 @@ var server_files: Dictionary = {
 					"telephone": "011",
 					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]setting goals[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]delegating tasks[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.INDIGO).to_html() + "]leading a team[/color]",
 					"qualifications": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]communication[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.ORANGE).to_html() + "]time management[/color]"
+				},
+				"staff-13": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "10 months ago",
+					"profile_color": Color.WHITE,
+					"name": "John",
+					"job_title": "Janitor",
+					"department": "Building",
+					"superior": "Michelle",
+					"telephone": "801",
+					"responsibilities": "- maintenance\n- supply\n- cleaning",
+					"qualifications": "- physical stamina\n- cleaning knowledge\n- safety awareness"
+				}
+			}
+		},
+		"pending requests": {
+			"type": "folder",
+			"size": "3 items",
+			"modified": "Today",
+			"value": {
+				"requests-10": {
+					"type": "text",
+					"size": "134B",
+					"modified": "Yesterday",
+					"width": 300,
+					"height": 350,
+					"value": "[b]Janitor key no longer working[/b]\nMy electronic key stopped working today and I was told that is a big security risk and my key should be deactivated immediately. I don't know about that but make sure to deactivated it and give me a new one, I guess.\n\n[i]unresolved[/i]"
 				}
 			}
 		}
