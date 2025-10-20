@@ -27,9 +27,9 @@ var states: RoomStates
 @export
 var time_random_events_interval: float = 15
 var time_random_events_pool: Dictionary = {
-	6: null,
-	8: light_flicker,
-	9: knock_door
+	15: null,
+	18: light_flicker,
+	19: knock_door
 }
 
 func _ready() -> void:

@@ -14,11 +14,15 @@ var path: String = ""
 var show_tween: Tween
 var mouse_pressed: bool = false
 var mouse_position: Vector2 = Vector2()
+var last_visible: bool
 
 func _ready() -> void:
+	last_visible = visible
 	visibility_changed.connect(_on_visibility_changed)
 
 func _on_visibility_changed() -> void:
+	if visible == last_visible:
+		return
 	if visible:
 		if show_tween:
 			show_tween.kill()
@@ -31,6 +35,7 @@ func _on_visibility_changed() -> void:
 		show_tween.play()
 	else:
 		close.emit(self)
+	last_visible = visible
 
 func _on_title_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

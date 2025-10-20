@@ -254,7 +254,7 @@ var server_files: Dictionary = {
 		},
 		"pending requests": {
 			"type": "folder",
-			"size": "3 items",
+			"size": "1 items",
 			"modified": "Today",
 			"value": {
 				"requests-10": {
