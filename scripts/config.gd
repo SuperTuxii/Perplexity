@@ -213,7 +213,7 @@ var server_files: Dictionary = {
 			"value": {
 				"staff-0": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "658B",
 					"modified": "Last year",
 					"profile_color": Color.DIM_GRAY,
 					"name": "Thomas",
@@ -226,7 +226,7 @@ var server_files: Dictionary = {
 				},
 				"staff-3": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "679B",
 					"modified": "Last year",
 					"profile_color": Color.DARK_GRAY,
 					"name": "Sharyl",
@@ -239,7 +239,7 @@ var server_files: Dictionary = {
 				},
 				"staff-5": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "873B",
 					"modified": "Last year",
 					"profile_color": Color.DARK_GRAY,
 					"name": "Michelle",
@@ -252,7 +252,7 @@ var server_files: Dictionary = {
 				},
 				"staff-13": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "591B",
 					"modified": "10 months ago",
 					"profile_color": Color.WHITE,
 					"name": "John",
@@ -265,7 +265,7 @@ var server_files: Dictionary = {
 				},
 				"staff-14": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "688B",
 					"modified": "9 months ago",
 					"profile_color": Color.GRAY,
 					"name": "James",
@@ -278,7 +278,7 @@ var server_files: Dictionary = {
 				},
 				"staff-15": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "614B",
 					"modified": "9 months ago",
 					"profile_color": Color.GRAY,
 					"name": "Bob",
@@ -291,8 +291,8 @@ var server_files: Dictionary = {
 				},
 				"staff-19": {
 					"type": "staff",
-					"size": "3,2KB",
-					"modified": "9 months ago",
+					"size": "667B",
+					"modified": "7 months ago",
 					"profile_color": Color.DARK_GRAY,
 					"name": "Phil",
 					"job_title": "Server Guy",
@@ -304,7 +304,7 @@ var server_files: Dictionary = {
 				},
 				"staff-21": {
 					"type": "staff",
-					"size": "3,2KB",
+					"size": "529B",
 					"modified": "6 months ago",
 					"profile_color": Color.GRAY,
 					"name": "Davin",
@@ -332,15 +332,15 @@ var server_files: Dictionary = {
 				},
 				"request-7": {
 					"type": "text",
-					"size": "134B",
-					"modified": "Last year",
+					"size": "241B",
+					"modified": "7 months ago",
 					"width": 350,
 					"height": 250,
 					"value": "Name: James\nDepartment: IT\nTelephone: 174\n\nPrevious Permissions:\n1: star, 2: triangle, 3: -, 4: -\nRequested Permissions:\n1: star, 2: square, 3: -, 4: -"
 				},
 				"request-9": {
 					"type": "text",
-					"size": "134B",
+					"size": "196B",
 					"modified": "This week",
 					"width": 600,
 					"height": 200,
@@ -348,7 +348,7 @@ var server_files: Dictionary = {
 				},
 				"requests-10": {
 					"type": "text",
-					"size": "134B",
+					"size": "274B",
 					"modified": "Yesterday",
 					"width": 300,
 					"height": 350,
