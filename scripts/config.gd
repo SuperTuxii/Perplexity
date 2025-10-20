@@ -208,7 +208,7 @@ var server_files: Dictionary = {
 		},
 		"staff": {
 			"type": "folder",
-			"size": "6 items",
+			"size": "8 items",
 			"modified": "Today",
 			"value": {
 				"staff-0": {
