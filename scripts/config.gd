@@ -216,7 +216,7 @@ var server_files: Dictionary = {
 					"size": "3,2KB",
 					"modified": "Last year",
 					"profile_color": Color.DIM_GRAY,
-					"name": "Bob",
+					"name": "Thomas",
 					"job_title": "Owner",
 					"department": "Owner",
 					"superior": "---",
@@ -249,6 +249,32 @@ var server_files: Dictionary = {
 					"telephone": "801",
 					"responsibilities": "- maintenance\n- supply\n- cleaning",
 					"qualifications": "- physical stamina\n- cleaning knowledge\n- safety awareness"
+				},
+				"staff-14": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "9 months ago",
+					"profile_color": Color.GRAY,
+					"name": "James",
+					"job_title": "Developer",
+					"department": "IT",
+					"superior": "Michelle",
+					"telephone": "174",
+					"responsibilities": "- software maintenance\n- testing & debugging\n- information security",
+					"qualifications": "- analytical thinking skills\n- problem solving\n- experience"
+				},
+				"staff-15": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "9 months ago",
+					"profile_color": Color.GRAY,
+					"name": "Bob",
+					"job_title": "Developer",
+					"department": "Development",
+					"superior": "Michelle",
+					"telephone": "236",
+					"responsibilities": "- software maintenance\n- testing & debugging\n- information security",
+					"qualifications": "- analytical thinking skills\n- problem solving\n- experience"
 				}
 			}
 		},
