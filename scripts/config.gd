@@ -208,7 +208,7 @@ var server_files: Dictionary = {
 		},
 		"staff": {
 			"type": "folder",
-			"size": "3 items",
+			"size": "6 items",
 			"modified": "Today",
 			"value": {
 				"staff-0": {
@@ -256,12 +256,12 @@ var server_files: Dictionary = {
 					"modified": "9 months ago",
 					"profile_color": Color.GRAY,
 					"name": "James",
-					"job_title": "Developer",
+					"job_title": "IT Supporter",
 					"department": "IT",
 					"superior": "Michelle",
 					"telephone": "174",
-					"responsibilities": "- software maintenance\n- testing & debugging\n- information security",
-					"qualifications": "- analytical thinking skills\n- problem solving\n- experience"
+					"responsibilities": "- support\n- system management\n- configuring hardware",
+					"qualifications": "- communication\n- problem solving\n- hardware knowledge"
 				},
 				"staff-15": {
 					"type": "staff",
@@ -275,14 +275,51 @@ var server_files: Dictionary = {
 					"telephone": "236",
 					"responsibilities": "- software maintenance\n- testing & debugging\n- information security",
 					"qualifications": "- analytical thinking skills\n- problem solving\n- experience"
+				},
+				"staff-19": {
+					"type": "staff",
+					"size": "3,2KB",
+					"modified": "9 months ago",
+					"profile_color": Color.DARK_GRAY,
+					"name": "Phil",
+					"job_title": "Server Guy",
+					"department": "Server",
+					"superior": "Michelle",
+					"telephone": "139",
+					"responsibilities": "- server maintenance\n- monitoring\n- security measures",
+					"qualifications": "- technical skills\n- maintenance\n- problem solving"
 				}
 			}
 		},
 		"requests": {
 			"type": "folder",
-			"size": "1 items",
+			"size": "4 items",
 			"modified": "Today",
 			"value": {
+				"key_upgrade_template": {
+					"type": "text",
+					"size": "134B",
+					"modified": "Last year",
+					"width": 350,
+					"height": 250,
+					"value": "Name: ________\nDepartment: ________\nTelephone: ___\n\nPrevious Permissions:\n1: ____, 2: ____, 3: ____, 4: ____\nRequested Permissions:\n1: ____, 2: ____, 3: ____, 4: ____"
+				},
+				"request-7": {
+					"type": "text",
+					"size": "134B",
+					"modified": "Last year",
+					"width": 350,
+					"height": 250,
+					"value": "Name: James\nDepartment: IT\nTelephone: 174\n\nPrevious Permissions:\n1: star, 2: triangle, 3: -, 4: -\nRequested Permissions:\n1: star, 2: square, 3: -, 4: -"
+				},
+				"request-9": {
+					"type": "text",
+					"size": "134B",
+					"modified": "This week",
+					"width": 600,
+					"height": 200,
+					"value": "[b]Higher key permissions for server maintenance (HIGH PRIORITY)[/b]\nHey,\nthis is Phil from the Server department. I need to do some pretty urgent server maintenance. But my current key doesn't have the need permissions for that, so could someone please upgrade my square permissions to circle?\nThanks!"
+				},
 				"requests-10": {
 					"type": "text",
 					"size": "134B",
@@ -347,6 +384,20 @@ var telephone_actions: Dictionary = {
 			{
 				"scope": 3,
 				"to_shape": "square"
+			}
+		],
+		"174": [
+			{
+				"scope": 1,
+				"from_shape": "triangle",
+				"to_shape": "square"
+			}
+		],
+		"139": [
+			{
+				"scope": -1,
+				"from_shape": "square",
+				"to_shape": "circle"
 			}
 		]
 	}

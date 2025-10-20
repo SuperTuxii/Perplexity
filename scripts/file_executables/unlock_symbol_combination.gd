@@ -58,7 +58,7 @@ static func apply_color_shader(color: Color) -> Color:
 static func apply_action(file_data: Dictionary, symbol_index: int, action: Dictionary) -> void:
 	if action.has("from_color") and file_data["current_colors"][symbol_index] != action.from_color:
 		return
-	if action.has("from_shape") and file_data["current_colors"][symbol_index] != action.from_shape:
+	if action.has("from_shape") and file_data["current_shapes"][symbol_index] != action.from_shape:
 		return
 	if action.has("to_color"):
 		file_data["current_colors"][symbol_index] = action.to_color
