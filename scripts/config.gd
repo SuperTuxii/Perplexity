@@ -356,6 +356,16 @@ var server_files: Dictionary = {
 				}
 			}
 		}
+	},
+	"Server 3A": {
+		"README": {
+			"type": "text",
+			"size": "252B",
+			"modified": "Today",
+			"width": 300,
+			"height": 300,
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level, because at the moment you can't complete it. I hope you enjoyed it this far.[/i]"
+		},
 	}
 }:
 	set(value):
