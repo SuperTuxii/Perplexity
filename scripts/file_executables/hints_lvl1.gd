@@ -1,45 +1,61 @@
 class_name HintsLvl1 extends ScreenPopup
 
-var data: Dictionary
+@onready
+var hint_label: RichTextLabel = $VBoxContainer/Content/HintContainer/HintText
+@onready
+var hint_container: VBoxContainer = $VBoxContainer/Content/HintContainer
+@onready
+var type_selection_layout: HBoxContainer = $VBoxContainer/Content/TypeSelectionLayout
 
-var triangle_hints: Array = [
-	"The digit is hidden in an image",
-	"Someone reported a paper with something like this some time ago"
-]
-var circle_hints: Array = [
-	"It's hidden in a text",
-	"I might have lost something with a circle some time ago"
-]
-var square_hints: Array = [
-	"It's hidden in a text",
-	"There was a rumor about a man and something with a square"
-]
-var octagon_hints: Array = [
-	"I wonder what this looks like",
-	"The digit is hidden in an image",
-	"It looks like a certain traffic sign"
-]
+var data: Dictionary
+var type: int
 
 func _on_triangle_button_pressed() -> void:
-	$VBoxContainer/Content/TypeSelectionLayout.hide()
+	type_selection_layout.hide()
 	var hint_number: int = data.get("triangle_number", 0)
-	$VBoxContainer/Content/HintText.text = triangle_hints[hint_number % triangle_hints.size()]
+	hint_label.text = Config.level1_hints.triangle_hints[hint_number % Config.level1_hints.triangle_hints.size()]
+	hint_container.show()
 	data["triangle_number"] = hint_number+1
+	type = 0
 
 func _on_circle_button_pressed() -> void:
-	$VBoxContainer/Content/TypeSelectionLayout.hide()
+	type_selection_layout.hide()
 	var hint_number: int = data.get("circle_number", 0)
-	$VBoxContainer/Content/HintText.text = circle_hints[hint_number % circle_hints.size()]
+	hint_label.text = Config.level1_hints.circle_hints[hint_number % Config.level1_hints.circle_hints.size()]
+	hint_container.show()
 	data["circle_number"] = hint_number+1
+	type = 1
 
 func _on_square_button_pressed() -> void:
-	$VBoxContainer/Content/TypeSelectionLayout.hide()
+	type_selection_layout.hide()
 	var hint_number: int = data.get("square_number", 0)
-	$VBoxContainer/Content/HintText.text = square_hints[hint_number % square_hints.size()]
+	hint_label.text = Config.level1_hints.square_hints[hint_number % Config.level1_hints.square_hints.size()]
+	hint_container.show()
 	data["square_number"] = hint_number+1
+	type = 2
 
 func _on_octagon_button_pressed() -> void:
-	$VBoxContainer/Content/TypeSelectionLayout.hide()
+	type_selection_layout.hide()
 	var hint_number: int = data.get("octagon_number", 0)
-	$VBoxContainer/Content/HintText.text = octagon_hints[hint_number % octagon_hints.size()]
+	hint_label.text = Config.level1_hints.octagon_hints[hint_number % Config.level1_hints.octagon_hints.size()]
+	hint_container.show()
 	data["octagon_number"] = hint_number+1
+	type = 3
+
+func _on_next_button_pressed() -> void:
+	if type == 0:
+		var hint_number: int = data.get("triangle_number", 0)
+		hint_label.text = Config.level1_hints.triangle_hints[hint_number % Config.level1_hints.triangle_hints.size()]
+		data["triangle_number"] = hint_number+1
+	elif type == 1:
+		var hint_number: int = data.get("circle_number", 0)
+		hint_label.text = Config.level1_hints.circle_hints[hint_number % Config.level1_hints.circle_hints.size()]
+		data["circle_number"] = hint_number+1
+	elif type == 2:
+		var hint_number: int = data.get("square_number", 0)
+		hint_label.text = Config.level1_hints.square_hints[hint_number % Config.level1_hints.square_hints.size()]
+		data["square_number"] = hint_number+1
+	elif type == 3:
+		var hint_number: int = data.get("octagon_number", 0)
+		hint_label.text = Config.level1_hints.octagon_hints[hint_number % Config.level1_hints.octagon_hints.size()]
+		data["octagon_number"] = hint_number+1

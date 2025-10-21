@@ -15,7 +15,7 @@ corner_detail = 1
 content_margin_right = 50.0
 
 [node name="ScreenPopup" type="PanelContainer"]
-custom_minimum_size = Vector2(400, 150)
+custom_minimum_size = Vector2(400, 210)
 offset_right = 183.0
 offset_bottom = 167.0
 mouse_filter = 1
@@ -55,12 +55,23 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="HintText" type="RichTextLabel" parent="VBoxContainer/Content"]
+[node name="HintContainer" type="VBoxContainer" parent="VBoxContainer/Content"]
+visible = false
 layout_mode = 2
+
+[node name="HintText" type="RichTextLabel" parent="VBoxContainer/Content/HintContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 20
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="VBoxContainer/Content/HintContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Next"
 
 [node name="TypeSelectionLayout" type="HBoxContainer" parent="VBoxContainer/Content"]
 layout_mode = 2
@@ -90,5 +101,6 @@ text = "Color"
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/HintContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/ShapeButton" to="." method="_on_shape_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/ColorButton" to="." method="_on_color_button_pressed"]

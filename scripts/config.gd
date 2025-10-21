@@ -467,3 +467,42 @@ var telephone_actions: Dictionary = {
 		]
 	}
 }
+
+var level1_hints: Dictionary = {
+	"triangle_hints": [
+		"The digit is hidden in an image",
+		"Someone reported a paper with something like this some time ago"
+	],
+	"circle_hints": [
+		"It's hidden in a text",
+		"I might have lost something with a circle some time ago"
+	],
+	"square_hints": [
+		"It's hidden in a text",
+		"There was a rumor about a man and something with a square"
+	], 
+	"octagon_hints": [
+		"I wonder what this looks like",
+		"The digit is hidden in an image",
+		"It looks like a certain traffic sign"
+	]
+}
+
+var level2_hints: Dictionary = {
+	"shape_hints": [
+		"the requests folder may contain some information",
+		"try searching for related telephone numbers and observe what happens in the unlock executable when calling them",
+		"if you can't find the telephone numbers, search in the staff folder for a matching staff file",
+		"find out in which cases there are conditions for shape changes and what the result is\n(in unlock)",
+		"use the notes file to take notes on the effects of the telephone numbers and to plan ahead"
+	],
+	"color_hints": [
+		"the staff folder may contain some information",
+		"the colors in some staff files look suspicious",
+		"try searching for related telephone numbers and observe what happens in the unlock executable when calling them",
+		"don't get lost with the details at the top of staff files. Only telephone, (colors of) responsibilities and qualifications are important",
+		"try to find out what a number or a \"-\" in front of responsibilities/qualifications means by calling the telephone numbers of the staff",
+		"what function do the colors under responsibilites vs. qualifications have and which colors belong together?",
+		"use the notes file to take notes on the effects of the telephone numbers and to plan ahead"
+	]
+}
