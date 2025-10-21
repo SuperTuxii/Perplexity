@@ -165,7 +165,7 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"width": 300,
 			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level, because at the moment you can't complete it. I hope you enjoyed it this far.[/i]"
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level. I hope you enjoyed it this far.[/i]"
 		},
 		"unlock": {
 			"type": "executable",
@@ -232,7 +232,7 @@ var server_files: Dictionary = {
 					"name": "Sharyl",
 					"job_title": "HR Manager",
 					"department": "HR",
-					"superior": "Bob",
+					"superior": "Thomas",
 					"telephone": "010",
 					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]managing employees[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]record keeping[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]health and safety[/color]",
 					"qualifications": "1 interpersonal skills\n3 coaching\n4 skills management"
@@ -344,7 +344,7 @@ var server_files: Dictionary = {
 					"modified": "This week",
 					"width": 600,
 					"height": 200,
-					"value": "[b]Higher key permissions for server maintenance (HIGH PRIORITY)[/b]\nHey,\nthis is Phil from the Server department. I need to do some pretty urgent server maintenance. But my current key doesn't have the need permissions for that, so could someone please upgrade my square permissions to circle?\nThanks!"
+					"value": "[b]Higher key permissions for server maintenance (HIGH PRIORITY)[/b]\nHey,\nthis is Phil from the Server department. I need to do some pretty urgent server maintenance. But my current key doesn't have the needed permissions for that, so could someone please upgrade my square permissions to circle?\nThanks!"
 				},
 				"requests-10": {
 					"type": "text",
@@ -364,7 +364,7 @@ var server_files: Dictionary = {
 			"modified": "Today",
 			"width": 300,
 			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level, because at the moment you can't complete it. I hope you enjoyed it this far.[/i]"
+			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles. I hope you enjoyed it this far.[/i]"
 		},
 	}
 }:

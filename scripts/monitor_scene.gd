@@ -29,7 +29,6 @@ var security_breached_visible: bool = false:
 
 var tutorial_stage: int = -1
 
-var focused_popup: ScreenPopup
 var open_files: Dictionary = {}
 
 func _ready() -> void:
@@ -52,10 +51,7 @@ func finish_tutorial() -> void:
 	)
 
 func focus_popup(popup: ScreenPopup) -> void:
-	if focused_popup:
-		focused_popup.z_index = 0
-	popup.z_index = 1
-	focused_popup = popup
+	popup.get_parent().move_child(popup, -4)
 
 func close_popup(popup: ScreenPopup) -> void:
 	if !popup.path.is_empty() and open_files.has(popup.path):
