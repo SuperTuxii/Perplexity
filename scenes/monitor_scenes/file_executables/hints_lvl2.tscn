@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://uf3fp5dgqyn7"]
+
+[ext_resource type="Script" uid="uid://36hhcl3hc4wk" path="res://scripts/file_executables/hints_lvl2.gd" id="1_og18a"]
+[ext_resource type="Texture2D" uid="uid://nqbc635s817t" path="res://assets/textures/window_close.svg" id="2_djvw4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cu3"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uyd3"]
+content_margin_right = 50.0
+
+[node name="ScreenPopup" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 150)
+offset_right = 183.0
+offset_bottom = 167.0
+mouse_filter = 1
+script = ExtResource("1_og18a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6cu3")
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
+text = "Hint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_djvw4")
+flat = true
+icon_alignment = 1
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HintText" type="RichTextLabel" parent="VBoxContainer/Content"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeSelectionLayout" type="HBoxContainer" parent="VBoxContainer/Content"]
+layout_mode = 2
+
+[node name="ShapeButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/icon_normal_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_focus_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_pressed_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_hover_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
+theme_override_font_sizes/font_size = 45
+text = "Shape"
+
+[node name="ColorButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/icon_normal_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_focus_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_pressed_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_hover_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
+theme_override_font_sizes/font_size = 45
+text = "Color"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/ShapeButton" to="." method="_on_shape_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeSelectionLayout/ColorButton" to="." method="_on_color_button_pressed"]

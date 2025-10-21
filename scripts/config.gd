@@ -181,16 +181,14 @@ var server_files: Dictionary = {
 	return unlock_exec
 		},
 		"give me a hint": {
-			"type": "text",
-			#"type": "executable",
+			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
 			"title": "Hint",
-			"value": "Coming soon"
-			#"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
-	#var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
-	#hints_exec.data = data
-	#return hints_exec
+			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
+	var hints_exec: HintsLvl2 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl2.tscn").instantiate()
+	hints_exec.data = data
+	return hints_exec
 		},
 		"notes": {
 			"type": "text_edit",
