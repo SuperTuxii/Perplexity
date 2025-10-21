@@ -86,6 +86,8 @@ func _process(_delta: float) -> void:
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
+	if Input.is_action_just_pressed("ui_accept") and states.focus == 2:
+		call_telephone_number()
 
 func get_focus_state(index: int) -> Dictionary:
 	match index:
@@ -287,6 +289,8 @@ func _unhandled_input(event):
 	for mouse_event in [InputEventMouseButton, InputEventMouseMotion, InputEventScreenDrag, InputEventScreenTouch]:
 		if is_instance_of(event, mouse_event):
 			return
+	if states.focus == 2 and event is InputEventKey:
+		_on_telephone_input_event(event)
 	monitor_viewport.push_input(event)
 func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -346,16 +350,7 @@ func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
 	telephone_button_index = index
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		Audio.play("button_press" if event.pressed else "button_release", Audio.button_press if event.pressed else Audio.button_release, -5, "SFX", Audio.TELEPHONE_POSITION)
-		if !event.pressed:
-			if telephone_button_index < 9:
-				telephone_number += str(telephone_button_index+1)
-			elif telephone_button_index == 9:
-				telephone_number += "*"
-			elif telephone_button_index == 10:
-				telephone_number += "0"
-			else:
-				telephone_number += "#"
+		press_telephone_button(telephone_button_index, event.pressed)
 
 func _on_telephone_keys_area_mouse_entered() -> void:
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 1
@@ -365,14 +360,56 @@ func _on_telephone_keys_area_mouse_exited() -> void:
 
 func _on_telephone_receiver_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
-		EventBus.called_number.emit(telephone_number)
-		telephone_number = ""
+		call_telephone_number()
 
 func _on_telephone_receiver_area_mouse_entered() -> void:
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 1
 
 func _on_telephone_receiver_area_mouse_exited() -> void:
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+
+func _on_telephone_input_event(event: InputEvent) -> void:
+	match event.keycode:
+		KEY_0, KEY_KP_0:
+			press_telephone_button(10, event.pressed)
+		KEY_1, KEY_KP_1:
+			press_telephone_button(0, event.pressed)
+		KEY_2, KEY_KP_2:
+			press_telephone_button(1, event.pressed)
+		KEY_3, KEY_KP_3:
+			press_telephone_button(2, event.pressed)
+		KEY_4, KEY_KP_4:
+			press_telephone_button(3, event.pressed)
+		KEY_5, KEY_KP_5:
+			press_telephone_button(4, event.pressed)
+		KEY_6, KEY_KP_6:
+			press_telephone_button(5, event.pressed)
+		KEY_7, KEY_KP_7:
+			press_telephone_button(6, event.pressed)
+		KEY_8, KEY_KP_8:
+			press_telephone_button(7, event.pressed)
+		KEY_9, KEY_KP_9:
+			press_telephone_button(8, event.pressed)
+		KEY_PLUS, KEY_KP_MULTIPLY:
+			press_telephone_button(9, event.pressed)
+		KEY_NUMBERSIGN, KEY_KP_DIVIDE:
+			press_telephone_button(11, event.pressed)
+
+func press_telephone_button(index: int, pressed: bool) -> void:
+	Audio.play("button_press" if pressed else "button_release", Audio.button_press if pressed else Audio.button_release, -5, "SFX", Audio.TELEPHONE_POSITION)
+	if !pressed:
+		if index < 9:
+			telephone_number += str(index+1)
+		elif index == 9:
+			telephone_number += "*"
+		elif index == 10:
+			telephone_number += "0"
+		else:
+			telephone_number += "#"
+
+func call_telephone_number() -> void:
+	EventBus.called_number.emit(telephone_number)
+	telephone_number = ""
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
