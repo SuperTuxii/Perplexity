@@ -44,6 +44,8 @@ func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
 	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", shadow_quality)
 	EventBus.paused_change.connect(_on_paused_change)
+	camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
+	$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 	if states.tutorial_stage == 0:
 		EventBus.drag_tutorial_visible.emit(true)
 		EventBus.set_skip_button.emit(true)
