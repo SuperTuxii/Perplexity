@@ -88,6 +88,10 @@ func _process(_delta: float) -> void:
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 	if Input.is_action_just_pressed("ui_accept") and states.focus == 2:
 		call_telephone_number()
+	if Input.is_action_just_pressed("focus_dec") and states.focus > 0:
+		set_focus(states.focus - 1)
+	if Input.is_action_just_pressed("focus_inc") and states.focus >= 0 and states.focus < 2:
+		set_focus(states.focus + 1)
 
 func get_focus_state(index: int) -> Dictionary:
 	match index:
