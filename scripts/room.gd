@@ -22,6 +22,12 @@ var telephone_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Botto
 var telephone_receiver_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Telephone Receiver"
 @onready
 var container_mesh: MeshInstance3D = $Container/Frame
+@onready
+var container_drawer_meshes: Array[MeshInstance3D] = [
+	$Container/Frame/Drawer1,
+	$Container/Frame/Drawer2,
+	$Container/Frame/Drawer3
+]
 
 var options: OptionsMenu
 var states: RoomStates
@@ -54,12 +60,16 @@ func _ready() -> void:
 	telephone_receiver_mesh.material_overlay = outline_material.duplicate()
 	telephone_mesh.material_overlay.albedo_color.a = 0
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
-	container_mesh.material_overlay = outline_material.duplicate()
-	container_mesh.material_overlay.albedo_color.a = 0
 	for i in range(12):
 		var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(i))
 		button.material_overlay = outline_material.duplicate()
 		button.material_overlay.albedo_color.a = 0
+	container_mesh.material_overlay = outline_material.duplicate()
+	container_mesh.material_overlay.albedo_color.a = 0
+	for container_drawer_mesh in container_drawer_meshes:
+		container_drawer_mesh.material_overlay = outline_material.duplicate()
+		container_drawer_mesh.material_overlay.albedo_color.a = 0
+		container_drawer_mesh.material_overlay.grow_amount = 0.0175
 	EventBus.schedule(roll_random_event, time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
@@ -438,6 +448,23 @@ func _on_container_area_mouse_entered() -> void:
 		container_mesh.material_overlay.albedo_color.a = 1
 func _on_container_area_mouse_exited() -> void:
 	container_mesh.material_overlay.albedo_color.a = 0
+#endregion
+#region Container focus handling
+var container_drawer_index: int = -1
+
+func _on_container_drawers_area_input_event(_camera: Node, _event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	var relative_position: Vector3 = (event_position - $ContainerDrawersArea/CollisionShape3D.global_position).rotated(Vector3.UP, deg_to_rad(-96.5))
+	var size: Vector3 = $ContainerDrawersArea/CollisionShape3D.shape.size
+	relative_position -= size / 2
+	var index: int = 2 - clamp(floor((relative_position.y / size.y) * -3), 0, 2)
+	if index != container_drawer_index:
+		container_drawer_meshes[container_drawer_index].material_overlay.albedo_color.a = 0
+		container_drawer_meshes[index].material_overlay.albedo_color.a = 1
+	container_drawer_index = index
+
+func _on_container_drawers_area_mouse_exited() -> void:
+	container_drawer_meshes[container_drawer_index].material_overlay.albedo_color.a = 0
+	container_drawer_index = -1
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:

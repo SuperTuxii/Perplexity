@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=38 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -321,6 +321,9 @@ size = Vector2(2.5, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxhs2"]
 size = Vector3(0.7, 0.65, 0.55)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gyaw3"]
+size = Vector3(0.675, 0.575, 0.475)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
 
@@ -427,6 +430,13 @@ transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_sxhs2")
+
+[node name="ContainerDrawersArea" type="Area3D" parent="." groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawersArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_gyaw3")
 
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
@@ -674,6 +684,8 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="ContainerArea" to="." method="_on_container_area_input_event"]
 [connection signal="mouse_entered" from="ContainerArea" to="." method="_on_container_area_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerArea" to="." method="_on_container_area_mouse_exited"]
+[connection signal="input_event" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_input_event"]
+[connection signal="mouse_exited" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

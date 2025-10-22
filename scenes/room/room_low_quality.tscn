@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=39 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
@@ -328,6 +328,9 @@ size = Vector2(2.5, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4nn56"]
 size = Vector3(0.7, 0.65, 0.55)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rgsb6"]
+size = Vector3(0.675, 0.575, 0.475)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
 
@@ -437,6 +440,13 @@ transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_4nn56")
 
+[node name="ContainerDrawersArea" type="Area3D" parent="." groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawersArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_rgsb6")
+
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_s883v")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
@@ -545,21 +555,21 @@ transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08
 transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
 
 [node name="TelephoneArea" type="Area3D" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"]]
-transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015876293, 0.023925722, -0.00074374676)
 shape = SubResource("BoxShape3D_5w616")
 
 [node name="TelephoneKeysArea" type="Area3D" parent="Desk Setup" groups=["focus_0_hide", "focus_1_hide"]]
-transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneKeysArea"]
 transform = Transform3D(0.9999939, -0.0034906515, 0, 0.0034773685, 0.99618864, 0.08715573, -0.0003042303, -0.08715521, 0.99619466, -0.024, 0.018, -0.037)
 shape = SubResource("BoxShape3D_i04u4")
 
 [node name="TelephoneReceiverArea" type="Area3D" parent="Desk Setup" groups=["focus_0_hide", "focus_1_hide"]]
-transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneReceiverArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047881365, 0.02859497, -0.0022819042)
@@ -655,6 +665,8 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="ContainerArea" to="." method="_on_container_area_input_event"]
 [connection signal="mouse_entered" from="ContainerArea" to="." method="_on_container_area_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerArea" to="." method="_on_container_area_mouse_exited"]
+[connection signal="input_event" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_input_event"]
+[connection signal="mouse_exited" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]
