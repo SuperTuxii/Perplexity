@@ -1,11 +1,8 @@
 [gd_scene load_steps=38 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
-[ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_4nn56"]
-[ext_resource type="AudioStream" uid="uid://bhdv266lswnvv" path="res://assets/audio/light_flicker2.wav" id="3_hgq2s"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
-[ext_resource type="AudioStream" uid="uid://bfoivwkkqmo4f" path="res://assets/audio/light_flicker3.wav" id="4_k43xu"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
 [ext_resource type="PackedScene" uid="uid://caoqy67vf7yav" path="res://assets/3d/low/Keylessboard.blend" id="22_02vy7"]
 [ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
@@ -22,13 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://wy8rqd4vl60h" path="res://assets/3d/low/Monitor.blend" id="22_vd8ga"]
 [ext_resource type="PackedScene" uid="uid://dt4mndwh776ep" path="res://assets/3d/low/Light.blend" id="22_x2sdw"]
 [ext_resource type="PackedScene" uid="uid://dn3ke7mq6up7t" path="res://assets/3d/low/Paper.blend" id="23_rgsb6"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4y21u"]
-random_pitch = 1.5
-streams_count = 3
-stream_0/stream = ExtResource("2_4nn56")
-stream_1/stream = ExtResource("3_hgq2s")
-stream_2/stream = ExtResource("4_k43xu")
 
 [sub_resource type="Animation" id="Animation_ml77k"]
 length = 0.001
@@ -335,6 +325,9 @@ lightmap_size_hint = Vector2i(14, 52)
 add_uv2 = true
 size = Vector2(2.5, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nn56"]
+size = Vector3(0.7, 0.65, 0.55)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
 
@@ -357,10 +350,18 @@ emission_enabled = true
 emission_energy_multiplier = 0.75
 emission_texture = SubResource("ViewportTexture_pkh84")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w616"]
+size = Vector3(0.19, 0.075, 0.235)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i04u4"]
+size = Vector3(0.055292968, 0.01669678, 0.07534607)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0vuq4"]
+size = Vector3(0.043273926, 0.039978027, 0.19682312)
+
 [node name="RoomLowQuality" type="Node3D"]
 script = ExtResource("1_0vuq4")
 shadow_quality = 0
-light_flicker_sound = SubResource("AudioStreamRandomizer_4y21u")
 alarm_volume = -80.0
 alarm1_volume = -60.0
 
@@ -386,28 +387,28 @@ mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_rgsb6")
 
-[node name="Ceiling" type="MeshInstance3D" parent="."]
+[node name="Ceiling" type="MeshInstance3D" parent="." groups=["focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, 0)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_vipva")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
-[node name="Wall" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
+[node name="Wall" type="MeshInstance3D" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
-[node name="Wall2" type="MeshInstance3D" parent="." groups=["focus_1_hide"]]
+[node name="Wall2" type="MeshInstance3D" parent="." groups=["focus_1_hide", "focus_2_hide"]]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.25, 5)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_h6orv")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_hgq2s")
 
-[node name="Wall3" type="MeshInstance3D" parent="."]
+[node name="Wall3" type="MeshInstance3D" parent="." groups=["focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, 4.371139e-08, -3.821371e-15, -1, -4.371139e-08, -1.7485936, 1.2520432, -0.00611192)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_238tj")
@@ -417,28 +418,35 @@ surface_material_override/0 = ExtResource("4_hgq2s")
 [node name="WindowWall" parent="." instance=ExtResource("5_k43xu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.75, 0, 0)
 
-[node name="Shelf" parent="." groups=["focus_1_hide"] instance=ExtResource("22_hgq2s")]
+[node name="Shelf" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_hgq2s")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.163, 0, 4.765)
 
 [node name="Plant" parent="Shelf" groups=["focus_1_hide"] instance=ExtResource("22_k43xu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.06993103, 1.025, 0.19374502)
 
-[node name="Shelf2" parent="." groups=["focus_1_hide"] instance=ExtResource("22_hgq2s")]
+[node name="Shelf2" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_hgq2s")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.1515977, 0, -4.756388)
 
 [node name="Plant" parent="Shelf2" groups=["focus_1_hide"] instance=ExtResource("22_k43xu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.11277914, 1.55, 0.43187022)
 
-[node name="Container" parent="." groups=["focus_1_hide"] instance=ExtResource("22_s883v")]
+[node name="ContainerArea" type="Area3D" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
+transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_4nn56")
+
+[node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_s883v")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
-[node name="Door" parent="." groups=["focus_1_hide"] instance=ExtResource("22_sus3n")]
+[node name="Door" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_sus3n")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -5)
 
-[node name="Door2" parent="." groups=["focus_1_hide"] instance=ExtResource("22_sus3n")]
+[node name="Door2" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_sus3n")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 5)
 
-[node name="Windows" type="Node3D" parent="."]
+[node name="Windows" type="Node3D" parent="." groups=["focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.975, -0.3)
 
 [node name="Window" parent="Windows" groups=["focus_1_hide"] instance=ExtResource("22_4nn56")]
@@ -460,16 +468,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="Light" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("22_x2sdw")]
+[node name="Light" parent="Lights" groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_x2sdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.9996078)
 
-[node name="Light2" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("22_x2sdw")]
+[node name="Light2" parent="Lights" groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_x2sdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.9996078)
 
-[node name="Light3" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("22_x2sdw")]
+[node name="Light3" parent="Lights" groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_x2sdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -1.0003922)
 
-[node name="Light4" parent="Lights" groups=["focus_1_hide"] instance=ExtResource("22_x2sdw")]
+[node name="Light4" parent="Lights" groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_x2sdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3.0003922)
 
 [node name="OmniLight" type="OmniLight3D" parent="Lights"]
@@ -530,11 +538,32 @@ transform = Transform3D(0.13549083, 0, -0.9907787, 0, 1, 0, 0.9907787, 0, 0.1354
 [node name="Monitor" parent="Desk Setup/Monitor" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_csyg1")
 
-[node name="Keyboard" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("22_g22sg")]
+[node name="Keyboard" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_g22sg")]
 transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08964175, 0.89874196, 0.8, 0.14296462)
 
-[node name="Mouse" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("22_22xxa")]
+[node name="Mouse" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_22xxa")]
 transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
+
+[node name="TelephoneArea" type="Area3D" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"]]
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015876293, 0.023925722, -0.00074374676)
+shape = SubResource("BoxShape3D_5w616")
+
+[node name="TelephoneKeysArea" type="Area3D" parent="Desk Setup" groups=["focus_0_hide", "focus_1_hide"]]
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneKeysArea"]
+transform = Transform3D(0.9999939, -0.0034906515, 0, 0.0034773685, 0.99618864, 0.08715573, -0.0003042303, -0.08715521, 0.99619466, -0.024, 0.018, -0.037)
+shape = SubResource("BoxShape3D_i04u4")
+
+[node name="TelephoneReceiverArea" type="Area3D" parent="Desk Setup" groups=["focus_0_hide", "focus_1_hide"]]
+transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 2.3477397, 0.8, 0.61847305)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneReceiverArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047881365, 0.02859497, -0.0022819042)
+shape = SubResource("BoxShape3D_0vuq4")
 
 [node name="Telephone" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("22_rgsb6")]
 transform = Transform3D(-0.9993104, 0, 0.037132155, 0, 1, 0, -0.037132155, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
@@ -548,14 +577,14 @@ transform = Transform3D(0.91735214, 0, 0.39807668, 0, 1, 0, -0.39807668, 0, 0.91
 [node name="Desk" parent="Desk Setup" instance=ExtResource("22_hnok6")]
 transform = Transform3D(-0.02949183, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.02949183, 1.157391, 0, 0.04792154)
 
-[node name="Chair" parent="Desk Setup" groups=["focus_1_hide"] instance=ExtResource("22_ivbx0")]
+[node name="Chair" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_ivbx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0.75)
 
 [node name="Camera" type="Camera3D" parent="Desk Setup/Chair"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 current = true
 
-[node name="Desk Setup2" type="Node3D" parent="." groups=["focus_1_hide"]]
+[node name="Desk Setup2" type="Node3D" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)
 
 [node name="Desk" parent="Desk Setup2" instance=ExtResource("22_hnok6")]
@@ -582,7 +611,7 @@ transform = Transform3D(0.41405782, 0, 0.9102506, 0, 1, 0, -0.9102506, 0, 0.4140
 [node name="Pencil2" parent="Desk Setup2" instance=ExtResource("22_4y21u")]
 transform = Transform3D(0.41350177, 0, 0.91050345, 0, 1, 0, -0.91050345, 0, 0.41350177, 1.4929107, 0.8000001, -2.6150649)
 
-[node name="Desk Setup4" type="Node3D" parent="."]
+[node name="Desk Setup4" type="Node3D" parent="." groups=["focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(-0.037289083, 0, -0.99930453, 0, 1, 0, 0.99930453, 0, -0.037289083, -1.127, 0, 0.666)
 
 [node name="Desk" parent="Desk Setup4" instance=ExtResource("22_hnok6")]
@@ -602,7 +631,7 @@ transform = Transform3D(0.963933, 0, -0.266145, 0, 1, 0, 0.266145, 0, 0.963933, 
 [node name="Plant" parent="Desk Setup4" instance=ExtResource("22_k43xu")]
 transform = Transform3D(-0.037289083, 0, 0.99930453, 0, 1, 0, -0.99930453, 0, -0.037289083, 0.33215463, 0.8, -0.33764583)
 
-[node name="Desk Setup5" type="Node3D" parent="."]
+[node name="Desk Setup5" type="Node3D" parent="." groups=["focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 
 [node name="Desk" parent="Desk Setup5" instance=ExtResource("22_hnok6")]
@@ -623,11 +652,23 @@ transform = Transform3D(-0.05644893, 0, -0.9984054, 0, 1, 0, 0.9984054, 0, -0.05
 [node name="Mouse" parent="Desk Setup5" instance=ExtResource("22_22xxa")]
 transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.12460595, -1.428502, 0.8, 1.7325239)
 
+[connection signal="input_event" from="ContainerArea" to="." method="_on_container_area_input_event"]
+[connection signal="mouse_entered" from="ContainerArea" to="." method="_on_container_area_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerArea" to="." method="_on_container_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/ScreenArea" to="." method="_on_screen_area_mouse_exited"]
+[connection signal="input_event" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/TelephoneArea" to="." method="_on_telephone_area_mouse_exited"]
+[connection signal="input_event" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/TelephoneKeysArea" to="." method="_on_telephone_keys_area_mouse_exited"]
+[connection signal="input_event" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_input_event"]
+[connection signal="mouse_entered" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_entered"]
+[connection signal="mouse_exited" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_exited"]
 
 [editable path="Desk Setup/Monitor"]

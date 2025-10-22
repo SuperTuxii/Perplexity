@@ -20,6 +20,8 @@ var monitor_mesh: MeshInstance3D = $"Desk Setup/Monitor/Monitor"
 var telephone_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top"
 @onready
 var telephone_receiver_mesh: MeshInstance3D = $"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Telephone Receiver"
+@onready
+var container_mesh: MeshInstance3D = $Container/Frame
 
 var options: OptionsMenu
 var states: RoomStates
@@ -51,6 +53,9 @@ func _ready() -> void:
 	telephone_mesh.material_overlay = outline_material.duplicate()
 	telephone_receiver_mesh.material_overlay = outline_material.duplicate()
 	telephone_mesh.material_overlay.albedo_color.a = 0
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+	container_mesh.material_overlay = outline_material.duplicate()
+	container_mesh.material_overlay.albedo_color.a = 0
 	for i in range(12):
 		var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(i))
 		button.material_overlay = outline_material.duplicate()
@@ -422,6 +427,17 @@ func press_telephone_button(index: int, pressed: bool) -> void:
 func call_telephone_number() -> void:
 	EventBus.called_number.emit(telephone_number)
 	telephone_number = ""
+#endregion
+#region Container hover and focus
+func _on_container_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
+			set_focus(3)
+func _on_container_area_mouse_entered() -> void:
+	if states.focus == 0 and !states.focussing:
+		container_mesh.material_overlay.albedo_color.a = 1
+func _on_container_area_mouse_exited() -> void:
+	container_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
