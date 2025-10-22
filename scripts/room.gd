@@ -90,7 +90,7 @@ func _process(_delta: float) -> void:
 		call_telephone_number()
 	if Input.is_action_just_pressed("focus_dec") and states.focus > 0:
 		set_focus(states.focus - 1)
-	if Input.is_action_just_pressed("focus_inc") and states.focus >= 0 and states.focus < 2:
+	if Input.is_action_just_pressed("focus_inc") and states.focus >= 0 and states.focus < 3:
 		set_focus(states.focus + 1)
 
 func get_focus_state(index: int) -> Dictionary:
@@ -101,6 +101,8 @@ func get_focus_state(index: int) -> Dictionary:
 			return { "position": Vector3(0.3, 0.34, 0), "rotation": Vector3(0, 90, 0), "parent": $"Desk Setup/Monitor" }
 		2:
 			return { "position": Vector3(-0.005, 0.19, -0.1), "rotation": Vector3(-65, -182.1, 5), "parent": $"Desk Setup/Telephone" }
+		3:
+			return { "position": Vector3(0.925, 0.85, -0.075), "rotation": Vector3(-40, 95, 0), "parent": $Container }
 	return { "position": Vector3(0, 1.2, 0), "rotation": Vector3(), "parent": $"Desk Setup/Chair" }
 
 func set_focus(index: int) -> void:
@@ -126,7 +128,10 @@ func set_focus(index: int) -> void:
 	states.focus_tween.set_parallel()
 	match index:
 		0:
+			$"Desk Setup/Chair".look_at(camera.global_position)
+			states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
 			states.mouse_motion.y = 0
+			$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
@@ -159,7 +164,10 @@ func set_focus_instantly(index: int) -> void:
 		return # Other focus like a cutscene
 	match index:
 		0:
+			$"Desk Setup/Chair".look_at(camera.global_position)
+			states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
 			states.mouse_motion.y = 0
+			$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0

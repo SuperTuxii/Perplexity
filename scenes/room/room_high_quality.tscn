@@ -421,6 +421,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
+[node name="Camera3D" type="Camera3D" parent="Container"]
+transform = Transform3D(-0.08715576, -0.6403415, 0.76312935, 0, 0.7660444, 0.6427875, -0.99619466, 0.05602264, -0.06676518, 0.925, 0.85, -0.075)
+
 [node name="Container2" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(0.15077768, 0, -0.9885677, 0, 1, 0, 0.9885677, 0, 0.15077768, -1.4118675, 0, -4.6119647)
 
