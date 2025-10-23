@@ -329,7 +329,7 @@ size = Vector2(2.5, 10)
 size = Vector3(0.7, 0.65, 0.55)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgsb6"]
-size = Vector3(0.675, 0.575, 0.475)
+size = Vector3(0.675, 0.19, 0.475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
@@ -440,11 +440,25 @@ transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_4nn56")
 
-[node name="ContainerDrawersArea" type="Area3D" parent="." groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+[node name="ContainerDrawerAreas" type="Node3D" parent="." groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
 transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawersArea"]
+[node name="ContainerDrawer1Area" type="Area3D" parent="ContainerDrawerAreas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawerAreas/ContainerDrawer1Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105, 0)
+shape = SubResource("BoxShape3D_rgsb6")
+
+[node name="ContainerDrawer2Area" type="Area3D" parent="ContainerDrawerAreas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawerAreas/ContainerDrawer2Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_rgsb6")
+
+[node name="ContainerDrawer3Area" type="Area3D" parent="ContainerDrawerAreas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerDrawerAreas/ContainerDrawer3Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.495, 0)
 shape = SubResource("BoxShape3D_rgsb6")
 
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_s883v")]
@@ -665,8 +679,15 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="ContainerArea" to="." method="_on_container_area_input_event"]
 [connection signal="mouse_entered" from="ContainerArea" to="." method="_on_container_area_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerArea" to="." method="_on_container_area_mouse_exited"]
-[connection signal="input_event" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_input_event"]
-[connection signal="mouse_exited" from="ContainerDrawersArea" to="." method="_on_container_drawers_area_mouse_exited"]
+[connection signal="input_event" from="ContainerDrawerAreas/ContainerDrawer1Area" to="." method="_on_container_drawer_1_area_input_event"]
+[connection signal="mouse_entered" from="ContainerDrawerAreas/ContainerDrawer1Area" to="." method="_on_container_drawer_1_area_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerDrawerAreas/ContainerDrawer1Area" to="." method="_on_container_drawer_1_area_mouse_exited"]
+[connection signal="input_event" from="ContainerDrawerAreas/ContainerDrawer2Area" to="." method="_on_container_drawer_2_area_input_event"]
+[connection signal="mouse_entered" from="ContainerDrawerAreas/ContainerDrawer2Area" to="." method="_on_container_drawer_2_area_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerDrawerAreas/ContainerDrawer2Area" to="." method="_on_container_drawer_2_area_mouse_exited"]
+[connection signal="input_event" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_input_event"]
+[connection signal="mouse_entered" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

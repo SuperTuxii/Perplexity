@@ -452,21 +452,35 @@ func _on_container_area_mouse_exited() -> void:
 	container_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Container focus handling
-var container_drawer_index: int = -1
+func _on_container_drawer_1_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		container_drawer_meshes[0].position.x += 0.3
+		container_drawer_meshes[0].material_overlay.grow_amount = 0.0025
+		$ContainerDrawerAreas/ContainerDrawer1Area.position.x += 0.3
+func _on_container_drawer_1_area_mouse_entered() -> void:
+	container_drawer_meshes[0].material_overlay.albedo_color.a = 1
+func _on_container_drawer_1_area_mouse_exited() -> void:
+	container_drawer_meshes[0].material_overlay.albedo_color.a = 0
 
-func _on_container_drawers_area_input_event(_camera: Node, _event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	var relative_position: Vector3 = (event_position - $ContainerDrawersArea/CollisionShape3D.global_position).rotated(Vector3.UP, deg_to_rad(-96.5))
-	var size: Vector3 = $ContainerDrawersArea/CollisionShape3D.shape.size
-	relative_position -= size / 2
-	var index: int = 2 - clamp(floor((relative_position.y / size.y) * -3), 0, 2)
-	if index != container_drawer_index:
-		container_drawer_meshes[container_drawer_index].material_overlay.albedo_color.a = 0
-		container_drawer_meshes[index].material_overlay.albedo_color.a = 1
-	container_drawer_index = index
+func _on_container_drawer_2_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		container_drawer_meshes[1].position.x += 0.3
+		container_drawer_meshes[1].material_overlay.grow_amount = 0.0025
+		$ContainerDrawerAreas/ContainerDrawer2Area.position.x += 0.3
+func _on_container_drawer_2_area_mouse_entered() -> void:
+	container_drawer_meshes[1].material_overlay.albedo_color.a = 1
+func _on_container_drawer_2_area_mouse_exited() -> void:
+	container_drawer_meshes[1].material_overlay.albedo_color.a = 0
 
-func _on_container_drawers_area_mouse_exited() -> void:
-	container_drawer_meshes[container_drawer_index].material_overlay.albedo_color.a = 0
-	container_drawer_index = -1
+func _on_container_drawer_3_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		container_drawer_meshes[2].position.x += 0.3
+		container_drawer_meshes[2].material_overlay.grow_amount = 0.0025
+		$ContainerDrawerAreas/ContainerDrawer3Area.position.x += 0.3
+func _on_container_drawer_3_area_mouse_entered() -> void:
+	container_drawer_meshes[2].material_overlay.albedo_color.a = 1
+func _on_container_drawer_3_area_mouse_exited() -> void:
+	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
