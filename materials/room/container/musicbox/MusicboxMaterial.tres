@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nr2uyqp54f33"]
+
+[resource]
+resource_name = "MusicboxMaterial"
+albedo_color = Color(0.74609375, 0.68106556, 0.5974579, 1)
+roughness = 0.5

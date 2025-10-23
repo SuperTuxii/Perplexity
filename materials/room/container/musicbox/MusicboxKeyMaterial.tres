@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ck77rvr622lsq"]
+
+[resource]
+resource_name = "MusicboxKeyMaterial"
+metallic = 0.75
+roughness = 0.5

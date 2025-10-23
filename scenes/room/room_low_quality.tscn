@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=40 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
+[ext_resource type="PackedScene" uid="uid://dc4uls4t1ru43" path="res://assets/3d/low/Musicbox.blend" id="8_i04u4"]
 [ext_resource type="PackedScene" uid="uid://caoqy67vf7yav" path="res://assets/3d/low/Keylessboard.blend" id="22_02vy7"]
 [ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
 [ext_resource type="PackedScene" uid="uid://b3xsuhxnpw1dw" path="res://assets/3d/low/Pencil.blend" id="22_4y21u"]
@@ -465,6 +466,12 @@ shape = SubResource("BoxShape3D_rgsb6")
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("22_s883v")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
+[node name="Drawer2" parent="Container/Frame" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
+
+[node name="Musicbox2" parent="Container/Frame/Drawer2" index="1" instance=ExtResource("8_i04u4")]
+transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.0888176, 0.120000005, -0.01175797)
+
 [node name="Door" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_sus3n")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -5)
 
@@ -705,4 +712,5 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="mouse_entered" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_exited"]
 
+[editable path="Container"]
 [editable path="Desk Setup/Monitor"]

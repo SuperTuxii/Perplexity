@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://hkosialatyiw"]
+
+[resource]
+resource_name = "MusicboxNoteMaterial"
+albedo_color = Color(1, 0.8125, 0.75, 1)

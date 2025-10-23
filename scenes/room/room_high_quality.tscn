@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=39 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://w3kt8jygllid" path="res://assets/3d/high/Plant.blend" id="6_tuh4a"]
 [ext_resource type="PackedScene" uid="uid://b28bn7odg6so6" path="res://assets/3d/high/Container.blend" id="7_osqes"]
 [ext_resource type="PackedScene" uid="uid://b7831qwr1cxxm" path="res://assets/3d/high/Door.blend" id="8_n2rew"]
+[ext_resource type="PackedScene" uid="uid://btlusx0esm70q" path="res://assets/3d/high/Musicbox.blend" id="8_yb7ja"]
 [ext_resource type="PackedScene" uid="uid://blw6j5qkort24" path="res://assets/3d/high/Window.blend" id="9_4jv0p"]
 [ext_resource type="PackedScene" uid="uid://gi5ltvp4dm4a" path="res://assets/3d/high/Light.blend" id="10_tpplh"]
 [ext_resource type="PackedScene" uid="uid://d0mq8w2x8xc7c" path="res://assets/3d/high/Monitor.blend" id="13_y8h5b"]
@@ -456,6 +457,12 @@ shape = SubResource("BoxShape3D_gyaw3")
 [node name="Container" parent="." groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
+[node name="Drawer2" parent="Container/Frame" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
+
+[node name="Musicbox2" parent="Container/Frame/Drawer2" index="2" instance=ExtResource("8_yb7ja")]
+transform = Transform3D(-0.5, 0, -0.86602527, 0, 1, 0, 0.86602527, 0, -0.5, 0.0888176, 0.120000005, -0.01175797)
+
 [node name="Container2" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(0.15077768, 0, -0.9885677, 0, 1, 0, 0.9885677, 0, 0.15077768, -1.4118675, 0, -4.6119647)
 
@@ -724,4 +731,5 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="mouse_entered" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_exited"]
 
+[editable path="Container"]
 [editable path="Desk Setup/Monitor"]
