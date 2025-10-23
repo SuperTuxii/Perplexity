@@ -39,7 +39,7 @@ var options: OptionsMenu
 var states: RoomStates
 
 @export
-var drawer_move_time: float = 0.25
+var drawer_move_time: float = 1
 var drawer_move_tweens: Array[Tween] = [null, null, null]
 
 @export
@@ -471,9 +471,11 @@ func move_drawer(index: int) -> void:
 	drawer_move_tweens[index].set_trans(Tween.TRANS_QUAD)
 	drawer_move_tweens[index].set_parallel()
 	if states.drawer_positions[index] == 0:
+		Audio.play("drawer_open", Audio.drawer_open, -10, "SFX", Audio.CONTAINER_POSITION)
 		states.drawer_positions[index] = randf_range(0.35, 0.5)
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0025, drawer_move_time)
 	else:
+		Audio.play("drawer_close", Audio.drawer_close, -10, "SFX", Audio.CONTAINER_POSITION)
 		states.drawer_positions[index] = 0
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0175, drawer_move_time)
 	drawer_move_tweens[index].tween_property(container_drawer_meshes[index], "position:x", states.drawer_positions[index], drawer_move_time)

@@ -433,7 +433,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_sxhs2")
 
 [node name="ContainerDrawerAreas" type="Node3D" parent="." groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
-transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
+transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.45, 0, 4.625)
 visible = false
 
 [node name="ContainerDrawer1Area" type="Area3D" parent="ContainerDrawerAreas"]
