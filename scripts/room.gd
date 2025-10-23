@@ -28,9 +28,19 @@ var container_drawer_meshes: Array[MeshInstance3D] = [
 	$Container/Frame/Drawer2,
 	$Container/Frame/Drawer3
 ]
+@onready
+var container_drawer_areas: Array[Area3D] = [
+	$ContainerDrawerAreas/ContainerDrawer1Area,
+	$ContainerDrawerAreas/ContainerDrawer2Area,
+	$ContainerDrawerAreas/ContainerDrawer3Area
+]
 
 var options: OptionsMenu
 var states: RoomStates
+
+@export
+var drawer_move_time: float = 0.25
+var drawer_move_tweens: Array[Tween] = [null, null, null]
 
 @export
 var time_random_events_interval: float = 15
@@ -68,10 +78,12 @@ func _ready() -> void:
 		button.material_overlay.albedo_color.a = 0
 	container_mesh.material_overlay = outline_material.duplicate()
 	container_mesh.material_overlay.albedo_color.a = 0
-	for container_drawer_mesh in container_drawer_meshes:
-		container_drawer_mesh.material_overlay = outline_material.duplicate()
-		container_drawer_mesh.material_overlay.albedo_color.a = 0
-		container_drawer_mesh.material_overlay.grow_amount = 0.0175
+	for i in range(container_drawer_meshes.size()):
+		container_drawer_meshes[i].material_overlay = outline_material.duplicate()
+		container_drawer_meshes[i].material_overlay.albedo_color.a = 0
+		container_drawer_meshes[i].material_overlay.grow_amount = 0.0175 if states.drawer_positions[i] == 0 else 0.0025
+		container_drawer_meshes[i].position.x = states.drawer_positions[i]
+		container_drawer_areas[i].position.x = states.drawer_positions[i]
 	EventBus.schedule(roll_random_event, time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
@@ -452,11 +464,25 @@ func _on_container_area_mouse_exited() -> void:
 	container_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Container focus handling
+func move_drawer(index: int) -> void:
+	if drawer_move_tweens[index]:
+		drawer_move_tweens[index].kill()
+	drawer_move_tweens[index] = create_tween()
+	drawer_move_tweens[index].set_trans(Tween.TRANS_QUAD)
+	drawer_move_tweens[index].set_parallel()
+	if states.drawer_positions[index] == 0:
+		states.drawer_positions[index] = randf_range(0.35, 0.5)
+		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0025, drawer_move_time)
+	else:
+		states.drawer_positions[index] = 0
+		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0175, drawer_move_time)
+	drawer_move_tweens[index].tween_property(container_drawer_meshes[index], "position:x", states.drawer_positions[index], drawer_move_time)
+	drawer_move_tweens[index].tween_property(container_drawer_areas[index], "position:x", states.drawer_positions[index], drawer_move_time)
+	drawer_move_tweens[index].play()
+
 func _on_container_drawer_1_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
-		container_drawer_meshes[0].position.x += 0.3
-		container_drawer_meshes[0].material_overlay.grow_amount = 0.0025
-		$ContainerDrawerAreas/ContainerDrawer1Area.position.x += 0.3
+		move_drawer(0)
 func _on_container_drawer_1_area_mouse_entered() -> void:
 	container_drawer_meshes[0].material_overlay.albedo_color.a = 1
 func _on_container_drawer_1_area_mouse_exited() -> void:
@@ -464,9 +490,7 @@ func _on_container_drawer_1_area_mouse_exited() -> void:
 
 func _on_container_drawer_2_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
-		container_drawer_meshes[1].position.x += 0.3
-		container_drawer_meshes[1].material_overlay.grow_amount = 0.0025
-		$ContainerDrawerAreas/ContainerDrawer2Area.position.x += 0.3
+		move_drawer(1)
 func _on_container_drawer_2_area_mouse_entered() -> void:
 	container_drawer_meshes[1].material_overlay.albedo_color.a = 1
 func _on_container_drawer_2_area_mouse_exited() -> void:
@@ -474,9 +498,7 @@ func _on_container_drawer_2_area_mouse_exited() -> void:
 
 func _on_container_drawer_3_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
-		container_drawer_meshes[2].position.x += 0.3
-		container_drawer_meshes[2].material_overlay.grow_amount = 0.0025
-		$ContainerDrawerAreas/ContainerDrawer3Area.position.x += 0.3
+		move_drawer(2)
 func _on_container_drawer_3_area_mouse_entered() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 1
 func _on_container_drawer_3_area_mouse_exited() -> void:

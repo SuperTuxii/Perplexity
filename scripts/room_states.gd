@@ -16,4 +16,6 @@ var tutorial_stage: int = -1
 var cutscene_playing: bool = true
 var current_cutscene_position: float = 0
 
+var drawer_positions: Array[float] = [0, 0, 0]
+
 var monitor_scene: MonitorScene
