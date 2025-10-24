@@ -48,6 +48,8 @@ var telephone_pickup: AudioStream
 var drawer_open: AudioStream
 @export
 var drawer_close: AudioStream
+@export
+var musicbox_windup: AudioStream
 # random events
 @export
 var light_flicker: AudioStream

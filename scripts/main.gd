@@ -37,7 +37,10 @@ func _process(_delta: float) -> void:
 		if focus <= 0:
 			EventBus.paused_change.emit(!paused)
 		else:
-			focus = 0
+			if room.object_focus == null:
+				focus = 0
+			else:
+				room.object_unfocus()
 
 func load_room(create: bool = false, tutorial: bool = false) -> void:
 	if !room and !create:

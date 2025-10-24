@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c6mycvc66v0o4"]
+[gd_scene load_steps=65 format=3 uid="uid://c6mycvc66v0o4"]
 
 [ext_resource type="Script" uid="uid://wqwsr5t2ol7n" path="res://scripts/audio.gd" id="1_6n3bj"]
 [ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_hlm5c"]
@@ -45,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://bvk6jgjh2bs65" path="res://assets/audio/drawer_close1.wav" id="38_lfjt8"]
 [ext_resource type="AudioStream" uid="uid://b07esftlgdsgm" path="res://assets/audio/drawer_close2.wav" id="39_oali1"]
 [ext_resource type="AudioStream" uid="uid://dnopohotx08wj" path="res://assets/audio/drawer_close3.wav" id="40_hke57"]
+[ext_resource type="AudioStream" uid="uid://g8fa28nsvc6g" path="res://assets/audio/musicbox_windup.mp3" id="41_gwgex"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ab7u"]
 streams_count = 4
@@ -153,6 +154,12 @@ stream_0/stream = ExtResource("38_lfjt8")
 stream_1/stream = ExtResource("39_oali1")
 stream_2/stream = ExtResource("40_hke57")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i22jc"]
+random_pitch = 1.25
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("41_gwgex")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0qlvm"]
 random_pitch = 1.5
 random_volume_offset_db = 3.0
@@ -190,6 +197,7 @@ telephone_ringing = ExtResource("31_ci2oj")
 telephone_pickup = SubResource("AudioStreamRandomizer_0vrus")
 drawer_open = SubResource("AudioStreamRandomizer_tv8cs")
 drawer_close = SubResource("AudioStreamRandomizer_t2bnj")
+musicbox_windup = SubResource("AudioStreamRandomizer_i22jc")
 light_flicker = SubResource("AudioStreamRandomizer_0qlvm")
 door_knock = SubResource("AudioStreamRandomizer_nomo1")
 

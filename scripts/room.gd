@@ -76,6 +76,8 @@ func _ready() -> void:
 	if states.cutscene_playing:
 		start_cutscene()
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
+	if states.musicbox_note_removed:
+		$Container/Frame/Drawer2/Musicbox/Musicbox/Note.visible = false
 	# Creating outline materials
 	monitor_mesh.material_overlay = outline_material.duplicate()
 	monitor_mesh.material_overlay.albedo_color.a = 0
@@ -206,6 +208,8 @@ func set_focus_instantly(index: int) -> void:
 	if index != -1 and states.tutorial_stage == -1:
 		EventBus.set_skip_button.emit(false)
 		EventBus.set_skip_to_game_button.emit(false)
+	if object_focus != null:
+		object_unfocus()
 	if index == -1:
 		return # Other focus like a cutscene
 	match index:
@@ -524,6 +528,8 @@ func _on_container_drawer_1_area_mouse_exited() -> void:
 
 func _on_container_drawer_2_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		if states.drawer_positions[1] != 0 and object_focus != null:
+			object_unfocus()
 		move_drawer(1)
 func _on_container_drawer_2_area_mouse_entered() -> void:
 	container_drawer_meshes[1].material_overlay.albedo_color.a = 1
@@ -554,7 +560,11 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 			object_focus_tween.tween_property(object_focus, "position", Vector3(0, 0, -0.25), object_focus_time)
 			object_focus_tween.tween_property(object_focus, "rotation_degrees", Vector3(-85, 180, -15), object_focus_time)
 		else:
-			object_unfocus()
+			if states.musicbox_note_removed:
+				Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)
+			else:
+				musicbox_mesh.get_node("Note").visible = false
+				states.musicbox_note_removed = true
 func _on_musicbox_area_mouse_entered() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 1
 func _on_musicbox_area_mouse_exited() -> void:
