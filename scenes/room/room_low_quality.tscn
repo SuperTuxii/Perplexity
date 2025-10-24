@@ -475,11 +475,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
 [node name="Musicbox" parent="Container/Frame/Drawer2" index="1" instance=ExtResource("8_i04u4")]
 transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.0888176, 0.120000005, -0.01175797)
 
-[node name="MusicboxArea" type="Area3D" parent="Container/Frame/Drawer2" index="2" groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
-transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.0888176, 0.120000005, -0.01175797)
+[node name="MusicboxArea" type="Area3D" parent="Container/Frame/Drawer2/Musicbox" groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+visible = false
 priority = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Frame/Drawer2/MusicboxArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Frame/Drawer2/Musicbox/MusicboxArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
 shape = SubResource("BoxShape3D_hgq2s")
 
@@ -707,9 +707,9 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_input_event"]
 [connection signal="mouse_entered" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_exited"]
-[connection signal="input_event" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_input_event"]
-[connection signal="mouse_entered" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_mouse_entered"]
-[connection signal="mouse_exited" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_mouse_exited"]
+[connection signal="input_event" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_input_event"]
+[connection signal="mouse_entered" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_mouse_entered"]
+[connection signal="mouse_exited" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

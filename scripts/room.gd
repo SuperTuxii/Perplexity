@@ -44,6 +44,14 @@ var states: RoomStates
 var drawer_move_time: float = 1
 var drawer_move_tweens: Array[Tween] = [null, null, null]
 
+var object_focus: Node3D = null
+var object_origin_parent: Node3D = null
+var object_origin_position: Vector3 = Vector3()
+var object_origin_rotation: Vector3 = Vector3()
+@export
+var object_focus_time: float = 0.25
+var object_focus_tween: Tween
+
 @export
 var time_random_events_interval: float = 15
 var time_random_events_pool: Dictionary = {
@@ -85,6 +93,7 @@ func _ready() -> void:
 		container_drawer_meshes[i].material_overlay = outline_material.duplicate()
 		container_drawer_meshes[i].material_overlay.albedo_color.a = 0
 		container_drawer_meshes[i].material_overlay.grow_amount = 0.0175 if states.drawer_positions[i] == 0 else 0.0025
+		container_drawer_areas[i].get_node("CollisionShape3D").position.y = (0.105 if states.drawer_positions[i] == 0 else -0.0325) + 0.195 * i
 		container_drawer_meshes[i].position.x = states.drawer_positions[i]
 		container_drawer_areas[i].position.x = states.drawer_positions[i]
 	musicbox_mesh.material_overlay = outline_material.duplicate()
@@ -123,10 +132,10 @@ func _process(_delta: float) -> void:
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 	if Input.is_action_just_pressed("ui_accept") and states.focus == 2:
 		call_telephone_number()
-	if Input.is_action_just_pressed("focus_dec") and states.focus > 0:
-		set_focus(states.focus - 1)
-	if Input.is_action_just_pressed("focus_inc") and states.focus >= 0 and states.focus < 3:
-		set_focus(states.focus + 1)
+	if Input.is_action_just_pressed("focus_dec"):
+		set_focus(states.focus - 1 if states.focus > 0 else 3)
+	if Input.is_action_just_pressed("focus_inc"):
+		set_focus(states.focus + 1 if states.focus < 3 else 0)
 
 func get_focus_state(index: int) -> Dictionary:
 	match index:
@@ -154,6 +163,8 @@ func set_focus(index: int) -> void:
 		states.monitor_scene.start_tutorial()
 		EventBus.unlock_server.connect(_on_unlock_server)
 		states.tutorial_stage = 2
+	if object_focus != null:
+		object_unfocus()
 	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
@@ -231,6 +242,17 @@ func finished_focus() -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = false
+
+func object_unfocus() -> void:
+	object_focus.reparent(object_origin_parent)
+	if object_focus_tween:
+		object_focus_tween.kill()
+	object_focus_tween = create_tween()
+	object_focus_tween.set_trans(Tween.TRANS_QUAD)
+	object_focus_tween.set_parallel()
+	object_focus_tween.tween_property(object_focus, "position", object_origin_position, object_focus_time)
+	object_focus_tween.tween_property(object_focus, "rotation", object_origin_rotation, object_focus_time)
+	object_focus = null
 
 func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
@@ -481,13 +503,13 @@ func move_drawer(index: int) -> void:
 		states.drawer_positions[index] = randf_range(0.35, 0.5)
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0025, drawer_move_time)
 		drawer_move_tweens[index].tween_property(container_drawer_areas[index].get_node("CollisionShape3D").shape, "size:y", 0.025, drawer_move_time)
-		container_drawer_areas[index].get_node("CollisionShape3D").position.y -= 0.1375
+		container_drawer_areas[index].get_node("CollisionShape3D").position.y = 0.195 * index - 0.0325
 	else:
 		Audio.play("drawer_close", Audio.drawer_close, -10, "SFX", Audio.CONTAINER_POSITION)
 		states.drawer_positions[index] = 0
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0175, drawer_move_time)
 		drawer_move_tweens[index].tween_property(container_drawer_areas[index].get_node("CollisionShape3D").shape, "size:y", 0.19, drawer_move_time)
-		container_drawer_areas[index].get_node("CollisionShape3D").position.y += 0.1375
+		container_drawer_areas[index].get_node("CollisionShape3D").position.y = 0.105 + 0.195 * index
 	drawer_move_tweens[index].tween_property(container_drawer_meshes[index], "position:x", states.drawer_positions[index], drawer_move_time)
 	drawer_move_tweens[index].tween_property(container_drawer_areas[index], "position:x", states.drawer_positions[index], drawer_move_time)
 	drawer_move_tweens[index].play()
@@ -516,8 +538,23 @@ func _on_container_drawer_3_area_mouse_entered() -> void:
 func _on_container_drawer_3_area_mouse_exited() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
 
-func _on_musicbox_area_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	pass # Replace with function body.
+func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+		if object_focus == null:
+			object_focus = $Container/Frame/Drawer2/Musicbox
+			object_origin_parent = $Container/Frame/Drawer2
+			object_origin_position = object_focus.position
+			object_origin_rotation = object_focus.rotation
+			object_focus.reparent(camera)
+			if object_focus_tween:
+				object_focus_tween.kill()
+			object_focus_tween = create_tween()
+			object_focus_tween.set_trans(Tween.TRANS_QUAD)
+			object_focus_tween.set_parallel()
+			object_focus_tween.tween_property(object_focus, "position", Vector3(0, 0, -0.25), object_focus_time)
+			object_focus_tween.tween_property(object_focus, "rotation_degrees", Vector3(-85, 180, -15), object_focus_time)
+		else:
+			object_unfocus()
 func _on_musicbox_area_mouse_entered() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 1
 func _on_musicbox_area_mouse_exited() -> void:
