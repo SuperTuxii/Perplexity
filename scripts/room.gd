@@ -34,6 +34,8 @@ var container_drawer_areas: Array[Area3D] = [
 	$ContainerDrawerAreas/ContainerDrawer2Area,
 	$ContainerDrawerAreas/ContainerDrawer3Area
 ]
+@onready
+var musicbox_mesh: MeshInstance3D = $Container/Frame/Drawer2/Musicbox/Musicbox
 
 var options: OptionsMenu
 var states: RoomStates
@@ -66,6 +68,7 @@ func _ready() -> void:
 	if states.cutscene_playing:
 		start_cutscene()
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
+	# Creating outline materials
 	monitor_mesh.material_overlay = outline_material.duplicate()
 	monitor_mesh.material_overlay.albedo_color.a = 0
 	telephone_mesh.material_overlay = outline_material.duplicate()
@@ -84,6 +87,9 @@ func _ready() -> void:
 		container_drawer_meshes[i].material_overlay.grow_amount = 0.0175 if states.drawer_positions[i] == 0 else 0.0025
 		container_drawer_meshes[i].position.x = states.drawer_positions[i]
 		container_drawer_areas[i].position.x = states.drawer_positions[i]
+	musicbox_mesh.material_overlay = outline_material.duplicate()
+	musicbox_mesh.material_overlay.albedo_color.a = 0
+	# Start random events
 	EventBus.schedule(roll_random_event, time_random_events_interval)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
@@ -474,10 +480,14 @@ func move_drawer(index: int) -> void:
 		Audio.play("drawer_open", Audio.drawer_open, -10, "SFX", Audio.CONTAINER_POSITION)
 		states.drawer_positions[index] = randf_range(0.35, 0.5)
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0025, drawer_move_time)
+		drawer_move_tweens[index].tween_property(container_drawer_areas[index].get_node("CollisionShape3D").shape, "size:y", 0.025, drawer_move_time)
+		container_drawer_areas[index].get_node("CollisionShape3D").position.y -= 0.1375
 	else:
 		Audio.play("drawer_close", Audio.drawer_close, -10, "SFX", Audio.CONTAINER_POSITION)
 		states.drawer_positions[index] = 0
 		drawer_move_tweens[index].tween_property(container_drawer_meshes[index].material_overlay, "grow_amount", 0.0175, drawer_move_time)
+		drawer_move_tweens[index].tween_property(container_drawer_areas[index].get_node("CollisionShape3D").shape, "size:y", 0.19, drawer_move_time)
+		container_drawer_areas[index].get_node("CollisionShape3D").position.y += 0.1375
 	drawer_move_tweens[index].tween_property(container_drawer_meshes[index], "position:x", states.drawer_positions[index], drawer_move_time)
 	drawer_move_tweens[index].tween_property(container_drawer_areas[index], "position:x", states.drawer_positions[index], drawer_move_time)
 	drawer_move_tweens[index].play()
@@ -505,6 +515,13 @@ func _on_container_drawer_3_area_mouse_entered() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 1
 func _on_container_drawer_3_area_mouse_exited() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
+
+func _on_musicbox_area_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	pass # Replace with function body.
+func _on_musicbox_area_mouse_entered() -> void:
+	musicbox_mesh.material_overlay.albedo_color.a = 1
+func _on_musicbox_area_mouse_exited() -> void:
+	musicbox_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=40 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -325,6 +325,9 @@ size = Vector3(0.7, 0.65, 0.55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gyaw3"]
 size = Vector3(0.675, 0.19, 0.475)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xu3x"]
+size = Vector3(0.1, 0.065, 0.09)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
 
@@ -460,8 +463,16 @@ transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.
 [node name="Drawer2" parent="Container/Frame" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
 
-[node name="Musicbox2" parent="Container/Frame/Drawer2" index="2" instance=ExtResource("8_yb7ja")]
+[node name="Musicbox" parent="Container/Frame/Drawer2" index="2" instance=ExtResource("8_yb7ja")]
 transform = Transform3D(-0.5, 0, -0.86602527, 0, 1, 0, 0.86602527, 0, -0.5, 0.0888176, 0.120000005, -0.01175797)
+
+[node name="MusicboxArea" type="Area3D" parent="Container/Frame/Drawer2" index="3" groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.0888176, 0.120000005, -0.01175797)
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Frame/Drawer2/MusicboxArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("BoxShape3D_1xu3x")
 
 [node name="Container2" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("7_osqes")]
 transform = Transform3D(0.15077768, 0, -0.9885677, 0, 1, 0, 0.9885677, 0, 0.15077768, -1.4118675, 0, -4.6119647)
@@ -715,6 +726,9 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_input_event"]
 [connection signal="mouse_entered" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerDrawerAreas/ContainerDrawer3Area" to="." method="_on_container_drawer_3_area_mouse_exited"]
+[connection signal="input_event" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_input_event"]
+[connection signal="mouse_entered" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_mouse_entered"]
+[connection signal="mouse_exited" from="Container/Frame/Drawer2/MusicboxArea" to="." method="_on_musicbox_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]
