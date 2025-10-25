@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://nr2uyqp54f33"]
 
-[ext_resource type="Texture2D" uid="uid://bpk3ki5apemcj" path="res://assets/textures/musicbox_texture.png" id="1_mj1gm"]
+[ext_resource type="Texture2D" uid="uid://8foi5c1m4l1n" path="res://assets/textures/musicbox_texture_labeled.png" id="1_mj1gm"]
 
 [resource]
 resource_name = "MusicboxMaterial"
