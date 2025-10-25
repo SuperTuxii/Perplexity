@@ -45,6 +45,7 @@ var drawer_move_time: float = 1
 var drawer_move_tweens: Array[Tween] = [null, null, null]
 
 var object_focus: Node3D = null
+var object_motion: Vector2 = Vector2()
 var object_origin_parent: Node3D = null
 var object_origin_position: Vector3 = Vector3()
 var object_origin_rotation: Vector3 = Vector3()
@@ -132,6 +133,8 @@ func _process(_delta: float) -> void:
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
+	if object_focus != null and object_focus_tween != null and !object_focus_tween.is_running():
+		object_focus.global_rotation = Vector3(-object_motion.y, 0, object_motion.x)
 	if Input.is_action_just_pressed("ui_accept") and states.focus == 2:
 		call_telephone_number()
 	if Input.is_action_just_pressed("focus_dec"):
@@ -257,6 +260,7 @@ func object_unfocus() -> void:
 	object_focus_tween.tween_property(object_focus, "position", object_origin_position, object_focus_time)
 	object_focus_tween.tween_property(object_focus, "rotation", object_origin_rotation, object_focus_time)
 	object_focus = null
+	object_motion = Vector2()
 
 func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
@@ -325,18 +329,22 @@ func skip_to_game() -> void:
 	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
-	if !states.paused and states.focus == 0 and !states.focussing: # Saving screen drag when focus is 0
-		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+	if states.paused:
+		return
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 			states.mouse_pressed = event.pressed
 			if event.pressed:
 				states.mouse_movement = 0
-		if event is InputEventMouseMotion and states.mouse_pressed:
+	if event is InputEventMouseMotion and states.mouse_pressed:
+		states.mouse_movement += (event.relative * options.turn_sensitivity).length()
+		if states.focus == 0 and !states.focussing: # Saving screen drag when focus is 0
 			states.mouse_motion += event.relative * options.turn_sensitivity * (-1 if !options.drag_mirrored else 1)
-			states.mouse_movement += (event.relative * options.turn_sensitivity).length()
 			if states.tutorial_stage == 0 and states.mouse_movement > 0.5:
 				EventBus.drag_tutorial_visible.emit(false)
 				EventBus.focus_tutorial_visible.emit(true)
 				states.tutorial_stage = 1
+		if object_focus != null and object_focus_tween != null and !object_focus_tween.is_running():
+			object_motion += event.relative * options.turn_sensitivity
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -519,7 +527,7 @@ func move_drawer(index: int) -> void:
 	drawer_move_tweens[index].play()
 
 func _on_container_drawer_1_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		move_drawer(0)
 func _on_container_drawer_1_area_mouse_entered() -> void:
 	container_drawer_meshes[0].material_overlay.albedo_color.a = 1
@@ -527,7 +535,7 @@ func _on_container_drawer_1_area_mouse_exited() -> void:
 	container_drawer_meshes[0].material_overlay.albedo_color.a = 0
 
 func _on_container_drawer_2_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		if states.drawer_positions[1] != 0 and object_focus != null:
 			object_unfocus()
 		move_drawer(1)
@@ -537,7 +545,7 @@ func _on_container_drawer_2_area_mouse_exited() -> void:
 	container_drawer_meshes[1].material_overlay.albedo_color.a = 0
 
 func _on_container_drawer_3_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		move_drawer(2)
 func _on_container_drawer_3_area_mouse_entered() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 1
@@ -545,7 +553,7 @@ func _on_container_drawer_3_area_mouse_exited() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
 
 func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and !event.pressed:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		if object_focus == null:
 			object_focus = $Container/Frame/Drawer2/Musicbox
 			object_origin_parent = $Container/Frame/Drawer2
@@ -558,7 +566,8 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 			object_focus_tween.set_trans(Tween.TRANS_QUAD)
 			object_focus_tween.set_parallel()
 			object_focus_tween.tween_property(object_focus, "position", Vector3(0, 0, -0.25), object_focus_time)
-			object_focus_tween.tween_property(object_focus, "rotation_degrees", Vector3(-85, 180, -15), object_focus_time)
+			object_focus_tween.tween_property(object_focus, "global_rotation_degrees", Vector3(-60, 0, -15), object_focus_time)
+			object_motion = Vector2(deg_to_rad(-15), deg_to_rad(60))
 		else:
 			if states.musicbox_note_removed:
 				Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)

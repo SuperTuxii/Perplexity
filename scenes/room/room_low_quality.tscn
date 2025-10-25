@@ -473,7 +473,7 @@ transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
 
 [node name="Musicbox" parent="Container/Frame/Drawer2" index="1" instance=ExtResource("8_i04u4")]
-transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.0888176, 0.120000005, -0.01175797)
+transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 0.089, 0.14, -0.012)
 
 [node name="MusicboxArea" type="Area3D" parent="Container/Frame/Drawer2/Musicbox" groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
 visible = false
