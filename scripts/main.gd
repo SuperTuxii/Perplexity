@@ -86,3 +86,5 @@ func _on_title_screen_show_options_menu() -> void:
 func _on_audio_player_finished(key: StringName) -> void:
 	if key == "music":
 		Audio.play_again("music")
+	elif key == "musicbox":
+		room.fade_into_after_cutscene_music(1)

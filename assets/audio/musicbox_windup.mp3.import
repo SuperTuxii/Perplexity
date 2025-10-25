@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/musicbox_windup.mp3-3489f5d7e696da356183dbc29
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

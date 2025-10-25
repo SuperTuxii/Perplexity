@@ -50,6 +50,8 @@ var drawer_open: AudioStream
 var drawer_close: AudioStream
 @export
 var musicbox_windup: AudioStream
+@export
+var musicbox: AudioStream
 # random events
 @export
 var light_flicker: AudioStream
