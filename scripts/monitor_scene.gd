@@ -50,6 +50,9 @@ func finish_tutorial() -> void:
 		server.pressable = false
 	)
 
+func set_usb_popup_visible(usb_visible: bool) -> void:
+	$USBDrive.visible = usb_visible
+
 func focus_popup(popup: ScreenPopup) -> void:
 	popup.get_parent().move_child(popup, -4)
 
@@ -158,3 +161,6 @@ func _on_file_browser_back_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Audio.play("mouse", Audio.mouse_click_press if event.pressed else Audio.mouse_click_release, -20, "SFX", Audio.MOUSE_POSITION)
+
+func _on_usb_drive_pressed() -> void:
+	_on_levels_scene_open_server_files("USB")

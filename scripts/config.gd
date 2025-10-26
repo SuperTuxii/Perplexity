@@ -363,7 +363,17 @@ var server_files: Dictionary = {
 			"width": 300,
 			"height": 300,
 			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles. I hope you enjoyed it this far.[/i]"
-		},
+		}
+	},
+	"USB": {
+		"README": {
+			"type": "text",
+			"size": "82B",
+			"modified": "Today",
+			"width": 300,
+			"height": 150,
+			"value": "There is nothing here yet. But surely in the future :)"
+		}
 	}
 }:
 	set(value):

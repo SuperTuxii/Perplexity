@@ -163,7 +163,7 @@ func get_focus_state(index: int) -> Dictionary:
 func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
-				object.visible = true
+			object.visible = true
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -215,7 +215,7 @@ func set_focus(index: int) -> void:
 func set_focus_instantly(index: int) -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
-				object.visible = true
+			object.visible = true
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -260,6 +260,8 @@ func finished_focus() -> void:
 			if states.monitor_scene.security_breached_visible and states.tutorial_stage == -1:
 				states.monitor_scene.security_breached_visible = false
 				$CutsceneAnimator.play("alarm_ease_out")
+			if states.item == "USB":
+				states.monitor_scene.set_usb_popup_visible(true)
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = false
