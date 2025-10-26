@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5na0n82kci8w"]
+
+[ext_resource type="Texture2D" uid="uid://w8dtvav74x1k" path="res://assets/textures/usb_texture.svg" id="1_ka0ui"]
+
+[resource]
+resource_name = "USBMaterial"
+albedo_color = Color(0.6015625, 0.6015625, 0.6015625, 1)
+albedo_texture = ExtResource("1_ka0ui")
+roughness = 0.5

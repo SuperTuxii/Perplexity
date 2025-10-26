@@ -36,6 +36,8 @@ var container_drawer_areas: Array[Area3D] = [
 ]
 @onready
 var musicbox_mesh: MeshInstance3D = $Container/Frame/Drawer2/Musicbox/Musicbox
+@onready
+var usb_mesh: MeshInstance3D = $Container/Frame/Drawer3/USB/USB
 
 var options: OptionsMenu
 var states: RoomStates
@@ -101,6 +103,8 @@ func _ready() -> void:
 		container_drawer_areas[i].position.x = states.drawer_positions[i]
 	musicbox_mesh.material_overlay = outline_material.duplicate()
 	musicbox_mesh.material_overlay.albedo_color.a = 0
+	usb_mesh.material_overlay = outline_material.duplicate()
+	usb_mesh.material_overlay.albedo_color.a = 0
 	# Start random events
 	EventBus.schedule(roll_random_event, time_random_events_interval)
 	# Taking pictures of viewport for cube map
@@ -619,6 +623,14 @@ func _on_musicbox_area_mouse_entered() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 1
 func _on_musicbox_area_mouse_exited() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 0
+
+func _on_usb_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
+		pass
+func _on_usb_area_mouse_entered() -> void:
+	usb_mesh.material_overlay.albedo_color.a = 1
+func _on_usb_area_mouse_exited() -> void:
+	usb_mesh.material_overlay.albedo_color.a = 0
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
