@@ -107,6 +107,7 @@ func _ready() -> void:
 	usb_mesh.material_overlay.albedo_color.a = 0
 	# Start random events
 	EventBus.schedule(roll_random_event, time_random_events_interval)
+	EventBus.set_item_slot_visible.emit(true)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):
 		#$Camera3D.make_current()
@@ -125,6 +126,7 @@ func _exit_tree() -> void:
 		EventBus.skipped.disconnect(skip_tutorial)
 	if EventBus.skipped.is_connected(skip_cutscene):
 		EventBus.skipped.disconnect(skip_cutscene)
+	EventBus.set_item_slot_visible.emit(false)
 
 func save_transfer_states() -> void:
 	$MonitorViewport.remove_child(states.monitor_scene)
@@ -175,6 +177,10 @@ func set_focus(index: int) -> void:
 	if object_focus != null:
 		object_unfocus()
 	if index == -1:
+		EventBus.set_item_slot_visible.emit(false)
+	else:
+		EventBus.set_item_slot_visible.emit(true)
+	if index == -1:
 		return # Other focus like a cutscene
 	# Focus animation configuration
 	if states.focus_tween:
@@ -217,6 +223,10 @@ func set_focus_instantly(index: int) -> void:
 		EventBus.set_skip_to_game_button.emit(false)
 	if object_focus != null:
 		object_unfocus()
+	if index == -1:
+		EventBus.set_item_slot_visible.emit(false)
+	else:
+		EventBus.set_item_slot_visible.emit(true)
 	if index == -1:
 		return # Other focus like a cutscene
 	match index:
@@ -626,7 +636,9 @@ func _on_musicbox_area_mouse_exited() -> void:
 
 func _on_usb_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
-		pass
+		EventBus.set_item_slot.emit(preload("res://assets/textures/usb_item.png"))
+		$Container/Frame/Drawer3/USB.visible = false
+		states.item = "USB"
 func _on_usb_area_mouse_entered() -> void:
 	usb_mesh.material_overlay.albedo_color.a = 1
 func _on_usb_area_mouse_exited() -> void:

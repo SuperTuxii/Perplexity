@@ -18,5 +18,6 @@ var current_cutscene_position: float = 0
 
 var drawer_positions: Array[float] = [0, 0, 0]
 var musicbox_note_removed: bool = false
+var item: StringName = ""
 
 var monitor_scene: MonitorScene

@@ -21,6 +21,8 @@ func _ready() -> void:
 	EventBus.remove_subtitles_instantly.connect(remove_subtitles_instantly)
 	EventBus.set_skip_button.connect(set_skip_button)
 	EventBus.set_skip_to_game_button.connect(set_skip_to_game_button)
+	EventBus.set_item_slot_visible.connect(set_item_slot_visible)
+	EventBus.set_item_slot.connect(set_item_slot)
 	EventBus.drag_tutorial_visible.connect(set_drag_tutorial_visible)
 	EventBus.focus_tutorial_visible.connect(set_focus_tutorial_visible)
 	EventBus.unfocus_tutorial_visible.connect(set_unfocus_tutorial_visible)
@@ -73,6 +75,12 @@ func set_skip_button(button_visible: bool) -> void:
 func set_skip_to_game_button(button_visible: bool) -> void:
 	$MarginContainer/HBoxContainer/SkipToGameButton.visible = button_visible
 
+func set_item_slot_visible(slot_visible: bool) -> void:
+	$MarginContainer2/ItemSlot.visible = slot_visible
+
+func set_item_slot(icon: Texture2D) -> void:
+	$MarginContainer2/ItemSlot.icon = icon
+
 func set_drag_tutorial_visible(tutorial_visible: bool) -> void:
 	$DragTutorial.visible = tutorial_visible
 func set_focus_tutorial_visible(tutorial_visible: bool) -> void:
@@ -92,3 +100,6 @@ func _on_skip_button_pressed() -> void:
 func _on_skip_to_game_button_pressed() -> void:
 	skipped_to_game.emit()
 	EventBus.skipped_to_game.emit()
+
+func _on_item_slot_pressed() -> void:
+	EventBus.item_slot_pressed.emit()

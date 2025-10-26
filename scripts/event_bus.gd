@@ -14,6 +14,9 @@ signal set_skip_button(visible: bool)
 signal skipped
 signal set_skip_to_game_button(visible: bool)
 signal skipped_to_game
+signal set_item_slot_visible(slot_visible: bool)
+signal set_item_slot(icon: Texture2D)
+signal item_slot_pressed
 signal drag_tutorial_visible(visible: bool)
 signal focus_tutorial_visible(visible: bool)
 signal unfocus_tutorial_visible(visible: bool)

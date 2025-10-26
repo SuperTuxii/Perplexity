@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://bd2hqprnckayp"]
+[gd_scene load_steps=43 format=3 uid="uid://bd2hqprnckayp"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_0vuq4"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="3_rgsb6"]
 [ext_resource type="Material" uid="uid://clianvqtedhw6" path="res://materials/room/WallMaterial.tres" id="4_hgq2s"]
 [ext_resource type="PackedScene" uid="uid://bx0lu63loix0c" path="res://assets/3d/WindowWall.blend" id="5_k43xu"]
 [ext_resource type="PackedScene" uid="uid://dc4uls4t1ru43" path="res://assets/3d/low/Musicbox.blend" id="8_i04u4"]
+[ext_resource type="PackedScene" uid="uid://d158urq20odow" path="res://assets/3d/low/USB.blend" id="9_0vuq4"]
 [ext_resource type="PackedScene" uid="uid://caoqy67vf7yav" path="res://assets/3d/low/Keylessboard.blend" id="22_02vy7"]
 [ext_resource type="PackedScene" uid="uid://xcby2pnibkye" path="res://assets/3d/low/Window.blend" id="22_4nn56"]
 [ext_resource type="PackedScene" uid="uid://b3xsuhxnpw1dw" path="res://assets/3d/low/Pencil.blend" id="22_4y21u"]
@@ -335,6 +336,9 @@ size = Vector3(0.675, 0.19, 0.475)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hgq2s"]
 size = Vector3(0.1, 0.065, 0.09)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k43xu"]
+size = Vector3(0.11, 0.06, 0.07)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_338xd"]
 size = Vector3(0.17623138, 0.5098648, 0.58078)
 
@@ -482,6 +486,14 @@ priority = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Frame/Drawer2/Musicbox/MusicboxArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
 shape = SubResource("BoxShape3D_hgq2s")
+
+[node name="USB" parent="Container/Frame/Drawer3" index="1" instance=ExtResource("9_0vuq4")]
+transform = Transform3D(0.33107445, 0, -0.94360465, 0, 1, 0, 0.94360465, 0, 0.33107445, -0.0025486946, 0.32006693, 0.11135769)
+
+[node name="USBArea" type="Area3D" parent="Container/Frame/Drawer3/USB" groups=["focus_0_hide", "focus_1_hide", "focus_2_hide"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Frame/Drawer3/USB/USBArea"]
+shape = SubResource("BoxShape3D_k43xu")
 
 [node name="Door" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"] instance=ExtResource("22_sus3n")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -5)
@@ -710,6 +722,9 @@ transform = Transform3D(-0.12460595, 0, 0.99220634, 0, 1, 0, -0.99220634, 0, -0.
 [connection signal="input_event" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_input_event"]
 [connection signal="mouse_entered" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_mouse_entered"]
 [connection signal="mouse_exited" from="Container/Frame/Drawer2/Musicbox/MusicboxArea" to="." method="_on_musicbox_area_mouse_exited"]
+[connection signal="input_event" from="Container/Frame/Drawer3/USB/USBArea" to="." method="_on_usb_area_input_event"]
+[connection signal="mouse_entered" from="Container/Frame/Drawer3/USB/USBArea" to="." method="_on_usb_area_mouse_entered"]
+[connection signal="mouse_exited" from="Container/Frame/Drawer3/USB/USBArea" to="." method="_on_usb_area_mouse_exited"]
 [connection signal="input_event" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_input_event"]
 [connection signal="mouse_entered" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/MonitorArea" to="." method="_on_monitor_area_mouse_exited"]

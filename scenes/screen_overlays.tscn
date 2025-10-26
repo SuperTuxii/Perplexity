@@ -84,6 +84,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_sbgpc")
 }
 
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="ItemSlot" type="Button" parent="MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+
 [node name="SubtitleContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -144,32 +160,20 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="SkipToGameButton" type="Button" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Skip to game"
 
 [node name="SkipButton" type="Button" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Skip"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="ItemSlot" type="Button" parent="MarginContainer2"]
-custom_minimum_size = Vector2(68, 68)
-layout_mode = 2
-
+[connection signal="pressed" from="MarginContainer2/ItemSlot" to="." method="_on_item_slot_pressed"]
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SkipToGameButton" to="." method="_on_skip_to_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
