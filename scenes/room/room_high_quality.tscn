@@ -768,7 +768,6 @@ aabb = AABB(-0.5, 0, -0.1, 1, 2, 0.25)
 [connection signal="mouse_entered" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_entered"]
 [connection signal="mouse_exited" from="Desk Setup/TelephoneReceiverArea" to="." method="_on_telephone_receiver_area_mouse_exited"]
 [connection signal="screen_entered" from="DoorOnScreenNotifier" to="." method="_on_door_on_screen_notifier_screen_entered"]
-[connection signal="screen_exited" from="DoorOnScreenNotifier" to="." method="_on_door_on_screen_notifier_screen_exited"]
 
 [editable path="Container"]
 [editable path="Desk Setup/Monitor"]

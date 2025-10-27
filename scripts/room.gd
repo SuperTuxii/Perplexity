@@ -56,12 +56,14 @@ var object_focus_time: float = 0.25
 var object_focus_tween: Tween
 
 @export
-var time_random_events_interval: float = 15
+var time_random_events_interval: float = 10
 var time_random_events_pool: Dictionary = {
-	15: null,
-	18: light_flicker,
-	19: knock_door
+	20: null,
+	26: light_flicker,
+	28: knock_door,
+	29: toggle_door
 }
+var door_tween: Tween
 
 func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
@@ -650,13 +652,14 @@ func _on_usb_area_mouse_exited() -> void:
 #endregion
 #region Door Lock Material
 func set_door_lock(locked: bool) -> void:
-	var lock_material: StandardMaterial3D = $Door/LockStatus.mesh.surface_get_material(0)
+	var lock_material: StandardMaterial3D = $"Door/Door/Handle Cover/LockStatus".mesh.surface_get_material(0)
 	lock_material.albedo_color = Color(0.9, 0.225, 0.225, 1.0) if locked else Color("#39e639ff")
 	lock_material.emission = lock_material.albedo_color
 #endregion
 #region Random Events
 func roll_random_event() -> void:
 	var roll: int = randi_range(0, time_random_events_pool.keys().back())
+	print(roll)
 	var key: int = roll
 	while !time_random_events_pool.has(key):
 		key+=1
@@ -688,11 +691,32 @@ func light_flicker() -> void:
 func knock_door() -> void:
 	var door_position: Vector3 = Vector3(0, 1.25, 5 if randi_range(0, 1) == 0 else -5)
 	Audio.play("door_knock", Audio.door_knock, -2.5, "SFX", door_position)
+func toggle_door() -> void:
+	if $DoorOnScreenNotifier.is_on_screen():
+		return
+	if states.door_open:
+		Audio.play("door_shut", Audio.door_slam, -12.5, "SFX", Audio.DOOR_POSITION)
+		$Door2/Door.rotation.y = 0
+	else:
+		Audio.play("door_open", Audio.door_creek, -10, "SFX", Audio.DOOR_POSITION)
+		$Door2/Door.rotation.y = deg_to_rad(7.5)
+	states.door_open = !states.door_open
 
 func _on_door_on_screen_notifier_screen_entered() -> void:
-	pass # Replace with function body.
-func _on_door_on_screen_notifier_screen_exited() -> void:
-	pass # Replace with function body.
+	if states.door_open:
+		var roll: int = randi_range(0, 9)
+		var play_audio: Callable = (func play(): Audio.play("door_shut", Audio.door_creek, -10, "SFX", Audio.DOOR_POSITION)) if roll == 0 else (func play(): Audio.play("door_shut", Audio.door_slam, -10, "SFX", Audio.DOOR_POSITION))
+		if door_tween:
+			door_tween.kill()
+		door_tween = create_tween()
+		door_tween.tween_interval(0.5)
+		door_tween.tween_property($Door2/Door, "rotation:y", 0, 0.25)
+		door_tween.tween_callback(func stop_audio():
+			Audio.stop("door_open")
+			Audio.stop("door_shut"))
+		door_tween.tween_callback(play_audio)
+		door_tween.play()
+		states.door_open = false
 #endregion
 #region Functions and Variables for CutsceneAnimator
 @export

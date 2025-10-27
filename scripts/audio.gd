@@ -4,6 +4,7 @@ const MONITOR_POSITION: Vector3 = Vector3(0.847, 1.125, 1.637)
 const MOUSE_POSITION: Vector3 = Vector3(1.266, 0.83, 1.854)
 const TELEPHONE_POSITION: Vector3 = Vector3(1.2, 0.829, 1.619)
 const CONTAINER_POSITION: Vector3 = Vector3(1.45, 0.3, 4.625)
+const DOOR_POSITION: Vector3 = Vector3(0, 1, 5)
 
 @export
 var start_music: AudioStream
@@ -57,6 +58,10 @@ var musicbox: AudioStream
 var light_flicker: AudioStream
 @export
 var door_knock: AudioStream
+@export
+var door_creek: AudioStream
+@export
+var door_slam: AudioStream
 
 signal player_finished(key: StringName)
 

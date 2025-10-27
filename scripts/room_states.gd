@@ -16,6 +16,7 @@ var tutorial_stage: int = -1
 var cutscene_playing: bool = true
 var current_cutscene_position: float = 0
 
+var door_open: bool = false
 var drawer_positions: Array[float] = [0, 0, 0]
 var musicbox_note_removed: bool = false
 var item: StringName = ""
