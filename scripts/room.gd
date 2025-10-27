@@ -83,6 +83,7 @@ func _ready() -> void:
 		$CutsceneAnimator.seek(states.current_cutscene_position, true)
 	if states.musicbox_note_removed:
 		$Container/Frame/Drawer2/Musicbox/Musicbox/Note.visible = false
+	$Door2/Door.rotation.y = deg_to_rad(7.5) if states.door_open else 0.0
 	# Creating outline materials
 	monitor_mesh.material_overlay = outline_material.duplicate()
 	monitor_mesh.material_overlay.albedo_color.a = 0
@@ -697,24 +698,27 @@ func toggle_door() -> void:
 	if states.door_open:
 		Audio.play("door_shut", Audio.door_slam, -12.5, "SFX", Audio.DOOR_POSITION)
 		$Door2/Door.rotation.y = 0
+		set_door_lock(true)
 	else:
-		Audio.play("door_open", Audio.door_creek, -10, "SFX", Audio.DOOR_POSITION)
+		Audio.play("door_open", Audio.door_creek, -5, "SFX", Audio.DOOR_POSITION)
 		$Door2/Door.rotation.y = deg_to_rad(7.5)
+		set_door_lock(false)
 	states.door_open = !states.door_open
 
 func _on_door_on_screen_notifier_screen_entered() -> void:
 	if states.door_open:
 		var roll: int = randi_range(0, 9)
-		var play_audio: Callable = (func play(): Audio.play("door_shut", Audio.door_creek, -10, "SFX", Audio.DOOR_POSITION)) if roll == 0 else (func play(): Audio.play("door_shut", Audio.door_slam, -10, "SFX", Audio.DOOR_POSITION))
+		var play_audio: Callable = (func play(): Audio.play("door_shut", Audio.door_creek, -5, "SFX", Audio.DOOR_POSITION)) if roll == 0 else (func play(): Audio.play("door_shut", Audio.door_slam, -10, "SFX", Audio.DOOR_POSITION))
 		if door_tween:
 			door_tween.kill()
 		door_tween = create_tween()
-		door_tween.tween_interval(0.5)
-		door_tween.tween_property($Door2/Door, "rotation:y", 0, 0.25)
+		door_tween.tween_interval(0.25)
 		door_tween.tween_callback(func stop_audio():
 			Audio.stop("door_open")
 			Audio.stop("door_shut"))
 		door_tween.tween_callback(play_audio)
+		door_tween.tween_property($Door2/Door, "rotation:y", 0, 6.0 if roll == 0 else 0.25)
+		door_tween.tween_callback(func lock_door(): set_door_lock(true))
 		door_tween.play()
 		states.door_open = false
 #endregion

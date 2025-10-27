@@ -39,11 +39,7 @@ materials/extract_format=0
 materials/extract_path="res://materials/room/door"
 _subresources={
 "materials": {
-"@MATERIAL:1": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://materials/room/door/@MATERIAL_1.tres",
-"use_external/path": "res://materials/room/door/@MATERIAL_1.tres"
-},
+"BlackVoidMaterial": null,
 "DoorFrameMaterial": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://materials/room/door/DoorFrameMaterial.tres",
@@ -79,22 +75,25 @@ _subresources={
 "PATH:Door": {
 "mesh_instance/cast_shadow": 0
 },
-"PATH:Door/Handle": {
+"PATH:Door/BlackVoid": {
 "mesh_instance/cast_shadow": 0
 },
 "PATH:Door/Handle Cover": {
 "mesh_instance/cast_shadow": 0
 },
-"PATH:Door/Handle/HandleShadow": {
+"PATH:Door/Handle Cover/Handle": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Door/Handle Cover/Handle/HandleShadow": {
 "mesh_instance/cast_shadow": 3
+},
+"PATH:Door/Handle Cover/LockStatus": {
+"mesh_instance/cast_shadow": 0
 },
 "PATH:Frame": {
 "mesh_instance/cast_shadow": 0
 },
 "PATH:Hinge": {
-"mesh_instance/cast_shadow": 0
-},
-"PATH:LockStatus": {
 "mesh_instance/cast_shadow": 0
 }
 }
