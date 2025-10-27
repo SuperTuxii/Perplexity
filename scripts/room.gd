@@ -2,6 +2,32 @@ class_name Room extends Node3D
 
 signal tutorial_finished
 
+# Random Event Triggeres
+@export
+var light_flicker_call: bool = false:
+	set(value):
+		if value:
+			light_flicker()
+		light_flicker_call = false
+@export
+var knock_door_call: bool = false:
+	set(value):
+		if value:
+			knock_door()
+		knock_door_call = false
+@export
+var toggle_door_call: bool = false:
+	set(value):
+		if value:
+			toggle_door()
+		toggle_door_call = false
+@export
+var monitor_look_call: bool = false:
+	set(value):
+		if value:
+			monitor_look()
+		monitor_look_call = false
+
 @export
 var shadow_quality: int = 2
 @export
@@ -38,6 +64,14 @@ var container_drawer_areas: Array[Area3D] = [
 var musicbox_mesh: MeshInstance3D = $Container/Frame/Drawer2/Musicbox/Musicbox
 @onready
 var usb_mesh: MeshInstance3D = $Container/Frame/Drawer3/USB/USB
+@onready
+var monitors: Array[Node3D] = [
+	get_node_or_null("Desk Setup2/Monitor"),
+	get_node_or_null("Desk Setup3/Monitor"),
+	get_node_or_null("Desk Setup3/Monitor2"),
+	get_node_or_null("Desk Setup4/Monitor"),
+	get_node_or_null("Desk Setup5/Monitor")
+]
 
 var options: OptionsMenu
 var states: RoomStates
@@ -58,12 +92,14 @@ var object_focus_tween: Tween
 @export
 var time_random_events_interval: float = 10
 var time_random_events_pool: Dictionary = {
-	20: null,
-	26: light_flicker,
-	28: knock_door,
-	29: toggle_door
+	23: null,
+	28: light_flicker,
+	31: knock_door,
+	33: monitor_look,
+	34: toggle_door
 }
 var door_tween: Tween
+var monitor_tween: Tween
 
 func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
@@ -84,6 +120,14 @@ func _ready() -> void:
 	if states.musicbox_note_removed:
 		$Container/Frame/Drawer2/Musicbox/Musicbox/Note.visible = false
 	$Door2/Door.rotation.y = deg_to_rad(7.5) if states.door_open else 0.0
+	if states.monitor_look:
+		for i in range(monitors.size()):
+			if !monitors[i]:
+				continue
+			monitors[i].look_at(camera.global_position)
+			monitors[i].rotation.x = 0
+			monitors[i].rotation.y += PI / 2
+			monitors[i].rotation.z = 0
 	# Creating outline materials
 	monitor_mesh.material_overlay = outline_material.duplicate()
 	monitor_mesh.material_overlay.albedo_color.a = 0
@@ -704,6 +748,26 @@ func toggle_door() -> void:
 		$Door2/Door.rotation.y = deg_to_rad(7.5)
 		set_door_lock(false)
 	states.door_open = !states.door_open
+func monitor_look() -> void:
+	const original_rotations: PackedFloat32Array = [-85.5, 110.5, 88.8, -173.4, -101.4]
+	if monitor_tween:
+		monitor_tween.kill()
+	monitor_tween = create_tween()
+	monitor_tween.set_parallel()
+	monitor_tween.set_trans(Tween.TRANS_SPRING)
+	for i in range(monitors.size()):
+		if !monitors[i]:
+			continue
+		if states.monitor_look:
+			monitor_tween.tween_property(monitors[i], "rotation", Vector3(0, deg_to_rad(original_rotations[i]), 0), 1)
+		else:
+			monitors[i].look_at(camera.global_position)
+			monitors[i].rotation.x = 0
+			monitors[i].rotation.y += PI / 2
+			monitors[i].rotation.z = 0
+			monitor_tween.tween_property(monitors[i], "rotation", monitors[i].rotation, 1)
+			monitors[i].rotation = Vector3(0, deg_to_rad(original_rotations[i]), 0)
+	states.monitor_look = !states.monitor_look
 
 func _on_door_on_screen_notifier_screen_entered() -> void:
 	if states.door_open:
