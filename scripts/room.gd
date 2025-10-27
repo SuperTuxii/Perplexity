@@ -704,7 +704,6 @@ func set_door_lock(locked: bool) -> void:
 #region Random Events
 func roll_random_event() -> void:
 	var roll: int = randi_range(0, time_random_events_pool.keys().back())
-	print(roll)
 	var key: int = roll
 	while !time_random_events_pool.has(key):
 		key+=1
