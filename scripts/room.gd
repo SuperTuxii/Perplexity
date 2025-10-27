@@ -126,7 +126,8 @@ func _exit_tree() -> void:
 		EventBus.skipped.disconnect(skip_tutorial)
 	if EventBus.skipped.is_connected(skip_cutscene):
 		EventBus.skipped.disconnect(skip_cutscene)
-	EventBus.set_item_slot_visible.emit(false)
+	if states.focussing:
+		states.focus_tween.kill()
 
 func save_transfer_states() -> void:
 	$MonitorViewport.remove_child(states.monitor_scene)
@@ -231,10 +232,11 @@ func set_focus_instantly(index: int) -> void:
 		return # Other focus like a cutscene
 	match index:
 		0:
-			$"Desk Setup/Chair".look_at(camera.global_position)
-			states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
+			if $"Desk Setup/Chair".global_position == camera.global_position:
+				$"Desk Setup/Chair".look_at(camera.global_position)
+				states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
+				$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			states.mouse_motion.y = 0
-			$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
@@ -686,6 +688,11 @@ func light_flicker() -> void:
 func knock_door() -> void:
 	var door_position: Vector3 = Vector3(0, 1.25, 5 if randi_range(0, 1) == 0 else -5)
 	Audio.play("door_knock", Audio.door_knock, -2.5, "SFX", door_position)
+
+func _on_door_on_screen_notifier_screen_entered() -> void:
+	pass # Replace with function body.
+func _on_door_on_screen_notifier_screen_exited() -> void:
+	pass # Replace with function body.
 #endregion
 #region Functions and Variables for CutsceneAnimator
 @export

@@ -68,6 +68,7 @@ func _on_tutorial_finished() -> void:
 	room.states.mouse_motion = Vector2()
 	room.states.cutscene_playing = true
 	room.states.current_cutscene_position = 0
+	EventBus.set_item_slot_visible.emit(false)
 	room.queue_free()
 	$TitleScreen.visible = true
 
