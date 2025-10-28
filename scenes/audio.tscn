@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://c6mycvc66v0o4"]
+[gd_scene load_steps=82 format=3 uid="uid://c6mycvc66v0o4"]
 
 [ext_resource type="Script" uid="uid://wqwsr5t2ol7n" path="res://scripts/audio.gd" id="1_6n3bj"]
 [ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_hlm5c"]
@@ -54,6 +54,10 @@
 [ext_resource type="AudioStream" uid="uid://b3oxfp6uad2ae" path="res://assets/audio/door_creek4.wav" id="52_hnk0j"]
 [ext_resource type="AudioStream" uid="uid://cv6drjrrmn0ut" path="res://assets/audio/door_slam.wav" id="53_3rrnx"]
 [ext_resource type="AudioStream" uid="uid://b6a83ulxa11fg" path="res://assets/audio/door_rattle.wav" id="54_k6qor"]
+[ext_resource type="AudioStream" uid="uid://c2ujpp2qpwc0q" path="res://assets/audio/monitor_turn1.wav" id="55_me8cb"]
+[ext_resource type="AudioStream" uid="uid://dwcnd120ocayi" path="res://assets/audio/monitor_turn2.wav" id="56_gtulk"]
+[ext_resource type="AudioStream" uid="uid://b5robu3oo2jrf" path="res://assets/audio/monitor_turn3.wav" id="57_h8xfu"]
+[ext_resource type="AudioStream" uid="uid://1w0k0kb5f8ts" path="res://assets/audio/monitor_turn4.wav" id="58_7up2h"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ab7u"]
 streams_count = 4
@@ -215,6 +219,15 @@ random_volume_offset_db = 1.0
 streams_count = 1
 stream_0/stream = ExtResource("54_k6qor")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tkj11"]
+random_pitch = 1.5
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("55_me8cb")
+stream_1/stream = ExtResource("56_gtulk")
+stream_2/stream = ExtResource("57_h8xfu")
+stream_3/stream = ExtResource("58_7up2h")
+
 [node name="Audio" type="Node3D"]
 script = ExtResource("1_6n3bj")
 start_music = SubResource("AudioStreamRandomizer_6ab7u")
@@ -243,6 +256,7 @@ door_knock = SubResource("AudioStreamRandomizer_nomo1")
 door_creek = SubResource("AudioStreamRandomizer_me8cb")
 door_slam = SubResource("AudioStreamRandomizer_gtulk")
 door_rattle = SubResource("AudioStreamRandomizer_j17ew")
+monitor_turn = SubResource("AudioStreamRandomizer_tkj11")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 

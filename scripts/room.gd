@@ -787,14 +787,16 @@ func monitor_look() -> void:
 		if !monitors[i]:
 			continue
 		if states.monitor_look:
-			monitor_tween.tween_property(monitors[i], "rotation", Vector3(0, deg_to_rad(original_rotations[i]), 0), 1)
+			monitor_tween.tween_property(monitors[i], "rotation", Vector3(0, deg_to_rad(original_rotations[i]), 0), 1.5)
 		else:
 			monitors[i].look_at(camera.global_position)
 			monitors[i].rotation.x = 0
 			monitors[i].rotation.y += PI / 2
 			monitors[i].rotation.z = 0
-			monitor_tween.tween_property(monitors[i], "rotation", monitors[i].rotation, 1)
+			monitor_tween.tween_property(monitors[i], "rotation", monitors[i].rotation, 1.5)
 			monitors[i].rotation = Vector3(0, deg_to_rad(original_rotations[i]), 0)
+	Audio.stop("monitor_look")
+	Audio.play("monitor_look", Audio.monitor_turn, -2.5, "SFX")
 	states.monitor_look = !states.monitor_look
 
 func _on_door_on_screen_notifier_screen_entered() -> void:
