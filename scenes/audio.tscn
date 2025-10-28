@@ -187,10 +187,12 @@ stream_2/stream = ExtResource("4_dl6it")
 playback_mode = 1
 random_pitch = 1.5
 random_volume_offset_db = 3.0
-streams_count = 2
+streams_count = 3
 stream_0/stream = ExtResource("30_tnaq4")
+stream_0/weight = 3.0
 stream_1/stream = ExtResource("31_77t5w")
-stream_1/weight = 3.0
+stream_1/weight = 9.0
+stream_2/stream = ExtResource("54_k6qor")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_me8cb"]
 random_pitch = 1.5

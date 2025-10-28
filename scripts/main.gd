@@ -29,7 +29,7 @@ var focus: int:
 func _ready() -> void:
 	options.room_quality_changed.connect(load_room)
 	EventBus.paused_change.connect(_on_paused_change)
-	Audio.play("music", Audio.start_music, linear_to_db(0.4), "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
+	Audio.play("music", Audio.start_music, linear_to_db(0.2), "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
 	Audio.player_finished.connect(_on_audio_player_finished)
 
 func _process(_delta: float) -> void:

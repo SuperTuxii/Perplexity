@@ -668,7 +668,7 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 				musicbox_key_tween.tween_interval(0.6)
 				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
 				musicbox_key_tween.play()
-				Audio.play("musicbox_rattle", Audio.door_rattle, 0, "SFX", Audio.CONTAINER_POSITION)
+				Audio.play("musicbox_rattle", Audio.door_rattle, -2.5, "SFX", Audio.CONTAINER_POSITION)
 				return
 			if states.musicbox_note_removed:
 				if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
@@ -844,13 +844,13 @@ func remove_subtitles_instantly() -> void:
 	EventBus.remove_subtitles_instantly.emit()
 func music_fade_out(time: float) -> void:
 	var fade_tween: Tween = create_tween()
-	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), linear_to_db(0.4), -80, time)
+	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), linear_to_db(0.2), -80, time)
 	fade_tween.tween_callback(func stop_music(): Audio.stop("music"))
 	fade_tween.play()
 func fade_into_after_cutscene_music(time: float) -> void:
 	Audio.stop("music")
 	Audio.play("music", Audio.after_cutscene_music, -80, "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
 	var fade_tween: Tween = create_tween()
-	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), -80, linear_to_db(0.4), time)
+	fade_tween.tween_method(func set_music_volume(volume: float): Audio.set_volume("music", volume), -80, linear_to_db(0.2), time)
 	fade_tween.play()
 #endregion
