@@ -465,7 +465,7 @@ shape = SubResource("BoxShape3D_gyaw3")
 transform = Transform3D(-0.11393156, 0, 0.99348867, 0, 1, 0, -0.99348867, 0, -0.11393156, 1.449, 0, 4.624518)
 
 [node name="Drawer2" parent="Container/Frame" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.455, -0.195, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195, 0)
 
 [node name="Musicbox" parent="Container/Frame/Drawer2" index="2" instance=ExtResource("8_yb7ja")]
 transform = Transform3D(-0.5, 0, -0.86602527, 0, 1, 0, 0.86602527, 0, -0.5, 0.089, 0.14, -0.012)
