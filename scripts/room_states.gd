@@ -20,6 +20,7 @@ var door_open: bool = false
 var monitor_look: bool = false
 var drawer_positions: PackedFloat32Array = [0, 0, 0]
 var musicbox_note_removed: bool = false
+var musicbox_played: bool = false
 var item: StringName = ""
 
 var monitor_scene: MonitorScene

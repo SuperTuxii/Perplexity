@@ -98,6 +98,13 @@ var time_random_events_pool: Dictionary = {
 	33: monitor_look,
 	34: toggle_door
 }
+var increased_time_random_events_pool: Dictionary = {
+	9: null,
+	14: light_flicker,
+	18: knock_door,
+	23: monitor_look,
+	28: toggle_door
+}
 var door_tween: Tween
 var monitor_tween: Tween
 
@@ -703,12 +710,13 @@ func set_door_lock(locked: bool) -> void:
 #endregion
 #region Random Events
 func roll_random_event() -> void:
-	var roll: int = randi_range(0, time_random_events_pool.keys().back())
-	var key: int = roll
-	while !time_random_events_pool.has(key):
+	var pool: Dictionary = time_random_events_pool if !states.musicbox_played else increased_time_random_events_pool
+	var key: int = randi_range(0, pool.keys().back())
+	while !pool.has(key):
 		key+=1
-	if time_random_events_pool[key] is Callable:
-		time_random_events_pool[key].call()
+	print(str(key) + ": " + str(pool[key]))
+	if pool[key] is Callable:
+		pool[key].call()
 	EventBus.schedule(roll_random_event, time_random_events_interval)
 func light_flicker() -> void:
 	var child_index: int = randi_range(0, 3)
