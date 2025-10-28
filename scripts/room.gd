@@ -655,6 +655,8 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 			object_motion = Vector2(deg_to_rad(-15), deg_to_rad(60))
 		else:
 			if states.musicbox_played:
+				if Audio.is_playing("musicbox_rattle"):
+					return
 				var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
 				var musicbox_key_tween: Tween = musicbox_key.create_tween()
 				musicbox_key_tween.set_trans(Tween.TRANS_SINE)
@@ -666,7 +668,7 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 				musicbox_key_tween.tween_interval(0.6)
 				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
 				musicbox_key_tween.play()
-				Audio.play("musicbox_rattle", Audio.door_rattle, -10, "SFX", Audio.CONTAINER_POSITION)
+				Audio.play("musicbox_rattle", Audio.door_rattle, 0, "SFX", Audio.CONTAINER_POSITION)
 				return
 			if states.musicbox_note_removed:
 				if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
@@ -734,7 +736,6 @@ func roll_random_event() -> void:
 	var key: int = randi_range(0, pool.keys().back())
 	while !pool.has(key):
 		key+=1
-	print(str(key) + ": " + str(pool[key]))
 	if pool[key] is Callable:
 		pool[key].call()
 	EventBus.schedule(roll_random_event, time_random_events_interval)
