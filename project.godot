@@ -17,7 +17,8 @@ warnings/check_invalid_track_paths=false
 config/name="Perplexity"
 run/main_scene="uid://b4ws4gaic8rjp"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/show_image=false
+boot_splash/bg_color=Color(0.78, 0.78, 0.78, 1)
+boot_splash/image="uid://bonbny10ufgo2"
 
 [audio]
 
