@@ -107,6 +107,10 @@ var increased_time_random_events_pool: Dictionary = {
 }
 var door_tween: Tween
 var monitor_tween: Tween
+var monitor_textures: Array[Texture2D] = [
+	preload("res://assets/textures/monitor_textures/empty.svg"),
+	preload("res://assets/textures/monitor_textures/hello_world.png")
+]
 
 func _ready() -> void:
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", shadow_quality)
@@ -795,6 +799,17 @@ func monitor_look() -> void:
 			monitors[i].rotation.z = 0
 			monitor_tween.tween_property(monitors[i], "rotation", monitors[i].rotation, 1.5)
 			monitors[i].rotation = Vector3(0, deg_to_rad(original_rotations[i]), 0)
+	var texture_tween: Tween = create_tween()
+	texture_tween.tween_interval(1.5)
+	texture_tween.tween_callback(func set_texture():
+		if states.monitor_look:
+			monitors[0].get_node("Monitor").mesh.surface_get_material(0).albedo_color = Color("ffffff")
+			monitors[0].get_node("Monitor").mesh.surface_get_material(0).albedo_texture = monitor_textures[randi_range(0, monitor_textures.size()-1)]
+		else:
+			monitors[0].get_node("Monitor").mesh.surface_get_material(0).albedo_color = Color("323232")
+			monitors[0].get_node("Monitor").mesh.surface_get_material(0).albedo_texture = null
+		)
+	monitor_tween.tween_subtween(texture_tween)
 	Audio.stop("monitor_look")
 	Audio.play("monitor_look", Audio.monitor_turn, -2.5, "SFX")
 	states.monitor_look = !states.monitor_look
