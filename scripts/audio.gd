@@ -62,6 +62,8 @@ var door_knock: AudioStream
 var door_creek: AudioStream
 @export
 var door_slam: AudioStream
+@export
+var door_rattle: AudioStream
 
 signal player_finished(key: StringName)
 

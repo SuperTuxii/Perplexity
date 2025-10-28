@@ -654,6 +654,20 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 			object_focus_tween.tween_property(object_focus, "global_rotation_degrees", Vector3(-60, 0, -15), object_focus_time)
 			object_motion = Vector2(deg_to_rad(-15), deg_to_rad(60))
 		else:
+			if states.musicbox_played:
+				var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
+				var musicbox_key_tween: Tween = musicbox_key.create_tween()
+				musicbox_key_tween.set_trans(Tween.TRANS_SINE)
+				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.5)
+				musicbox_key_tween.tween_interval(0.5)
+				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.4)
+				musicbox_key_tween.tween_interval(0.7)
+				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.6)
+				musicbox_key_tween.tween_interval(0.6)
+				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
+				musicbox_key_tween.play()
+				Audio.play("musicbox_rattle", Audio.door_rattle, -10, "SFX", Audio.CONTAINER_POSITION)
+				return
 			if states.musicbox_note_removed:
 				if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
 					return
@@ -676,7 +690,13 @@ func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_posi
 				musicbox_key_tween.tween_interval(0.6)
 				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 235, 0.7)
 				musicbox_key_tween.tween_callback(play_musicbox)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 235, 128)
+				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y, 122.5)
+				var key_break_tween: Tween = musicbox_key.create_tween()
+				key_break_tween.set_parallel()
+				key_break_tween.set_trans(Tween.TRANS_QUAD)
+				key_break_tween.tween_property(musicbox_key, "position:y", 0.019, 0.5)
+				key_break_tween.tween_property(musicbox_key, "rotation_degrees:x", -40, 0.5)
+				musicbox_key_tween.tween_subtween(key_break_tween)
 				musicbox_key_tween.play()
 				Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)
 			else:
