@@ -76,6 +76,8 @@ var monitors: Array[Node3D] = [
 var options: OptionsMenu
 var states: RoomStates
 
+var hovered_focus: int = -1
+
 @export
 var drawer_move_time: float = 1
 var drawer_move_tweens: Array[Tween] = [null, null, null]
@@ -438,6 +440,9 @@ func _input(event: InputEvent) -> void:
 				states.joystick_motion.x = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
 			if event.axis == JOY_AXIS_LEFT_Y or event.axis == JOY_AXIS_RIGHT_Y:
 				states.joystick_motion.y = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
+	if event is InputEventJoypadButton:
+		if event.button_index == JOY_BUTTON_A and hovered_focus != -1:
+			set_focus(hovered_focus)
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -447,8 +452,10 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 func _on_monitor_area_mouse_entered() -> void:
 	if states.focus == 0 and !states.focussing:
 		monitor_mesh.material_overlay.albedo_color.a = 1
+		hovered_focus = 1
 func _on_monitor_area_mouse_exited() -> void:
 	monitor_mesh.material_overlay.albedo_color.a = 0
+	hovered_focus = -1
 #endregion
 #region Push input to viewport when monitor is focused (https://github.com/godotengine/godot-demo-projects/tree/master/viewport/gui_in_3d)
 var is_mouse_inside_screen = false
@@ -507,9 +514,11 @@ func _on_telephone_area_mouse_entered() -> void:
 	if states.focus == 0 and !states.focussing:
 		telephone_mesh.material_overlay.albedo_color.a = 1
 		telephone_receiver_mesh.material_overlay.albedo_color.a = 1
+		hovered_focus = 2
 func _on_telephone_area_mouse_exited() -> void:
 	telephone_mesh.material_overlay.albedo_color.a = 0
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+	hovered_focus = -1
 #endregion
 #region Telephone focus handling
 var telephone_number: String = ""
@@ -593,8 +602,10 @@ func _on_container_area_input_event(_camera: Node, event: InputEvent, _event_pos
 func _on_container_area_mouse_entered() -> void:
 	if states.focus == 0 and !states.focussing:
 		container_mesh.material_overlay.albedo_color.a = 1
+		hovered_focus = 3
 func _on_container_area_mouse_exited() -> void:
 	container_mesh.material_overlay.albedo_color.a = 0
+	hovered_focus = -1
 #endregion
 #region Container focus handling
 func move_drawer(index: int) -> void:
