@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bq4nbein63lhr"]
+[gd_scene load_steps=43 format=3 uid="uid://bq4nbein63lhr"]
 
 [ext_resource type="Script" uid="uid://bgxu7g4xjhmoa" path="res://scripts/room.gd" id="1_lg6en"]
 [ext_resource type="Material" uid="uid://dfiaaiij0vgu8" path="res://materials/room/FloorMaterial.tres" id="2_sxhs2"]
@@ -363,6 +363,9 @@ size = Vector3(0.055292968, 0.01669678, 0.07534607)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg6en"]
 size = Vector3(0.043273926, 0.039978027, 0.19682312)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lg6en"]
+radius = 0.15
+
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
 alarm0_volume = -60.0
@@ -637,6 +640,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0.75)
 [node name="Camera" type="Camera3D" parent="Desk Setup/Chair"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 current = true
+
+[node name="InteractArea" type="Area3D" parent="Desk Setup/Chair/Camera" groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/Chair/Camera/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -1)
+shape = SubResource("CylinderShape3D_lg6en")
 
 [node name="Desk Setup2" type="Node3D" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)

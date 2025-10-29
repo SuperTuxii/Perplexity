@@ -195,6 +195,7 @@ func save_transfer_states() -> void:
 
 func _process(_delta: float) -> void:
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
+		states.mouse_motion -= states.joystick_motion
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
@@ -405,12 +406,18 @@ func skip_to_game() -> void:
 	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		states.joystick_input = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
+		states.joystick_input = true
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if states.paused:
 		return
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			states.mouse_pressed = event.pressed
-			if event.pressed:
-				states.mouse_movement = 0
+		states.mouse_pressed = event.pressed
+		if event.pressed:
+			states.mouse_movement = 0
 	if event is InputEventMouseMotion and states.mouse_pressed:
 		states.mouse_movement += (event.relative * options.turn_sensitivity).length()
 		if states.focus == 0 and !states.focussing: # Saving screen drag when focus is 0
@@ -421,6 +428,12 @@ func _input(event: InputEvent) -> void:
 				states.tutorial_stage = 1
 		if object_focus != null and object_focus_tween != null and !object_focus_tween.is_running():
 			object_motion += event.relative * options.turn_sensitivity
+	if event is InputEventJoypadMotion:
+		if states.focus == 0 and !states.focussing:
+			if event.axis == JOY_AXIS_LEFT_X or event.axis == JOY_AXIS_RIGHT_X:
+				states.joystick_motion.x = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
+			if event.axis == JOY_AXIS_LEFT_Y or event.axis == JOY_AXIS_RIGHT_Y:
+				states.joystick_motion.y = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:

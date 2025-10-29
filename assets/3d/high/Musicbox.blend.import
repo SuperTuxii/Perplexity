@@ -38,6 +38,33 @@ materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://materials/room/container/musicbox"
 _subresources={
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/musicbox/@MATERIAL_0.tres",
+"use_external/path": "res://materials/room/container/musicbox/@MATERIAL_0.tres"
+},
+"@MATERIAL:2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/musicbox/@MATERIAL_2.tres",
+"use_external/path": "res://materials/room/container/musicbox/@MATERIAL_2.tres"
+},
+"MusicboxKeyMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/musicbox/MusicboxKeyMaterial.tres",
+"use_external/path": "uid://ck77rvr622lsq"
+},
+"MusicboxMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/musicbox/MusicboxMaterial.tres",
+"use_external/path": "uid://nr2uyqp54f33"
+},
+"MusicboxNoteMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/room/container/musicbox/MusicboxNoteMaterial.tres",
+"use_external/path": "uid://hkosialatyiw"
+}
+},
 "nodes": {
 "PATH:Musicbox": {
 "mesh_instance/cast_shadow": 0

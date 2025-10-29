@@ -7,6 +7,8 @@ signal room_quality_changed
 @export
 var turn_sensitivity: float = 0.005
 @export
+var joystick_sensitivity: float = 0.05
+@export
 var drag_mirrored: bool = false
 @export
 var volume: float = 1.0

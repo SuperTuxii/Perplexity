@@ -8,6 +8,8 @@ var focussing: bool:
 		return focus_tween and focus_tween.is_running()
 var focus: int = 0 #should not be set here! Use "set_focus" function instead!
 var head_fall_weight: int = -1
+var joystick_input: bool = false
+var joystick_motion: Vector2 = Vector2() 
 var mouse_motion: Vector2 = Vector2()
 var mouse_pressed: bool = false
 var mouse_movement: float = 0
