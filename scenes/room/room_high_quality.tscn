@@ -432,7 +432,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.15
 [node name="Plant" parent="Shelf2" groups=["focus_1_hide"] instance=ExtResource("6_tuh4a")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.11277914, 1.55, 0.43187022)
 
-[node name="ContainerArea" type="Area3D" parent="." groups=["focus_1_hide", "focus_2_hide", "focus_3_hide"]]
+[node name="ContainerArea" type="Area3D" parent="." groups=["focus_area"]]
 transform = Transform3D(-0.113931485, 0, 0.9934886, 0, 1, 0, -0.9934886, 0, -0.113931485, 1.449, 0, 4.624518)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerArea"]
@@ -572,7 +572,7 @@ omni_attenuation = 2.0
 [node name="Desk Setup" type="Node3D" parent="." groups=["focus_3_hide"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
 
-[node name="MonitorArea" type="Area3D" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"]]
+[node name="MonitorArea" type="Area3D" parent="Desk Setup" groups=["focus_area"]]
 transform = Transform3D(0.13549079, 0, -0.9907786, 0, 1, 0, 0.9907786, 0, 0.13549079, 0.84665704, 0.79999983, -0.11270809)
 
 [node name="MonitorShape" type="CollisionShape3D" parent="Desk Setup/MonitorArea"]
@@ -598,7 +598,7 @@ transform = Transform3D(0.08964175, 0, -0.99597406, 0, 1, 0, 0.99597406, 0, 0.08
 [node name="Mouse" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"] instance=ExtResource("15_ewkbm")]
 transform = Transform3D(0.15527935, 0, 0.9878706, 0, 1, 0, -0.9878706, 0, 0.15527935, 1.2759354, 0.8, 0.14007969)
 
-[node name="TelephoneArea" type="Area3D" parent="Desk Setup" groups=["focus_1_hide", "focus_2_hide"]]
+[node name="TelephoneArea" type="Area3D" parent="Desk Setup" groups=["focus_area"]]
 transform = Transform3D(-0.9993104, 0, 0.037132222, 0, 1, 0, -0.037132222, 0, -0.9993104, 1.2477397, 0.8, -0.13152686)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desk Setup/TelephoneArea"]

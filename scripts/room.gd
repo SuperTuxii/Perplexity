@@ -76,6 +76,7 @@ var monitors: Array[Node3D] = [
 var options: OptionsMenu
 var states: RoomStates
 
+var update_mouse_position: bool = false
 var hovered_focus: int = -1
 
 @export
@@ -196,6 +197,11 @@ func save_transfer_states() -> void:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
 
 func _process(_delta: float) -> void:
+	if update_mouse_position:
+		var mouse_middle_event: InputEventMouseMotion = InputEventMouseMotion.new()
+		mouse_middle_event.position = get_viewport().size / 2
+		get_viewport().push_input(mouse_middle_event)
+		update_mouse_position = false
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
 		states.mouse_motion -= states.joystick_motion
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
@@ -226,6 +232,9 @@ func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 			object.visible = true
+	if get_tree().has_group("focus_area") and index != 0:
+		for object in get_tree().get_nodes_in_group("focus_area"):
+			object.visible = false
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -278,6 +287,9 @@ func set_focus_instantly(index: int) -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 			object.visible = true
+	if get_tree().has_group("focus_area") and index != 0:
+		for object in get_tree().get_nodes_in_group("focus_area"):
+			object.visible = false
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -328,6 +340,13 @@ func finished_focus() -> void:
 	if get_tree().has_group("focus_" + str(states.focus) + "_hide"):
 		for object in get_tree().get_nodes_in_group("focus_" + str(states.focus) + "_hide"):
 				object.visible = false
+	if get_tree().has_group("focus_area") and states.focus == 0:
+		for object in get_tree().get_nodes_in_group("focus_area"):
+			object.visible = true
+		if states.joystick_input:
+			update_mouse_position = true
+		else:
+			get_viewport().update_mouse_cursor_state()
 
 func object_unfocus() -> void:
 	object_focus.reparent(object_origin_parent)
@@ -408,15 +427,12 @@ func skip_to_game() -> void:
 	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton or (event is InputEventMouseMotion and !event.pen_inverted):
+	if (event is InputEventMouseButton or event is InputEventMouseMotion) and !update_mouse_position:
 		states.joystick_input = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
 		states.joystick_input = true
-		var mouse_middle_event: InputEventMouseMotion = InputEventMouseMotion.new()
-		mouse_middle_event.position = get_viewport().size / 2
-		mouse_middle_event.pen_inverted = true
-		get_viewport().push_input(mouse_middle_event)
+		update_mouse_position = true
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if states.paused:
 		return
@@ -450,9 +466,8 @@ func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_posit
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
 			set_focus(1)
 func _on_monitor_area_mouse_entered() -> void:
-	if states.focus == 0 and !states.focussing:
-		monitor_mesh.material_overlay.albedo_color.a = 1
-		hovered_focus = 1
+	monitor_mesh.material_overlay.albedo_color.a = 1
+	hovered_focus = 1
 func _on_monitor_area_mouse_exited() -> void:
 	monitor_mesh.material_overlay.albedo_color.a = 0
 	hovered_focus = -1
@@ -511,10 +526,9 @@ func _on_telephone_area_input_event(_camera: Node, event: InputEvent, _event_pos
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
 			set_focus(2)
 func _on_telephone_area_mouse_entered() -> void:
-	if states.focus == 0 and !states.focussing:
-		telephone_mesh.material_overlay.albedo_color.a = 1
-		telephone_receiver_mesh.material_overlay.albedo_color.a = 1
-		hovered_focus = 2
+	telephone_mesh.material_overlay.albedo_color.a = 1
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 1
+	hovered_focus = 2
 func _on_telephone_area_mouse_exited() -> void:
 	telephone_mesh.material_overlay.albedo_color.a = 0
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
@@ -600,9 +614,8 @@ func _on_container_area_input_event(_camera: Node, event: InputEvent, _event_pos
 		if !event.pressed and states.focus == 0 and states.mouse_movement < 0.05 and states.tutorial_stage != 0:
 			set_focus(3)
 func _on_container_area_mouse_entered() -> void:
-	if states.focus == 0 and !states.focussing:
-		container_mesh.material_overlay.albedo_color.a = 1
-		hovered_focus = 3
+	container_mesh.material_overlay.albedo_color.a = 1
+	hovered_focus = 3
 func _on_container_area_mouse_exited() -> void:
 	container_mesh.material_overlay.albedo_color.a = 0
 	hovered_focus = -1

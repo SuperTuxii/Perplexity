@@ -6,11 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dkaofyvw6ltoh" path="res://scenes/screen_overlays.tscn" id="4_ml77k"]
 
 [node name="Main3D" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_jl2p6")
 
 [node name="ScreenOverlays" parent="." instance=ExtResource("4_ml77k")]
+process_mode = 1
 
 [node name="TitleScreen" parent="." instance=ExtResource("2_hl4rc")]
+process_mode = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_jl2p6")]
 process_mode = 2

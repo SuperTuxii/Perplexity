@@ -52,6 +52,7 @@ func load_room(create: bool = false, tutorial: bool = false) -> void:
 		room.queue_free()
 	room = room_scenes[options.room_quality].instantiate()
 	room.options = options
+	room.process_mode = Node.PROCESS_MODE_PAUSABLE
 	if prev_room_states:
 		room.states = prev_room_states
 	if tutorial:
