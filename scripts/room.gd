@@ -197,7 +197,8 @@ func save_transfer_states() -> void:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
 
 func _process(_delta: float) -> void:
-	if update_mouse_position:
+	if update_mouse_position or !states.joystick_motion.is_zero_approx():
+		update_mouse_position = true
 		var mouse_middle_event: InputEventMouseMotion = InputEventMouseMotion.new()
 		mouse_middle_event.position = get_viewport().size / 2
 		get_viewport().push_input(mouse_middle_event)
