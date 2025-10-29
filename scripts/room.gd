@@ -194,6 +194,11 @@ func save_transfer_states() -> void:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
 
 func _process(_delta: float) -> void:
+	if states.joystick_input:
+		var mouse_middle_event: InputEventMouseMotion = InputEventMouseMotion.new()
+		mouse_middle_event.position = get_viewport().size / 2
+		mouse_middle_event.pen_inverted = true
+		get_viewport().push_input(mouse_middle_event)
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
 		states.mouse_motion -= states.joystick_motion
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
@@ -406,7 +411,7 @@ func skip_to_game() -> void:
 	EventBus.skipped.emit()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton or event is InputEventMouseMotion:
+	if event is InputEventMouseButton or (event is InputEventMouseMotion and !event.pen_inverted):
 		states.joystick_input = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
