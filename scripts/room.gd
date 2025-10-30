@@ -503,6 +503,8 @@ func _input(event: InputEvent) -> void:
 			elif states.focus == 3 and !event.pressed:
 				if container_joystick_item == 0:
 					move_drawer(container_joystick_drawer)
+				else:
+					use_drawer_item()
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -792,6 +794,15 @@ func _unfocus_container() -> void:
 	container_joystick_drawer = 0
 	container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 0
 
+func use_drawer_item() -> void:
+	if container_joystick_drawer == 1:
+		if container_joystick_item == 1:
+			click_musicbox()
+	elif container_joystick_drawer == 2:
+		if container_joystick_item == 1:
+			click_usb()
+			container_joystick_item = 0
+
 func get_drawer_item_mesh() -> MeshInstance3D:
 	if container_joystick_drawer == 1:
 		if container_joystick_item == 1:
@@ -802,8 +813,10 @@ func get_drawer_item_mesh() -> MeshInstance3D:
 	return container_drawer_meshes[container_joystick_drawer]
 
 func get_drawer_item_count() -> int:
-	if container_joystick_drawer > 0:
+	if container_joystick_drawer == 1:
 		return 1
+	elif container_joystick_drawer == 2:
+		return 0 if states.item == "USB" else 1
 	return 0
 
 func click_musicbox() -> void:
@@ -877,7 +890,6 @@ func click_musicbox() -> void:
 			musicbox_note_tween.tween_callback(musicbox_note.hide)
 			musicbox_note_tween.play()
 			states.musicbox_note_removed = true
-
 func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if states.tutorial_stage != -1:
 		return
@@ -888,11 +900,14 @@ func _on_musicbox_area_mouse_entered() -> void:
 func _on_musicbox_area_mouse_exited() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 0
 
+
+func click_usb() -> void:
+	EventBus.set_item_slot.emit(preload("res://assets/textures/usb_item.png"))
+	$Container/Frame/Drawer3/USB.visible = false
+	states.item = "USB"
 func _on_usb_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
-		EventBus.set_item_slot.emit(preload("res://assets/textures/usb_item.png"))
-		$Container/Frame/Drawer3/USB.visible = false
-		states.item = "USB"
+		click_usb()
 func _on_usb_area_mouse_entered() -> void:
 	usb_mesh.material_overlay.albedo_color.a = 1
 func _on_usb_area_mouse_exited() -> void:
