@@ -2,7 +2,7 @@ class_name Room extends Node3D
 
 signal tutorial_finished
 
-# Random Event Triggeres
+#region Random Event Triggeres
 @export
 var light_flicker_call: bool = false:
 	set(value):
@@ -27,7 +27,8 @@ var monitor_look_call: bool = false:
 		if value:
 			monitor_look()
 		monitor_look_call = false
-
+#endregion
+#region Exports
 @export
 var shadow_quality: int = 2
 @export
@@ -36,6 +37,8 @@ var monitor_scene: PackedScene = preload("res://scenes/monitor_scenes/monitor_sc
 var outline_material: Material = preload("res://materials/OutlineMaterial.tres")
 @export
 var light_frame_material: Material = preload("res://materials/room/light/LightFrameMaterial.tres")
+#endregion
+#region OnReady Objects
 @onready
 var camera: Camera3D = $"Desk Setup/Chair/Camera"
 @onready
@@ -72,6 +75,7 @@ var monitors: Array[Node3D] = [
 	get_node_or_null("Desk Setup4/Monitor"),
 	get_node_or_null("Desk Setup5/Monitor")
 ]
+#endregion
 
 var options: OptionsMenu
 var states: RoomStates
@@ -229,6 +233,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("focus_inc"):
 		set_focus(states.focus + 1 if states.focus < 3 else 0)
 
+#region Focusing (+ Object Unfocusing)
 func get_focus_state(index: int) -> Dictionary:
 	match index:
 		0:
@@ -389,6 +394,7 @@ func object_unfocus() -> void:
 	object_focus_tween.tween_property(object_focus, "rotation", object_origin_rotation, object_focus_time)
 	object_focus = null
 	object_motion = Vector2()
+#endregion
 
 func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
@@ -408,6 +414,7 @@ func _on_unlock_server(_name: String) -> void:
 	EventBus.unfocus_tutorial_visible.emit(true)
 	states.tutorial_stage = 3
 
+#region Skipping functions
 func skip_tutorial() -> void:
 	set_focus_instantly(0)
 	EventBus.drag_tutorial_visible.emit(false)
@@ -455,6 +462,7 @@ func skip_to_game() -> void:
 	fade_into_after_cutscene_music(0)
 	set_focus_instantly(1)
 	EventBus.skipped.emit()
+#endregion
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton or event is InputEventMouseMotion) and !update_mouse_position:
