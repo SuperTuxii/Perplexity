@@ -81,7 +81,7 @@ var options: OptionsMenu
 var states: RoomStates
 
 var update_mouse_position: bool = false
-var joystick_cooldown: Vector2 = Vector2()
+var joystick_cooldown: Vector2 = Vector2() 
 var hovered_focus: int = -1
 
 @export

@@ -159,14 +159,6 @@ var server_files: Dictionary = {
 		}
 	},
 	"Server 2A": {
-		"README": {
-			"type": "text",
-			"size": "252B",
-			"modified": "Today",
-			"width": 300,
-			"height": 300,
-			"value": "WHAT, you already finished my first puzzle!? You are really fast! I didn't expect that so I am not really finished with the next level yet. Sooo take a break and drink some water.\n[i]I'm working on adding more content/puzzles and finishing this level. I hope you enjoyed it this far.[/i]"
-		},
 		"unlock": {
 			"type": "executable",
 			"size": "1,2KB",
@@ -207,7 +199,7 @@ var server_files: Dictionary = {
 		"staff": {
 			"type": "folder",
 			"size": "8 items",
-			"modified": "Today",
+			"modified": "6 months ago",
 			"value": {
 				"staff-0": {
 					"type": "staff",
@@ -318,7 +310,7 @@ var server_files: Dictionary = {
 		"requests": {
 			"type": "folder",
 			"size": "4 items",
-			"modified": "Today",
+			"modified": "Yesterday",
 			"value": {
 				"key_upgrade_template": {
 					"type": "text",
