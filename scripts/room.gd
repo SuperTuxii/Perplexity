@@ -196,15 +196,23 @@ func save_transfer_states() -> void:
 	if states.cutscene_playing:
 		states.current_cutscene_position = $CutsceneAnimator.current_animation_position
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if update_mouse_position or !states.joystick_motion.is_zero_approx():
 		update_mouse_position = true
 		var mouse_middle_event: InputEventMouseMotion = InputEventMouseMotion.new()
 		mouse_middle_event.position = get_viewport().size / 2
 		get_viewport().push_input(mouse_middle_event)
 		update_mouse_position = false
+	if telephone_joystick_cooldown.x > 0:
+		telephone_joystick_cooldown.x -= delta * 3
+	if telephone_joystick_cooldown.y > 0:
+		telephone_joystick_cooldown.y -= delta * 3
+	if telephone_joystick_cooldown.x < 0 or telephone_joystick_cooldown.y < 0:
+		telephone_joystick_cooldown.x = max(telephone_joystick_cooldown.x, 0)
+		telephone_joystick_cooldown.y = max(telephone_joystick_cooldown.y, 0)
+		update_telephone_joystick()
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
-		states.mouse_motion -= states.joystick_motion
+		states.mouse_motion -= states.joystick_motion * options.joystick_sensitivity
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
@@ -452,11 +460,14 @@ func _input(event: InputEvent) -> void:
 		if object_focus != null and object_focus_tween != null and !object_focus_tween.is_running():
 			object_motion += event.relative * options.turn_sensitivity
 	if event is InputEventJoypadMotion:
-		if states.focus == 0 and !states.focussing:
-			if event.axis == JOY_AXIS_LEFT_X or event.axis == JOY_AXIS_RIGHT_X:
-				states.joystick_motion.x = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
-			if event.axis == JOY_AXIS_LEFT_Y or event.axis == JOY_AXIS_RIGHT_Y:
-				states.joystick_motion.y = event.axis_value * options.joystick_sensitivity if abs(event.axis_value) > 0.15 else 0
+		if states.focussing:
+			return
+		if event.axis == JOY_AXIS_LEFT_X or event.axis == JOY_AXIS_RIGHT_X:
+			states.joystick_motion.x = event.axis_value if abs(event.axis_value) > 0.15 else 0
+		if event.axis == JOY_AXIS_LEFT_Y or event.axis == JOY_AXIS_RIGHT_Y:
+			states.joystick_motion.y = event.axis_value if abs(event.axis_value) > 0.15 else 0
+		if states.focus == 2:
+			update_telephone_joystick()
 	if event is InputEventJoypadButton:
 		if event.button_index == JOY_BUTTON_A and hovered_focus != -1:
 			set_focus(hovered_focus)
@@ -537,18 +548,40 @@ func _on_telephone_area_mouse_exited() -> void:
 #endregion
 #region Telephone focus handling
 var telephone_number: String = ""
-var telephone_button_index: int = 0
+var telephone_joystick_cooldown: Vector2 = Vector2()
+var telephone_button_index: int = 0:
+	set(value):
+		telephone_button_index = clamp(value, 0, 11)
+		var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(telephone_button_index))
+		$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
 
 func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	var relative_position: Vector3 = (event_position - $"Desk Setup/TelephoneKeysArea/CollisionShape3D".global_position).rotated(Vector3.UP, deg_to_rad(-177.9))
-	var size: Vector3 = $"Desk Setup/TelephoneKeysArea/CollisionShape3D".shape.size
-	relative_position -= size / 2
-	var index: int = clamp(floor((relative_position.x / size.x) * -3) + floor((relative_position.z / size.z) * -4) * 3, 0, 11)
-	var button: MeshInstance3D = get_node("Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/Button " + str(index))
-	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".position = button.position
-	telephone_button_index = index
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		press_telephone_button(telephone_button_index, event.pressed)
+	if !states.joystick_input:
+		var relative_position: Vector3 = (event_position - $"Desk Setup/TelephoneKeysArea/CollisionShape3D".global_position).rotated(Vector3.UP, deg_to_rad(-177.9))
+		var size: Vector3 = $"Desk Setup/TelephoneKeysArea/CollisionShape3D".shape.size
+		relative_position -= size / 2
+		var index: int = clamp(floor((relative_position.x / size.x) * -3) + floor((relative_position.z / size.z) * -4) * 3, 0, 11)
+		telephone_button_index = index
+		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			press_telephone_button(telephone_button_index, event.pressed)
+
+func update_telephone_joystick() -> void:
+	var index: int = telephone_button_index
+	if abs(states.joystick_motion.x) > 0.5 and telephone_joystick_cooldown.x == 0:
+		if !((states.joystick_motion.x > 0 and (index % 3) == 0) or (states.joystick_motion.x < 0 and (index % 3) == 2)):
+			index += 1 if states.joystick_motion.x > 0 else -1
+		telephone_joystick_cooldown.x = 1
+	elif abs(states.joystick_motion.x) < 0.5 and telephone_joystick_cooldown.x != 0:
+		telephone_joystick_cooldown.x = 0
+	if abs(states.joystick_motion.y) > 0.5 and telephone_joystick_cooldown.y == 0:
+		index += 3 if states.joystick_motion.y > 0 else -3
+		if index < 0 or index > 12:
+			index -= 3 if states.joystick_motion.y > 0 else -3
+		telephone_joystick_cooldown.y = 1
+	elif abs(states.joystick_motion.y) < 0.5 and telephone_joystick_cooldown.y != 0:
+		telephone_joystick_cooldown.y = 0
+	if index != telephone_button_index:
+		telephone_button_index = index
 
 func _on_telephone_keys_area_mouse_entered() -> void:
 	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 1
