@@ -278,6 +278,8 @@ func set_focus(index: int) -> void:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
 			telephone_number = ""
+			telephone_joystick_cooldown = Vector2()
+			telephone_joystick_on_receiver = false
 			telephone_mesh.material_overlay.albedo_color.a = 0
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 	var state: Dictionary = get_focus_state(index)
@@ -323,6 +325,9 @@ func set_focus_instantly(index: int) -> void:
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
+			telephone_number = ""
+			telephone_joystick_cooldown = Vector2()
+			telephone_joystick_on_receiver = false
 			telephone_mesh.material_overlay.albedo_color.a = 0
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 	var state: Dictionary = get_focus_state(index)
@@ -469,8 +474,14 @@ func _input(event: InputEvent) -> void:
 		if states.focus == 2:
 			update_telephone_joystick()
 	if event is InputEventJoypadButton:
-		if event.button_index == JOY_BUTTON_A and hovered_focus != -1:
-			set_focus(hovered_focus)
+		if event.button_index == JOY_BUTTON_A:
+			if hovered_focus != -1 and !event.pressed:
+				set_focus(hovered_focus)
+			elif states.focus == 2:
+				if telephone_joystick_on_receiver and !event.pressed:
+					call_telephone_number()
+				elif !telephone_joystick_on_receiver:
+					press_telephone_button(telephone_button_index, event.pressed)
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
