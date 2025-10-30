@@ -248,6 +248,10 @@ func set_focus(index: int) -> void:
 	if get_tree().has_group("focus_area") and index != 0:
 		for object in get_tree().get_nodes_in_group("focus_area"):
 			object.visible = false
+	if states.focus == 2:
+		_unfocus_telephone()
+	elif states.focus == 3:
+		_unfocus_container()
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -307,6 +311,10 @@ func set_focus_instantly(index: int) -> void:
 	if get_tree().has_group("focus_area") and index != 0:
 		for object in get_tree().get_nodes_in_group("focus_area"):
 			object.visible = false
+	if states.focus == 2:
+		_unfocus_telephone()
+	elif states.focus == 3:
+		_unfocus_container()
 	states.focus = index
 	EventBus.focus_changed.emit(index)
 	if index != -1 and states.tutorial_stage == -1:
@@ -492,6 +500,9 @@ func _input(event: InputEvent) -> void:
 					call_telephone_number()
 				elif !telephone_joystick_on_receiver:
 					press_telephone_button(telephone_button_index, event.pressed)
+			elif states.focus == 3 and !event.pressed:
+				if container_joystick_item == 0:
+					move_drawer(container_joystick_drawer)
 
 #region Monitor hover and focus
 func _on_monitor_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -600,14 +611,14 @@ func update_telephone_joystick() -> void:
 		elif !(states.joystick_motion.x > 0 and (index % 3) == 2):
 			index += 1 if states.joystick_motion.x > 0 else -1
 		joystick_cooldown.x = 1
-	elif abs(states.joystick_motion.x) < 0.5 and joystick_cooldown.x != 0:
+	elif abs(states.joystick_motion.x) < 0.25 and joystick_cooldown.x != 0:
 		joystick_cooldown.x = 0
 	if abs(states.joystick_motion.y) > 0.5 and joystick_cooldown.y == 0:
 		index += 3 if states.joystick_motion.y > 0 else -3
 		if index < 0 or index > 11:
 			index -= 3 if states.joystick_motion.y > 0 else -3
 		joystick_cooldown.y = 1
-	elif abs(states.joystick_motion.y) < 0.5 and joystick_cooldown.y != 0:
+	elif abs(states.joystick_motion.y) < 0.25 and joystick_cooldown.y != 0:
 		joystick_cooldown.y = 0
 	if index != telephone_button_index:
 		telephone_button_index = index
@@ -626,6 +637,10 @@ func _on_telephone_receiver_area_mouse_entered() -> void:
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 1
 
 func _on_telephone_receiver_area_mouse_exited() -> void:
+	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+
+func _unfocus_telephone() -> void:
+	$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 0
 	telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 
 func _on_telephone_input_event(event: InputEvent) -> void:
@@ -686,15 +701,31 @@ func _on_container_area_mouse_exited() -> void:
 #region Container focus handling
 var container_joystick_drawer: int = 1:
 	set(value):
+		container_joystick_item = 0
 		container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 0
-		container_joystick_drawer = clamp(value, 0, 2)
+		container_joystick_drawer = value % 3
+		if container_joystick_drawer < 0:
+			container_joystick_drawer += 3
 		container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 1
+var container_joystick_item: int = 0:
+	set(value):
+		get_drawer_item_mesh().material_overlay.albedo_color.a = 0
+		container_joystick_item = value % (get_drawer_item_count() + 1)
+		if container_joystick_item < 0:
+			container_joystick_item += get_drawer_item_count() + 1
+		get_drawer_item_mesh().material_overlay.albedo_color.a = 1
 
 func update_container_joystick() -> void:
+	if states.drawer_positions[container_joystick_drawer] != 0:
+		if abs(states.joystick_motion.x) > 0.5 and joystick_cooldown.x == 0:
+			container_joystick_item += 1 if states.joystick_motion.x < 0 else -1
+			joystick_cooldown.x = 1.5
+		elif abs(states.joystick_motion.x) < 0.25 and joystick_cooldown.x != 0:
+			joystick_cooldown.x = 0
 	if abs(states.joystick_motion.y) > 0.5 and joystick_cooldown.y == 0:
 		container_joystick_drawer += 1 if states.joystick_motion.y < 0 else -1
-		joystick_cooldown.y = 1
-	elif abs(states.joystick_motion.y) < 0.5 and joystick_cooldown.y != 0:
+		joystick_cooldown.y = 1.5
+	elif abs(states.joystick_motion.y) < 0.25 and joystick_cooldown.y != 0:
 		joystick_cooldown.y = 0
 
 func move_drawer(index: int) -> void:
@@ -756,80 +787,102 @@ func _on_container_drawer_3_area_mouse_entered() -> void:
 func _on_container_drawer_3_area_mouse_exited() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
 
+func _unfocus_container() -> void:
+	container_joystick_item = 0
+	container_joystick_drawer = 0
+	container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 0
+
+func get_drawer_item_mesh() -> MeshInstance3D:
+	if container_joystick_drawer == 1:
+		if container_joystick_item == 1:
+			return musicbox_mesh
+	elif container_joystick_drawer == 2:
+		if container_joystick_item == 1:
+			return usb_mesh
+	return container_drawer_meshes[container_joystick_drawer]
+
+func get_drawer_item_count() -> int:
+	if container_joystick_drawer > 0:
+		return 1
+	return 0
+
+func click_musicbox() -> void:
+	if object_focus == null:
+		object_focus = $Container/Frame/Drawer2/Musicbox
+		object_origin_parent = $Container/Frame/Drawer2
+		object_origin_position = object_focus.position
+		object_origin_rotation = object_focus.rotation
+		object_focus.reparent(camera)
+		if object_focus_tween:
+			object_focus_tween.kill()
+		object_focus_tween = create_tween()
+		object_focus_tween.set_trans(Tween.TRANS_QUAD)
+		object_focus_tween.set_parallel()
+		object_focus_tween.tween_property(object_focus, "position", Vector3(0, 0, -0.25), object_focus_time)
+		object_focus_tween.tween_property(object_focus, "global_rotation_degrees", Vector3(-60, 0, -15), object_focus_time)
+		object_motion = Vector2(deg_to_rad(-15), deg_to_rad(60))
+	else:
+		if states.musicbox_played:
+			if Audio.is_playing("musicbox_rattle"):
+				return
+			var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
+			var musicbox_key_tween: Tween = musicbox_key.create_tween()
+			musicbox_key_tween.set_trans(Tween.TRANS_SINE)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.5)
+			musicbox_key_tween.tween_interval(0.5)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.4)
+			musicbox_key_tween.tween_interval(0.7)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.6)
+			musicbox_key_tween.tween_interval(0.6)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
+			musicbox_key_tween.play()
+			Audio.play("musicbox_rattle", Audio.door_rattle, -2.5, "SFX", Audio.CONTAINER_POSITION)
+			return
+		if states.musicbox_note_removed:
+			if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
+				return
+			var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
+			var musicbox_key_tween: Tween = musicbox_key.create_tween()
+			musicbox_key_tween.set_trans(Tween.TRANS_SINE)
+			musicbox_key_tween.tween_interval(1)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 7, 0.1)
+			musicbox_key_tween.tween_interval(0.2)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 40, 0.5)
+			musicbox_key_tween.tween_interval(0.45)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 81, 0.6)
+			musicbox_key_tween.tween_interval(1.2)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 110, 0.45)
+			musicbox_key_tween.tween_interval(0.5)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 136, 0.4)
+			musicbox_key_tween.tween_interval(0.6)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 179, 0.6)
+			musicbox_key_tween.tween_callback(func fade_out_music(): music_fade_out(1.25))
+			musicbox_key_tween.tween_interval(0.6)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 235, 0.7)
+			musicbox_key_tween.tween_callback(play_musicbox)
+			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y, 122.5)
+			var key_break_tween: Tween = musicbox_key.create_tween()
+			key_break_tween.set_parallel()
+			key_break_tween.set_trans(Tween.TRANS_QUAD)
+			key_break_tween.tween_property(musicbox_key, "position:y", 0.019, 0.5)
+			key_break_tween.tween_property(musicbox_key, "rotation_degrees:x", -40, 0.5)
+			musicbox_key_tween.tween_subtween(key_break_tween)
+			musicbox_key_tween.play()
+			Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)
+		else:
+			var musicbox_note: MeshInstance3D = musicbox_mesh.get_node("Note")
+			var musicbox_note_tween: Tween = musicbox_note.create_tween()
+			musicbox_note_tween.set_trans(Tween.TRANS_SINE)
+			musicbox_note_tween.tween_property(musicbox_note, "position", Vector3(-0.1, 1, -0.25), 0.4)
+			musicbox_note_tween.tween_callback(musicbox_note.hide)
+			musicbox_note_tween.play()
+			states.musicbox_note_removed = true
+
 func _on_musicbox_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if states.tutorial_stage != -1:
 		return
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
-		if object_focus == null:
-			object_focus = $Container/Frame/Drawer2/Musicbox
-			object_origin_parent = $Container/Frame/Drawer2
-			object_origin_position = object_focus.position
-			object_origin_rotation = object_focus.rotation
-			object_focus.reparent(camera)
-			if object_focus_tween:
-				object_focus_tween.kill()
-			object_focus_tween = create_tween()
-			object_focus_tween.set_trans(Tween.TRANS_QUAD)
-			object_focus_tween.set_parallel()
-			object_focus_tween.tween_property(object_focus, "position", Vector3(0, 0, -0.25), object_focus_time)
-			object_focus_tween.tween_property(object_focus, "global_rotation_degrees", Vector3(-60, 0, -15), object_focus_time)
-			object_motion = Vector2(deg_to_rad(-15), deg_to_rad(60))
-		else:
-			if states.musicbox_played:
-				if Audio.is_playing("musicbox_rattle"):
-					return
-				var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
-				var musicbox_key_tween: Tween = musicbox_key.create_tween()
-				musicbox_key_tween.set_trans(Tween.TRANS_SINE)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.5)
-				musicbox_key_tween.tween_interval(0.5)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.4)
-				musicbox_key_tween.tween_interval(0.7)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 5, 0.6)
-				musicbox_key_tween.tween_interval(0.6)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
-				musicbox_key_tween.play()
-				Audio.play("musicbox_rattle", Audio.door_rattle, -2.5, "SFX", Audio.CONTAINER_POSITION)
-				return
-			if states.musicbox_note_removed:
-				if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
-					return
-				var musicbox_key: MeshInstance3D = musicbox_mesh.get_node("Key")
-				var musicbox_key_tween: Tween = musicbox_key.create_tween()
-				musicbox_key_tween.set_trans(Tween.TRANS_SINE)
-				musicbox_key_tween.tween_interval(1)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 7, 0.1)
-				musicbox_key_tween.tween_interval(0.2)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 40, 0.5)
-				musicbox_key_tween.tween_interval(0.45)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 81, 0.6)
-				musicbox_key_tween.tween_interval(1.2)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 110, 0.45)
-				musicbox_key_tween.tween_interval(0.5)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 136, 0.4)
-				musicbox_key_tween.tween_interval(0.6)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 179, 0.6)
-				musicbox_key_tween.tween_callback(func fade_out_music(): music_fade_out(1.25))
-				musicbox_key_tween.tween_interval(0.6)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y + 235, 0.7)
-				musicbox_key_tween.tween_callback(play_musicbox)
-				musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y, 122.5)
-				var key_break_tween: Tween = musicbox_key.create_tween()
-				key_break_tween.set_parallel()
-				key_break_tween.set_trans(Tween.TRANS_QUAD)
-				key_break_tween.tween_property(musicbox_key, "position:y", 0.019, 0.5)
-				key_break_tween.tween_property(musicbox_key, "rotation_degrees:x", -40, 0.5)
-				musicbox_key_tween.tween_subtween(key_break_tween)
-				musicbox_key_tween.play()
-				Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)
-			else:
-				var musicbox_note: MeshInstance3D = musicbox_mesh.get_node("Note")
-				var musicbox_note_tween: Tween = musicbox_note.create_tween()
-				musicbox_note_tween.set_trans(Tween.TRANS_SINE)
-				musicbox_note_tween.tween_property(musicbox_note, "position", Vector3(-0.1, 1, -0.25), 0.4)
-				musicbox_note_tween.tween_callback(musicbox_note.hide)
-				musicbox_note_tween.play()
-				states.musicbox_note_removed = true
+		click_musicbox()
 func _on_musicbox_area_mouse_entered() -> void:
 	musicbox_mesh.material_overlay.albedo_color.a = 1
 func _on_musicbox_area_mouse_exited() -> void:
