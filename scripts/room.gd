@@ -77,6 +77,7 @@ var options: OptionsMenu
 var states: RoomStates
 
 var update_mouse_position: bool = false
+var joystick_cooldown: Vector2 = Vector2()
 var hovered_focus: int = -1
 
 @export
@@ -203,14 +204,17 @@ func _process(delta: float) -> void:
 		mouse_middle_event.position = get_viewport().size / 2
 		get_viewport().push_input(mouse_middle_event)
 		update_mouse_position = false
-	if telephone_joystick_cooldown.x > 0:
-		telephone_joystick_cooldown.x -= delta * 4
-	if telephone_joystick_cooldown.y > 0:
-		telephone_joystick_cooldown.y -= delta * 4
-	if telephone_joystick_cooldown.x < 0 or telephone_joystick_cooldown.y < 0:
-		telephone_joystick_cooldown.x = max(telephone_joystick_cooldown.x, 0)
-		telephone_joystick_cooldown.y = max(telephone_joystick_cooldown.y, 0)
-		update_telephone_joystick()
+	if joystick_cooldown.x > 0:
+		joystick_cooldown.x -= delta * 4
+	if joystick_cooldown.y > 0:
+		joystick_cooldown.y -= delta * 4
+	if joystick_cooldown.x < 0 or joystick_cooldown.y < 0:
+		joystick_cooldown.x = max(joystick_cooldown.x, 0)
+		joystick_cooldown.y = max(joystick_cooldown.y, 0)
+		if states.focus == 2:
+			update_telephone_joystick()
+		elif states.focus == 3:
+			update_container_joystick()
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
 		states.mouse_motion -= states.joystick_motion * options.joystick_sensitivity
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
@@ -278,10 +282,12 @@ func set_focus(index: int) -> void:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
 			telephone_number = ""
-			telephone_joystick_cooldown = Vector2()
 			telephone_joystick_on_receiver = false
 			telephone_mesh.material_overlay.albedo_color.a = 0
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+		3:
+			container_joystick_drawer = 1
+	joystick_cooldown = Vector2()
 	var state: Dictionary = get_focus_state(index)
 	camera.reparent(state.parent)
 	states.focus_tween.tween_property(camera, "position",  state.position, states.focus_time)
@@ -326,10 +332,12 @@ func set_focus_instantly(index: int) -> void:
 			monitor_mesh.material_overlay.albedo_color.a = 0
 		2:
 			telephone_number = ""
-			telephone_joystick_cooldown = Vector2()
 			telephone_joystick_on_receiver = false
 			telephone_mesh.material_overlay.albedo_color.a = 0
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
+		3:
+			container_joystick_drawer = 1
+	joystick_cooldown = Vector2()
 	var state: Dictionary = get_focus_state(index)
 	camera.reparent(state.parent)
 	camera.position = state.position
@@ -473,6 +481,8 @@ func _input(event: InputEvent) -> void:
 			states.joystick_motion.y = event.axis_value if abs(event.axis_value) > 0.15 else 0
 		if states.focus == 2:
 			update_telephone_joystick()
+		elif states.focus == 3:
+			update_container_joystick()
 	if event is InputEventJoypadButton:
 		if event.button_index == JOY_BUTTON_A:
 			if hovered_focus != -1 and !event.pressed:
@@ -559,7 +569,6 @@ func _on_telephone_area_mouse_exited() -> void:
 #endregion
 #region Telephone focus handling
 var telephone_number: String = ""
-var telephone_joystick_cooldown: Vector2 = Vector2()
 var telephone_joystick_on_receiver: bool = false:
 	set(value):
 		$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 0 if value else 1
@@ -583,23 +592,23 @@ func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event
 
 func update_telephone_joystick() -> void:
 	var index: int = telephone_button_index
-	if abs(states.joystick_motion.x) > 0.5 and telephone_joystick_cooldown.x == 0:
+	if abs(states.joystick_motion.x) > 0.5 and joystick_cooldown.x == 0:
 		if telephone_joystick_on_receiver and states.joystick_motion.x > 0:
 			telephone_joystick_on_receiver = false
 		elif (states.joystick_motion.x < 0 and (index % 3) == 0):
 			telephone_joystick_on_receiver = true
 		elif !(states.joystick_motion.x > 0 and (index % 3) == 2):
 			index += 1 if states.joystick_motion.x > 0 else -1
-		telephone_joystick_cooldown.x = 1
-	elif abs(states.joystick_motion.x) < 0.5 and telephone_joystick_cooldown.x != 0:
-		telephone_joystick_cooldown.x = 0
-	if abs(states.joystick_motion.y) > 0.5 and telephone_joystick_cooldown.y == 0:
+		joystick_cooldown.x = 1
+	elif abs(states.joystick_motion.x) < 0.5 and joystick_cooldown.x != 0:
+		joystick_cooldown.x = 0
+	if abs(states.joystick_motion.y) > 0.5 and joystick_cooldown.y == 0:
 		index += 3 if states.joystick_motion.y > 0 else -3
 		if index < 0 or index > 11:
 			index -= 3 if states.joystick_motion.y > 0 else -3
-		telephone_joystick_cooldown.y = 1
-	elif abs(states.joystick_motion.y) < 0.5 and telephone_joystick_cooldown.y != 0:
-		telephone_joystick_cooldown.y = 0
+		joystick_cooldown.y = 1
+	elif abs(states.joystick_motion.y) < 0.5 and joystick_cooldown.y != 0:
+		joystick_cooldown.y = 0
 	if index != telephone_button_index:
 		telephone_button_index = index
 
@@ -675,7 +684,22 @@ func _on_container_area_mouse_exited() -> void:
 	hovered_focus = -1
 #endregion
 #region Container focus handling
+var container_joystick_drawer: int = 1:
+	set(value):
+		container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 0
+		container_joystick_drawer = clamp(value, 0, 2)
+		container_drawer_meshes[container_joystick_drawer].material_overlay.albedo_color.a = 1
+
+func update_container_joystick() -> void:
+	if abs(states.joystick_motion.y) > 0.5 and joystick_cooldown.y == 0:
+		container_joystick_drawer += 1 if states.joystick_motion.y < 0 else -1
+		joystick_cooldown.y = 1
+	elif abs(states.joystick_motion.y) < 0.5 and joystick_cooldown.y != 0:
+		joystick_cooldown.y = 0
+
 func move_drawer(index: int) -> void:
+	if index == 1 and states.drawer_positions[1] != 0 and object_focus != null:
+		object_unfocus()
 	if drawer_move_tweens[index]:
 		drawer_move_tweens[index].kill()
 	drawer_move_tweens[index] = create_tween()
@@ -712,17 +736,15 @@ func _on_container_drawer_1_area_input_event(_camera: Node, event: InputEvent, _
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		move_drawer(0)
 func _on_container_drawer_1_area_mouse_entered() -> void:
-	container_drawer_meshes[0].material_overlay.albedo_color.a = 1
+	container_joystick_drawer = 0
 func _on_container_drawer_1_area_mouse_exited() -> void:
 	container_drawer_meshes[0].material_overlay.albedo_color.a = 0
 
 func _on_container_drawer_2_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
-		if states.drawer_positions[1] != 0 and object_focus != null:
-			object_unfocus()
 		move_drawer(1)
 func _on_container_drawer_2_area_mouse_entered() -> void:
-	container_drawer_meshes[1].material_overlay.albedo_color.a = 1
+	container_joystick_drawer = 1
 func _on_container_drawer_2_area_mouse_exited() -> void:
 	container_drawer_meshes[1].material_overlay.albedo_color.a = 0
 
@@ -730,7 +752,7 @@ func _on_container_drawer_3_area_input_event(_camera: Node, event: InputEvent, _
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and states.mouse_movement < 0.05 and !event.pressed:
 		move_drawer(2)
 func _on_container_drawer_3_area_mouse_entered() -> void:
-	container_drawer_meshes[2].material_overlay.albedo_color.a = 1
+	container_joystick_drawer = 2
 func _on_container_drawer_3_area_mouse_exited() -> void:
 	container_drawer_meshes[2].material_overlay.albedo_color.a = 0
 
