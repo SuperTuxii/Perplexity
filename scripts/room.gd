@@ -204,9 +204,9 @@ func _process(delta: float) -> void:
 		get_viewport().push_input(mouse_middle_event)
 		update_mouse_position = false
 	if telephone_joystick_cooldown.x > 0:
-		telephone_joystick_cooldown.x -= delta * 3
+		telephone_joystick_cooldown.x -= delta * 4
 	if telephone_joystick_cooldown.y > 0:
-		telephone_joystick_cooldown.y -= delta * 3
+		telephone_joystick_cooldown.y -= delta * 4
 	if telephone_joystick_cooldown.x < 0 or telephone_joystick_cooldown.y < 0:
 		telephone_joystick_cooldown.x = max(telephone_joystick_cooldown.x, 0)
 		telephone_joystick_cooldown.y = max(telephone_joystick_cooldown.y, 0)
@@ -549,6 +549,11 @@ func _on_telephone_area_mouse_exited() -> void:
 #region Telephone focus handling
 var telephone_number: String = ""
 var telephone_joystick_cooldown: Vector2 = Vector2()
+var telephone_joystick_on_receiver: bool = false:
+	set(value):
+		$"Desk Setup/Telephone/Telephone Base Bottom/Telephone Base Top/HoverSelect".mesh.surface_get_material(0).albedo_color.a = 0 if value else 1
+		telephone_receiver_mesh.material_overlay.albedo_color.a = 1 if value else 0
+		telephone_joystick_on_receiver = value
 var telephone_button_index: int = 0:
 	set(value):
 		telephone_button_index = clamp(value, 0, 11)
@@ -568,14 +573,18 @@ func _on_telephone_keys_area_input_event(_camera: Node, event: InputEvent, event
 func update_telephone_joystick() -> void:
 	var index: int = telephone_button_index
 	if abs(states.joystick_motion.x) > 0.5 and telephone_joystick_cooldown.x == 0:
-		if !((states.joystick_motion.x > 0 and (index % 3) == 0) or (states.joystick_motion.x < 0 and (index % 3) == 2)):
+		if telephone_joystick_on_receiver and states.joystick_motion.x > 0:
+			telephone_joystick_on_receiver = false
+		elif (states.joystick_motion.x < 0 and (index % 3) == 0):
+			telephone_joystick_on_receiver = true
+		elif !(states.joystick_motion.x > 0 and (index % 3) == 2):
 			index += 1 if states.joystick_motion.x > 0 else -1
 		telephone_joystick_cooldown.x = 1
 	elif abs(states.joystick_motion.x) < 0.5 and telephone_joystick_cooldown.x != 0:
 		telephone_joystick_cooldown.x = 0
 	if abs(states.joystick_motion.y) > 0.5 and telephone_joystick_cooldown.y == 0:
 		index += 3 if states.joystick_motion.y > 0 else -3
-		if index < 0 or index > 12:
+		if index < 0 or index > 11:
 			index -= 3 if states.joystick_motion.y > 0 else -3
 		telephone_joystick_cooldown.y = 1
 	elif abs(states.joystick_motion.y) < 0.5 and telephone_joystick_cooldown.y != 0:
