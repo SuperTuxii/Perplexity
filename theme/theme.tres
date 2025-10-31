@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://dbqsov72nna8f"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://dbqsov72nna8f"]
 
 [ext_resource type="FontFile" uid="uid://cvx1ij1c4enhk" path="res://assets/fonts/SyneMono-Regular.ttf" id="1_omiwu"]
 [ext_resource type="Texture2D" uid="uid://be2vecmudeoh3" path="res://assets/textures/theme/check_button/checked.svg" id="2_5wxyd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c2wvbruqkar8y" path="res://assets/textures/theme/slider/grabber.svg" id="6_p4hxb"]
 [ext_resource type="Texture2D" uid="uid://c32iiaqq3dmfe" path="res://assets/textures/theme/slider/grabber_disabled.svg" id="7_iwsu2"]
 [ext_resource type="Texture2D" uid="uid://sh2o2rs1y5jv" path="res://assets/textures/theme/slider/grabber_highlight.svg" id="8_mm6bo"]
+[ext_resource type="FontFile" uid="uid://b1fb25ye8hjgg" path="res://assets/fonts/NotoSansJP-VariableFont_wght.ttf" id="9_5wxyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvktn"]
 content_margin_left = 4.0
@@ -196,7 +197,12 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 1
 
+[sub_resource type="FontVariation" id="FontVariation_fppmr"]
+fallbacks = Array[Font]([ExtResource("9_5wxyd")])
+base_font = ExtResource("1_omiwu")
+
 [resource]
+default_font = SubResource("FontVariation_fppmr")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)

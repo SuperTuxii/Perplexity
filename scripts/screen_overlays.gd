@@ -23,10 +23,15 @@ func _ready() -> void:
 	EventBus.set_skip_to_game_button.connect(set_skip_to_game_button)
 	EventBus.set_item_slot_visible.connect(set_item_slot_visible)
 	EventBus.set_item_slot.connect(set_item_slot)
+	EventBus.set_fps_counter.connect(set_fps_counter)
 	EventBus.drag_tutorial_visible.connect(set_drag_tutorial_visible)
 	EventBus.focus_tutorial_visible.connect(set_focus_tutorial_visible)
 	EventBus.unfocus_tutorial_visible.connect(set_unfocus_tutorial_visible)
 	EventBus.pause_tutorial_visible.connect(set_pause_tutorial_visible)
+
+func _process(_delta: float) -> void:
+	if $MarginContainer3/FPSLabel.visible:
+		$MarginContainer3/FPSLabel.text = "FPS: " + str(Engine.get_frames_per_second())
 
 func set_eyelids(close: bool, eyelid_speed: float = 1) -> void:
 	eyelid_animator.play("close", -1, eyelid_speed * (1 if close else -1), !close)
@@ -80,6 +85,9 @@ func set_item_slot_visible(slot_visible: bool) -> void:
 
 func set_item_slot(icon: Texture2D) -> void:
 	$MarginContainer2/ItemSlot.icon = icon
+
+func set_fps_counter(counter_visible: bool) -> void:
+	$MarginContainer3/FPSLabel.visible = counter_visible
 
 func set_drag_tutorial_visible(tutorial_visible: bool) -> void:
 	$DragTutorial.visible = tutorial_visible

@@ -173,6 +173,18 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "skip_button"
 
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="FPSLabel" type="Label" parent="MarginContainer3"]
+visible = false
+layout_mode = 2
+text = "FPS: -"
+
 [connection signal="pressed" from="MarginContainer2/ItemSlot" to="." method="_on_item_slot_pressed"]
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SkipToGameButton" to="." method="_on_skip_to_game_button_pressed"]

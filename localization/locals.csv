@@ -16,6 +16,11 @@ sfx_volume_option,SFX Volume:,エフェクト音量
 room_quality_option,Room Quality:,部屋の質
 high_quality,High,高い 
 low_quality,Low,低い
+vsync_option,V-Sync,仮想同期
+fps_counter_option,FPS Counter,フレームレートカウンター
+language_option,Language,言語
+language_english,English,英語
+language_japanese,Japanese,日本語
 ,,
 drag_tutorial,"Press the left mouse button and move your mouse to look around
 (move around a bit to continue)","マウスの左ボタンを押しながらマウスを動かして周囲を見回す

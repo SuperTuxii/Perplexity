@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bmtc6ej10yhgd"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bmtc6ej10yhgd"]
 
 [ext_resource type="FontFile" uid="uid://cvx1ij1c4enhk" path="res://assets/fonts/SyneMono-Regular.ttf" id="1_owoxj"]
+[ext_resource type="FontFile" uid="uid://b1fb25ye8hjgg" path="res://assets/fonts/NotoSansJP-VariableFont_wght.ttf" id="2_qq3mx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2hh6"]
 content_margin_left = 4.0
@@ -28,7 +29,12 @@ content_margin_bottom = 4.0
 bg_color = Color(0, 0, 0, 0.6)
 corner_detail = 1
 
+[sub_resource type="FontVariation" id="FontVariation_kb24e"]
+fallbacks = Array[Font]([ExtResource("2_qq3mx")])
+base_font = ExtResource("1_owoxj")
+
 [resource]
+default_font = SubResource("FontVariation_kb24e")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)

@@ -50,7 +50,6 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 [gui]
 
 theme/custom="uid://dbqsov72nna8f"
-theme/custom_font="uid://cvx1ij1c4enhk"
 
 [input]
 
@@ -83,7 +82,6 @@ locale/translation_remaps={
 "res://assets/fonts/SyneMono-Regular.ttf": PackedStringArray("res://assets/fonts/jp/Stick-Regular.ttf:ja")
 }
 locale/translations=PackedStringArray("res://localization/locals.en.translation", "res://localization/locals.ja.translation")
-locale/test="ja"
 locale/locale_filter_mode=0
 
 [rendering]
