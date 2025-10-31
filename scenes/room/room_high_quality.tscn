@@ -365,7 +365,8 @@ size = Vector3(0.043273926, 0.039978027, 0.19682312)
 
 [node name="RoomHighQuality" type="Node3D"]
 script = ExtResource("1_lg6en")
-alarm0_volume = -60.0
+alarm_volume = -80.0
+alarm1_volume = -60.0
 
 [node name="MonitorViewport" type="SubViewport" parent="."]
 disable_3d = true

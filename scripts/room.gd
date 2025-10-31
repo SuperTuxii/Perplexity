@@ -282,10 +282,11 @@ func set_focus(index: int) -> void:
 	states.focus_tween.set_parallel()
 	match index:
 		0:
-			$"Desk Setup/Chair".look_at(camera.global_position)
-			states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
+			if $"Desk Setup/Chair".global_position.x != camera.global_position.x or $"Desk Setup/Chair".global_position.z != camera.global_position.z:
+				$"Desk Setup/Chair".look_at(camera.global_position)
+				states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
+				$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			states.mouse_motion.y = 0
-			$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
@@ -335,7 +336,7 @@ func set_focus_instantly(index: int) -> void:
 		return # Other focus like a cutscene
 	match index:
 		0:
-			if $"Desk Setup/Chair".global_position == camera.global_position:
+			if $"Desk Setup/Chair".global_position.x != camera.global_position.x or $"Desk Setup/Chair".global_position.z != camera.global_position.z:
 				$"Desk Setup/Chair".look_at(camera.global_position)
 				states.mouse_motion.x = $"Desk Setup/Chair".rotation.y
 				$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))

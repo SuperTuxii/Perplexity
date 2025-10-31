@@ -197,12 +197,13 @@ scale = Vector2(0.5653076, 0.5590086)
 texture = ExtResource("6_cr26o")
 
 [node name="Label" type="Label" parent="ClickServerTutorial"]
-offset_left = 244.0
-offset_top = 638.0
-offset_right = 1104.0
-offset_bottom = 680.0
+offset_left = 238.0
+offset_top = 608.0
+offset_right = 1098.0
+offset_bottom = 699.0
 theme_override_font_sizes/font_size = 30
 text = "click_server_tutorial"
+vertical_alignment = 1
 
 [node name="UnlockCodeTutorial" type="Control" parent="."]
 visible = false
