@@ -29,8 +29,7 @@ offset_left = -477.5
 offset_right = 477.5
 offset_bottom = 42.000008
 grow_vertical = 0
-text = "Click the right mouse button or ESC
- while being unfocused to pause the game"
+text = "pause_tutorial"
 label_settings = SubResource("LabelSettings_8ho6b")
 horizontal_alignment = 1
 vertical_alignment = 1

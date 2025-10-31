@@ -164,14 +164,14 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Skip to game"
+text = "skip_to_game_button"
 
 [node name="SkipButton" type="Button" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Skip"
+text = "skip_button"
 
 [connection signal="pressed" from="MarginContainer2/ItemSlot" to="." method="_on_item_slot_pressed"]
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]

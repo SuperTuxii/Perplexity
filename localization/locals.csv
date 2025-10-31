@@ -1,0 +1,36 @@
+ keys,en,ja
+start_button,Start Game,スタート
+tutorial_button,Tutorial,チュートリアル
+options_button,Options,オプション
+skip_button,Skip,スキップ
+skip_to_game_button,Skip to game,ゲームまでスキップ
+drag_tutorial,"Press the left mouse button and move your mouse to look around
+(move around a bit to continue)","マウスの左ボタンを押しながらマウスを動かして周囲を見回す
+(続けるには少し見回しなさい)"
+focus_tutorial,"Click the left mouse button while hovering over 
+highlighting objects to focus onto them
+[font_size=20](you can also use the scroll wheel or arrow keys to cycle through the focus)[/font_size]
+(focus the monitor to continue)","ハイライト表示されたオブジェクトにカーソルを合わせながらマウスの左ボタンをクリックすると、
+そのオブジェクトにフォーカスができます
+[font_size=20](スクロールホイールや矢印キーを使ってフォーカスを切り替えることもできます)[/font_size]
+(続けるにはモニターにフォークスをしなさい)"
+click_server_tutorial,Left click on any server to browse through its files,"サーバーを左ボタンでクリックすると、
+そのサーバーのファイルをブラウズできます"
+file_tutorial,"Left click on the name of the file/folder to open it
+(Open the unlock file to continue)","ファイルかフォルダ名をクリックして開きます
+(続けるにはアンロックファイルを開いてください)"
+back_tutorial,Left click on the back button to get to the previous folder,戻るボタンを左クリックすると前のフォルダに戻ります
+back_tutorial_hint,(Unlock the server to continue),(続けるにはサーバーをアンロックしなさい)
+unlock_code_tutorial,Every unlockable server will have this file,すべてのサーバーにはこのファイルがあります
+unlock_code_tutorial_hint,"Run this first to know what you have to do
+(Close the ""Enter code"" window to continue)","最初にこれをクリックして、何をして知っている
+(続けるには「コードを入力」ウィンドウを閉じてください)"
+search_files_tutorial,Search through the files to find clues on the code,ファイルを探してコードのヒントを見つける
+search_files_tutorial_hint,"Run ""give me a hint"" if you need a hint
+Use the ""notes"" file if you want to take notes
+(always available alongside the ""unlock"" file)","ヒントが必要な場合は「give me a hint」を使う
+メモを取りたい場合は「notes」ファイルを使う"
+unfocus_tutorial,Click the right mouse button or ESC to unfocus again,右クリックかESCキーでフォーカスを外す
+pause_tutorial,"Click the right mouse button or ESC
+ while being unfocused to pause the game","フォーカスが外れているときに、
+マウスの右ボタンかESCキーでゲームを一時停止します"

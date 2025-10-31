@@ -130,8 +130,7 @@ offset_top = 409.0
 offset_right = 665.0
 offset_bottom = 451.0
 theme_override_font_sizes/font_size = 30
-text = "Left click on the name of the file/folder to open it
-(Open the unlock file to continue)"
+text = "file_tutorial"
 horizontal_alignment = 1
 
 [node name="BackTutorial" type="Node2D" parent="ScreenFileBrowser"]
@@ -154,7 +153,7 @@ offset_top = -165.0
 offset_right = 741.0
 offset_bottom = -123.0
 theme_override_font_sizes/font_size = 30
-text = "Left click on the back button to get to the previous folder"
+text = "back_tutorial"
 
 [node name="Label2" type="Label" parent="ScreenFileBrowser/BackTutorial"]
 offset_left = -235.0
@@ -162,7 +161,7 @@ offset_top = -140.0
 offset_right = 741.0
 offset_bottom = -98.0
 theme_override_font_sizes/font_size = 22
-text = "(Unlock the server to continue)"
+text = "back_tutorial_hint"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -203,7 +202,7 @@ offset_top = 638.0
 offset_right = 1104.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 30
-text = "Left click on any server to browse through its files"
+text = "click_server_tutorial"
 
 [node name="UnlockCodeTutorial" type="Control" parent="."]
 visible = false
@@ -227,7 +226,7 @@ offset_right = 356.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
-text = "Every unlockable server will have this file"
+text = "unlock_code_tutorial"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -241,8 +240,7 @@ offset_right = 356.0
 offset_bottom = 37.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 22
-text = "Run this first to know what you have to do
-(Close the \"Enter code\" window to continue)"
+text = "unlock_code_tutorial_hint"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -268,7 +266,7 @@ offset_right = 356.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
-text = "Search through the files to find clues on the code"
+text = "search_files_tutorial"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -283,9 +281,7 @@ offset_bottom = 37.0
 grow_horizontal = 2
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 22
-text = "Run \"give me a hint\" if you need a hint
-Use the \"notes\" file if you want to take notes
-(always available alongside the \"unlock\" file)"
+text = "search_files_tutorial_hint"
 horizontal_alignment = 1
 vertical_alignment = 1
 
