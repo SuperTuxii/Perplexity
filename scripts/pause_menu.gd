@@ -33,13 +33,13 @@ func back() -> void:
 			get_tree().paused = false
 
 func continue_to_back_to_title() -> void:
-	$Layout/ContinueButton.text = "Back to title screen"
+	$Layout/ContinueButton.text = tr("back_to_title_button")
 
 func _on_options_button_pressed() -> void:
 	show_options_menu()
 
 func _on_continue_button_pressed() -> void:
-	$Layout/ContinueButton.text = "Continue"
+	$Layout/ContinueButton.text = tr("continue_button")
 	back()
 
 func _on_options_menu_back() -> void:

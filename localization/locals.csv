@@ -1,9 +1,22 @@
  keys,en,ja
+paused,PAUSED,一時停止
 start_button,Start Game,スタート
 tutorial_button,Tutorial,チュートリアル
-options_button,Options,オプション
+continue_button,Continue,続く
+back_to_title_button,Back to title screen,メインメニューに戻る
 skip_button,Skip,スキップ
 skip_to_game_button,Skip to game,ゲームまでスキップ
+back_button,Back,戻る
+options,Options,オプション
+sensitivity_option,Turn Sensitivity:,回転感度
+drag_mirror_option,Drag Mirrored:,ドラッグミラーリング
+volume_option,Master Volume:,音量
+music_volume_option,Music Volume:,音楽の音量
+sfx_volume_option,SFX Volume:,エフェクト音量
+room_quality_option,Room Quality:,部屋の質
+high_quality,High,高い 
+low_quality,Low,低い
+,,
 drag_tutorial,"Press the left mouse button and move your mouse to look around
 (move around a bit to continue)","マウスの左ボタンを押しながらマウスを動かして周囲を見回す
 (続けるには少し見回しなさい)"

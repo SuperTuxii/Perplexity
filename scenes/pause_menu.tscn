@@ -22,7 +22,6 @@ grow_vertical = 2
 script = ExtResource("1_n87rw")
 
 [node name="Layout" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,7 +41,7 @@ alignment = 1
 
 [node name="PauseLabel" type="Label" parent="Layout"]
 layout_mode = 2
-text = "PAUSED"
+text = "paused"
 label_settings = SubResource("LabelSettings_uahpa")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -53,7 +52,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
-text = "Options"
+text = "options"
 
 [node name="ContinueButton" type="Button" parent="Layout"]
 custom_minimum_size = Vector2(300, 0)
@@ -61,7 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
-text = "Continue"
+text = "continue_button"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_myx47")]
 process_mode = 3
