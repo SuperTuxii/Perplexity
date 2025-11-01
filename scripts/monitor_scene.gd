@@ -27,6 +27,10 @@ var security_breached_visible: bool = false:
 	get:
 		return $SecurityBreachedPanel.visible
 
+var is_using_scroll: bool = false:
+	get:
+		return is_using_scroll or file_browser.is_mouse_inside_content
+
 var tutorial_stage: int = -1
 
 var open_files: Dictionary = {}
@@ -71,6 +75,8 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 			popup = popup_text_edit_scene.instantiate()
 			popup.text = data["value"]
 			popup.data = data
+			popup.using_scroll.connect(_on_using_scroll)
+			popup.not_using_scroll.connect(_on_not_using_scroll)
 		elif type == "image":
 			popup = popup_image_scene.instantiate()
 			popup.image = load(data["value"])
@@ -166,3 +172,8 @@ func _input(event: InputEvent) -> void:
 
 func _on_usb_drive_pressed() -> void:
 	_on_levels_scene_open_server_files("USB")
+
+func _on_using_scroll() -> void:
+	is_using_scroll = true
+func _on_not_using_scroll() -> void:
+	is_using_scroll = false

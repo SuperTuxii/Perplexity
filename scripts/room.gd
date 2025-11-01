@@ -479,6 +479,14 @@ func _input(event: InputEvent) -> void:
 		states.mouse_pressed = event.pressed
 		if event.pressed:
 			states.mouse_movement = 0
+	elif event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+		if states.focus == 1 and states.monitor_scene.is_using_scroll:
+			return
+		set_focus(states.focus - 1 if states.focus > 0 else 3)
+	elif event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_UP and event.pressed:
+		if states.focus == 1 and states.monitor_scene.is_using_scroll:
+			return
+		set_focus(states.focus + 1 if states.focus < 3 else 0)
 	if event is InputEventMouseMotion and states.mouse_pressed:
 		states.mouse_movement += (event.relative * options.turn_sensitivity).length()
 		if states.focus == 0 and !states.focussing: # Saving screen drag when focus is 0

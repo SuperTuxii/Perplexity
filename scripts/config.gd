@@ -76,18 +76,18 @@ var server_files: Dictionary = {
 	hints_exec.data = data
 	return hints_exec
 		},
-		"notes": {
+		"notes_file": {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
-			"title": "Notes",
+			"title": "notes_title",
 			"value": ""
 		},
-		"code": {
+		"code_file": {
 			"type": "image",
 			"size": "4,8KB",
 			"modified": "Today",
-			"title": "Code",
+			"title": "code_title",
 			"value": "res://assets/textures/server_1a/code.svg"
 		},
 		"reports": {
@@ -159,7 +159,7 @@ var server_files: Dictionary = {
 		}
 	},
 	"Server 2A": {
-		"unlock": {
+		"unlock_file": {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
@@ -172,28 +172,28 @@ var server_files: Dictionary = {
 	unlock_exec.data = data
 	return unlock_exec
 		},
-		"give me a hint": {
+		"give_me_a_hint_file": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
-			"title": "Hint",
+			"title": "give_me_a_hint_title",
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var hints_exec: HintsLvl2 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl2.tscn").instantiate()
 	hints_exec.data = data
 	return hints_exec
 		},
-		"notes": {
+		"notes_file": {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
-			"title": "Notes",
+			"title": "notes_title",
 			"value": ""
 		},
-		"code": {
+		"code_file": {
 			"type": "image",
 			"size": "4,8KB",
 			"modified": "Today",
-			"title": "Code",
+			"title": "code_title",
 			"value": "res://assets/textures/server_2a/code.svg"
 		},
 		"staff": {

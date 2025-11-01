@@ -30,6 +30,8 @@ var current_folder_path: String = "":
 		current_folder_path = value
 		update_contents()
 
+var is_mouse_inside_content: bool = false
+
 func _ready() -> void:
 	super._ready()
 	update_contents()
@@ -56,18 +58,24 @@ func update_contents() -> void:
 		name_button.focus_mode = Control.FOCUS_NONE
 		name_button.theme = button_theme
 		name_button.pressed.connect(func run(): _on_file_pressed(file_name))
+		name_button.mouse_entered.connect(_on_content_mouse_entered)
+		name_button.mouse_exited.connect(_on_content_mouse_exited)
 		layout.add_child(name_button)
 		var size_button: Button = Button.new()
 		size_button.text = current_files[file_name]["size"]
 		size_button.disabled = true
 		size_button.focus_mode = Control.FOCUS_NONE
 		size_button.theme = button_theme
+		size_button.mouse_entered.connect(_on_content_mouse_entered)
+		size_button.mouse_exited.connect(_on_content_mouse_exited)
 		layout.add_child(size_button)
 		var modified_button: Button = Button.new()
 		modified_button.text = current_files[file_name]["modified"]
 		modified_button.disabled = true
 		modified_button.focus_mode = Control.FOCUS_NONE
 		modified_button.theme = button_theme
+		modified_button.mouse_entered.connect(_on_content_mouse_entered)
+		modified_button.mouse_exited.connect(_on_content_mouse_exited)
 		layout.add_child(modified_button)
 
 func get_files_for_current_folder_path() -> Dictionary:
@@ -98,3 +106,8 @@ func _on_back_button_pressed() -> void:
 	else:
 		current_folder_path = ""
 	pressed_back.emit()
+
+func _on_content_mouse_entered() -> void:
+	is_mouse_inside_content = true
+func _on_content_mouse_exited() -> void:
+	is_mouse_inside_content = false
