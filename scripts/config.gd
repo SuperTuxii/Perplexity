@@ -56,7 +56,7 @@ var server_files: Dictionary = {
 			"title": "Tutorial",
 			"value": "In every hacked server you will find an \"unlock\" executable. [i]It is useful to run this first, so you know what you need to unlock the server (In this case it is a 4 digit code).[/i]\nTo find whatever is needed to unlock the server, you should investigate the files that can be found on this or previous servers. [i]The \"modified\" property for every file may hint at what files are important, but don't trust it too much![/i]\nIf you've got no clue what to do next, you may click the \"give me a hint\" executable to receive a hint (hints don't give you the answer directly and you will still need to use your brain)."
 		},
-		"unlock": {
+		"unlock_file": {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
@@ -66,11 +66,11 @@ var server_files: Dictionary = {
 	unlock_exec.data = data
 	return unlock_exec
 		},
-		"give me a hint": {
+		"give_me_a_hint_file": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
-			"title": "Hint",
+			"title": "give_me_a_hint_title",
 			"value": func run(_path: String, data: Dictionary) -> ScreenPopup:
 	var hints_exec: HintsLvl1 = preload("res://scenes/monitor_scenes/file_executables/hints_lvl1.tscn").instantiate()
 	hints_exec.data = data
@@ -98,7 +98,7 @@ var server_files: Dictionary = {
 				"report-45": {
 					"type": "image",
 					"size": "7,1KB",
-					"modified": "Last Month",
+					"modified": "Last month",
 					"value": "res://assets/textures/server_1a/report-45.png"
 				},
 				"report-58": {

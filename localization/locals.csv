@@ -69,6 +69,11 @@ Good Luck :)
 (忘れないで、俺は見ている)"
 ,,
 Server,Server,サーバー
+Server 1A,Server 1A,サーバー 1A
+Server 2A,Server 2A,サーバー 2A
+Server 2B,Server 2B,サーバー 2B
+Server 2C,Server 2C,サーバー 2C
+Server 3A,Server 3A,サーバー 3A
 ,,
 unlock_file,unlock,アンロック
 unlock_title,Enter code,コードを入力
@@ -91,3 +96,16 @@ notes_title,Notes,メモ
 tutorial_folder,folder,フォルダ
 code_file,code,コード
 code_title,Code,コード
+,,
+Today,Today,今日
+Yesterday,Yesterday,昨日
+3 days ago,3 days ago,3日前
+This week,This week,今週
+Last week,Last week,先週
+2 weeks ago,2 weeks ago,先々週
+Last month,Last month,先月
+6 months ago,6 months ago,6 ヶ月前
+7 months ago,7 months ago,7 ヶ月前
+9 months ago,9 months ago,9 ヶ月前
+10 months ago,10 months ago,10 ヶ月前
+Last year,Last year,去年
