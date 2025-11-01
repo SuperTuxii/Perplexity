@@ -91,8 +91,10 @@ func _on_file_browser_pressed_file(path: String, type: String, data: Dictionary)
 		if data.has("width") and data.has("height"):
 			popup.size = Vector2(data["width"], data["height"])
 		if data.has("title"):
-			popup.title = data["title"]
-		popup.title += " (" + path.substr(0, path.find("/")) + ")"
+			popup.title = tr(data["title"])
+		else:
+			popup.title = tr(popup.title)
+		popup.title += " (" + tr(path.substr(0, path.find("/"))) + ")"
 		popup.position = (size / 2) - (popup.size / 2)
 		popup.focus.connect(focus_popup)
 		popup.close.connect(close_popup)
@@ -135,11 +137,11 @@ func _on_called_number(number: String) -> void:
 
 # Tutorial signal handlers
 func _on_file_browser_file_pressed(path: String, _type: String, _data: Dictionary) -> void:
-	if path == "Server/unlock":
+	if path == "Server/unlock_file":
 		$ScreenFileBrowser/FileTutorial.visible = false
 		file_browser.pressed_file.disconnect(_on_file_browser_file_pressed)
 		$UnlockCodeTutorial.visible = true
-		open_files["Server/unlock"].close.connect(_on_unlock_code_close)
+		open_files["Server/unlock_file"].close.connect(_on_unlock_code_close)
 		tutorial_stage = 2
 func _on_unlock_code_close(popup: ScreenPopup) -> void:
 	$UnlockCodeTutorial.visible = false

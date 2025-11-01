@@ -227,7 +227,7 @@ tracks/1/keys = {
 "args": [-1],
 "method": &"set_focus"
 }, {
-"args": ["I'm feeling a bit tire...", 3.5, 2.0],
+"args": ["fall_asleep_subtitle", 3.5, 2.0],
 "method": &"set_subtitles"
 }, {
 "args": [true, 1.0],

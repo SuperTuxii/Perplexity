@@ -4,7 +4,7 @@ signal server_files_changed
 
 var server_files: Dictionary = {
 	"Server": {
-		"unlock": {
+		"unlock_file": {
 			"type": "executable",
 			"size": "1,2KB",
 			"modified": "Today",
@@ -14,33 +14,33 @@ var server_files: Dictionary = {
 	unlock_code_exec.data = data
 	return unlock_code_exec
 		},
-		"give me a hint": {
+		"give_me_a_hint_file": {
 			"type": "executable",
 			"size": "923B",
 			"modified": "Today",
-			"title": "Hint",
+			"title": "give_me_a_hint_title",
 			"value": func run(_path: String, _data: Dictionary) -> ScreenPopup:
 	var hint: ScreenPopupText = preload("res://scenes/monitor_scenes/screen_popup_text.tscn").instantiate()
-	hint.text = "There might be something in that folder"
+	hint.text = "tutorial_hint"
 	return hint
 		},
-		"notes": {
+		"notes_file": {
 			"type": "text_edit",
 			"size": "0B",
 			"modified": "Today",
-			"title": "Notes",
+			"title": "notes_title",
 			"value": ""
 		},
-		"folder": {
+		"tutorial_folder": {
 			"type": "folder",
 			"size": "1 item",
 			"modified": "Today",
 			"value": {
-				"code": {
+				"code_file": {
 					"type": "text",
 					"size": "8B",
 					"modified": "Today",
-					"title": "Code",
+					"title": "code_title",
 					"value": "1234"
 				}
 			}

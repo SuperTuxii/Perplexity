@@ -39,9 +39,11 @@ func update_contents() -> void:
 	visible = !root_folder_name.is_empty()
 	if root_folder_name.is_empty():
 		return
-	folder_path_label.text = root_folder_name
+	folder_path_label.text = tr(root_folder_name)
 	if !current_folder_path.is_empty():
-		folder_path_label.text += " > " + current_folder_path.replace("/", " > ")
+		var path_folders: PackedStringArray = current_folder_path.split("/")
+		for folder in path_folders:
+			folder_path_label.text += " > " + tr(folder)
 	back_button.disabled = current_folder_path.is_empty()
 	for child in layout.get_children():
 		if child is Button:

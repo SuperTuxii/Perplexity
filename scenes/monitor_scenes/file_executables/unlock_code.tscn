@@ -35,7 +35,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
-text = "Enter code"
+text = "unlock_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,7 +61,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/Content/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Enter the code to unlock this server:"
+text = "unlock_label"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -76,15 +76,13 @@ alignment = 1
 [node name="UnlockButton" type="Button" parent="VBoxContainer/Content/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Unlock"
+text = "unlock_button"
 
 [node name="CorrectLabel" type="Label" parent="VBoxContainer/Content"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
-text = "Correct :)
-
-The server is unlocking!"
+text = "unlock_correct_label"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,9 +90,7 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
-text = "What are you doing back here?
-
-The server is already unlocked"
+text = "already_unlocked_label"
 horizontal_alignment = 1
 vertical_alignment = 1
 

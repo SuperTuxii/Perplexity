@@ -46,9 +46,48 @@ unlock_code_tutorial_hint,"Run this first to know what you have to do
 search_files_tutorial,Search through the files to find clues on the code,ファイルを探してコードのヒントを見つける
 search_files_tutorial_hint,"Run ""give me a hint"" if you need a hint
 Use the ""notes"" file if you want to take notes
-(always available alongside the ""unlock"" file)","ヒントが必要な場合は「give me a hint」を使う
-メモを取りたい場合は「notes」ファイルを使う"
+(always available alongside the ""unlock"" file)","ヒントが必要な場合は「ヒントをください」を使う
+メモを取りたい場合は「メモ」ファイルを使う"
 unfocus_tutorial,Click the right mouse button or ESC to unfocus again,右クリックかESCキーでフォーカスを外す
 pause_tutorial,"Click the right mouse button or ESC
  while being unfocused to pause the game","フォーカスが外れているときに、
 マウスの右ボタンかESCキーでゲームを一時停止します"
+tutorial_hint,There might be something in that folder,そのフォルダに何かあるかもしれない
+,,
+fall_asleep_subtitle,I'm feeling a bit tire…,少し疲れている…
+intro_popup_title,Oh hi…,ええと、こんばんは…
+intro_popup_text,"I didn't expect anyone to still be working this late.
+Well since I accidentally triggered the shutdown alarm, all doors are probably locked now and you are completely isolated from the outside world.
+I was going to demand a ransom fee even though I would have deleted everything anyway, but because you are here I am going to have some fun :). 
+You have no other choice than to solve some puzzles that I have prepared to unlock the servers again and turn off the alarm. Oh, and don't go insane, ok? 
+Good Luck :)
+(And don't forget, I'm watching)","こんなに遅くまで働いているとは驚きました。
+さて、私が誤ってシャットダウンアラームを起動してしまったから、おそらくすべてのドアはロックされているはずで、君は完全に外界から隔離されている。
+身代金を要求するつもりだったが、君がここにいるから少し楽しませてもらうよ :)。
+サーバーをアンロックして警報を解除するには、いくつかのパズルを解くしかありません。ああ、それに気が変になれないね。
+がんばってね :)
+(忘れないで、俺は見ている)"
+,,
+Server,Server,サーバー
+,,
+unlock_file,unlock,アンロック
+unlock_title,Enter code,コードを入力
+unlock_label,Enter the code to unlock this server:,このサーバーのアンロックコードを入力してください:
+unlock_button,Unlock,アンロック
+unlock_correct_label,"Correct :)
+
+The server is unlocking!","正解です :)
+
+サーバーがアンロックしている！"
+already_unlocked_label,"What are you doing back here?
+
+The server is already unlocked","ここで何してるんだ？
+
+サーバーはもうアンロックしたよ"
+give_me_a_hint_file,give me a hint,ヒントをください
+give_me_a_hint_title,Hint,ヒント
+notes_file,notes,メモ
+notes_title,Notes,メモ
+tutorial_folder,folder,フォルダ
+code_file,code,コード
+code_title,Code,コード
