@@ -33,7 +33,8 @@ var server_files: Dictionary = {
 		},
 		"tutorial_folder": {
 			"type": "folder",
-			"size": "1 item",
+			"size": "1",
+			"size_unit": "item",
 			"modified": "Today",
 			"value": {
 				"code_file": {
@@ -47,13 +48,13 @@ var server_files: Dictionary = {
 		}
 	},
 	"Server 1A": {
-		"tutorial": {
+		"tutorial_file": {
 			"type": "text",
 			"size": "514B",
 			"modified": "Today",
 			"width": 400,
 			"height": 400,
-			"title": "Tutorial",
+			"title": "tutorial_title",
 			"value": "In every hacked server you will find an \"unlock\" executable. [i]It is useful to run this first, so you know what you need to unlock the server (In this case it is a 4 digit code).[/i]\nTo find whatever is needed to unlock the server, you should investigate the files that can be found on this or previous servers. [i]The \"modified\" property for every file may hint at what files are important, but don't trust it too much![/i]\nIf you've got no clue what to do next, you may click the \"give me a hint\" executable to receive a hint (hints don't give you the answer directly and you will still need to use your brain)."
 		},
 		"unlock_file": {
@@ -92,7 +93,8 @@ var server_files: Dictionary = {
 		},
 		"reports": {
 			"type": "folder",
-			"size": "3 items",
+			"size": "3",
+			"size_unit": "items",
 			"modified": "Today",
 			"value": {
 				"report-45": {
@@ -198,7 +200,8 @@ var server_files: Dictionary = {
 		},
 		"staff": {
 			"type": "folder",
-			"size": "8 items",
+			"size": "8",
+			"size_unit": "items",
 			"modified": "6 months ago",
 			"value": {
 				"staff-0": {
@@ -309,7 +312,8 @@ var server_files: Dictionary = {
 		},
 		"requests": {
 			"type": "folder",
-			"size": "4 items",
+			"size": "4",
+			"size_unit": "items",
 			"modified": "Yesterday",
 			"value": {
 				"key_upgrade_template": {

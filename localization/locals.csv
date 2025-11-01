@@ -94,8 +94,12 @@ give_me_a_hint_title,Hint,ヒント
 notes_file,notes,メモ
 notes_title,Notes,メモ
 tutorial_folder,folder,フォルダ
+tutorial_file,tutorial,チュートリアル
+tutorial_title,Tutorial,チュートリアル
 code_file,code,コード
 code_title,Code,コード
+reports,reports,報告
+report,report,報告
 ,,
 Today,Today,今日
 Yesterday,Yesterday,昨日
@@ -109,3 +113,6 @@ Last month,Last month,先月
 9 months ago,9 months ago,9 ヶ月前
 10 months ago,10 months ago,10 ヶ月前
 Last year,Last year,去年
+,,
+item,item,個
+items,items,個

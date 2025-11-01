@@ -53,7 +53,11 @@ func update_contents() -> void:
 	current_files = get_files_for_current_folder_path()
 	for file_name in current_files:
 		var name_button: Button = Button.new()
-		name_button.text = file_name
+		if file_name.contains("-"):
+			var split_file_name: PackedStringArray = file_name.split("-")
+			name_button.text = tr(split_file_name[0]) + "-" + split_file_name[1]
+		else:
+			name_button.text = file_name
 		name_button.icon = load("res://assets/textures/file_types/" + current_files[file_name]["type"] + ".svg")
 		name_button.focus_mode = Control.FOCUS_NONE
 		name_button.theme = button_theme
@@ -63,6 +67,8 @@ func update_contents() -> void:
 		layout.add_child(name_button)
 		var size_button: Button = Button.new()
 		size_button.text = current_files[file_name]["size"]
+		if current_files[file_name].has("size_unit"):
+			size_button.text += " " + tr(current_files[file_name]["size_unit"])
 		size_button.disabled = true
 		size_button.focus_mode = Control.FOCUS_NONE
 		size_button.theme = button_theme
