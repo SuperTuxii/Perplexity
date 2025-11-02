@@ -476,21 +476,21 @@ var telephone_actions: Dictionary = {
 
 var level1_hints: Dictionary = {
 	"triangle_hints": [
-		"The digit is hidden in an image",
-		"Someone reported a paper with something like this some time ago"
+		"triangle_hint_1",
+		"triangle_hint_2"
 	],
 	"circle_hints": [
-		"It's hidden in a text",
-		"I might have lost something with a circle some time ago"
+		"circle_hint_1",
+		"circle_hint_2"
 	],
 	"square_hints": [
-		"It's hidden in a text",
-		"There was a rumor about a man and something with a square"
+		"square_hint_1",
+		"square_hint_2"
 	], 
 	"octagon_hints": [
-		"I wonder what this looks like",
-		"The digit is hidden in an image",
-		"It looks like a certain traffic sign"
+		"octagon_hint_1",
+		"octagon_hint_2",
+		"octagon_hint_3"
 	]
 }
 

@@ -83,7 +83,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y5xwi")
-text = "File Browser"
+text = "file_browser_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 

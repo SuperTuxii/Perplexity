@@ -39,7 +39,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
-text = "Hint"
+text = "give_me_a_hint_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -73,10 +73,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextButton" type="Button" parent="VBoxContainer/Content/HintContainer"]
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Next"
+text = "next_button"
 
 [node name="TypeSelectionLayout" type="HBoxContainer" parent="VBoxContainer/Content"]
 layout_mode = 2

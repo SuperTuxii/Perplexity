@@ -1,22 +1,5 @@
 class_name ScreenPopupStaff extends ScreenPopup
 
-@export_multiline
-var template: String = """[font_size=30]{name}[/font_size]
-
-[b]Job Title:[/b] {job_title}
-[b]Department:[/b] {department}
-[b]Superior:[/b] {superior}
-[b]Telephone:[/b] {telephone}
-
-[b][u]Main Resonsibilities:[/u][/b]
-{responsibilities}
-
-[b][u]Qualifications:[/u][/b]
-{qualifications}""":
-	set(value):
-		template = value
-		update_information()
-
 @export
 var profile_color: Color = Color.WHITE:
 	set(value):
@@ -64,17 +47,21 @@ var qualifications: String = "":
 func _ready() -> void:
 	super._ready()
 	update_information()
+	EventBus.language_changed.connect(update_information)
 
 func update_information() -> void:
-	if template.is_empty() or !is_node_ready():
+	if !is_node_ready():
 		return
-	var text: String = template.replace("{name}", staff_name
-	).replace("{job_title}", job_title
-	).replace("{department}", department
-	).replace("{superior}", superior
-	).replace("{telephone}", telephone
-	).replace("{responsibilities}", responsibilities
-	).replace("{qualifications}", qualifications)
+	var text: String = ""
+	text += "[font_size=30]" + tr(staff_name) + "[/font_size]\n\n"
+	text += "[b]" + tr("Job Title") + ":[/b] " + tr(job_title) + "\n"
+	text += "[b]" + tr("Department") + ":[/b] " + tr(department) + "\n"
+	text += "[b]" + tr("Superior") + ":[/b] " + tr(superior) + "\n"
+	text += "[b]" + tr("Telephone") + ":[/b] " + telephone + "\n\n"
+	text += "[b][u]" + tr("Main Resonsibilities") + ":[/u][/b]\n"
+	text += tr(responsibilities) + "\n\n"
+	text += "[b][u]" + tr("Qualifications") + ":[/u][/b]\n"
+	text += tr(qualifications)
 	$VBoxContainer/Content/RichTextLabel.text = text
 
 static func apply_color_shader(color: Color) -> Color:

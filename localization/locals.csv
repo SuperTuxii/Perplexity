@@ -68,6 +68,11 @@ Good Luck :)
 がんばってね :)
 (忘れないで、俺は見ている)"
 ,,
+file_browser_title,File Browser,ファイルブラウザ
+file_browser_name,Name,名
+file_browser_size,Size,サイズ
+file_browser_modified,Modified,変更時間
+,,
 Server,Server,サーバー
 Server 1A,Server 1A,サーバー 1A
 Server 2A,Server 2A,サーバー 2A
@@ -91,6 +96,7 @@ The server is already unlocked","ここで何してるんだ？
 サーバーはもうアンロックしたよ"
 give_me_a_hint_file,give me a hint,ヒントをください
 give_me_a_hint_title,Hint,ヒント
+next_button,Next,次
 notes_file,notes,メモ
 notes_title,Notes,メモ
 tutorial_folder,folder,フォルダ
@@ -134,3 +140,46 @@ report-99_text,"Good morning,
 I think I lost my USB Stick. In case anyone spots a blue USB Stick please return it to me. Thanks in advance.","おはようございます、
 USBメモリを無くしたようです。青いUSBメモリを見つけた方がいらっしゃいましたら、お返しください。よろしくお願いします。"
 report-107_text,"The toilet on the south side of the second floor is clogged again. The janitor isn't available, so in the meantime don't try to flush that toilet under any circumstances! The reason probably is that the cleaning people keep emptying their buckets in the toilets even though they were told multiple times not to do that. Maybe someone should tell them again, but I doubt that it will help.",2階南側のトイレがまた詰まっています。 用務員がいないので、当面の間、絶対にそのトイレを流そうとしないでください！ おそらく原因は、清掃員が何度も注意されているにもかかわらず、バケツの中身をトイレに流し続けていることです。 誰かが再度注意すべきかもしれませんが、効果はなさそうです。
+,,
+Job Title,Job Title,肩書き
+Department,Department,部署
+Superior,Superior,上の人
+Telephone,Telephone,電話番号
+Main Resonsibilities,Main Resonsibilities,責任
+Qualifications,Qualifications,資格
+,,
+Thomas,Thomas,トーマス
+Sharyl,Sharyl,シャリル
+Michelle,Michelle,ミシェル
+John,John,ジョン
+James,James,ジェームズ
+Bob,Bob,ボブ
+Phil,Phil,フィル
+Davin,Davin,ダヴィン
+,,
+Owner,Owner,社長
+HR Manager,HR Manager,人事部長
+HR,HR,人事
+Manager,Manager,マネージャー
+Management,Management,経営
+Janitor,Janitor,用務員
+Building,Building,建物
+IT Supporter,IT Supporter,ITサポーター
+IT,IT,IT
+Developer,Developer,開発者
+Development,Development,開発
+Server Guy,Server Guy,サーバー担当者
+Server,Server,サーバー
+,,
+triangle_hint_1,The digit is hidden in an image,数字は画像の中に隠されている
+triangle_hint_2,Someone reported a paper with something like this some time ago,以前、誰かがこんな内容の論文を報告していた
+circle_hint_1,It's hidden in a text,これはテキストの中に隠されている
+circle_hint_2,I might have lost something with a circle some time ago,少し前に丸のあるものをなくしたかもしれない
+square_hint_1,It's hidden in a text,これはテキストの中に隠されている
+square_hint_2,There was a rumor about a man and something with a square,ある男と正方形何かについての噂があった
+octagon_hint_1,I wonder what this looks like,これはどんな見た目なんかなあ
+octagon_hint_2,The digit is hidden in an image,数字は画像の中に隠されている
+octagon_hint_3,It looks like a certain traffic sign,これは交通標識のように見える
+,,
+shape_button,Shape,形
+color_button,Color,色

@@ -35,7 +35,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
-text = "Hint"
+text = "give_me_a_hint_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,10 +68,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextButton" type="Button" parent="VBoxContainer/Content/HintContainer"]
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Next"
+text = "next_button"
 
 [node name="TypeSelectionLayout" type="HBoxContainer" parent="VBoxContainer/Content"]
 layout_mode = 2
@@ -85,7 +86,7 @@ theme_override_colors/icon_pressed_color = Color(0.14901961, 0.09803922, 0.09803
 theme_override_colors/icon_hover_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.14901961, 0.09803922, 0.09803922, 1)
 theme_override_font_sizes/font_size = 45
-text = "Shape"
+text = "shape_button"
 
 [node name="ColorButton" type="Button" parent="VBoxContainer/Content/TypeSelectionLayout"]
 layout_mode = 2
@@ -96,7 +97,7 @@ theme_override_colors/icon_pressed_color = Color(0.09803922, 0.14901961, 0.09803
 theme_override_colors/icon_hover_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.09803922, 0.14901961, 0.09803922, 1)
 theme_override_font_sizes/font_size = 45
-text = "Color"
+text = "color_button"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/TitleLabel" to="." method="_on_title_label_gui_input"]

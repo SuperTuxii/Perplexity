@@ -36,7 +36,13 @@ func _ready() -> void:
 	super._ready()
 	update_contents()
 	Config.server_files_changed.connect(update_contents)
-	EventBus.language_changed.connect(update_contents)
+	EventBus.language_changed.connect(update_language)
+
+func update_language() -> void:
+	$VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer/NameHeader.text = tr("file_browser_name")
+	$VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer/SizeHeader.text = tr("file_browser_size")
+	$VBoxContainer/Content/VBoxContainer/ScrollContainer/GridContainer/ModifiedHeader.text = tr("file_browser_modified")
+	update_contents()
 
 func update_contents() -> void:
 	visible = !root_folder_name.is_empty()
