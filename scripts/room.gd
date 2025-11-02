@@ -172,7 +172,8 @@ func _ready() -> void:
 	usb_mesh.material_overlay = outline_material.duplicate()
 	usb_mesh.material_overlay.albedo_color.a = 0
 	# Start random events
-	EventBus.schedule(roll_random_event, time_random_events_interval)
+	if states.tutorial_stage == -1:
+		EventBus.schedule(roll_random_event, time_random_events_interval)
 	EventBus.set_item_slot_visible.emit(true)
 	# Taking pictures of viewport for cube map
 	#if has_node("Camera3D"):

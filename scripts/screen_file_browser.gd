@@ -66,7 +66,7 @@ func update_contents() -> void:
 		name_button.mouse_exited.connect(_on_content_mouse_exited)
 		layout.add_child(name_button)
 		var size_button: Button = Button.new()
-		size_button.text = current_files[file_name]["size"]
+		size_button.text = str(current_files[file_name]["size"])
 		if current_files[file_name].has("size_unit"):
 			size_button.text += " " + tr(current_files[file_name]["size_unit"])
 		size_button.disabled = true
