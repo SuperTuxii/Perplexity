@@ -77,7 +77,8 @@ focus_inc={
 [internationalization]
 
 locale/translation_remaps={
-"res://assets/fonts/SyneMono-Regular.ttf": PackedStringArray("res://assets/fonts/jp/Stick-Regular.ttf:ja")
+"res://assets/fonts/SyneMono-Regular.ttf": PackedStringArray("res://assets/fonts/jp/Stick-Regular.ttf:ja"),
+"res://assets/textures/server_1a/report-45.png": PackedStringArray("res://assets/textures/server_1a/report-45_jp.png:ja")
 }
 locale/translations=PackedStringArray("res://localization/locals.en.translation", "res://localization/locals.ja.translation")
 locale/locale_filter_mode=0

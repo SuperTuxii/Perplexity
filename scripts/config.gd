@@ -55,7 +55,7 @@ var server_files: Dictionary = {
 			"width": 400,
 			"height": 400,
 			"title": "tutorial_title",
-			"value": "In every hacked server you will find an \"unlock\" executable. [i]It is useful to run this first, so you know what you need to unlock the server (In this case it is a 4 digit code).[/i]\nTo find whatever is needed to unlock the server, you should investigate the files that can be found on this or previous servers. [i]The \"modified\" property for every file may hint at what files are important, but don't trust it too much![/i]\nIf you've got no clue what to do next, you may click the \"give me a hint\" executable to receive a hint (hints don't give you the answer directly and you will still need to use your brain)."
+			"value": "tutorial_file_text"
 		},
 		"unlock_file": {
 			"type": "executable",
@@ -109,7 +109,7 @@ var server_files: Dictionary = {
 					"modified": "2 weeks ago",
 					"width": 300,
 					"height": 300,
-					"value": "The kitchen service wasn't done yesterday, but I also haven't seen the employee that was in charge of it yesterday for quite some time. Is he even still part of this company? Would be nice to know so I could update the plan if that is the case."
+					"value": "report-58_text"
 				},
 				"report-83": {
 					"type": "text",
@@ -117,7 +117,7 @@ var server_files: Dictionary = {
 					"modified": "Last week",
 					"width": 300,
 					"height": 350,
-					"value": "There is a creepy looking person in front of the company building! They suddenly came out of nowhere and told me: \"The square is the file size's last digit\". I have no idea what that is supposed to mean, but I am reporting this, because they looked like a security risk and so that we know this happened once already if this were to happen again."
+					"value": "report-83_text"
 				},
 				"report-87": {
 					"type": "text",
@@ -125,7 +125,7 @@ var server_files: Dictionary = {
 					"modified": "Last week",
 					"width": 300,
 					"height": 200,
-					"value": "HELP, my pc won't turn on. Is there anyone who can help me? If that is the case please come over to my desk and I promise I won't be too much of a pain."
+					"value": "report-87_text"
 				},
 				"report-90": {
 					"type": "text",
@@ -133,7 +133,7 @@ var server_files: Dictionary = {
 					"modified": "Last week",
 					"width": 300,
 					"height": 300,
-					"value": "I just came in and noticed some random piece of paper on my desk. It has a circle and the number 5 on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^."
+					"value": "report-90_text"
 				},
 				"report-99": {
 					"type": "text",
@@ -141,7 +141,7 @@ var server_files: Dictionary = {
 					"modified": "3 days ago",
 					"width": 300,
 					"height": 200,
-					"value": "Good morning,\nI think I lost my USB Stick. In case anyone spots a blue USB Stick please return it to me. Thanks in advance."
+					"value": "report-99_text"
 				},
 				"report-103": {
 					"type": "image",
@@ -155,7 +155,7 @@ var server_files: Dictionary = {
 					"modified": "Yesterday",
 					"width": 300,
 					"height": 350,
-					"value": "The toilet on the south side of the second floor is clogged again. The janitor isn't available, so in the meantime don't try to flush that toilet under any circumstances! The reason probably is that the cleaning people keep emptying their buckets in the toilets even though they were told multiple times not to do that. Maybe someone should tell them again, but I doubt that it will help."
+					"value": "report-107_text"
 				}
 			}
 		}

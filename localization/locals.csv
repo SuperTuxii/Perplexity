@@ -116,3 +116,17 @@ Last year,Last year,去年
 ,,
 item,item,個
 items,items,個
+,,
+tutorial_file_text,"In every hacked server you will find an ""unlock"" executable. [i]It is useful to run this first, so you know what you need to unlock the server (In this case it is a 4 digit code).[/i]
+To find whatever is needed to unlock the server, you should investigate the files that can be found on this or previous servers. [i]The ""modified"" property for every file may hint at what files are important, but don't trust it too much![/i]
+If you've got no clue what to do next, you may click the ""give me a hint"" executable to receive a hint (hints don't give you the answer directly and you will still need to use your brain).","すべてのサーバーには「アンロック」ファイルがあります。 [i]まずこれを開いて、サーバーをアンロックするために必要なものを知っていると便利です。[/i]
+サーバーのアンロックに必要なものを見つけるには、このサーバーまたは過去のサーバーにあるファイルを調査すべきだ。
+次に何をすべきか全く分からないときは、「ヒントをください」ファイルを開いてヒントをもらうことができます。"
+report-58_text,"The kitchen service wasn't done yesterday, but I also haven't seen the employee that was in charge of it yesterday for quite some time. Is he even still part of this company? Would be nice to know so I could update the plan if that is the case.",昨日のキッチンサービスはまだしていません。それに、昨日担当していた社員も、かなり長い時間見ていません。彼はまだこの会社に勤めているのですか？もしそうなら、計画を更新できるように、そのことを知っているといいですね。
+report-83_text,"There is a creepy looking person in front of the company building! They suddenly came out of nowhere and told me: ""The square is the file size's last digit"". I have no idea what that is supposed to mean, but I am reporting this, because they looked like a security risk and so that we know this happened once already if this were to happen again.",会社の建物の前に不気味な人がいます！突然どこからともなく来て、私にこう言いました：「正方形はファイルサイズの最後の桁だ」。どういう意味なのかわかりませんが、セキュリティのリスクがありそうな 人だったので報告します。
+report-87_text,"HELP, my pc won't turn on. Is there anyone who can help me? If that is the case please come over to my desk and I promise I won't be too much of a pain.",助けて、パソコンが起動しないんです。誰か助けてくれる人はいませんか？もしそうなら、私のデスクまで来てくれませんか？よろしくお願いします。
+report-90_text,"I just came in and noticed some random piece of paper on my desk. It has a circle and the number 5 on it. In case anyone lost it, I will keep it till the end of the week, so come and get it from me. I would love to know how it got there and what you were doing at my desk ^^.",ちょうど入って来たら、机の上に何か紙切れが置いてあるのに気づいたよ。丸と数字の5が書いてあるんだ。もし誰かが無くしたら、週末まで預かっているから、取りに来てね。どうしてそこにあったのか、それに私の机で何をしていたのか、ぜひ知りたいな^^。
+report-99_text,"Good morning,
+I think I lost my USB Stick. In case anyone spots a blue USB Stick please return it to me. Thanks in advance.","おはようございます、
+USBメモリを無くしたようです。青いUSBメモリを見つけた方がいらっしゃいましたら、お返しください。よろしくお願いします。"
+report-107_text,"The toilet on the south side of the second floor is clogged again. The janitor isn't available, so in the meantime don't try to flush that toilet under any circumstances! The reason probably is that the cleaning people keep emptying their buckets in the toilets even though they were told multiple times not to do that. Maybe someone should tell them again, but I doubt that it will help.",2階南側のトイレがまた詰まっています。 用務員がいないので、当面の間、絶対にそのトイレを流そうとしないでください！ おそらく原因は、清掃員が何度も注意されているにもかかわらず、バケツの中身をトイレに流し続けていることです。 誰かが再度注意すべきかもしれませんが、効果はなさそうです。
