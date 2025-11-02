@@ -35,7 +35,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a0g7q")
-text = "Text"
+text = "text_popup_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 

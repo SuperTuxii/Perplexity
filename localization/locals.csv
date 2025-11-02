@@ -72,6 +72,9 @@ file_browser_title,File Browser,ファイルブラウザ
 file_browser_name,Name,名
 file_browser_size,Size,サイズ
 file_browser_modified,Modified,変更時間
+text_popup_title,Text,テキスト
+image_popup_title,Image,画像
+staff_file_title,Staff File,スタッフファイル
 ,,
 Server,Server,サーバー
 Server 1A,Server 1A,サーバー 1A
