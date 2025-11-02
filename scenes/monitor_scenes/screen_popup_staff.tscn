@@ -76,6 +76,8 @@ theme_override_constants/margin_bottom = 15
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Content"]
 layout_mode = 2
 bbcode_enabled = true
+fit_content = true
+scroll_active = false
 
 [node name="Button" type="Button" parent="VBoxContainer/Content"]
 texture_filter = 1

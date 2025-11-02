@@ -40,7 +40,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7uyd3")
-text = "Enter Code"
+text = "unlock_title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -64,7 +64,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Unlock"
+text = "unlock_button"
 
 [node name="Line2D" type="Line2D" parent="VBoxContainer/Content"]
 points = PackedVector2Array(2, 125, 64, 171, 153, 70, 275, 138, 382, 49, 443, 125)
@@ -145,9 +145,7 @@ flat = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
-text = "Correct :)
-
-The server is unlocking!"
+text = "unlock_correct_label"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -155,9 +153,7 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
-text = "What are you doing back here?
-
-The server is already unlocked"
+text = "already_unlocked_label"
 horizontal_alignment = 1
 vertical_alignment = 1
 

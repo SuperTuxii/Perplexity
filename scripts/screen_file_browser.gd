@@ -36,6 +36,7 @@ func _ready() -> void:
 	super._ready()
 	update_contents()
 	Config.server_files_changed.connect(update_contents)
+	EventBus.language_changed.connect(update_contents)
 
 func update_contents() -> void:
 	visible = !root_folder_name.is_empty()

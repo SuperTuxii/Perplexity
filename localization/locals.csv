@@ -100,6 +100,10 @@ code_file,code,コード
 code_title,Code,コード
 reports,reports,報告
 report,report,報告
+staff,staff,スタッフ
+requests,requests,リクエスト
+request,requests,リクエスト
+key_upgrade_template,key_upgrade_template,キーアップグレードテンプレート
 ,,
 Today,Today,今日
 Yesterday,Yesterday,昨日

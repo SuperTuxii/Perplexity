@@ -79,3 +79,4 @@ func _on_fps_counter_check_button_toggled(toggled_on: bool) -> void:
 func _on_language_options_item_selected(index: int) -> void:
 	language = index
 	TranslationServer.set_locale("en" if language == 0 else "ja")
+	EventBus.language_changed.emit()

@@ -26,6 +26,8 @@ signal pause_tutorial_visible(visible: bool)
 signal focus_changed(focus: int)
 signal finished_focus_change(focus: int)
 
+signal language_changed
+
 signal unlock_server(name: String)
 signal called_number(number: String)
 signal updated_lvl2_unlock
