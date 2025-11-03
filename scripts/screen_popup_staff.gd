@@ -33,13 +33,13 @@ var telephone: String = "":
 		telephone = value
 		update_information()
 
-@export_multiline
-var responsibilities: String = "":
+@export
+var responsibilities: Array = []:
 	set(value):
 		responsibilities = value
 		update_information()
-@export_multiline
-var qualifications: String = "":
+@export
+var qualifications: Array = []:
 	set(value):
 		qualifications = value
 		update_information()
@@ -59,9 +59,19 @@ func update_information() -> void:
 	text += "[b]" + tr("Superior") + ":[/b] " + tr(superior) + "\n"
 	text += "[b]" + tr("Telephone") + ":[/b] " + telephone + "\n\n"
 	text += "[b][u]" + tr("Main Resonsibilities") + ":[/u][/b]\n"
-	text += tr(responsibilities) + "\n\n"
+	for responsibility in responsibilities:
+		text += responsibility.point + " "
+		if responsibility.has("color"):
+			text += "[color=" + responsibility.color.to_html() + "]" + tr(responsibility.content) + "[/color]\n"
+		else:
+			text += tr(responsibility.content) + "\n"
 	text += "[b][u]" + tr("Qualifications") + ":[/u][/b]\n"
-	text += tr(qualifications)
+	for qualification in qualifications:
+		text += qualification.point + " "
+		if qualification.has("color"):
+			text += "[color=" + qualification.color.to_html() + "]" + tr(qualification.content) + "[/color]\n"
+		else:
+			text += tr(qualification.content) + "\n"
 	$VBoxContainer/Content/RichTextLabel.text = text
 
 static func apply_color_shader(color: Color) -> Color:

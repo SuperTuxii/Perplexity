@@ -214,8 +214,40 @@ var server_files: Dictionary = {
 					"department": "Owner",
 					"superior": "---",
 					"telephone": "000",
-					"responsibilities": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]leadership[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]planning[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.BLUE).to_html() + "]financial management[/color]",
-					"qualifications": "- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]interpersonal skills[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]creativity[/color]"
+					"responsibilities": [
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.RED),
+							"content": "leadership"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.YELLOW),
+							"content": "planning"
+						},
+						{
+							"point": "4",
+							"color": ScreenPopupStaff.apply_color_shader(Color.BLUE),
+							"content": "financial management"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.CYAN),
+							"content": "interpersonal skills"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.GREEN),
+							"content": "leadership"
+						},
+						{
+							"point": "4",
+							"color": ScreenPopupStaff.apply_color_shader(Color.MAGENTA),
+							"content": "creativity"
+						}
+					]
 				},
 				"staff-3": {
 					"type": "staff",
@@ -227,8 +259,37 @@ var server_files: Dictionary = {
 					"department": "HR",
 					"superior": "Thomas",
 					"telephone": "010",
-					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]managing employees[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]record keeping[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]health and safety[/color]",
-					"qualifications": "1 interpersonal skills\n3 coaching\n4 skills management"
+					"responsibilities": [
+						{
+							"point": "1",
+							"color": ScreenPopupStaff.apply_color_shader(Color.CYAN),
+							"content": "managing employees"
+						},
+						{
+							"point": "3",
+							"color": ScreenPopupStaff.apply_color_shader(Color.MAGENTA),
+							"content": "record keeping"
+						},
+						{
+							"point": "4",
+							"color": ScreenPopupStaff.apply_color_shader(Color.RED),
+							"content": "health and safety"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "1",
+							"content": "interpersonal skills"
+						},
+						{
+							"point": "3",
+							"content": "coaching"
+						},
+						{
+							"point": "4",
+							"content": "skills management"
+						}
+					]
 				},
 				"staff-5": {
 					"type": "staff",
@@ -240,8 +301,40 @@ var server_files: Dictionary = {
 					"department": "Management",
 					"superior": "Sharyl",
 					"telephone": "021",
-					"responsibilities": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]setting goals[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.GREEN).to_html() + "]delegating tasks[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.INDIGO).to_html() + "]leading a team[/color]",
-					"qualifications": "1 [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]communication[/color]\n3 [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]leadership[/color]\n4 [color=" + ScreenPopupStaff.apply_color_shader(Color.ORANGE).to_html() + "]time management[/color]"
+					"responsibilities": [
+						{
+							"point": "1",
+							"color": ScreenPopupStaff.apply_color_shader(Color.GREEN),
+							"content": "setting goals"
+						},
+						{
+							"point": "3",
+							"color": ScreenPopupStaff.apply_color_shader(Color.GREEN),
+							"content": "delegating tasks"
+						},
+						{
+							"point": "4",
+							"color": ScreenPopupStaff.apply_color_shader(Color.INDIGO),
+							"content": "leading a team"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "1",
+							"color": ScreenPopupStaff.apply_color_shader(Color.RED),
+							"content": "communication"
+						},
+						{
+							"point": "3",
+							"color": ScreenPopupStaff.apply_color_shader(Color.MAGENTA),
+							"content": "leadership"
+						},
+						{
+							"point": "4",
+							"color": ScreenPopupStaff.apply_color_shader(Color.ORANGE),
+							"content": "time management"
+						}
+					]
 				},
 				"staff-13": {
 					"type": "staff",
@@ -253,8 +346,34 @@ var server_files: Dictionary = {
 					"department": "Building",
 					"superior": "Michelle",
 					"telephone": "801",
-					"responsibilities": "- maintenance\n- supply\n- cleaning",
-					"qualifications": "- physical stamina\n- cleaning knowledge\n- safety awareness"
+					"responsibilities": [
+						{
+							"point": "-",
+							"content": "maintenance"
+						},
+						{
+							"point": "-",
+							"content": "supply"
+						},
+						{
+							"point": "-",
+							"content": "cleaning"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "-",
+							"content": "physical stamina"
+						},
+						{
+							"point": "-",
+							"content": "cleaning knowledge"
+						},
+						{
+							"point": "-",
+							"content": "safety awareness"
+						}
+					]
 				},
 				"staff-14": {
 					"type": "staff",
@@ -266,8 +385,34 @@ var server_files: Dictionary = {
 					"department": "IT",
 					"superior": "Michelle",
 					"telephone": "174",
-					"responsibilities": "- support\n- system management\n- configuring hardware",
-					"qualifications": "- communication\n- problem solving\n- hardware knowledge"
+					"responsibilities": [
+						{
+							"point": "-",
+							"content": "support"
+						},
+						{
+							"point": "-",
+							"content": "system management"
+						},
+						{
+							"point": "-",
+							"content": "configuring hardware"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "-",
+							"content": "communication"
+						},
+						{
+							"point": "-",
+							"content": "problem solving"
+						},
+						{
+							"point": "-",
+							"content": "hardware knowledge"
+						}
+					]
 				},
 				"staff-15": {
 					"type": "staff",
@@ -279,8 +424,34 @@ var server_files: Dictionary = {
 					"department": "Development",
 					"superior": "Michelle",
 					"telephone": "236",
-					"responsibilities": "- software maintenance\n- testing & debugging\n- information security",
-					"qualifications": "- analytical thinking skills\n- problem solving\n- experience"
+					"responsibilities": [
+						{
+							"point": "-",
+							"content": "software maintenance"
+						},
+						{
+							"point": "-",
+							"content": "testing & debugging"
+						},
+						{
+							"point": "-",
+							"content": "information security"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "-",
+							"content": "analytical thinking skills"
+						},
+						{
+							"point": "-",
+							"content": "problem solving"
+						},
+						{
+							"point": "-",
+							"content": "experience"
+						}
+					]
 				},
 				"staff-19": {
 					"type": "staff",
@@ -292,8 +463,34 @@ var server_files: Dictionary = {
 					"department": "Server",
 					"superior": "Michelle",
 					"telephone": "139",
-					"responsibilities": "- server maintenance\n- monitoring\n- security measures",
-					"qualifications": "- technical skills\n- maintenance\n- problem solving"
+					"responsibilities": [
+						{
+							"point": "-",
+							"content": "server maintenance"
+						},
+						{
+							"point": "-",
+							"content": "monitoring"
+						},
+						{
+							"point": "-",
+							"content": "security measures"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "-",
+							"content": "technical skills"
+						},
+						{
+							"point": "-",
+							"content": "maintenance"
+						},
+						{
+							"point": "-",
+							"content": "problem solving"
+						}
+					]
 				},
 				"staff-21": {
 					"type": "staff",
@@ -305,8 +502,40 @@ var server_files: Dictionary = {
 					"department": "Development",
 					"superior": "Michelle",
 					"telephone": "254",
-					"responsibilities": "2 [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]customer projects[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]software design[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.CYAN).to_html() + "]update maintenance[/color]",
-					"qualifications": "2 [color=" + ScreenPopupStaff.apply_color_shader(Color.YELLOW).to_html() + "]knowledge[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.RED).to_html() + "]problem solving[/color]\n- [color=" + ScreenPopupStaff.apply_color_shader(Color.MAGENTA).to_html() + "]analytical thinking skills[/color]"
+					"responsibilities": [
+						{
+							"point": "2",
+							"color": ScreenPopupStaff.apply_color_shader(Color.CYAN),
+							"content": "customer projects"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.MAGENTA),
+							"content": "software design"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.CYAN),
+							"content": "update maintenance"
+						}
+					],
+					"qualifications": [
+						{
+							"point": "2",
+							"color": ScreenPopupStaff.apply_color_shader(Color.YELLOW),
+							"content": "knowledge"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.RED),
+							"content": "problem solving"
+						},
+						{
+							"point": "-",
+							"color": ScreenPopupStaff.apply_color_shader(Color.MAGENTA),
+							"content": "analytical thinking skills"
+						}
+					]
 				},
 			}
 		},
