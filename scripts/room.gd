@@ -117,7 +117,8 @@ var door_tween: Tween
 var monitor_tween: Tween
 var monitor_textures: Array[Texture2D] = [
 	preload("res://assets/textures/monitor_textures/empty.svg"),
-	preload("res://assets/textures/monitor_textures/hello_world.png")
+	preload("res://assets/textures/monitor_textures/hello_world.png"),
+	preload("res://assets/textures/mumei_jumpscare.webp")
 ]
 
 func _ready() -> void:
@@ -128,8 +129,8 @@ func _ready() -> void:
 	$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
 	if states.tutorial_stage == 0:
 		EventBus.drag_tutorial_visible.emit(true)
-		EventBus.set_skip_button.emit(true)
-		EventBus.skipped.connect(skip_tutorial)
+		#EventBus.set_skip_button.emit(true)
+		#EventBus.skipped.connect(skip_tutorial)
 	if !states.monitor_scene:
 		states.monitor_scene = monitor_scene.instantiate()
 	$MonitorViewport.add_child(states.monitor_scene)
@@ -221,18 +222,38 @@ func _process(delta: float) -> void:
 		elif states.focus == 3:
 			update_container_joystick()
 	if states.focus == 0 and !states.focussing: # Applying screen drag when focus is 0
+		states.mouse_movement += (states.joystick_motion * options.joystick_sensitivity).length()
+		if states.tutorial_stage == 0 and states.mouse_movement > 0.5:
+			EventBus.drag_tutorial_visible.emit(false)
+			EventBus.focus_tutorial_visible.emit(true)
+			states.tutorial_stage = 1
 		states.mouse_motion -= states.joystick_motion * options.joystick_sensitivity
 		states.mouse_motion.y = clamp(states.mouse_motion.y, -1.56, 1.56)
 		camera.transform.basis = Basis.from_euler(Vector3(states.mouse_motion.y, 0, 0))
 		$"Desk Setup/Chair".transform.basis = Basis.from_euler(Vector3(0, states.mouse_motion.x, 0))
+	elif states.focus == 1 and !states.focussing and states.joystick_input:
+		var mouse_event: InputEventMouseMotion = InputEventMouseMotion.new()
+		mouse_event.position = monitor_viewport.get_mouse_position() + (states.joystick_motion * 7.5)
+		mouse_event.position = clamp(mouse_event.position, Vector2(), Vector2(monitor_viewport.size))
+		mouse_event.global_position = mouse_event.position
+		mouse_event.relative = mouse_event.position - monitor_viewport.get_mouse_position()
+		mouse_event.velocity = mouse_event.relative / delta
+		monitor_viewport.push_input(mouse_event)
 	if object_focus != null and object_focus_tween != null and !object_focus_tween.is_running():
 		object_focus.global_rotation = Vector3(-object_motion.y, 0, object_motion.x)
-	if Input.is_action_just_pressed("ui_accept") and states.focus == 2:
+	if Input.is_action_just_pressed("ui_accept") and states.focus == 2 and !states.joystick_input:
 		call_telephone_number()
-	if Input.is_action_just_pressed("focus_dec"):
+	if Input.is_action_just_pressed("focus_dec") and states.focus != -1:
 		set_focus(states.focus - 1 if states.focus > 0 else 3)
-	if Input.is_action_just_pressed("focus_inc"):
+	if Input.is_action_just_pressed("focus_inc") and states.focus != -1:
 		set_focus(states.focus + 1 if states.focus < 3 else 0)
+	if states.door_jumpscare_timer >= 0:
+		states.door_jumpscare_timer += delta
+		if states.door_jumpscare_timer >= 25:
+			states.door_jumpscare_timer = -1
+			EventBus.set_jumpscare_visible.emit(true)
+			Audio.play("jumpscare", Audio.jumpscare, -5, "SFX")
+			EventBus.schedule(EventBus.restart_game.emit, 5)
 
 #region Focusing (+ Object Unfocusing)
 func get_focus_state(index: int) -> Dictionary:
@@ -291,6 +312,11 @@ func set_focus(index: int) -> void:
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
+			var mouse_event: InputEventMouseMotion = InputEventMouseMotion.new()
+			mouse_event.position = Vector2(monitor_viewport.size) / 2.0
+			mouse_event.global_position = mouse_event.position
+			mouse_event.relative = mouse_event.position - monitor_viewport.get_mouse_position()
+			monitor_viewport.push_input(mouse_event)
 		2:
 			telephone_number = ""
 			telephone_joystick_on_receiver = false
@@ -345,6 +371,11 @@ func set_focus_instantly(index: int) -> void:
 			telephone_receiver_mesh.material_overlay.albedo_color.a = 0
 		1:
 			monitor_mesh.material_overlay.albedo_color.a = 0
+			var mouse_event: InputEventMouseMotion = InputEventMouseMotion.new()
+			mouse_event.position = Vector2(monitor_viewport.size) / 2.0
+			mouse_event.global_position = mouse_event.position
+			mouse_event.relative = mouse_event.position - monitor_viewport.get_mouse_position()
+			monitor_viewport.push_input(mouse_event)
 		2:
 			telephone_number = ""
 			telephone_joystick_on_receiver = false
@@ -402,8 +433,8 @@ func _on_paused_change(is_paused: bool) -> void:
 	states.paused = is_paused
 	if states.tutorial_stage == 4:
 		EventBus.pause_tutorial_visible.emit(false)
-		EventBus.set_skip_button.emit(false)
-		EventBus.skipped.disconnect(skip_tutorial)
+		#EventBus.set_skip_button.emit(false)
+		#EventBus.skipped.disconnect(skip_tutorial)
 		EventBus.continue_to_back_to_title.emit()
 		states.tutorial_stage = 5
 	elif states.tutorial_stage == 5:
@@ -423,8 +454,8 @@ func skip_tutorial() -> void:
 	EventBus.focus_tutorial_visible.emit(false)
 	EventBus.unfocus_tutorial_visible.emit(false)
 	EventBus.pause_tutorial_visible.emit(false)
-	EventBus.set_skip_button.emit(false)
-	EventBus.skipped.disconnect(skip_tutorial)
+	#EventBus.set_skip_button.emit(false)
+	#EventBus.skipped.disconnect(skip_tutorial)
 	states.monitor_scene.finish_tutorial()
 	states.tutorial_stage = -1
 	tutorial_finished.emit()
@@ -470,10 +501,12 @@ func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton or event is InputEventMouseMotion) and !update_mouse_position:
 		states.joystick_input = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		states.monitor_scene.cursor.hide()
 	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
 		states.joystick_input = true
 		update_mouse_position = true
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		states.monitor_scene.cursor.show()
 	if states.paused:
 		return
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
@@ -513,6 +546,12 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == JOY_BUTTON_A:
 			if hovered_focus != -1 and !event.pressed:
 				set_focus(hovered_focus)
+			elif states.focus == 1:
+				var mouse_event: InputEventMouseButton = InputEventMouseButton.new()
+				mouse_event.position = monitor_viewport.get_mouse_position()
+				mouse_event.pressed = event.pressed
+				mouse_event.button_index = MOUSE_BUTTON_LEFT
+				monitor_viewport.push_input(mouse_event)
 			elif states.focus == 2:
 				if telephone_joystick_on_receiver and !event.pressed:
 					call_telephone_number()
@@ -553,7 +592,7 @@ func _unhandled_input(event):
 		_on_telephone_input_event(event)
 	monitor_viewport.push_input(event)
 func _on_screen_area_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+	if ((event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT) or (event is InputEventMouseMotion and states.joystick_input)):
 		return
 	var collision_shape_size = $"Desk Setup/ScreenArea/CollisionShape3D".shape.size
 	var quad_mesh_size = Vector2(collision_shape_size.z, collision_shape_size.y)
@@ -978,10 +1017,12 @@ func toggle_door() -> void:
 		Audio.play("door_shut", Audio.door_slam, -12.5, "SFX", Audio.DOOR_POSITION)
 		$Door2/Door.rotation.y = 0
 		set_door_lock(true)
+		states.door_jumpscare_timer = -1
 	else:
 		Audio.play("door_open", Audio.door_creek, -5, "SFX", Audio.DOOR_POSITION)
 		$Door2/Door.rotation.y = deg_to_rad(7.5)
 		set_door_lock(false)
+		states.door_jumpscare_timer = 0
 	states.door_open = !states.door_open
 func monitor_look() -> void:
 	const original_rotations: PackedFloat32Array = [-85.5, 110.5, 88.8, -173.4, -101.4]
@@ -1033,6 +1074,7 @@ func _on_door_on_screen_notifier_screen_entered() -> void:
 		door_tween.tween_callback(func lock_door(): set_door_lock(true))
 		door_tween.play()
 		states.door_open = false
+		states.door_jumpscare_timer = -1
 #endregion
 #region Functions and Variables for CutsceneAnimator
 @export

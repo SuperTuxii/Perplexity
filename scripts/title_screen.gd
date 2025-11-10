@@ -8,6 +8,8 @@ var move_tween: Tween
 
 func _ready() -> void:
 	randomize_movement()
+	$Menu/VBoxContainer/StartButton.grab_focus()
+	EventBus.back_from_options.connect(_on_back_from_options)
 
 func randomize_movement() -> void:
 	if move_tween:
@@ -16,6 +18,9 @@ func randomize_movement() -> void:
 	$Camera3D.rotation = Vector3()
 	move_tween.tween_property($Camera3D, "rotation", Vector3(0, -TAU, 0), 90)
 	move_tween.tween_callback(randomize_movement)
+
+func _on_back_from_options() -> void:
+	$Menu/VBoxContainer/OptionsButton.grab_focus()
 
 func _on_visibility_changed() -> void:
 	if !visible and move_tween:

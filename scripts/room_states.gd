@@ -19,6 +19,7 @@ var cutscene_playing: bool = true
 var current_cutscene_position: float = 0
 
 var door_open: bool = false
+var door_jumpscare_timer: float = -1
 var monitor_look: bool = false
 var drawer_positions: PackedFloat32Array = [0, 0, 0]
 var musicbox_note_removed: bool = false

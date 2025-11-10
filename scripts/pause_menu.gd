@@ -11,24 +11,29 @@ func show_pause_menu() -> void:
 	visible = true
 	$Layout.visible = true
 	pause_open = true
+	$Layout/ContinueButton.grab_focus()
 
 func show_options_menu() -> void:
 	visible = true
 	$OptionsMenu.visible = true
 	$Layout.visible = false
+	$OptionsMenu/Layout/ScrollContainer/TableLayout/SensitivitySlider.grab_focus()
 
 func back() -> void:
 	if $OptionsMenu.visible:
 		$OptionsMenu.visible = false
 		if pause_open:
 			$Layout.visible = true
+			$Layout/OptionsButton.grab_focus()
 		else:
 			visible = false
+			EventBus.back_from_options.emit()
 	elif $Layout.visible:
 		visible = false
 		$Layout.visible = false
 		pause_open = false
 		EventBus.paused_change.emit(false)
+		EventBus.back_from_options.emit()
 		if is_inside_tree():
 			get_tree().paused = false
 
@@ -41,6 +46,9 @@ func _on_options_button_pressed() -> void:
 func _on_continue_button_pressed() -> void:
 	$Layout/ContinueButton.text = tr("continue_button")
 	back()
+
+func _on_restart_button_pressed() -> void:
+	EventBus.restart_game.emit()
 
 func _on_options_menu_back() -> void:
 	back()

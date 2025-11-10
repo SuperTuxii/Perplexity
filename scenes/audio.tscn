@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://c6mycvc66v0o4"]
+[gd_scene load_steps=85 format=3 uid="uid://c6mycvc66v0o4"]
 
 [ext_resource type="Script" uid="uid://wqwsr5t2ol7n" path="res://scripts/audio.gd" id="1_6n3bj"]
 [ext_resource type="AudioStream" uid="uid://cveokrn3hcaqd" path="res://assets/audio/light_flicker1.wav" id="2_hlm5c"]
@@ -58,6 +58,8 @@
 [ext_resource type="AudioStream" uid="uid://dwcnd120ocayi" path="res://assets/audio/monitor_turn2.wav" id="56_gtulk"]
 [ext_resource type="AudioStream" uid="uid://b5robu3oo2jrf" path="res://assets/audio/monitor_turn3.wav" id="57_h8xfu"]
 [ext_resource type="AudioStream" uid="uid://1w0k0kb5f8ts" path="res://assets/audio/monitor_turn4.wav" id="58_7up2h"]
+[ext_resource type="AudioStream" uid="uid://bexucrf1ixmae" path="res://assets/audio/jumpscare1.mp3" id="59_h8xfu"]
+[ext_resource type="AudioStream" uid="uid://d2883fq3dw1r6" path="res://assets/audio/jumpscare2.mp3" id="60_7up2h"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ab7u"]
 streams_count = 4
@@ -228,6 +230,11 @@ stream_1/stream = ExtResource("56_gtulk")
 stream_2/stream = ExtResource("57_h8xfu")
 stream_3/stream = ExtResource("58_7up2h")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_257fy"]
+streams_count = 2
+stream_0/stream = ExtResource("59_h8xfu")
+stream_1/stream = ExtResource("60_7up2h")
+
 [node name="Audio" type="Node3D"]
 script = ExtResource("1_6n3bj")
 start_music = SubResource("AudioStreamRandomizer_6ab7u")
@@ -257,6 +264,7 @@ door_creek = SubResource("AudioStreamRandomizer_me8cb")
 door_slam = SubResource("AudioStreamRandomizer_gtulk")
 door_rattle = SubResource("AudioStreamRandomizer_j17ew")
 monitor_turn = SubResource("AudioStreamRandomizer_tkj11")
+jumpscare = SubResource("AudioStreamRandomizer_257fy")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 

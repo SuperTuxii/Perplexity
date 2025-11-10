@@ -3,6 +3,8 @@ class_name Events extends Node
 
 signal paused_change(paused: bool)
 signal continue_to_back_to_title
+signal back_from_options
+signal restart_game
 
 #Screen Overlays
 signal set_eyelids(close: bool, eyelid_speed: float)
@@ -18,6 +20,7 @@ signal set_item_slot_visible(slot_visible: bool)
 signal set_item_slot(icon: Texture2D)
 signal item_slot_pressed
 signal set_fps_counter(counter_visible: bool)
+signal set_jumpscare_visible(jumpscare_visible: bool)
 signal drag_tutorial_visible(visible: bool)
 signal focus_tutorial_visible(visible: bool)
 signal unfocus_tutorial_visible(visible: bool)

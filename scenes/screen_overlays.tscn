@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkaofyvw6ltoh"]
+[gd_scene load_steps=13 format=3 uid="uid://dkaofyvw6ltoh"]
 
 [ext_resource type="Script" uid="uid://dt68l5ukkptm" path="res://scripts/screen_overlays.gd" id="1_ggt3k"]
 [ext_resource type="PackedScene" uid="uid://consmqbymlt6p" path="res://scenes/tutorials/drag_tutorial.tscn" id="2_sbgpc"]
 [ext_resource type="PackedScene" uid="uid://ca872q63wktoi" path="res://scenes/tutorials/focus_tutorial.tscn" id="3_ny6a1"]
 [ext_resource type="PackedScene" uid="uid://b0kaqdml1gwlk" path="res://scenes/tutorials/unfocus_tutorial.tscn" id="4_botdh"]
 [ext_resource type="PackedScene" uid="uid://t2v8obj3blv2" path="res://scenes/tutorials/pause_tutorial.tscn" id="5_khb8a"]
+[ext_resource type="Texture2D" uid="uid://clis42v4gorl4" path="res://assets/textures/mumei_jumpscare.webp" id="6_3ug1h"]
 
 [sub_resource type="Gradient" id="Gradient_ggt3k"]
 offsets = PackedFloat32Array(1, 1)
@@ -99,6 +100,7 @@ theme_override_constants/margin_bottom = 25
 visible = false
 custom_minimum_size = Vector2(68, 68)
 layout_mode = 2
+focus_behavior_recursive = 1
 
 [node name="SubtitleContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -184,6 +186,16 @@ theme_override_constants/margin_top = 15
 visible = false
 layout_mode = 2
 text = "FPS: -"
+
+[node name="JumpscareOverlay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3ug1h")
 
 [connection signal="pressed" from="MarginContainer2/ItemSlot" to="." method="_on_item_slot_pressed"]
 [connection signal="timeout" from="SubtitleContainer/StayTimer" to="." method="_on_stay_timer_timeout"]

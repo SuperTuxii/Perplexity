@@ -24,6 +24,7 @@ func _ready() -> void:
 	EventBus.set_item_slot_visible.connect(set_item_slot_visible)
 	EventBus.set_item_slot.connect(set_item_slot)
 	EventBus.set_fps_counter.connect(set_fps_counter)
+	EventBus.set_jumpscare_visible.connect(set_jumpscare_visible)
 	EventBus.drag_tutorial_visible.connect(set_drag_tutorial_visible)
 	EventBus.focus_tutorial_visible.connect(set_focus_tutorial_visible)
 	EventBus.unfocus_tutorial_visible.connect(set_unfocus_tutorial_visible)
@@ -76,9 +77,13 @@ func remove_subtitles_instantly() -> void:
 
 func set_skip_button(button_visible: bool) -> void:
 	$MarginContainer/HBoxContainer/SkipButton.visible = button_visible
+	$MarginContainer/HBoxContainer/SkipButton.grab_focus()
+	$MarginContainer/HBoxContainer/SkipToGameButton.focus_neighbor_left = "MarginContainer/HBoxContainer/SkipButton"
 
 func set_skip_to_game_button(button_visible: bool) -> void:
 	$MarginContainer/HBoxContainer/SkipToGameButton.visible = button_visible
+	$MarginContainer/HBoxContainer/SkipToGameButton.grab_focus()
+	$MarginContainer/HBoxContainer/SkipButton.focus_neighbor_right = "MarginContainer/HBoxContainer/SkipToGameButton"
 
 func set_item_slot_visible(slot_visible: bool) -> void:
 	$MarginContainer2/ItemSlot.visible = slot_visible
@@ -88,6 +93,9 @@ func set_item_slot(icon: Texture2D) -> void:
 
 func set_fps_counter(counter_visible: bool) -> void:
 	$MarginContainer3/FPSLabel.visible = counter_visible
+
+func set_jumpscare_visible(jumpscare_visible: bool) -> void:
+	$JumpscareOverlay.visible = jumpscare_visible
 
 func set_drag_tutorial_visible(tutorial_visible: bool) -> void:
 	$DragTutorial.visible = tutorial_visible

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhuwy04skbd8s"]
+[gd_scene load_steps=13 format=3 uid="uid://dhuwy04skbd8s"]
 
 [ext_resource type="Script" uid="uid://cq3n13d87kbr5" path="res://scripts/monitor_scene.gd" id="1_uwc3u"]
 [ext_resource type="FontFile" uid="uid://c8h1vr6ka1otr" path="res://assets/fonts/RubikGlitch-Regular.ttf" id="2_cr26o"]
@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c0ec40modepeo" path="res://assets/textures/usb_icon.svg" id="4_fblv2"]
 [ext_resource type="PackedScene" uid="uid://bx3f3hbarpww" path="res://scenes/monitor_scenes/screen_popup_text.tscn" id="4_ycll6"]
 [ext_resource type="Texture2D" uid="uid://dbwvccoct18sw" path="res://assets/textures/tutorial/arrow.svg" id="5_5bx6i"]
-[ext_resource type="Texture2D" uid="uid://dkr5mbucuud23" path="res://assets/textures/tutorial/left_click.svg" id="6_cr26o"]
+[ext_resource type="Texture2D" uid="uid://cmav8aj6phaau" path="res://assets/textures/tutorial/right_button.svg" id="7_0y272"]
+[ext_resource type="Texture2D" uid="uid://bn0hp1q166eyl" path="res://assets/textures/cursor.png" id="9_0y272"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxf5"]
 content_margin_left = 0.0
@@ -36,6 +37,7 @@ font_size = 30
 custom_minimum_size = Vector2(1280, 720)
 offset_right = 1280.0
 offset_bottom = 720.0
+focus_behavior_recursive = 1
 mouse_filter = 1
 color = Color(0.19215687, 0.19215687, 0.19215687, 1)
 script = ExtResource("1_uwc3u")
@@ -122,7 +124,7 @@ texture = ExtResource("5_5bx6i")
 [node name="LeftClick" type="Sprite2D" parent="ScreenFileBrowser/FileTutorial"]
 position = Vector2(87, 360)
 scale = Vector2(0.4121094, 0.4121094)
-texture = ExtResource("6_cr26o")
+texture = ExtResource("7_0y272")
 
 [node name="Label" type="Label" parent="ScreenFileBrowser/FileTutorial"]
 offset_left = -195.0
@@ -145,7 +147,7 @@ texture = ExtResource("5_5bx6i")
 [node name="LeftClick2" type="Sprite2D" parent="ScreenFileBrowser/BackTutorial"]
 position = Vector2(85, -60)
 scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("6_cr26o")
+texture = ExtResource("7_0y272")
 
 [node name="Label" type="Label" parent="ScreenFileBrowser/BackTutorial"]
 offset_left = -235.0
@@ -189,7 +191,7 @@ visible = false
 [node name="LeftClick" type="Sprite2D" parent="ClickServerTutorial"]
 position = Vector2(186.00002, 655.00006)
 scale = Vector2(0.5653076, 0.5590086)
-texture = ExtResource("6_cr26o")
+texture = ExtResource("7_0y272")
 
 [node name="Label" type="Label" parent="ClickServerTutorial"]
 offset_left = 238.0
@@ -280,6 +282,13 @@ theme_override_font_sizes/font_size = 22
 text = "search_files_tutorial_hint"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("9_0y272")
+offset = Vector2(12, 12)
 
 [connection signal="mask_walk_finished" from="LevelsScene" to="." method="_on_levels_scene_mask_walk_finished"]
 [connection signal="open_server_files" from="LevelsScene" to="." method="_on_levels_scene_open_server_files"]

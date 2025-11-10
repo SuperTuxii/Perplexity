@@ -66,6 +66,8 @@ var door_slam: AudioStream
 var door_rattle: AudioStream
 @export
 var monitor_turn: AudioStream
+@export
+var jumpscare: AudioStream
 
 signal player_finished(key: StringName)
 

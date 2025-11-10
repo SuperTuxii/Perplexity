@@ -27,14 +27,18 @@ var focus: int:
 		return room.states.focus
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	options.room_quality_changed.connect(load_room)
 	EventBus.paused_change.connect(_on_paused_change)
+	EventBus.restart_game.connect(restart_game)
 	Audio.play("music", Audio.start_music, linear_to_db(0.2), "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
 	Audio.player_finished.connect(_on_audio_player_finished)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
-		if focus <= 0:
+		if !room:
+			$PauseMenu.back()
+		elif focus <= 0:
 			EventBus.paused_change.emit(!paused)
 		else:
 			if room.object_focus == null:
@@ -61,9 +65,17 @@ func load_room(create: bool = false, tutorial: bool = false) -> void:
 	room.states.paused = paused
 	add_child(room)
 
+func restart_game() -> void:
+	get_tree().quit()
+
 func _on_paused_change(is_paused: bool) -> void:
 	if paused != is_paused:
 		paused = is_paused
+		if !paused:
+			if $ScreenOverlays/MarginContainer/HBoxContainer/SkipToGameButton.visible:
+				$ScreenOverlays/MarginContainer/HBoxContainer/SkipToGameButton.grap_focus()
+			elif $ScreenOverlays/MarginContainer/HBoxContainer/SkipButton.visible:
+				$ScreenOverlays/MarginContainer/HBoxContainer/SkipButton.grab_focus()
 
 func _on_tutorial_finished() -> void:
 	room.states.mouse_motion = Vector2()

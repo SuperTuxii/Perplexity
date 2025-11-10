@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://t2v8obj3blv2"]
+[gd_scene load_steps=3 format=3 uid="uid://t2v8obj3blv2"]
 
-[ext_resource type="Texture2D" uid="uid://tjhc44jfwpd7" path="res://assets/textures/tutorial/right_click.svg" id="1_vm8dx"]
+[ext_resource type="Texture2D" uid="uid://dwth6jdmrso21" path="res://assets/textures/tutorial/bottom_button.svg" id="1_vm8dx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ho6b"]
 font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_y7026"]
-font_size = 100
-font_color = Color(0.9, 0.9, 0.9, 1)
 
 [node name="PauseTutorial" type="Control"]
 layout_mode = 3
@@ -32,20 +28,6 @@ grow_vertical = 0
 text = "pause_tutorial"
 label_settings = SubResource("LabelSettings_8ho6b")
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -256.0
-offset_right = 450.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "/ ESC"
-label_settings = SubResource("LabelSettings_y7026")
-horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]

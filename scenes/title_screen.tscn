@@ -44,6 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_behavior_recursive = 2
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 1
@@ -78,16 +79,20 @@ alignment = 1
 
 [node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../TutorialButton")
 theme_override_font_sizes/font_size = 20
 text = "start_button"
 
 [node name="TutorialButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
 theme_override_font_sizes/font_size = 20
 text = "tutorial_button"
 
 [node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../TutorialButton")
 theme_override_font_sizes/font_size = 20
 text = "options"
 

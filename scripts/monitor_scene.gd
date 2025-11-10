@@ -4,6 +4,8 @@ class_name MonitorScene extends ColorRect
 var file_browser: ScreenFileBrowser = $ScreenFileBrowser
 @onready
 var levels_scene: LevelsScene = $LevelsScene
+@onready
+var cursor: Sprite2D = $Cursor
 
 @export
 var popup_scene: PackedScene = preload("res://scenes/monitor_scenes/screen_popup.tscn")
@@ -58,7 +60,7 @@ func set_usb_popup_visible(usb_visible: bool) -> void:
 	$USBDrive.visible = usb_visible
 
 func focus_popup(popup: ScreenPopup) -> void:
-	popup.get_parent().move_child(popup, -4)
+	popup.get_parent().move_child(popup, -5)
 
 func close_popup(popup: ScreenPopup) -> void:
 	if !popup.path.is_empty() and open_files.has(popup.path):
@@ -131,10 +133,10 @@ func _on_called_number(number: String) -> void:
 			var actions: Array = Config.telephone_actions["Server 2A"][number]
 			for action in actions:
 				if action.scope == -1:
-					for i in range(Config.server_files["Server 2A"]["unlock"]["current_shapes"].size()):
-						UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], i, action)
+					for i in range(Config.server_files["Server 2A"]["unlock_file"]["current_shapes"].size()):
+						UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock_file"], i, action)
 				else:
-					UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock"], action.scope, action)
+					UnlockSymbolCombination.apply_action(Config.server_files["Server 2A"]["unlock_file"], action.scope, action)
 			EventBus.updated_lvl2_unlock.emit()
 			Audio.stop("number_accepted")
 			Audio.play("number_accepted", Audio.telephone_pickup, 0, "SFX", Audio.TELEPHONE_POSITION)
@@ -169,6 +171,8 @@ func _on_file_browser_back_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Audio.play("mouse", Audio.mouse_click_press if event.pressed else Audio.mouse_click_release, -20, "SFX", Audio.MOUSE_POSITION)
+	if event is InputEventMouseMotion:
+		cursor.global_position = event.position
 
 func _on_usb_drive_pressed() -> void:
 	_on_levels_scene_open_server_files("USB")

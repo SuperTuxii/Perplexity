@@ -128,6 +128,7 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_behavior_recursive = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fckfc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_v4u4c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bycdx")

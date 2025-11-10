@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://consmqbymlt6p"]
 
-[ext_resource type="Texture2D" uid="uid://ehytpbb6t5lv" path="res://assets/textures/tutorial/drag.svg" id="1_u0342"]
+[ext_resource type="Texture2D" uid="uid://np10nw67vubs" path="res://assets/textures/tutorial/joystick.svg" id="1_lmfhq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ho6b"]
 font_size = 30
@@ -35,4 +35,4 @@ anchor_bottom = 1.0
 offset_top = -256.0
 offset_right = 256.0
 grow_vertical = 0
-texture = ExtResource("1_u0342")
+texture = ExtResource("1_lmfhq")

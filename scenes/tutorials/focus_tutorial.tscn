@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca872q63wktoi"]
 
-[ext_resource type="Texture2D" uid="uid://dkr5mbucuud23" path="res://assets/textures/tutorial/left_click.svg" id="1_vmv5w"]
+[ext_resource type="Texture2D" uid="uid://cmav8aj6phaau" path="res://assets/textures/tutorial/right_button.svg" id="1_vmv5w"]
 
 [node name="FocusTutorial" type="Control"]
 layout_mode = 3
