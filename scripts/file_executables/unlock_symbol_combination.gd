@@ -69,6 +69,7 @@ func _on_unlock_button_pressed() -> void:
 	for i in range(current_shapes.size()):
 		if current_shapes[i] != correct_shapes[i] or current_colors[i] != correct_colors[i]:
 			Audio.play("wrong", Audio.wrong, -30, "SFX", Audio.MONITOR_POSITION)
+			LEDControl.trigger_animation("flash", false, {"color": [200, 0, 0], "duration": 20})
 			return
 	data["unlocked"] = true
 	$VBoxContainer/Content/UnlockButton.visible = false
@@ -76,4 +77,5 @@ func _on_unlock_button_pressed() -> void:
 	$VBoxContainer/Content/Symbols.visible = false
 	$VBoxContainer/Content/CorrectLabel.visible = true
 	Audio.play("correct", Audio.correct, -35, "SFX", Audio.MONITOR_POSITION)
+	LEDControl.trigger_animation("flash", false, {"color": [0, 200, 0], "duration": 20})
 	EventBus.unlock_server.emit(path.substr(0, path.find("/")))

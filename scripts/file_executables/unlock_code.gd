@@ -27,9 +27,11 @@ func check_code(code: String) -> void:
 		$VBoxContainer/Content/VBoxContainer.visible = false
 		$VBoxContainer/Content/CorrectLabel.visible = true
 		Audio.play("correct", Audio.correct, -35, "SFX", Audio.MONITOR_POSITION)
+		LEDControl.trigger_animation("flash", false, {"color": [0, 200, 0], "duration": 20})
 		EventBus.unlock_server.emit(path.substr(0, path.find("/")))
 	else:
 		Audio.play("wrong", Audio.wrong, -30, "SFX", Audio.MONITOR_POSITION)
+		LEDControl.trigger_animation("flash", false, {"color": [200, 0, 0], "duration": 20})
 
 func set_number(number: String) -> void:
 	code_line_edit.text += number

@@ -30,6 +30,7 @@ driver/output_latency.web=100
 EventBus="*res://scripts/event_bus.gd"
 Audio="*res://scenes/audio.tscn"
 Config="*res://scripts/config.gd"
+LEDControl="*res://scripts/led_control.gd"
 
 [display]
 

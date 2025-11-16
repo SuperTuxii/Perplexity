@@ -253,6 +253,7 @@ func _process(delta: float) -> void:
 			states.door_jumpscare_timer = -1
 			EventBus.set_jumpscare_visible.emit(true)
 			Audio.play("jumpscare", Audio.jumpscare, -5, "SFX")
+			LEDControl.trigger_animation("flash", true, {"color": [255, 0, 0], "duration": 10})
 			EventBus.schedule(EventBus.restart_game.emit, 5)
 
 #region Focusing (+ Object Unfocusing)
@@ -907,6 +908,7 @@ func click_musicbox() -> void:
 			musicbox_key_tween.tween_property(musicbox_key, "rotation_degrees:y", musicbox_key.rotation_degrees.y - 5, 0.7)
 			musicbox_key_tween.play()
 			Audio.play("musicbox_rattle", Audio.door_rattle, -2.5, "SFX", Audio.CONTAINER_POSITION)
+			LEDControl.trigger_animation("flash", false, {"color": [255, 100, 100], "duration": 30})
 			return
 		if states.musicbox_note_removed:
 			if Audio.is_playing("musicbox_windup") or Audio.is_playing("musicbox"):
@@ -939,6 +941,7 @@ func click_musicbox() -> void:
 			musicbox_key_tween.tween_subtween(key_break_tween)
 			musicbox_key_tween.play()
 			Audio.play("musicbox_windup", Audio.musicbox_windup, -10, "SFX", Audio.CONTAINER_POSITION)
+			LEDControl.trigger_animation("flash", false, {"color": [255, 100, 100], "duration": 30})
 		else:
 			var musicbox_note: MeshInstance3D = musicbox_mesh.get_node("Note")
 			var musicbox_note_tween: Tween = musicbox_note.create_tween()
@@ -1018,11 +1021,13 @@ func toggle_door() -> void:
 		$Door2/Door.rotation.y = 0
 		set_door_lock(true)
 		states.door_jumpscare_timer = -1
+		LEDControl.trigger_default()
 	else:
-		Audio.play("door_open", Audio.door_creek, -5, "SFX", Audio.DOOR_POSITION)
+		Audio.play("door_open", Audio.door_creek, -2.5, "SFX", Audio.DOOR_POSITION)
 		$Door2/Door.rotation.y = deg_to_rad(7.5)
 		set_door_lock(false)
 		states.door_jumpscare_timer = 0
+		LEDControl.trigger_animation("chase", false, {"color": [200, 100, 0]}, 0.5)
 	states.door_open = !states.door_open
 func monitor_look() -> void:
 	const original_rotations: PackedFloat32Array = [-85.5, 110.5, 88.8, -173.4, -101.4]
@@ -1070,6 +1075,7 @@ func _on_door_on_screen_notifier_screen_entered() -> void:
 			Audio.stop("door_open")
 			Audio.stop("door_shut"))
 		door_tween.tween_callback(play_audio)
+		door_tween.tween_callback(LEDControl.trigger_default)
 		door_tween.tween_property($Door2/Door, "rotation:y", 0, 6.0 if roll == 0 else 0.25)
 		door_tween.tween_callback(func lock_door(): set_door_lock(true))
 		door_tween.play()

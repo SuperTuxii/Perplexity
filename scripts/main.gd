@@ -33,6 +33,7 @@ func _ready() -> void:
 	EventBus.restart_game.connect(restart_game)
 	Audio.play("music", Audio.start_music, linear_to_db(0.2), "Music", Vector3(), ProcessMode.PROCESS_MODE_ALWAYS)
 	Audio.player_finished.connect(_on_audio_player_finished)
+	LEDControl.trigger_default()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # Pause menu and exiting focus
